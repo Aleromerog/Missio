@@ -4,7 +4,7 @@
              x:Class="Missio.LogIn">
 
     <StackLayout>
-        <Label Text="Welcome to Xamarin.Forms!"
+        <Label Text="Welcome to Xamarin.Forms!q"
                VerticalOptions="CenterAndExpand"
                HorizontalOptions="CenterAndExpand" />
         <Image Source=""/>
