@@ -377,7 +377,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jorge\\.nuget\\packages\\": {},
+    "C:\\Users\\GrecoFlores\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -386,17 +386,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jorge\\source\\repos\\Missio\\Missio\\Missio\\Missio\\Missio.csproj",
+      "projectUniqueName": "D:\\App Misiones\\Missio\\Missio\\Missio\\Missio.csproj",
       "projectName": "Missio",
-      "projectPath": "C:\\Users\\Jorge\\source\\repos\\Missio\\Missio\\Missio\\Missio\\Missio.csproj",
-      "packagesPath": "C:\\Users\\Jorge\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jorge\\source\\repos\\Missio\\Missio\\Missio\\Missio\\obj\\",
+      "projectPath": "D:\\App Misiones\\Missio\\Missio\\Missio\\Missio.csproj",
+      "packagesPath": "C:\\Users\\GrecoFlores\\.nuget\\packages\\",
+      "outputPath": "D:\\App Misiones\\Missio\\Missio\\Missio\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Jorge\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\GrecoFlores\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

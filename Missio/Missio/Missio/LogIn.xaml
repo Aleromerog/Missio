@@ -5,7 +5,7 @@
              BackgroundColor="#580302">
 
     <StackLayout Spacing="40"
-                 VerticalOptios="Center">
+                 VerticalOptions="Center">
         
         <Image
             Source="lenguas.png"

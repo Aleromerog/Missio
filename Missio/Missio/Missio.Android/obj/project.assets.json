@@ -792,20 +792,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jorge\\.nuget\\packages\\": {}
+    "C:\\Users\\GrecoFlores\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jorge\\source\\repos\\Missio\\Missio\\Missio\\Missio.Android\\Missio.Android.csproj",
+      "projectUniqueName": "D:\\App Misiones\\Missio\\Missio\\Missio.Android\\Missio.Android.csproj",
       "projectName": "Missio.Android",
-      "projectPath": "C:\\Users\\Jorge\\source\\repos\\Missio\\Missio\\Missio\\Missio.Android\\Missio.Android.csproj",
-      "packagesPath": "C:\\Users\\Jorge\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jorge\\source\\repos\\Missio\\Missio\\Missio\\Missio.Android\\obj\\",
+      "projectPath": "D:\\App Misiones\\Missio\\Missio\\Missio.Android\\Missio.Android.csproj",
+      "packagesPath": "C:\\Users\\GrecoFlores\\.nuget\\packages\\",
+      "outputPath": "D:\\App Misiones\\Missio\\Missio\\Missio.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\Jorge\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\GrecoFlores\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -818,8 +818,8 @@
       "frameworks": {
         "monoandroid80": {
           "projectReferences": {
-            "C:\\Users\\Jorge\\source\\repos\\Missio\\Missio\\Missio\\Missio\\Missio.csproj": {
-              "projectPath": "C:\\Users\\Jorge\\source\\repos\\Missio\\Missio\\Missio\\Missio\\Missio.csproj"
+            "D:\\App Misiones\\Missio\\Missio\\Missio\\Missio.csproj": {
+              "projectPath": "D:\\App Misiones\\Missio\\Missio\\Missio\\Missio.csproj"
             }
           }
         }
