@@ -11,7 +11,7 @@
 namespace Missio {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("c:\\users\\jorge\\source\\repos\\Missio\\Missio\\Missio\\MainPage.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Jorge\\source\\repos\\Missio\\Missio\\Missio\\Missio\\MainPage.xaml")]
     public partial class MainPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]

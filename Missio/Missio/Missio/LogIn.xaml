@@ -1,13 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Missio.LogIn">
+             x:Class="Missio.LogIn"
+             BackgroundColor="#580302">
 
-    <StackLayout>
-        <Label Text="Welcome to Xamarin.Forms!q"
-               VerticalOptions="CenterAndExpand"
-               HorizontalOptions="CenterAndExpand" />
-        <Image Source=""/>
+    <StackLayout Spacing="40"
+                 VerticalOptios="Center">
+        
+        <Image
+            Source="lenguas.png"
+            Margin="120,30,120,15"
+            />
+        <Label Text="Inicio de sesión"
+               TextColor="White"
+               HorizontalOptions="Center"
+               FontSize="30"
+               FontAttributes="Bold"
+               />
+        <Entry x:Name="User"
+               Margin="15,0,15,0"
+               FontSize="30"
+               TextColor="Black"
+               BackgroundColor="White"
+               
+              />
+        <Entry x:Name="Password"
+               Margin="15,0,15,0"
+               FontSize="30"
+               IsPassword="True"
+               BackgroundColor="White"
+               TextColor="Black"
+               />
+        <Button BackgroundColor="#7D0403"
+                Margin="15,0,15,-15"
+                Text="Entrar"
+                TextColor="White"
+                />
+        <Button Text="Regístrate"
+                TextColor="White"
+                HorizontalOptions="Center"
+                BackgroundColor="Transparent"
+                FontAttributes="Bold"
+                FontSize="18"
+               
+               />
     </StackLayout>
     
 </ContentPage>

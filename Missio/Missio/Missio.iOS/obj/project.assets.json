@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "Xamarin.iOS,Version=v1.0": {
-      "Xamarin.Forms/2.5.0.121934": {
+      "Xamarin.Forms/2.5.0.122203": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -129,7 +129,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Xamarin.Forms": "2.5.0.121934"
+          "Xamarin.Forms": "2.5.0.122203"
         },
         "compile": {
           "bin/placeholder/Missio.dll": {}
@@ -140,7 +140,7 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win": {
-      "Xamarin.Forms/2.5.0.121934": {
+      "Xamarin.Forms/2.5.0.122203": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -267,7 +267,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Xamarin.Forms": "2.5.0.121934"
+          "Xamarin.Forms": "2.5.0.122203"
         },
         "compile": {
           "bin/placeholder/Missio.dll": {}
@@ -278,7 +278,7 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win-x64": {
-      "Xamarin.Forms/2.5.0.121934": {
+      "Xamarin.Forms/2.5.0.122203": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -405,7 +405,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Xamarin.Forms": "2.5.0.121934"
+          "Xamarin.Forms": "2.5.0.122203"
         },
         "compile": {
           "bin/placeholder/Missio.dll": {}
@@ -416,7 +416,7 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win-x86": {
-      "Xamarin.Forms/2.5.0.121934": {
+      "Xamarin.Forms/2.5.0.122203": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -543,7 +543,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Xamarin.Forms": "2.5.0.121934"
+          "Xamarin.Forms": "2.5.0.122203"
         },
         "compile": {
           "bin/placeholder/Missio.dll": {}
@@ -555,10 +555,10 @@
     }
   },
   "libraries": {
-    "Xamarin.Forms/2.5.0.121934": {
-      "sha512": "H3Gh6nvximMk9i8LdfhPnARo+kEsh8hDXWRboiUPb1r22gkIGA8i8tbnRcSXJWk4fCW/kdMTom6SFN0L+NhItw==",
+    "Xamarin.Forms/2.5.0.122203": {
+      "sha512": "qg7A2IXbVV/5u9qqeiDhRMwpVEsbWKBxzeAtD0rTuntmaDB1Z7WuBg5IK2VBklJbKe2Ps8V9zBfEwgJIqPVJUw==",
       "type": "package",
-      "path": "xamarin.forms/2.5.0.121934",
+      "path": "xamarin.forms/2.5.0.122203",
       "files": [
         "build/netstandard1.0/Mono.Cecil.Mdb.dll",
         "build/netstandard1.0/Mono.Cecil.Pdb.dll",
@@ -733,7 +733,7 @@
         "lib/wpa81/Xamarin.Forms.Platform.dll",
         "lib/wpa81/Xamarin.Forms.Xaml.dll",
         "lib/wpa81/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.2.5.0.121934.nupkg.sha512",
+        "xamarin.forms.2.5.0.122203.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
     },
@@ -746,7 +746,7 @@
   "projectFileDependencyGroups": {
     "Xamarin.iOS,Version=v1.0": [
       "Missio >= 1.0.0",
-      "Xamarin.Forms >= 2.5.0.121934"
+      "Xamarin.Forms >= 2.5.0.122203"
     ]
   },
   "packageFolders": {
@@ -755,11 +755,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\users\\jorge\\source\\repos\\Missio\\Missio\\Missio.iOS\\Missio.iOS.csproj",
+      "projectUniqueName": "C:\\Users\\Jorge\\source\\repos\\Missio\\Missio\\Missio\\Missio.iOS\\Missio.iOS.csproj",
       "projectName": "Missio.iOS",
-      "projectPath": "c:\\users\\jorge\\source\\repos\\Missio\\Missio\\Missio.iOS\\Missio.iOS.csproj",
+      "projectPath": "C:\\Users\\Jorge\\source\\repos\\Missio\\Missio\\Missio\\Missio.iOS\\Missio.iOS.csproj",
       "packagesPath": "C:\\Users\\Jorge\\.nuget\\packages\\",
-      "outputPath": "c:\\users\\jorge\\source\\repos\\Missio\\Missio\\Missio.iOS\\obj\\",
+      "outputPath": "C:\\Users\\Jorge\\source\\repos\\Missio\\Missio\\Missio\\Missio.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
@@ -776,8 +776,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "c:\\users\\jorge\\source\\repos\\Missio\\Missio\\Missio\\Missio.csproj": {
-              "projectPath": "c:\\users\\jorge\\source\\repos\\Missio\\Missio\\Missio\\Missio.csproj"
+            "C:\\Users\\Jorge\\source\\repos\\Missio\\Missio\\Missio\\Missio\\Missio.csproj": {
+              "projectPath": "C:\\Users\\Jorge\\source\\repos\\Missio\\Missio\\Missio\\Missio\\Missio.csproj"
             }
           }
         }
@@ -788,7 +788,7 @@
         "dependencies": {
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[2.5.0.121934, )"
+            "version": "[2.5.0.122203, )"
           }
         }
       }
