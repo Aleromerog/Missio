@@ -13,6 +13,10 @@ Xamarin has its own framework for Unit Testing (that extends NUnit):
 
 https://developer.xamarin.com/guides/ios/deployment,_testing,_and_metrics/touch.unit/
 
+Xamarin also has its own tutorial explaining the MVVM:
+
+https://developer.xamarin.com/guides/xamarin-forms/enterprise-application-patterns/mvvm/
+
 Additionally Xamarin has a few different ways for sharing code (Visual studio projects) in this project the .NET Standard way will be used since it is the newest
 
 https://developer.xamarin.com/guides/cross-platform/application_fundamentals/building_cross_platform_applications/part_3_-_setting_up_a_xamarin_cross_platform_solution
