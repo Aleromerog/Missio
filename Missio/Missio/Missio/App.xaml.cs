@@ -5,8 +5,7 @@
 		public App ()
 		{
 			InitializeComponent();
-
-			MainPage = new MainPage();
+            MainPage = new LogIn();
 		}
 
 		protected override void OnStart ()

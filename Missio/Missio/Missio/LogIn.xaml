@@ -1,49 +1,58 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Missio.LogIn"
              BackgroundColor="#580302">
-
-    <StackLayout Spacing="40"
-                 VerticalOptions="Center">
-        
-        <Image
-            Source="lenguas.png"
-            Margin="120,30,120,15"
-            />
-        <Label Text="Inicio de sesión"
-               TextColor="White"
-               HorizontalOptions="Center"
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <LayoutOptions x:Key="LogInLayoutOptions" Alignment="Center"></LayoutOptions>
+            <Color x:Key="LogInTextColor"> White </Color>
+            <Color x:Key="EntryTextColor"> Black </Color>
+            <Color x:Key="EntryBackgroundColor"> White </Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid Padding="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0"
+               Source="lenguas.png"
+               HorizontalOptions="{StaticResource LogInLayoutOptions}" />
+        <Label Grid.Row="1" Text="Inicio de sesión"
+               TextColor="{StaticResource LogInTextColor}"
                FontSize="30"
                FontAttributes="Bold"
-               />
-        <Entry x:Name="User"
-               Margin="15,0,15,0"
+               HorizontalOptions="{StaticResource LogInLayoutOptions}" />
+        <Entry Grid.Row="2" x:Name="User"
                FontSize="30"
-               TextColor="Black"
-               BackgroundColor="White"
-               
-              />
-        <Entry x:Name="Password"
-               Margin="15,0,15,0"
+               TextColor="{StaticResource EntryTextColor}"
+               BackgroundColor="{StaticResource EntryBackgroundColor}" />
+        <Entry Grid.Row="3" x:Name="Password"
                FontSize="30"
                IsPassword="True"
-               BackgroundColor="White"
-               TextColor="Black"
-               />
-        <Button BackgroundColor="#7D0403"
-                Margin="15,0,15,-15"
+               BackgroundColor="{StaticResource EntryBackgroundColor}"
+               TextColor="{StaticResource EntryTextColor}" />
+        <Button Grid.Row="4" BackgroundColor="#7D0403"
                 Text="Entrar"
-                TextColor="White"
-                />
-        <Button Text="Regístrate"
-                TextColor="White"
-                HorizontalOptions="Center"
+                TextColor="{StaticResource LogInTextColor}"
+                HorizontalOptions="{StaticResource LogInLayoutOptions}" />
+        <Button Grid.Row="5" Text="Regístrate"
+                TextColor="{StaticResource LogInTextColor}"
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
                 FontSize="18"
-               
-               />
-    </StackLayout>
-    
+                HorizontalOptions="{StaticResource LogInLayoutOptions}"
+                Clicked="OnClicked" />
+
+    </Grid>
+
 </ContentPage>
