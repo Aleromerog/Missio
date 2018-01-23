@@ -50,8 +50,7 @@
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
                 FontSize="18"
-                HorizontalOptions="{StaticResource LogInLayoutOptions}"
-                Clicked="OnClicked" />
+                HorizontalOptions="{StaticResource LogInLayoutOptions}" />
 
     </Grid>
 
