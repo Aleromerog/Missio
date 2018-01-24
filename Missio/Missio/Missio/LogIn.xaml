@@ -15,6 +15,7 @@
                TextColor="White"
                HorizontalOptions="Center"
                FontSize="30"
+               
                FontAttributes="Bold"
                />
         <Entry x:Name="User"
