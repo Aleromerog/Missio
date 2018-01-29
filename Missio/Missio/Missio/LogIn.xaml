@@ -7,9 +7,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <LayoutOptions x:Key="LogInLayoutOptions" Alignment="Center"></LayoutOptions>
-            <Color x:Key="LogInTextColor"> White </Color>
-            <Color x:Key="EntryTextColor"> Black </Color>
-            <Color x:Key="EntryBackgroundColor"> White </Color>
+            <Color x:Key="EntryBackgroundColor">White</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid Padding="5">
@@ -28,26 +26,26 @@
                Source="lenguas.png"
                HorizontalOptions="{StaticResource LogInLayoutOptions}" />
         <Label Grid.Row="1" Text="Inicio de sesión"
-               TextColor="{StaticResource LogInTextColor}"
+               TextColor="{StaticResource MainTextColor}"
                FontSize="30"
                
                FontAttributes="Bold"
                HorizontalOptions="{StaticResource LogInLayoutOptions}" />
         <Entry Grid.Row="2" x:Name="User"
                FontSize="30"
-               TextColor="{StaticResource EntryTextColor}"
+               TextColor="{StaticResource SecondaryTextColor}"
                BackgroundColor="{StaticResource EntryBackgroundColor}" />
         <Entry Grid.Row="3" x:Name="Password"
                FontSize="30"
                IsPassword="True"
                BackgroundColor="{StaticResource EntryBackgroundColor}"
-               TextColor="{StaticResource EntryTextColor}" />
+               TextColor="{StaticResource SecondaryTextColor}" />
         <Button Grid.Row="4" BackgroundColor="#7D0403"
                 Text="Entrar"
-                TextColor="{StaticResource LogInTextColor}"
+                TextColor="{StaticResource MainTextColor}"
                 HorizontalOptions="{StaticResource LogInLayoutOptions}" />
         <Button Grid.Row="5" Text="Regístrate"
-                TextColor="{StaticResource LogInTextColor}"
+                TextColor="{StaticResource MainTextColor}"
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
                 FontSize="18"
