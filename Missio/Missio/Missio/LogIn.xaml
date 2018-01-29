@@ -7,9 +7,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <LayoutOptions x:Key="LogInLayoutOptions" Alignment="Center"></LayoutOptions>
-            <Color x:Key="LogInTextColor"> White </Color>
-            <Color x:Key="EntryTextColor"> Black </Color>
-            <Color x:Key="EntryBackgroundColor"> White </Color>
+            <Color x:Key="EntryBackgroundColor">White</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid Padding="20"
@@ -32,7 +30,7 @@
                Source="lenguas.png"
                HorizontalOptions="{StaticResource LogInLayoutOptions}" />
         <Label Grid.Row="3" Text="Inicio de sesión"
-               TextColor="{StaticResource LogInTextColor}"
+               TextColor="{StaticResource MainTextColor}"
                FontSize="28"
 
                
@@ -40,9 +38,7 @@
                HorizontalOptions="{StaticResource LogInLayoutOptions}" />
         <Entry Grid.Row="4" x:Name="User"
                FontSize="30"
-               
-               TextColor="{StaticResource EntryTextColor}"
-               
+               TextColor="{StaticResource SecondaryTextColor}"
                BackgroundColor="{StaticResource EntryBackgroundColor}" />
         <Entry Grid.Row="5" x:Name="Password"
                FontSize="30"
@@ -50,13 +46,13 @@
                IsPassword="True"
                
                BackgroundColor="{StaticResource EntryBackgroundColor}"
-               TextColor="{StaticResource EntryTextColor}" />
+               TextColor="{StaticResource SecondaryTextColor}" />
         <Button Grid.Row="6" BackgroundColor="#7D0403"
                 Text="Entrar"
-                TextColor="{StaticResource LogInTextColor}"
+                TextColor="{StaticResource MainTextColor}"
                 HorizontalOptions="Fill" />
         <Button Grid.Row="7" Text="Regístrate"
-                TextColor="{StaticResource LogInTextColor}"
+                TextColor="{StaticResource MainTextColor}"
                 BackgroundColor="Transparent"
                 BorderColor="Transparent"
                 
