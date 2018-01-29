@@ -12,11 +12,14 @@
             <Color x:Key="EntryBackgroundColor"> White </Color>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Grid Padding="5">
+    <Grid Padding="20"
+          RowSpacing="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="4*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -24,31 +27,39 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Image Grid.Row="0"
+        <Image Grid.Row="1"
+               
                Source="lenguas.png"
                HorizontalOptions="{StaticResource LogInLayoutOptions}" />
-        <Label Grid.Row="1" Text="Inicio de sesión"
+        <Label Grid.Row="3" Text="Inicio de sesión"
                TextColor="{StaticResource LogInTextColor}"
-               FontSize="30"
+               FontSize="28"
+
                
                FontAttributes="Bold"
                HorizontalOptions="{StaticResource LogInLayoutOptions}" />
-        <Entry Grid.Row="2" x:Name="User"
+        <Entry Grid.Row="4" x:Name="User"
                FontSize="30"
+               
                TextColor="{StaticResource EntryTextColor}"
+               
                BackgroundColor="{StaticResource EntryBackgroundColor}" />
-        <Entry Grid.Row="3" x:Name="Password"
+        <Entry Grid.Row="5" x:Name="Password"
                FontSize="30"
+              
                IsPassword="True"
+               
                BackgroundColor="{StaticResource EntryBackgroundColor}"
                TextColor="{StaticResource EntryTextColor}" />
-        <Button Grid.Row="4" BackgroundColor="#7D0403"
+        <Button Grid.Row="6" BackgroundColor="#7D0403"
                 Text="Entrar"
                 TextColor="{StaticResource LogInTextColor}"
-                HorizontalOptions="{StaticResource LogInLayoutOptions}" />
-        <Button Grid.Row="5" Text="Regístrate"
+                HorizontalOptions="Fill" />
+        <Button Grid.Row="7" Text="Regístrate"
                 TextColor="{StaticResource LogInTextColor}"
                 BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                
                 FontAttributes="Bold"
                 FontSize="18"
                 HorizontalOptions="{StaticResource LogInLayoutOptions}" />
