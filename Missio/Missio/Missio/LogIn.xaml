@@ -41,8 +41,8 @@
         <Entry Grid.Row="4" x:Name="User"
                FontSize="30"
                HorizontalTextAlignment="Center"
-               
                Placeholder="Missionero"
+               PlaceholderColor="{StaticResource MainTextColor}"
                TextColor="White"
                BackgroundColor="{StaticResource EntryBackgroundColor}" />
         
@@ -50,6 +50,7 @@
                FontSize="30"
                HorizontalTextAlignment="Center"
                Placeholder="Contraseña"
+               PlaceholderColor="{StaticResource MainTextColor}"
                IsPassword="True"  
                BackgroundColor="{StaticResource EntryBackgroundColor}"
                TextColor="{StaticResource MainTextColor}" />
