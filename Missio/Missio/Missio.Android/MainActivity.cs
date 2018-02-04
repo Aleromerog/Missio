@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System.Reflection;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
 
@@ -15,7 +16,15 @@ namespace Missio.Droid
             base.OnCreate(bundle);
 
             Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App());
+            try
+            {
+                LoadApplication(new App());
+            }
+            catch (TargetInvocationException exception)
+            {
+                throw exception.InnerException;
+            }
+            
         }
     }
 }
