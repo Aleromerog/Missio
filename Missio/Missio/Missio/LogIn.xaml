@@ -35,7 +35,7 @@
         <Label Grid.Row="3" Text="Inicio de sesión"
                TextColor="{StaticResource MainTextColor}"
                FontSize="28" 
-               FontAttributes="None"
+               FontAttributes="Bold"
                HorizontalOptions="{StaticResource LogInLayoutOptions}" />
 
         <Entry Grid.Row="4" x:Name="User"
