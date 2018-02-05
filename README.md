@@ -23,3 +23,8 @@ https://developer.xamarin.com/guides/cross-platform/application_fundamentals/bui
 
 https://developer.xamarin.com/guides/cross-platform/application_fundamentals/net-standard
 
+Theres also some general UI design guidelines when developing for each platform:
+
+https://developer.apple.com/ios/human-interface-guidelines/overview/themes/
+
+https://developer.android.com/guide/practices/ui_guidelines/index.html
