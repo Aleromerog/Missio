@@ -7,6 +7,14 @@
         <ResourceDictionary>
             <Color x:Key="MainTextColor">White</Color>
             <Color x:Key="SecondaryTextColor">Black</Color>
+            <Color x:Key="PrimaryColor">#7D0403</Color>
+            <Color x:Key="PrimaryDarkColor">#580301</Color>
+            
+            <Style x:Key="ButtonStyle" TargetType="Button" >
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
         </ResourceDictionary>
+        
     </Application.Resources>
+
 </Application>

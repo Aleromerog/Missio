@@ -2,8 +2,10 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:missio="clr-namespace:Missio;assembly=Missio"
+
              x:Class="Missio.LogIn"
-             BackgroundColor="#580301">
+             BackgroundColor="{StaticResource PrimaryDarkColor}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <LayoutOptions x:Key="LogInLayoutOptions" Alignment="Center"></LayoutOptions>
@@ -28,47 +30,68 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         
-        <Image Grid.Row="1"
+        <Image Grid.Row="1" 
                Source="lenguas.png"
-               HorizontalOptions="{StaticResource LogInLayoutOptions}" />
-        
-        <Label Grid.Row="3" Text="Inicio de sesión"
+               HorizontalOptions="{StaticResource LogInLayoutOptions}" 
+               />
+
+        <Label Grid.Row="3"
+               Text="Inicio de sesión"
                TextColor="{StaticResource MainTextColor}"
                FontSize="28" 
                FontAttributes="Bold"
-               HorizontalOptions="{StaticResource LogInLayoutOptions}" />
+               HorizontalOptions="{StaticResource LogInLayoutOptions}"
+               />
 
-        <Entry Grid.Row="4" x:Name="User"
-               FontSize="30"
+        <missio:LoginEntry Grid.Row="4" x:Name="User"
+               FontSize="18"
                HorizontalTextAlignment="Center"
                Placeholder="Missionero"
-               PlaceholderColor="{StaticResource MainTextColor}"
-               TextColor="White"
+               TextColor="{StaticResource SecondaryTextColor}"
                BackgroundColor="{StaticResource EntryBackgroundColor}" />
-        
-        <Entry Grid.Row="5" x:Name="Password"
-               FontSize="30"
+
+        <missio:LoginEntry Grid.Row="5"  x:Name="Password"
+               FontSize="18"
                HorizontalTextAlignment="Center"
                Placeholder="Contraseña"
-               PlaceholderColor="{StaticResource MainTextColor}"
                IsPassword="True"  
                BackgroundColor="{StaticResource EntryBackgroundColor}"
-               TextColor="{StaticResource MainTextColor}" />
-       
-        <Button Grid.Row="6" BackgroundColor="#7D0403"
+               TextColor="{StaticResource SecondaryTextColor}" />
+
+        <Button Grid.Row="6" 
+                BackgroundColor="{StaticResource PrimaryColor}"
                 Text="Entrar"
                 FontSize="18"
                 TextColor="{StaticResource MainTextColor}"
-                HorizontalOptions="Fill" />
+                HorizontalOptions="Fill" 
+                BorderWidth="0"/>
         
-        <Button Grid.Row="7" Text="Regístrate"
-                TextColor="{StaticResource MainTextColor}"
-                BackgroundColor="Transparent"
-                BorderColor="Transparent"   
-                FontAttributes="Bold"
-                FontSize="18"
-                HorizontalOptions="{StaticResource LogInLayoutOptions}" />
+        <StackLayout Grid.Row="7"
+                     Orientation="Horizontal"
+                     Spacing="5"
+                     HorizontalOptions="Center"
+                     >
+            <BoxView 
+                     Color="#f0f0f0"
+                     HeightRequest="1"
+                     MinimumHeightRequest="1"/>
+            <Button
+                    TextColor="{StaticResource MainTextColor}"
+                    BorderColor="Transparent"   
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    HorizontalOptions="Fill">
+               
+            </Button>
 
+            <BoxView 
+                     Color="#f0f0f0"
+                     MinimumHeightRequest="1"
+                     HeightRequest="1"/>
+
+        </StackLayout>
+
+        
     </Grid>
 
 </ContentPage>
