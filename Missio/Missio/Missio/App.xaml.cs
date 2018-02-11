@@ -5,7 +5,7 @@
 		public App ()
 		{
 			InitializeComponent();
-            MainPage = new LogIn();
+            MainPage = new NewsFeedPage();
 		}
 
 		protected override void OnStart ()

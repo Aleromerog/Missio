@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Missio", "Missio\Missio\Mis
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mission.Model", "Mission.Model\Mission.Model.csproj", "{D53A6AC6-0799-4096-8706-88075C600CD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{AC0051E6-880A-4717-B613-55390A3E76B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mission.ViewModel", "ViewModel\Mission.ViewModel.csproj", "{AC0051E6-880A-4717-B613-55390A3E76B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
