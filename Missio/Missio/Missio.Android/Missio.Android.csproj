@@ -61,7 +61,8 @@
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="26.1.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BottomLine.cs" />
+    <Compile Include="CustomRenders\BottomLine.cs" />
+    <Compile Include="CustomRenders\ButtonLoginRender.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

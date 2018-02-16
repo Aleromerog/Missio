@@ -3,95 +3,75 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:missio="clr-namespace:Missio;assembly=Missio"
-
              x:Class="Missio.LogIn"
-             BackgroundColor="{StaticResource PrimaryDarkColor}">
+             BackgroundColor="{StaticResource LoginBackground}">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <LayoutOptions x:Key="LogInLayoutOptions" Alignment="Center"></LayoutOptions>
-            <Color x:Key="EntryBackgroundColor">Transparent</Color>
+            
         </ResourceDictionary>
+        
+
     </ContentPage.Resources>
-    <Grid Padding="20"
-          RowSpacing="20">
+    <StackLayout>
+        <Grid Padding="20"
+              RowSpacing="20">
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="4*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
         
-        <Image Grid.Row="1" 
-               Source="lenguas.png"
-               HorizontalOptions="{StaticResource LogInLayoutOptions}" 
-               />
+            <Image Grid.Row="1" 
+                   Source="lenguas2.png"
+                   HorizontalOptions="{StaticResource LogInLayoutOptions}" 
+                   />
 
-        <Label Grid.Row="3"
-               Text="Inicio de sesión"
-               TextColor="{StaticResource MainTextColor}"
-               FontSize="28" 
-               FontAttributes="Bold"
-               HorizontalOptions="{StaticResource LogInLayoutOptions}"
-               />
+            <Label Grid.Row="2"
+                   Text="Inicio de sesión"
+                   TextColor="{StaticResource PrimaryColor}"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand"
+                   />
 
-        <missio:LoginEntry Grid.Row="4" x:Name="User"
-               FontSize="18"
-               HorizontalTextAlignment="Center"
-               Placeholder="Missionero"
-               TextColor="{StaticResource SecondaryTextColor}"
-               BackgroundColor="{StaticResource EntryBackgroundColor}" />
+            <Entry Grid.Row="4" x:Name="User"
+                   FontSize="18"
+                   Placeholder="Missionero"
+                   BackgroundColor="Transparent"
+                   TextColor="{StaticResource PrimaryDarkColor}"
+                   />
 
-        <missio:LoginEntry Grid.Row="5"  x:Name="Password"
-               FontSize="18"
-               HorizontalTextAlignment="Center"
-               Placeholder="Contraseña"
-               IsPassword="True"  
-               BackgroundColor="{StaticResource EntryBackgroundColor}"
-               TextColor="{StaticResource SecondaryTextColor}" />
+            <Entry Grid.Row="5"  x:Name="Password"
+                   FontSize="18"
+                   HorizontalTextAlignment="Center"
+                   Placeholder="Contraseña"
+                   IsPassword="True"  
+                   BackgroundColor="{StaticResource EntryBackgroundColor}"
+                   TextColor="{StaticResource SecondaryTextColor}" />
 
-        <Button Grid.Row="6" 
-                BackgroundColor="{StaticResource PrimaryColor}"
-                Text="Entrar"
-                FontSize="18"
-                TextColor="{StaticResource MainTextColor}"
-                HorizontalOptions="Fill" 
-                BorderWidth="0"/>
-        
-        <StackLayout Grid.Row="7"
-                     Orientation="Horizontal"
-                     Spacing="5"
-                     HorizontalOptions="Center"
-                     >
-            <BoxView 
-                     Color="#f0f0f0"
-                     HeightRequest="1"
-                     MinimumHeightRequest="1"/>
-            <Button
-                    TextColor="{StaticResource MainTextColor}"
-                    BorderColor="Transparent"   
-                    FontAttributes="Bold"
+            <Button Grid.Row="6" 
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    Text="Entrar"
                     FontSize="18"
-                    HorizontalOptions="Fill">
-               
-            </Button>
-
-            <BoxView 
-                     Color="#f0f0f0"
-                     MinimumHeightRequest="1"
-                     HeightRequest="1"/>
-
-        </StackLayout>
-
+                    BorderWidth="10"
+                    BorderRadius="40"
+                    TextColor="{StaticResource MainTextColor}"
+                    HorizontalOptions="Center" 
+                    />
         
-    </Grid>
+         </Grid>
+        
+    </StackLayout>
+    
 
 </ContentPage>
