@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using Mission.Model.LocalProviders;
+using ViewModel;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Missio
@@ -8,6 +10,7 @@ namespace Missio
 	{
 		public NewsFeedPage ()
 		{
+            BindingContext = new NewsFeedViewModel(new NewsFeedPostProvider());
 			InitializeComponent ();
 		}
 	}

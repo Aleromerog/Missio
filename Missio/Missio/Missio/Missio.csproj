@@ -21,6 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="NewsFeedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using Mission.Model.Data;
 
 namespace Mission.Model.LocalProviders
 {
@@ -9,13 +8,13 @@ namespace Mission.Model.LocalProviders
         /// Gets a list of manually hardcoded news feed posts
         /// </summary>
         /// <returns> A list containing news feed posts</returns>
-        public ObservableCollection<NewsFeedPost> GetMostRecentPosts()
+        public ObservableCollection<string> GetMostRecentPosts()
         {
-            return new ObservableCollection<NewsFeedPost>()
+            return new ObservableCollection<string>
             {
-                new NewsFeedPost(new PostAuthor("Jorge Romero"), "Some content 1", 10),
-                new NewsFeedPost(new PostAuthor("Francisco Greco"), "Some content 2", 20),
-                new NewsFeedPost(new PostAuthor("Mr Awesome"), "Some content 3", 30),
+                "Jorge Romero", "Francisco Greco", "Mr Awesome"
+                //new NewsFeedPost(new PostAuthor("Francisco Greco"), "Some content 2", 20),
+                //new NewsFeedPost(new PostAuthor("Mr Awesome"), "Some content 3", 30),
             };
         }
     }
@@ -26,6 +25,6 @@ namespace Mission.Model.LocalProviders
         /// Gets the most recent posts to display on the News Feed page
         /// </summary>
         /// <returns> A list containing the news feed posts </returns>
-        ObservableCollection<NewsFeedPost> GetMostRecentPosts();
+        ObservableCollection<string> GetMostRecentPosts();
     }
 }
