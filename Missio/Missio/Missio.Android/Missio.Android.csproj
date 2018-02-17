@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="CustomRenders\BottomLine.cs" />
     <Compile Include="CustomRenders\ButtonLoginRender.cs" />
+    <Compile Include="CustomRenders\TransparentButton.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

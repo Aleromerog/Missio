@@ -1,19 +1,18 @@
 ﻿using Android.Content;
 using Android.Graphics.Drawables;
-using Java.Lang;
-using Missio;
-using Missio.Droid;
+using Missio.Droid.CustomRenders;
+using Missio.Resources;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using Button = Xamarin.Forms.Button;
 
-[assembly: ExportRenderer(typeof(RoundedButton), typeof(ButtonLoginRender))]
+[assembly: ExportRenderer(typeof(TransparentButtonShared), typeof(TransparentButton))]
 
-namespace Missio.Droid
+namespace Missio.Droid.CustomRenders
 {
-
-    public class ButtonLoginRender : ButtonRenderer
+    class TransparentButton : ButtonRenderer
     {
-        public ButtonLoginRender(Context context): base(context)
+        public TransparentButton(Context context): base(context)
         {
         }
 
@@ -33,12 +32,11 @@ namespace Missio.Droid
             if(Control != null)
             {
                 GradientDrawable gradientDrawable = new GradientDrawable();
-                gradientDrawable.SetShape(ShapeType.Rectangle);
+                gradientDrawable.SetShape(ShapeType.Line);
                 gradientDrawable.SetCornerRadius(100.0f);
-                gradientDrawable.SetColor(Element.BackgroundColor.ToAndroid());
+                gradientDrawable.SetColor(Android.Graphics.Color.Transparent);
                 Control.SetBackground(gradientDrawable);
             }
-
         }
     }
 }
