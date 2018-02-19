@@ -1,20 +1,23 @@
 ﻿using System.Collections.ObjectModel;
+using Mission.Model.Data;
 
 namespace Mission.Model.LocalProviders
 {
+
+
     public class NewsFeedPostProvider : INewsFeedPositionProvider
     {
         /// <summary>
         /// Gets a list of manually hardcoded news feed posts
         /// </summary>
         /// <returns> A list containing news feed posts</returns>
-        public ObservableCollection<string> GetMostRecentPosts()
+        public ObservableCollection<NewsFeedPost> GetMostRecentPosts()
         {
-            return new ObservableCollection<string>
+            return new ObservableCollection<NewsFeedPost>
             {
-                "Jorge Romero", "Francisco Greco", "Mr Awesome"
-                //new NewsFeedPost(new PostAuthor("Francisco Greco"), "Some content 2", 20),
-                //new NewsFeedPost(new PostAuthor("Mr Awesome"), "Some content 3", 30),
+                new StickyPost("Super important news", "A sticky message"), 
+                new TextOnlyPost("Francisco Greco", "Hola"), 
+                new TextOnlyPost("Jorge Romero", "Hola x2"), 
             };
         }
     }
@@ -25,6 +28,6 @@ namespace Mission.Model.LocalProviders
         /// Gets the most recent posts to display on the News Feed page
         /// </summary>
         /// <returns> A list containing the news feed posts </returns>
-        ObservableCollection<string> GetMostRecentPosts();
+        ObservableCollection<NewsFeedPost> GetMostRecentPosts();
     }
 }
