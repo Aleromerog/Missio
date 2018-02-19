@@ -26,6 +26,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\ViewModel\Mission.ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="NewsFeedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
