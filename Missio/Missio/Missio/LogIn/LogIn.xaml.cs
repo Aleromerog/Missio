@@ -6,7 +6,7 @@ using Xamarin.Forms.Xaml;
 namespace Missio
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LogIn : ContentPage
+	public partial class LogIn
 	{
 		public LogIn ()
 		{
