@@ -6,16 +6,8 @@
              xmlns:resources="clr-namespace:Missio.Resources;assembly=Missio"
              x:Class="Missio.LogIn"
              BackgroundColor="{StaticResource LoginBackground}">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            
-        </ResourceDictionary>
-        
-
-    </ContentPage.Resources>
     <StackLayout>
-        <Grid Padding="20,0,20,0"
-              RowSpacing="20">
+        <Grid Padding="20,0,20,0" RowSpacing="20">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -27,75 +19,60 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto"  />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-        
-            <Image Grid.Row="1" 
+
+            <Image Grid.Row="1"
                    Source="lenguas2.png"
-                   HorizontalOptions="{StaticResource LogInLayoutOptions}" 
-                   />
+                   HorizontalOptions="{StaticResource LogInLayoutOptions}" />
 
             <Label Grid.Row="3"
                    Text=" Inicio de sesión"
                    TextColor="{StaticResource PrimaryColor}"
                    FontSize="20"
                    FontAttributes="Bold"
-                   HorizontalOptions="StartAndExpand"
-                   />
+                   HorizontalOptions="StartAndExpand" />
 
-            <Entry Grid.Row="4" x:Name="User"
+            <Entry Grid.Row="4"
                    FontSize="18"
                    Placeholder="  Missionero"
                    BackgroundColor="Transparent"
                    TextColor="{StaticResource PrimaryDarkColor}"
-                   />
+                   Text="{Binding Path=User.UserName, Mode=TwoWay}"/>
 
-            <Entry Grid.Row="5"  x:Name="Password"
+            <Entry Grid.Row="5"
                    FontSize="18"
                    Placeholder="  Contraseña"
-                   IsPassword="True"  
-                   TextColor="{StaticResource PrimaryDarkColor}" />
+                   IsPassword="True"
+                   TextColor="{StaticResource PrimaryDarkColor}" 
+                   Text="{Binding Path=User.Password, Mode=TwoWay}"/>
 
-            <missio:RoundedButton Grid.Row="6" 
-                    BackgroundColor="{StaticResource PrimaryColor}"
-                    Text="Entrar"
-                    FontSize="18"   
-                    BorderRadius="20"
-                    
-                    TextColor="{StaticResource MainTextColor}"
-                    />
-            
+            <missio:RoundedButton Grid.Row="6"
+                                  BackgroundColor="{StaticResource PrimaryColor}"
+                                  Text="Entrar"
+                                  FontSize="18"
+                                  BorderRadius="20"
+                                  Command="{Binding LogInCommand}"
+                                  TextColor="{StaticResource MainTextColor}" />
             <Grid Grid.Row="7">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
-
-                <resources:TransparentButtonShared  Grid.Column="0"
-                       Text="Regístrate"
-                       TextColor="{StaticResource PrimaryColor}"
-                       HorizontalOptions="Start"
-                       FontSize="12"
-                       />
-                
+                <resources:TransparentButtonShared Grid.Column="0"
+                                                   Text="Regístrate"
+                                                   TextColor="{StaticResource PrimaryColor}"
+                                                   HorizontalOptions="Start"
+                                                   FontSize="12" />
                 <resources:TransparentButtonShared Grid.Column="1"
-                       
-                       Text="Recuperar Contraseña"
-                       TextColor="{StaticResource PrimaryColor}"
-                       HorizontalOptions="End"
-                       
-                       FontSize="12"
-                       FontAttributes="None"/>
+                                                   Text="Recuperar Contraseña"
+                                                   TextColor="{StaticResource PrimaryColor}"
+                                                   HorizontalOptions="End"
+                                                   FontSize="12"
+                                                   FontAttributes="None" />
             </Grid>
-            
-
-
-        
-         </Grid>
-        
+        </Grid>
     </StackLayout>
-    
-
 </ContentPage>
