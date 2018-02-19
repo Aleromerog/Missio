@@ -7,7 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="MainTextColor">White</Color>
-            <Color x:Key="LoginBackground">#F5F5F5</Color>
+            <Color x:Key="LoginBackground">#EBEBEB</Color>
             <Color x:Key="SecondaryTextColor">Black</Color>
             <system:Double x:Key="NewsFeedBarHeight">0.05</system:Double>
             <Thickness x:Key="NewsFeedPostMargin">5, 3, 5, 3</Thickness>
