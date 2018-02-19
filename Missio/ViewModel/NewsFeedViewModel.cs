@@ -24,7 +24,7 @@ namespace ViewModel
         public Page Page { get; }
         public User User { get; }
         public ICommand LogInCommand { get; }
-        private IUserValidator UserValidator;
+        private readonly IUserValidator UserValidator;
 
         public LogInViewModel(Page page, IUserValidator userValidator)
         {
