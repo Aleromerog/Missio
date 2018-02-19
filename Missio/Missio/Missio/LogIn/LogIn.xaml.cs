@@ -1,4 +1,7 @@
-﻿using Xamarin.Forms.Xaml;
+﻿using Mission.Model.LocalProviders;
+using ViewModel;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Missio
 {
@@ -7,6 +10,7 @@ namespace Missio
 	{
 		public LogIn ()
 		{
+            BindingContext = new LogInViewModel(this, DependencyService.Get<IUserValidator>());
 			InitializeComponent ();
 		}
 	}

@@ -1,9 +1,16 @@
-﻿namespace Missio
+﻿using Xamarin.Forms;
+using Mission.Model.LocalProviders;
+
+namespace Missio
 {
 	public partial class App
 	{
 		public App ()
 		{
+#if USE_FAKE_DATA
+            DependencyService.Register<INewsFeedPositionProvider, FakeNewsFeedPostProvider>();
+            DependencyService.Register<IUserValidator, FakeUserValidator>();
+#endif
 			InitializeComponent();
             MainPage = new LogIn();
 

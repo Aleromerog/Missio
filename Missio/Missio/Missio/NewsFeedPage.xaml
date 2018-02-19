@@ -16,8 +16,9 @@
             </DataTemplate>
             <DataTemplate x:Key="StickyPost">
                 <ViewCell>
-                    <StackLayout Margin="{StaticResource NewsFeedPostMargin}" BackgroundColor="YellowGreen" >
-                        <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="Large" HorizontalTextAlignment="Center" />
+                    <StackLayout Margin="{StaticResource NewsFeedPostMargin}" BackgroundColor="YellowGreen">
+                        <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="Large"
+                               HorizontalTextAlignment="Center" />
                         <Label Text="{Binding Message}" />
                     </StackLayout>
                 </ViewCell>
@@ -36,7 +37,8 @@
                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=TopBar, Property=Height, Factor=1}"
                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.90}"
-                      ItemsSource="{Binding NewsFeedPosts}" ItemTemplate="{StaticResource personDataTemplateSelector}" HasUnevenRows="True"/>
+                      ItemsSource="{Binding NewsFeedPosts}" ItemTemplate="{StaticResource personDataTemplateSelector}"
+                      HasUnevenRows="True" />
             <BoxView x:Name="BottomBar" Color="Aqua"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor={StaticResource NewsFeedBarHeight}}"
