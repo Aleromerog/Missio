@@ -1,6 +1,5 @@
 ﻿using Android.Content;
 using Android.Graphics.Drawables;
-using Java.Lang;
 using Missio;
 using Missio.Droid;
 using Xamarin.Forms;
