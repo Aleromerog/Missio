@@ -28,6 +28,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
         
             <Image Grid.Row="1" 
@@ -63,7 +64,7 @@
                                   BackgroundColor="{StaticResource PrimaryColor}"
                                   Text="Entrar"
                                   FontSize="18"
-                                  BorderRadius="20"
+                                  CornerRadius="20"
                                   TextColor="{StaticResource MainTextColor}"
                                   Command="{Binding LogInCommand}" />
             <Label Grid.Row="6"
@@ -91,11 +92,9 @@
                                                    FontSize="12" />
 
                 <resources:TransparentButtonShared Grid.Column="1"
-
                                                    Text="Recuperar Contraseña"
                                                    TextColor="{StaticResource PrimaryColor}"
                                                    HorizontalOptions="End"
-
                                                    FontSize="12"
                                                    FontAttributes="None" />
             </Grid>
