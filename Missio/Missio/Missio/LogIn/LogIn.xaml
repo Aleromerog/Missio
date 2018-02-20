@@ -62,7 +62,7 @@
                                   BackgroundColor="{StaticResource PrimaryColor}"
                                   Text="Entrar"
                                   FontSize="18"
-                                  BorderRadius="20"
+                                  CornerRadius="20"
                                   TextColor="{StaticResource MainTextColor}"
                                   Command="{Binding LogInCommand}" />
             <Label Grid.Row="6"
