@@ -61,7 +61,7 @@
                    TextColor="{StaticResource PrimaryDarkColor}"
                    Text="{Binding Path=User.Password, Mode=TwoWay}" />
 
-            <Button Grid.Row="5"
+            <missio:RoundedButton Grid.Row="5"
                                   BackgroundColor="{StaticResource PrimaryColor}"
                                   Text="Entrar"
                                   FontSize="18"
