@@ -5,7 +5,8 @@
              xmlns:missio="clr-namespace:Missio;assembly=Missio"
              xmlns:resources="clr-namespace:Missio.Resources;assembly=Missio"
              x:Class="Missio.LogIn"
-             BackgroundColor="{StaticResource LoginBackground}">
+             BackgroundColor="{StaticResource LoginBackground}"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary />
 
