@@ -12,7 +12,7 @@ namespace Missio
             DependencyService.Register<IUserValidator, FakeUserValidator>();
 #endif
 			InitializeComponent();
-            MainPage = new LogIn();
+            MainPage = new NavigationPage(new LogIn());
 		}
 
 		protected override void OnStart ()

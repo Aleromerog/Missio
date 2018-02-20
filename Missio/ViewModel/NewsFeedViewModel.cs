@@ -22,13 +22,15 @@ namespace ViewModel
     public class LogInViewModel
     {
         public Page Page { get; }
+        public Page NewsFeedPage { get; }
         public User User { get; }
         public ICommand LogInCommand { get; }
         private readonly IUserValidator UserValidator;
 
-        public LogInViewModel(Page page, IUserValidator userValidator)
+        public LogInViewModel(Page page, Page newsFeedPage, IUserValidator userValidator)
         {
             Page = page;
+            NewsFeedPage = newsFeedPage;
             UserValidator = userValidator;
             LogInCommand = new Command(LogIn);
             User = new User("", "");
@@ -49,7 +51,7 @@ namespace ViewModel
                     await Page.DisplayAlert("Incorrect password", "The password was incorrect", "Ok");
                     break;
                 case LogInAttemptResult.Succeeded:
-                    await Page.DisplayAlert("Login succeeded", ":D", "Ok");
+                    await Page.Navigation.PushAsync(NewsFeedPage);
                     break;
                 default:
                     throw new ArgumentException(nameof(attemptResult));
