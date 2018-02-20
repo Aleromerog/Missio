@@ -58,7 +58,7 @@
                    TextColor="{StaticResource PrimaryDarkColor}"
                    Text="{Binding Path=User.Password, Mode=TwoWay}" />
 
-            <missio:RoundedButton Grid.Row="5"
+            <Button Grid.Row="5"
                                   BackgroundColor="{StaticResource PrimaryColor}"
                                   Text="Entrar"
                                   FontSize="18"
@@ -72,9 +72,9 @@
             <StackLayout Grid.Row="7"
                          Orientation="Horizontal"
                          HorizontalOptions="Center" VerticalOptions="Start">
-                <missio:RoundedButton BackgroundColor="DarkBlue" CornerRadius="65" HeightRequest="65" WidthRequest="65"/>
-                <missio:RoundedButton BackgroundColor="DodgerBlue" CornerRadius="65" HeightRequest="65" WidthRequest="65"/> 
-                <missio:RoundedButton BackgroundColor="DarkRed" CornerRadius="65" HeightRequest="65" WidthRequest="65"/> 
+                <Button BackgroundColor="DarkBlue" CornerRadius="65" HeightRequest="65" WidthRequest="65"/>
+                <Button BackgroundColor="DodgerBlue" CornerRadius="65" HeightRequest="65" WidthRequest="65"/> 
+                <Button BackgroundColor="DarkRed" CornerRadius="65" HeightRequest="65" WidthRequest="65"/> 
             </StackLayout>
 
             <Grid Grid.Row="8">
