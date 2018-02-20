@@ -72,9 +72,9 @@
             <StackLayout Grid.Row="7"
                          Orientation="Horizontal"
                          HorizontalOptions="Center" VerticalOptions="Start">
-                <Button BackgroundColor="DarkBlue" CornerRadius="65" HeightRequest="65" WidthRequest="65"/>
-                <Button BackgroundColor="DodgerBlue" CornerRadius="65" HeightRequest="65" WidthRequest="65"/> 
-                <Button BackgroundColor="DarkRed" CornerRadius="65" HeightRequest="65" WidthRequest="65"/> 
+                <missio:RoundedButton BackgroundColor="DarkBlue" CornerRadius="65" HeightRequest="65" WidthRequest="65"/>
+                <missio:RoundedButton BackgroundColor="DodgerBlue" CornerRadius="65" HeightRequest="65" WidthRequest="65"/> 
+                <missio:RoundedButton BackgroundColor="DarkRed" CornerRadius="65" HeightRequest="65" WidthRequest="65"/> 
             </StackLayout>
 
             <Grid Grid.Row="8">
@@ -90,11 +90,9 @@
                                                    FontSize="12" />
 
                 <resources:TransparentButtonShared Grid.Column="1"
-
                                                    Text="Recuperar Contraseña"
                                                    TextColor="{StaticResource PrimaryColor}"
                                                    HorizontalOptions="End"
-
                                                    FontSize="12"
                                                    FontAttributes="None" />
             </Grid>

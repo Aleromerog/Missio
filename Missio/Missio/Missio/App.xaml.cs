@@ -13,7 +13,6 @@ namespace Missio
 #endif
 			InitializeComponent();
             MainPage = new LogIn();
-
 		}
 
 		protected override void OnStart ()
