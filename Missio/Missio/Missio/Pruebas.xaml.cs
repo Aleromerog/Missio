@@ -10,7 +10,5 @@ namespace Missio
 		{
 			InitializeComponent ();
 		}
-
-	    
 	}
 }
