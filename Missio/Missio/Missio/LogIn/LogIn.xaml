@@ -51,7 +51,8 @@
                    PlaceholderColor="Gray"
                    BackgroundColor="Transparent"
                    TextColor="{StaticResource PrimaryDarkColor}"
-                   Text="{Binding Path=User.UserName, Mode=TwoWay}" />
+                   Text="{Binding Path=User.UserName, Mode=TwoWay}"
+                   AutomationId="UserNameEntry"/>
 
             <Entry Grid.Row="4"
                    FontSize="18"
@@ -67,7 +68,8 @@
                                   FontSize="18"
                                   CornerRadius="20"
                                   TextColor="{StaticResource MainTextColor}"
-                                  Command="{Binding LogInCommand}" />
+                                  Command="{Binding LogInCommand}"
+                                  AutomationId="LogInCommand"/>
             <Label Grid.Row="6"
                    Text="O ingresa con:"
                    TextColor="{StaticResource PrimaryColor}"

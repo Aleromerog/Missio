@@ -31,7 +31,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <RelativeLayout>
-            <BoxView x:Name="TopBar" Color="Aqua"
+            <BoxView Color="Aqua"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor={StaticResource NewsFeedBarHeight}}" />
             <ListView BackgroundColor="Red"
@@ -40,7 +40,7 @@
                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.90}"
                       ItemsSource="{Binding NewsFeedPosts}" ItemTemplate="{StaticResource personDataTemplateSelector}"
                       HasUnevenRows="True" />
-            <BoxView x:Name="BottomBar" Color="Aqua"
+            <BoxView Color="Aqua"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor={StaticResource NewsFeedBarHeight}}"
                      RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.95}" />
