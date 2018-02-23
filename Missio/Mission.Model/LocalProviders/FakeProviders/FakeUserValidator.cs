@@ -10,7 +10,7 @@ namespace Mission.Model.LocalProviders
     public class FakeUserValidator : IUserValidator
     {
         private List<User> ValidUsers =
-            new List<User> {new User("Jorge Romero", "Yolo"), new User("Francisco Greco", "ElPass"),};
+            new List<User> {new User("Jorge Romero", "Yolo"), new User("Francisco Greco", "ElPass"), new User("Existing user 1", "ValidPassword"), new User("Existing user 2", "ValidPassword") };
 
         /// <inheritdoc />
         public LogInAttemptResult IsDataCorrect(User user)

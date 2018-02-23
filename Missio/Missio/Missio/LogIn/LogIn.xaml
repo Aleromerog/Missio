@@ -7,11 +7,6 @@
              x:Class="Missio.LogIn"
              BackgroundColor="{StaticResource LoginBackground}"
              NavigationPage.HasNavigationBar="False">
-    <ContentPage.Resources>
-        <ResourceDictionary />
-
-
-    </ContentPage.Resources>
     <StackLayout>
         <Grid Padding="20,0,20,0" RowSpacing="20">
 
@@ -60,7 +55,8 @@
                    PlaceholderColor="Gray"
                    IsPassword="True"
                    TextColor="{StaticResource PrimaryDarkColor}"
-                   Text="{Binding Path=User.Password, Mode=TwoWay}" />
+                   Text="{Binding Path=User.Password, Mode=TwoWay}"
+                   AutomationId="PasswordEntry"/>
 
             <missio:RoundedButton Grid.Row="5"
                                   BackgroundColor="{StaticResource PrimaryColor}"
@@ -69,7 +65,7 @@
                                   CornerRadius="20"
                                   TextColor="{StaticResource MainTextColor}"
                                   Command="{Binding LogInCommand}"
-                                  AutomationId="LogInCommand"/>
+                                  AutomationId="LogInButton"/>
             <Label Grid.Row="6"
                    Text="O ingresa con:"
                    TextColor="{StaticResource PrimaryColor}"
@@ -101,7 +97,6 @@
                                                    FontSize="12"
                                                    FontAttributes="None" />
             </Grid>
-
 
         </Grid>
 

@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Mission.Model\Mission.Model.csproj" />
+    <ProjectReference Include="..\StringResources\StringResources.csproj" />
   </ItemGroup>
 
   <ItemGroup>

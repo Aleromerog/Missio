@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Mission.Model.Data;
 using Mission.Model.LocalProviders;
+using StringResources;
 using Xamarin.Forms;
 
 namespace ViewModel
@@ -45,10 +46,10 @@ namespace ViewModel
             switch (attemptResult)
             {
                 case LogInAttemptResult.IncorrectUsername:
-                    await Page.DisplayAlert("Incorrect username", "There does not exist a user with the given name", "Ok");
+                    await Page.DisplayAlert(AppResources.IncorrectUserNameTitle, AppResources.IncorrectUserNameMessage, "Ok");
                     break;
                 case LogInAttemptResult.IncorrectPassword:
-                    await Page.DisplayAlert("Incorrect password", "The password was incorrect", "Ok");
+                    await Page.DisplayAlert(AppResources.IncorrectPasswordTitle, AppResources.IncorrectPasswordMessage, "Ok");
                     break;
                 case LogInAttemptResult.Succeeded:
                     await Page.Navigation.PushAsync(NewsFeedPage);

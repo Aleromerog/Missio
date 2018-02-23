@@ -22,9 +22,6 @@
     <Compile Update="NewsFeedPage.xaml.cs">
       <DependentUpon>NewsFeedPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Pruebas.xaml.cs">
-      <DependentUpon>Pruebas.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -38,9 +35,6 @@
 
   <ItemGroup>
     <EmbeddedResource Update="NewsFeedPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pruebas.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

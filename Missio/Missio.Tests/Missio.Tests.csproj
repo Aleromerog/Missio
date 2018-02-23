@@ -53,7 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tests.cs" />
+    <Compile Include="LoginTests.cs" />
     <Compile Include="AppInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +63,14 @@
     <ProjectReference Include="..\Missio\Missio.Android\Missio.Android.csproj">
       <Project>{f8802880-468a-4cc1-be77-3f666123639a}</Project>
       <Name>Missio.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Missio\Missio\Missio.csproj">
+      <Project>{6F9D2CEB-144A-40C2-AEC3-117CB8700BB3}</Project>
+      <Name>Missio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StringResources\StringResources.csproj">
+      <Project>{BA270304-C3F4-42CB-9462-D1A961C38F18}</Project>
+      <Name>StringResources</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
