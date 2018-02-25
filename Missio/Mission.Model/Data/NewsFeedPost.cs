@@ -1,42 +1,86 @@
-﻿namespace Mission.Model.Data
+﻿using System;
+using JetBrains.Annotations;
+
+namespace Mission.Model.Data
 {
     public class NewsFeedPost
     {
     }
 
-    public class User
+    public class User : IEquatable<User>
     {
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        public string UserName { get; }
+        public string Password { get; }
 
-        public User(string userName, string password)
+        public User([NotNull] string userName, [NotNull] string password)
         {
-            UserName = userName;
-            Password = password;
+            UserName = userName ?? throw new ArgumentNullException(nameof(userName));
+            Password = password ?? throw new ArgumentNullException(nameof(password));
+        }
+
+        /// <inheritdoc />
+        public bool Equals(User other)
+        {
+            if (ReferenceEquals(null, other))
+                return false;
+            if (ReferenceEquals(this, other))
+                return true;
+            return string.Equals(UserName, other.UserName) && string.Equals(Password, other.Password);
+        }
+
+        /// <inheritdoc />
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
+            if (obj.GetType() != this.GetType())
+                return false;
+            return Equals((User) obj);
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (UserName.GetHashCode() * 397) ^ Password.GetHashCode();
+            }
+        }
+
+        public static bool operator ==(User left, User right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(User left, User right)
+        {
+            return !Equals(left, right);
         }
     }
 
     public class TextOnlyPost : NewsFeedPost
     {
-        public string Author { get; }
-        public string Text { get; }
+        public string Author { [UsedImplicitly] get; }
+        public string Text { [UsedImplicitly] get; }
 
-        public TextOnlyPost(string author, string text)
+        public TextOnlyPost([NotNull] string author, [NotNull] string text)
         {
-            Text = text;
-            Author = author;
+            Text = text ?? throw new ArgumentNullException(nameof(text));
+            Author = author ?? throw new ArgumentNullException(nameof(author));
         }
     }
 
     public class StickyPost : NewsFeedPost
     {
-        public string Title { get; }
-        public string Message { get; }
+        public string Title { [UsedImplicitly] get; }
+        public string Message { [UsedImplicitly] get; }
 
-        public StickyPost(string title, string message)
+        public StickyPost([NotNull] string title, [NotNull] string message)
         {
-            Message = message;
-            Title = title;
+            Message = message ?? throw new ArgumentNullException(nameof(message));
+            Title = title ?? throw new ArgumentNullException(nameof(title));
         }
     }
 }

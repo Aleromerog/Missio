@@ -129,4 +129,7 @@
   <data name="IncorrectPasswordTitle" xml:space="preserve">
     <value>Incorrect password</value>
   </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
 </root>

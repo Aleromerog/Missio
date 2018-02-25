@@ -6,11 +6,11 @@ using Xamarin.Forms.Xaml;
 namespace Missio
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NewsFeedPage
+	public partial class NewsFeedPage : ContentPage
 	{
-		public NewsFeedPage ()
+	    public NewsFeedPage ()
 		{
-            BindingContext = new NewsFeedViewModel(DependencyService.Get<INewsFeedPositionProvider>());
+            BindingContext = new NewsFeedViewModel(DependencyService.Get<INewsFeedPostsProvider>());
 			InitializeComponent ();
 		}
 	}

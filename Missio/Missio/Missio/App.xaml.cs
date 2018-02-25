@@ -8,7 +8,7 @@ namespace Missio
 		public App ()
 		{
 #if USE_FAKE_DATA
-            DependencyService.Register<INewsFeedPositionProvider, FakeNewsFeedPostProvider>();
+            DependencyService.Register<INewsFeedPostsProvider, FakeNewsFeedPostProvider>();
             DependencyService.Register<IUserValidator, FakeUserValidator>();
 #endif
 			InitializeComponent();

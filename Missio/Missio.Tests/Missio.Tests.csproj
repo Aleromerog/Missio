@@ -28,6 +28,9 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=11.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.11.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.core, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\nunit.core.dll</HintPath>
       <Private>False</Private>
@@ -60,6 +63,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Mission.Model\Mission.Model.csproj">
+      <Project>{D53A6AC6-0799-4096-8706-88075C600CD9}</Project>
+      <Name>Mission.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Missio\Missio.Android\Missio.Android.csproj">
       <Project>{f8802880-468a-4cc1-be77-3f666123639a}</Project>
       <Name>Missio.Android</Name>

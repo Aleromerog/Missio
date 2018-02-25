@@ -1,5 +1,9 @@
-﻿using StringResources;
+﻿using System;
+using System.Collections.Generic;
+using Mission.Model.Data;
+using Mission.Model.LocalProviders;
 using NUnit.Framework;
+using StringResources;
 using Xamarin.UITest;
 
 namespace Missio.Tests
@@ -11,20 +15,26 @@ namespace Missio.Tests
         private IApp app;
         private readonly Platform platform;
 
-        private readonly object[] LogInErrorTestsCases =
+        private static object[] GetLogIncorrectPasswordTestsCases()
         {
-            new object[] { "Non existing user 1", "", AppResources.IncorrectUserNameMessage },
-            new object[] { "Non existing user 2", "", AppResources.IncorrectUserNameMessage },
-            new object[] { "Existing user 1", "", AppResources.IncorrectPasswordMessage },
-            new object[] { "Existing user 2", "", AppResources.IncorrectPasswordMessage },
-        };
+            var testData = new object[FakeUserValidator.ValidUsers.Count];
+            for (int i = 0; i < FakeUserValidator.ValidUsers.Count; i++)
+            {
+                var user = FakeUserValidator.ValidUsers[i];
+                testData[i] = new object[] { user.UserName, "" };
+            }
+            return testData;
+        }
 
-        private readonly object[] LogInSuccessfulTestsCases =
+        private static object[] GetLogInIncorrectUserNameTestCases()
         {
-            new object[] { "Existing user 1", "ValidPassword" },
-            new object[] { "Existing user 2", "ValidPassword" },
-        };
+            return FakeUserValidator.GetListOfUsersInTestForm(FakeUserValidator.InvalidUsers);
+        }
 
+        private static object[] GetLogInSuccessfulTestsCases()
+        {
+            return FakeUserValidator.GetListOfUsersInTestForm(FakeUserValidator.ValidUsers);
+        }
 
         public LoginTests(Platform platform)
         {
@@ -38,8 +48,8 @@ namespace Missio.Tests
         }
 
         [Test]
-        [TestCaseSource(nameof(LogInErrorTestsCases))]
-        public void LogIn_GivenUserName_DisplaysExpectedMessage(string userName, string password, string expectedMessage)
+        [TestCaseSource(nameof(GetLogIncorrectPasswordTestsCases))]
+        public void LogIn_GivenUserName_DisplaysIncorrectPassword(string userName, string password)
         {
             // Arrange
             app.EnterText(c => c.Marked("UserNameEntry"), userName);
@@ -47,11 +57,24 @@ namespace Missio.Tests
             // Act
             app.Tap(c => c.Marked("LogInButton"));
             // Assert
-            app.WaitForElement(c => c.Text(expectedMessage));
+            app.WaitForElement(c => c.Text(AppResources.IncorrectPasswordMessage));
         }
 
         [Test]
-        [TestCaseSource(nameof(LogInSuccessfulTestsCases))]
+        [TestCaseSource(nameof(GetLogInIncorrectUserNameTestCases))]
+        public void LogIn_GivenUserName_DisplaysIncorrectUserName(string userName, string password)
+        {
+            // Arrange
+            app.EnterText(c => c.Marked("UserNameEntry"), userName);
+            app.EnterText(c => c.Marked("PasswordEntry"), password);
+            // Act
+            app.Tap(c => c.Marked("LogInButton"));
+            // Assert
+            app.WaitForElement(c => c.Text(AppResources.IncorrectUserNameMessage));
+        }
+
+        [Test]
+        [TestCaseSource(nameof(GetLogInSuccessfulTestsCases))]
         public void LogIn_ValidUserNameAndPassword_DisplaysNewsFeed(string userName, string password)
         {
             //Arrange
@@ -61,6 +84,51 @@ namespace Missio.Tests
             app.Tap(c => c.Marked("LogInButton"));
             //Assert
             app.WaitForElement(c => c.Marked("NewsFeedContentPage"));
+        }
+    }
+
+    [TestFixture(Platform.Android)]
+    [TestFixture(Platform.iOS)]
+    public class NewsFeedTests
+    {
+        private IApp app;
+        private readonly Platform platform;
+
+        public NewsFeedTests(Platform platform)
+        {
+            this.platform = platform;
+        }
+
+        [SetUp]
+        public void BeforeEachTest()
+        {
+            app = AppInitializer.StartApp(platform);
+        }
+
+        private static object[] GetOnAppearTestData()
+        {
+            var testData = new object[FakeUserValidator.ValidUsers.Count];
+            for (var i = 0; i < FakeUserValidator.ValidUsers.Count; i++)
+            {
+                var user = FakeUserValidator.ValidUsers[i];
+                testData[i] = new object[] { user, FakeNewsFeedPostProvider.GetMostRecentPostsAsStrings(user) };
+            }
+            return testData;
+        }
+
+        [Test]
+        [TestCaseSource(nameof(GetOnAppearTestData))]
+        public void OnAppear_GivenNewsFeedPosts_DisplaysPosts(User user, List<string> expectedPosts)
+        {
+            //Arrange and act
+            AppInitializer.TryToLogIn(app, user);
+
+            //Assert
+            foreach (var expectedPost in expectedPosts)
+            {
+                var posts = app.Query(c => c.Text(expectedPost));
+                Assert.AreEqual(posts.Length, 1);
+            }
         }
     }
 }
