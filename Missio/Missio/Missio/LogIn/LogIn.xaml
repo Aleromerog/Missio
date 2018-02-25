@@ -46,7 +46,7 @@
                    PlaceholderColor="Gray"
                    BackgroundColor="Transparent"
                    TextColor="{StaticResource PrimaryDarkColor}"
-                   Text="{Binding Path=UserName, Mode=TwoWay}"
+                   Text="{Binding Path=UserName, Mode=OneWayToSource}"
                    AutomationId="UserNameEntry"/>
 
             <Entry Grid.Row="4"
@@ -55,7 +55,7 @@
                    PlaceholderColor="Gray"
                    IsPassword="True"
                    TextColor="{StaticResource PrimaryDarkColor}"
-                   Text="{Binding Path=Password, Mode=TwoWay}"
+                   Text="{Binding Path=Password, Mode=OneWayToSource}"
                    AutomationId="PasswordEntry"/>
 
             <missio:RoundedButton Grid.Row="5"

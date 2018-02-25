@@ -10,7 +10,7 @@ namespace Missio
 	{
 	    public NewsFeedPage ()
 		{
-            BindingContext = new NewsFeedViewModel(DependencyService.Get<INewsFeedPostsProvider>());
+            BindingContext = new NewsFeedViewModel(DependencyService.Get<UserInformation>(), DependencyService.Get<INewsFeedPostsProvider>());
 			InitializeComponent ();
 		}
 	}

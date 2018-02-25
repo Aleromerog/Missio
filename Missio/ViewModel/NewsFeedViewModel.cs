@@ -9,11 +9,11 @@ using Xamarin.Forms;
 
 namespace ViewModel
 {
-    public static class UserInformation
+    public class UserInformation
     {
-        private static User loggedInUser;
+        private User loggedInUser;
 
-        public static User LoggedInUser
+        public User LoggedInUser
         {
             get
             {
@@ -24,11 +24,11 @@ namespace ViewModel
             set
             {
                 loggedInUser = value;
-                OnUserLoggedIn(null, loggedInUser);
+                OnUserLoggedIn(loggedInUser);
             }
         }
 
-        public static event EventHandler<User> OnUserLoggedIn = delegate { };  
+        public event Action<User> OnUserLoggedIn = delegate { };  
     }
 
     public class NewsFeedViewModel
@@ -36,14 +36,14 @@ namespace ViewModel
         private readonly INewsFeedPostsProvider PostProvider;
         public ObservableCollection<NewsFeedPost> NewsFeedPosts { get; }
 
-        public NewsFeedViewModel([NotNull] INewsFeedPostsProvider postProvider)
+        public NewsFeedViewModel([NotNull] UserInformation userInformation, [NotNull] INewsFeedPostsProvider postProvider)
         {
             PostProvider = postProvider ?? throw new ArgumentNullException(nameof(postProvider));
             NewsFeedPosts = new ObservableCollection<NewsFeedPost>();
-            UserInformation.OnUserLoggedIn += UserLoggedIn;
+            userInformation.OnUserLoggedIn += UserLoggedIn;
         }
 
-        private void UserLoggedIn(object sender, User user)
+        private void UserLoggedIn(User user)
         {
             NewsFeedPosts.Clear();
             foreach (var post in PostProvider.GetMostRecentPosts(user))
@@ -85,14 +85,16 @@ namespace ViewModel
         [UsedImplicitly]
         public ICommand LogInCommand { get; }
 
+        private UserInformation userInformation { get; }
         private string userName;
         private string password;
         private readonly IUserValidator UserValidator;
 
-        public LogInViewModel([NotNull] Page page, [NotNull] Page newsFeedPage, [NotNull] IUserValidator userValidator)
+        public LogInViewModel([NotNull] Page page, [NotNull] Page newsFeedPage, [NotNull] UserInformation userInformation, [NotNull] IUserValidator userValidator)
         {
             Page = page ?? throw new ArgumentNullException(nameof(page));
             NewsFeedPage = newsFeedPage ?? throw new ArgumentNullException(nameof(newsFeedPage));
+            this.userInformation = userInformation ?? throw new ArgumentNullException(nameof(userInformation));
             UserValidator = userValidator ?? throw new ArgumentNullException(nameof(userValidator));
             LogInCommand = new Command(LogIn);
         }
@@ -113,7 +115,7 @@ namespace ViewModel
                     await Page.DisplayAlert(AppResources.IncorrectPasswordTitle, AppResources.IncorrectPasswordMessage, AppResources.Ok);
                     break;
                 case UserValidationResult.Succeeded:
-                    UserInformation.LoggedInUser = user;
+                    userInformation.LoggedInUser = user;
                     await Page.Navigation.PushAsync(NewsFeedPage);
                     break;
                 default:
