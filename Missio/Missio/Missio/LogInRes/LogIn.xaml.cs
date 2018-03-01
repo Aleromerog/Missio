@@ -10,7 +10,7 @@ namespace Missio
 	{
 		public LogIn ()
 		{
-            BindingContext = new LogInViewModel(this, new NewsFeedPage(), DependencyService.Get<IUserValidator>());
+            BindingContext = new LogInViewModel(this, new NewsFeedPage(), DependencyService.Get<UserInformation>(), DependencyService.Get<IUserValidator>());
 			InitializeComponent ();
 		}
 	}

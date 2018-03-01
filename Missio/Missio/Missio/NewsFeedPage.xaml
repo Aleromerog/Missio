@@ -2,9 +2,10 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModel1="clr-namespace:ViewModel;assembly=Mission.ViewModel"
-            NavigationPage.HasBackButton="False"
-             x:Class="Missio.NewsFeedPage">
+             xmlns:viewModel="clr-namespace:ViewModel;assembly=Mission.ViewModel"
+             NavigationPage.HasBackButton="False"
+             x:Class="Missio.NewsFeedPage"
+             AutomationId="NewsFeedContentPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="TextOnlyPost">
@@ -24,23 +25,23 @@
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
-            <viewModel1:NewsFeedPostDataTemplateSelector x:Key="personDataTemplateSelector"
+            <viewModel:NewsFeedPostDataTemplateSelector x:Key="personDataTemplateSelector"
                                                          StickyPostTemplate="{StaticResource StickyPost}"
                                                          TextOnlyPostTemplate="{StaticResource TextOnlyPost}" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <RelativeLayout>
-            <BoxView x:Name="TopBar" Color="Aqua"
+            <BoxView x:Name="TopBox" Color="Aqua"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor={StaticResource NewsFeedBarHeight}}" />
             <ListView BackgroundColor="Red"
-                      RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=TopBar, Property=Height, Factor=1}"
+                      RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=TopBox, Property=Height, Factor=1}"
                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.90}"
                       ItemsSource="{Binding NewsFeedPosts}" ItemTemplate="{StaticResource personDataTemplateSelector}"
                       HasUnevenRows="True" />
-            <BoxView x:Name="BottomBar" Color="Aqua"
+            <BoxView Color="Aqua"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor={StaticResource NewsFeedBarHeight}}"
                      RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.95}" />

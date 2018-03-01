@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+﻿using System;
 using Mission.Model.Data;
 using Xamarin.Forms;
 
@@ -16,7 +16,7 @@ namespace ViewModel
                 return TextOnlyPostTemplate;
             if (item is StickyPost)
                 return StickyPostTemplate;
-            throw new InvalidEnumArgumentException(nameof(item));
+            throw new ArgumentException(nameof(item));
         }
     }
 }

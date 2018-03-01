@@ -1,5 +1,6 @@
 ﻿using Xamarin.Forms;
 using Mission.Model.LocalProviders;
+using ViewModel;
 
 namespace Missio
 {
@@ -8,8 +9,9 @@ namespace Missio
 		public App ()
 		{
 #if USE_FAKE_DATA
-            DependencyService.Register<INewsFeedPositionProvider, FakeNewsFeedPostProvider>();
+            DependencyService.Register<INewsFeedPostsProvider, FakeNewsFeedPostProvider>();
             DependencyService.Register<IUserValidator, FakeUserValidator>();
+            DependencyService.Register<UserInformation>();
 #endif
 			InitializeComponent();
             MainPage = new NavigationPage(new LogIn());
