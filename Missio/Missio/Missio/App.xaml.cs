@@ -11,9 +11,11 @@ namespace Missio
 #if USE_FAKE_DATA
             DependencyService.Register<INewsFeedPostsProvider, FakeNewsFeedPostProvider>();
             DependencyService.Register<IUserValidator, FakeUserValidator>();
-            DependencyService.Register<UserInformation>();
 #endif
-			InitializeComponent();
+		    DependencyService.Register<IDisplayAlertOnCurrentPage, DisplayAlertOnCurrentPage>();
+		    DependencyService.Register<GlobalUser>();
+
+            InitializeComponent();
             MainPage = new NavigationPage(new LogIn());
 		}
 

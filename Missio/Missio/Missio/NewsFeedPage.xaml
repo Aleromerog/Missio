@@ -39,8 +39,9 @@
                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=TopBox, Property=Height, Factor=1}"
                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.90}"
-                      ItemsSource="{Binding NewsFeedPosts}" ItemTemplate="{StaticResource personDataTemplateSelector}"
-                      HasUnevenRows="True" />
+                      ItemsSource="{Binding Posts}" ItemTemplate="{StaticResource personDataTemplateSelector}"
+                      HasUnevenRows="True" 
+                      IsPullToRefreshEnabled="True"/>
             <BoxView Color="Aqua"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor={StaticResource NewsFeedBarHeight}}"

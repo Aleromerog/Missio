@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Mission.Model.Data;
 using Mission.Model.LocalProviders;
-using NSubstitute;
 using NUnit.Framework;
-using ViewModel;
 using Xamarin.UITest;
 
 namespace Missio.Tests
@@ -55,39 +50,4 @@ namespace Missio.Tests
             }
         }
     }
-
-    [TestFixture]
-    public class NewsFeedViewModelTests
-    {
-        private NewsFeedViewModel NewsFeedViewModel;
-        private UserInformation UserInformation;
-        private INewsFeedPostsProvider FakeNewsFeedPostsProvider;
-
-        [SetUp]
-        public void SetUp()
-        {
-            FakeNewsFeedPostsProvider = Substitute.For<INewsFeedPostsProvider>();
-            UserInformation = new UserInformation();
-            NewsFeedViewModel = new NewsFeedViewModel(UserInformation, FakeNewsFeedPostsProvider);
-        }
-
-        private static object[] GetUsers()
-        {
-            return FakeUserValidator.ValidUsers.Cast<object>().ToArray();
-        }
-
-        [Test]
-        [TestCaseSource(nameof(GetUsers))]
-        public void OnUserLoggedIn_GivenUser_UpdatesPosts(User user)
-        {
-            //Arrange
-            var posts = new ObservableCollection<NewsFeedPost> { new NewsFeedPost(), new NewsFeedPost() };
-            FakeNewsFeedPostsProvider.GetMostRecentPosts(user).Returns(posts);
-            //Act
-            UserInformation.LoggedInUser = user;
-            //Assert
-            Assert.AreEqual(posts, NewsFeedViewModel.NewsFeedPosts);
-        }
-    }
-
 }

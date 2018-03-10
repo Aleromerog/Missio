@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Mission.Model.Data;
+using Mission.Model.Exceptions;
 
 namespace Mission.Model.LocalProviders
 {
@@ -41,18 +41,15 @@ namespace Mission.Model.LocalProviders
         }
 
         /// <inheritdoc />
-        public UserValidationResult IsUserValid(User user)
+        public void ValidateUser(User user)
         {
             if (!ValidUsers.Exists(x => x.UserName == user.UserName))
-                return UserValidationResult.IncorrectUsername;
+                throw new InvalidUserNameException();
             foreach (var validUser in ValidUsers)
             {
                 if (validUser.UserName == user.UserName && validUser.Password != user.Password)
-                    return UserValidationResult.IncorrectPassword;
-                if (validUser.UserName == user.UserName && validUser.Password == user.Password)
-                    return UserValidationResult.Succeeded;
+                    throw new InvalidPasswordException();
             }
-            throw new ArgumentException(nameof(user));
         }
     }
 }

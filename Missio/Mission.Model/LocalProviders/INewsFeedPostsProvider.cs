@@ -13,23 +13,37 @@ namespace Mission.Model.LocalProviders
         ObservableCollection<NewsFeedPost> GetMostRecentPosts(User user);
     }
 
-    public enum UserValidationResult
-    {
-        IncorrectUsername,
-        IncorrectPassword,
-        Succeeded
-    }
-
     /// <summary>
     /// Validates that the given user information is correct
     /// </summary>
     public interface IUserValidator
     {
         /// <summary>
-        /// Validates that the user given user information is correct
+        /// Validates that the user given user information is correct, if it is 
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="user"> The user info to validate </param>
         /// <returns></returns>
-        UserValidationResult IsUserValid(User user);
+        void ValidateUser(User user);
+    }
+
+    /// <summary>
+    /// Updates a collection of news feed posts
+    /// </summary>
+    public interface INewsFeedPostsUpdater
+    {
+        /// <summary>
+        /// Updates the collection of posts with the most recent posts
+        /// </summary>
+        /// <param name="posts">The collection to update </param>
+        void UpdatePosts(ObservableCollection<NewsFeedPost> posts);
+    }
+
+    public class FakePostsUpdater : INewsFeedPostsUpdater
+    {
+        /// <inheritdoc />
+        public void UpdatePosts(ObservableCollection<NewsFeedPost> posts)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

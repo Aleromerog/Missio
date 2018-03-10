@@ -1,5 +1,4 @@
-﻿using System;
-using Mission.Model.LocalProviders;
+﻿using Mission.Model.LocalProviders;
 using NUnit.Framework;
 using StringResources;
 using Xamarin.UITest;

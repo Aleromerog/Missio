@@ -8,10 +8,12 @@ namespace Missio
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class LogIn
 	{
-		public LogIn ()
-		{
-            BindingContext = new LogInViewModel(this, new NewsFeedPage(), DependencyService.Get<UserInformation>(), DependencyService.Get<IUserValidator>());
-			InitializeComponent ();
-		}
+	    public LogIn()
+	    {
+	        var attemptToLogIn = new AttemptToLogIn(DependencyService.Get<IUserValidator>(),
+	            DependencyService.Get<IDisplayAlertOnCurrentPage>(), new GoToPage(new NewsFeedPage()), DependencyService.Get<GlobalUser>());
+	        BindingContext = new LogInViewModel(attemptToLogIn);
+	        InitializeComponent();
+	    }
 	}
 }
