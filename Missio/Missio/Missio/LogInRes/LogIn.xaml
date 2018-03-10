@@ -58,7 +58,7 @@
                    Text="{Binding Path=Password, Mode=OneWayToSource}"
                    AutomationId="PasswordEntry"/>
 
-            <missio:RoundedButton Grid.Row="5"
+            <missio:RoundedButton Grid.Row="6"
                                   BackgroundColor="{StaticResource PrimaryColor}"
                                   Text="Entrar"
                                   FontSize="18"
@@ -70,7 +70,7 @@
                    Text="O ingresa con:"
                    TextColor="{StaticResource PrimaryColor}"
                    HorizontalOptions="Center" />
-            <StackLayout Grid.Row="7"
+            <StackLayout Grid.Row="8"
                          Orientation="Horizontal"
                          HorizontalOptions="Center" VerticalOptions="Start">
                 <Button BackgroundColor="DarkBlue" CornerRadius="65" HeightRequest="65" WidthRequest="65"/>
@@ -78,7 +78,7 @@
                 <Button BackgroundColor="DarkRed" CornerRadius="65" HeightRequest="65" WidthRequest="65"/> 
             </StackLayout>
 
-            <Grid Grid.Row="8">
+            <Grid Grid.Row="9">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="2*" />
@@ -87,15 +87,10 @@
                 <resources:TransparentButtonShared Grid.Column="0"
                                                    Text="Regístrate"
                                                    TextColor="{StaticResource PrimaryColor}"
-                                                   HorizontalOptions="Start"
+                                                   HorizontalOptions="Center"
                                                    FontSize="12" />
 
-                <resources:TransparentButtonShared Grid.Column="1"
-                                                   Text="Recuperar Contraseña"
-                                                   TextColor="{StaticResource PrimaryColor}"
-                                                   HorizontalOptions="End"
-                                                   FontSize="12"
-                                                   FontAttributes="None" />
+                
             </Grid>
 
         </Grid>
