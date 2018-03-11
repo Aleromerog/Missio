@@ -1,6 +1,4 @@
-﻿using Mission.Model.LocalProviders;
-using ViewModel;
-using Xamarin.Forms;
+﻿using ViewModel;
 using Xamarin.Forms.Xaml;
 
 namespace Missio
@@ -8,9 +6,9 @@ namespace Missio
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class NewsFeedPage
 	{
-	    public NewsFeedPage ()
+	    public NewsFeedPage (NewsFeedViewModel NewsFeedViewModel)
 		{
-            BindingContext = new NewsFeedViewModel(DependencyService.Get<INewsFeedPostsUpdater>());
+            BindingContext = NewsFeedViewModel;
 			InitializeComponent ();
 		}
 	}

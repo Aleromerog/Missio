@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using Ninject;
 using Mission.Model.Data;
 using Mission.Model.Exceptions;
 using Mission.Model.LocalProviders;
@@ -16,7 +17,7 @@ namespace ViewModel
         private readonly GlobalUser _globalUser;
 
         public AttemptToLogIn([NotNull] IUserValidator userValidator, [NotNull] IDisplayAlertOnCurrentPage alertDisplay,
-            [NotNull] IGoToNextPage goToNextPage, [NotNull] GlobalUser globalUser)
+            [NotNull, Named("GoToNewsFeed")] IGoToNextPage goToNextPage, [NotNull] GlobalUser globalUser)
         {
             _userValidator = userValidator ?? throw new ArgumentNullException(nameof(userValidator));
             _alertDisplay = alertDisplay ?? throw new ArgumentNullException(nameof(alertDisplay));
@@ -36,7 +37,7 @@ namespace ViewModel
             {
                 return _alertDisplay.DisplayAlert(AppResources.IncorrectUserNameTitle, AppResources.IncorrectUserNameMessage, AppResources.Ok);
             }
-            catch(InvalidPasswordException)
+            catch (InvalidPasswordException)
             {
                 return _alertDisplay.DisplayAlert(AppResources.IncorrectPasswordTitle, AppResources.IncorrectPasswordMessage, AppResources.Ok);
             }

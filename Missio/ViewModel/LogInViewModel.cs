@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using JetBrains.Annotations;
 using Mission.Model.Data;
 using Xamarin.Forms;
@@ -38,9 +39,9 @@ namespace ViewModel
         private string password;
         private readonly IAttemptToLogin _loginAttempt;
 
-        public LogInViewModel(IAttemptToLogin loginAttempt)
+        public LogInViewModel([NotNull] IAttemptToLogin loginAttempt)
         {
-            _loginAttempt = loginAttempt;
+            _loginAttempt = loginAttempt ?? throw new ArgumentNullException(nameof(loginAttempt));
             LogInCommand = new Command(LogIn);
         }
 

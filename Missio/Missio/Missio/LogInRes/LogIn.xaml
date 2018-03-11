@@ -25,7 +25,6 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
         
             <Image Grid.Row="1" 
@@ -59,7 +58,7 @@
                    Text="{Binding Path=Password, Mode=OneWayToSource}"
                    AutomationId="PasswordEntry"/>
 
-            <missio:RoundedButton Grid.Row="6"
+            <missio:RoundedButton Grid.Row="5"
                                   BackgroundColor="{StaticResource PrimaryColor}"
                                   Text="Entrar"
                                   FontSize="18"
@@ -71,7 +70,7 @@
                    Text="O ingresa con:"
                    TextColor="{StaticResource PrimaryColor}"
                    HorizontalOptions="Center" />
-            <StackLayout Grid.Row="8"
+            <StackLayout Grid.Row="7"
                          Orientation="Horizontal"
                          HorizontalOptions="Center" VerticalOptions="Start">
                 <Button BackgroundColor="DarkBlue" CornerRadius="65" HeightRequest="65" WidthRequest="65"/>
@@ -79,7 +78,7 @@
                 <Button BackgroundColor="DarkRed" CornerRadius="65" HeightRequest="65" WidthRequest="65"/> 
             </StackLayout>
 
-            <Grid Grid.Row="9">
+            <Grid Grid.Row="8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="2*" />

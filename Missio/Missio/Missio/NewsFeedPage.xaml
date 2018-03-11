@@ -40,7 +40,7 @@
                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.90}"
                       ItemsSource="{Binding Posts}" ItemTemplate="{StaticResource personDataTemplateSelector}"
-                      HasUnevenRows="True" 
+                      HasUnevenRows="True"  RefreshCommand="UpdatePostsCommand"
                       IsPullToRefreshEnabled="True"/>
             <BoxView Color="Aqua"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"

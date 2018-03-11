@@ -37,13 +37,4 @@ namespace Mission.Model.LocalProviders
         /// <param name="posts">The collection to update </param>
         void UpdatePosts(ObservableCollection<NewsFeedPost> posts);
     }
-
-    public class FakePostsUpdater : INewsFeedPostsUpdater
-    {
-        /// <inheritdoc />
-        public void UpdatePosts(ObservableCollection<NewsFeedPost> posts)
-        {
-            throw new System.NotImplementedException();
-        }
-    }
 }

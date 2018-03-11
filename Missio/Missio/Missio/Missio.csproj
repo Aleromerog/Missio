@@ -1,18 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0;USE_FAKE_DATA;NETSTANDARD2_0</DefineConstants>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
+    <PackageReference Include="Ninject" Version="4.0.0-beta-0134" />
+    <PackageReference Include="Ninject.Extensions.NamedScope" Version="3.3.0" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
@@ -24,16 +24,13 @@
       <DependentUpon>NewsFeedPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\Mission.Model\Mission.Model.csproj" />
     <ProjectReference Include="..\..\ViewModel\Mission.ViewModel.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\ViewModel\Mission.ViewModel.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Update="LogInRes\Registration.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

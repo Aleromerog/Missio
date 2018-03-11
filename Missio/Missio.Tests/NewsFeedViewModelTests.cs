@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System;
+using System.Collections.ObjectModel;
 using Mission.Model.Data;
 using Mission.Model.LocalProviders;
 using NSubstitute;
@@ -13,22 +13,31 @@ namespace Missio.Tests
     {
         private NewsFeedViewModel NewsFeedViewModel;
         private INewsFeedPostsUpdater FakeNewsFeedPostsUpdater;
+        private IOnUserLoggedIn OnUserLoggedIn;
 
         [SetUp]
         public void SetUp()
         {
             FakeNewsFeedPostsUpdater = Substitute.For<INewsFeedPostsUpdater>();
-            NewsFeedViewModel = new NewsFeedViewModel(FakeNewsFeedPostsUpdater);
-        }
-
-        private static object[] GetUsers()
-        {
-            return FakeUserValidator.ValidUsers.Cast<object>().ToArray();
+            OnUserLoggedIn = Substitute.For<IOnUserLoggedIn>();
+            NewsFeedViewModel = new NewsFeedViewModel(FakeNewsFeedPostsUpdater, OnUserLoggedIn);
         }
 
         [Test]
-        [TestCaseSource(nameof(GetUsers))]
-        public void UpdatePosts_GivenPosts_UpdatesPosts(User user)
+        public void OnUserLoggedIn_GivenUser_UpdatesPosts()
+        {
+            //Arrange
+            var fakePost = new NewsFeedPost();
+            FakeNewsFeedPostsUpdater.When(x => x.UpdatePosts(Arg.Any<ObservableCollection<NewsFeedPost>>()))
+                .Do(x => x.Arg<ObservableCollection<NewsFeedPost>>().Add(fakePost));
+            //Act
+            OnUserLoggedIn.OnUserLoggedIn+= Raise.Event<Action>();
+            //Assert
+            Assert.Contains(fakePost, NewsFeedViewModel.Posts);
+        }
+
+        [Test]
+        public void UpdatePosts_GivenPosts_UpdatesPosts()
         {
             //Arrange
             var fakePost = new NewsFeedPost();

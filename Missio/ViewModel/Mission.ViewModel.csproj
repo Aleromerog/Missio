@@ -1,23 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
+    <PackageReference Include="Ninject" Version="4.0.0-beta-0134" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Mission.Model\Mission.Model.csproj" />
     <ProjectReference Include="..\StringResources\StringResources.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>C:\Users\GrecoFlores\.nuget\packages\xamarin.forms\2.5.0.122203\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
-
 </Project>
