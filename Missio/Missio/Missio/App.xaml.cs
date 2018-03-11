@@ -12,7 +12,7 @@ namespace Missio
 		{
             var kernel = new KernelConfiguration(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new LogInModule()).BuildReadonlyKernel();
             InitializeComponent();
-            MainPage = new NavigationPage(kernel.Get<LogIn>());
+            MainPage = new NavigationPage(kernel.Get<LogInPage>());
 		}
 
 		protected override void OnStart ()
@@ -60,7 +60,7 @@ namespace Missio
 		{
 			Bind<AttemptToLogIn>().ToSelf().InSingletonScope();
             Bind<LogInViewModel>().ToSelf().InSingletonScope();
-            Bind<LogIn>().ToSelf().InSingletonScope();
+            Bind<LogInPage>().ToSelf().InSingletonScope();
 		}
 	}
 
