@@ -5,7 +5,7 @@
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
     <PackageReference Include="Ninject" Version="4.0.0-beta-0134" />
-    <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.1.340284-pre2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mission.Model\Mission.Model.csproj" />
