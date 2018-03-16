@@ -8,12 +8,12 @@ using Xamarin.Forms;
 
 namespace ViewModel
 {
-    public class FakeNewsFeedPostsUpdater : INewsFeedPostsUpdater
+    public class LocalNewsFeedPostsUpdater : INewsFeedPostsUpdater
     {
         private readonly GlobalUser _globalUser;
         private readonly INewsFeedPostsProvider _postsProvider;
 
-        public FakeNewsFeedPostsUpdater(GlobalUser globalUser, INewsFeedPostsProvider postsProvider)
+        public LocalNewsFeedPostsUpdater(GlobalUser globalUser, INewsFeedPostsProvider postsProvider)
         {
             _globalUser = globalUser;
             _postsProvider = postsProvider;

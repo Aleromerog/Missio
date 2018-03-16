@@ -27,11 +27,11 @@ namespace Missio.Tests
 
         private static object[] GetOnAppearTestData()
         {
-            var testData = new object[FakeUserValidator.ValidUsers.Count];
-            for (var i = 0; i < FakeUserValidator.ValidUsers.Count; i++)
+            var testData = new object[LocalUserValidator.ValidUsers.Count];
+            for (var i = 0; i < LocalUserValidator.ValidUsers.Count; i++)
             {
-                var user = FakeUserValidator.ValidUsers[i];
-                testData[i] = new object[] { user, FakeNewsFeedPostProvider.GetMostRecentPostsAsStrings(user) };
+                var user = LocalUserValidator.ValidUsers[i];
+                testData[i] = new object[] { user, LocalNewsFeedPostProvider.GetMostRecentPostsAsStrings(user) };
             }
             return testData;
         }

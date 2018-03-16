@@ -8,7 +8,7 @@ namespace Mission.Model.LocalProviders
     /// <summary>
     /// A fake user and password validator that checks the given parameters against the hardcoded data
     /// </summary>
-    public class FakeUserValidator : IUserValidator
+    public class LocalUserValidator : IUserValidator
     {
         /// <summary>
         /// A list of users that are guaranteed to exist, useful for testing purposes

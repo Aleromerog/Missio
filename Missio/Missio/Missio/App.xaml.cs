@@ -70,9 +70,9 @@ namespace Missio
         public override void Load()
         {
 #if USE_FAKE_DATA
-            Bind<INewsFeedPostsProvider>().To<FakeNewsFeedPostProvider>().InSingletonScope();
-            Bind<IUserValidator>().To<FakeUserValidator>().InSingletonScope();
-            Bind<INewsFeedPostsUpdater>().To<FakeNewsFeedPostsUpdater>().InSingletonScope();
+            Bind<INewsFeedPostsProvider>().To<LocalNewsFeedPostProvider>().InSingletonScope();
+            Bind<IUserValidator>().To<LocalUserValidator>().InSingletonScope();
+            Bind<INewsFeedPostsUpdater>().To<LocalNewsFeedPostsUpdater>().InSingletonScope();
 #else
 #endif
         }

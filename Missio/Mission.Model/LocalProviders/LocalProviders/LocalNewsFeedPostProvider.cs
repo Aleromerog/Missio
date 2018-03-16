@@ -7,7 +7,7 @@ namespace Mission.Model.LocalProviders
     /// <summary>
     /// A news feed provider that returns hard coded data
     /// </summary>
-    public class FakeNewsFeedPostProvider : INewsFeedPostsProvider
+    public class LocalNewsFeedPostProvider : INewsFeedPostsProvider
     {
         /// <summary>
         /// Maps users to collections of news feed posts that should be displayed to them (different users see different posts)
@@ -16,7 +16,7 @@ namespace Mission.Model.LocalProviders
             new Dictionary<User, ObservableCollection<NewsFeedPost>>()
             {
                 {
-                    FakeUserValidator.ValidUsers[0],
+                    LocalUserValidator.ValidUsers[0],
                     new ObservableCollection<NewsFeedPost>
                     {
                         new StickyPost("Super important news", "A sticky message for user zero"),
@@ -25,7 +25,7 @@ namespace Mission.Model.LocalProviders
                     }
                 },
                 {
-                    FakeUserValidator.ValidUsers[1],
+                    LocalUserValidator.ValidUsers[1],
                     new ObservableCollection<NewsFeedPost>
                     {
                         new StickyPost("Super important news", "A sticky message for user one"),

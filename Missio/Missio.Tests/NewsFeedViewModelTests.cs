@@ -12,15 +12,15 @@ namespace Missio.Tests
     public class NewsFeedViewModelTests
     {
         private NewsFeedViewModel NewsFeedViewModel;
-        private INewsFeedPostsUpdater FakeNewsFeedPostsUpdater;
+        private INewsFeedPostsUpdater LocalNewsFeedPostsUpdater;
         private IOnUserLoggedIn OnUserLoggedIn;
 
         [SetUp]
         public void SetUp()
         {
-            FakeNewsFeedPostsUpdater = Substitute.For<INewsFeedPostsUpdater>();
+            LocalNewsFeedPostsUpdater = Substitute.For<INewsFeedPostsUpdater>();
             OnUserLoggedIn = Substitute.For<IOnUserLoggedIn>();
-            NewsFeedViewModel = new NewsFeedViewModel(FakeNewsFeedPostsUpdater, OnUserLoggedIn);
+            NewsFeedViewModel = new NewsFeedViewModel(LocalNewsFeedPostsUpdater, OnUserLoggedIn);
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace Missio.Tests
         {
             //Arrange
             var fakePost = new NewsFeedPost();
-            FakeNewsFeedPostsUpdater.When(x => x.UpdatePosts(Arg.Any<ObservableCollection<NewsFeedPost>>()))
+            LocalNewsFeedPostsUpdater.When(x => x.UpdatePosts(Arg.Any<ObservableCollection<NewsFeedPost>>()))
                 .Do(x => x.Arg<ObservableCollection<NewsFeedPost>>().Add(fakePost));
             //Act
             OnUserLoggedIn.OnUserLoggedIn+= Raise.Event<Action>();
@@ -41,7 +41,7 @@ namespace Missio.Tests
         {
             //Arrange
             var fakePost = new NewsFeedPost();
-            FakeNewsFeedPostsUpdater.When(x => x.UpdatePosts(Arg.Any<ObservableCollection<NewsFeedPost>>()))
+            LocalNewsFeedPostsUpdater.When(x => x.UpdatePosts(Arg.Any<ObservableCollection<NewsFeedPost>>()))
                 .Do(x => x.Arg<ObservableCollection<NewsFeedPost>>().Add(fakePost));
             //Act
             NewsFeedViewModel.UpdatePosts();
