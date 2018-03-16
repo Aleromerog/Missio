@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Mission.Model.Data;
 using Mission.Model.LocalProviders;
 using NUnit.Framework;
@@ -45,9 +46,10 @@ namespace Missio.Tests
             //Assert
             foreach (var expectedPost in expectedPosts)
             {
-                var posts = app.Query(c => c.Text(expectedPost));
-                Assert.AreEqual(1, posts.Length);
+                var posts = app.WaitForElement(c => c.Text(expectedPost));
+                Assert.AreEqual(1, posts.Length, "Couldn't find post with text \"{0}\"", expectedPost);
             }
+            
         }
     }
 }
