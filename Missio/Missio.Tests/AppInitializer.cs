@@ -6,7 +6,7 @@ using Xamarin.UITest;
 
 namespace Missio.Tests
 {
-    public class AppInitializer
+    public static class AppInitializer
     {
         /// <summary>
         /// Starts and the app on the given platform emulator
@@ -23,7 +23,7 @@ namespace Missio.Tests
             }
 
             if (Environment.OSVersion.Platform == PlatformID.Win32NT) // Cant run iOS test on windows
-                Assert.Pass();
+                Assert.Ignore();
             app = ConfigureApp.iOS.StartApp();
             return app;
         }
