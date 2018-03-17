@@ -9,13 +9,13 @@ namespace Missio.Tests
     public class LogInViewModelTests
     {
         private LogInViewModel LogInViewModel;
-        private IAttemptToLogin LocalAttemptToLogin;
+        private IAttemptToLogin AttemptToLogin;
 
         [SetUp]
         public void SetUp()
         {
-            LocalAttemptToLogin = Substitute.For<IAttemptToLogin>();
-            LogInViewModel = new LogInViewModel(LocalAttemptToLogin);
+            AttemptToLogin = Substitute.For<IAttemptToLogin>();
+            LogInViewModel = new LogInViewModel(AttemptToLogin);
         }
 
         [Test]
@@ -30,7 +30,7 @@ namespace Missio.Tests
             //Act
             LogInViewModel.LogIn();
             //Assert
-            LocalAttemptToLogin
+            AttemptToLogin
                 .Received(1)
                 .AttemptToLoginWithUser(Arg.Is<User>(x => x.UserName == userName && x.Password == password));
         }
