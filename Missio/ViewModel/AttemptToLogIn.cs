@@ -14,15 +14,15 @@ namespace ViewModel
         private readonly IValidateUser _userValidator;
         private readonly IDisplayAlertOnCurrentPage _alertDisplay;
         private readonly IGoToNextPage _goToNextPage;
-        private readonly GlobalUser _globalUser;
+        private readonly ISetLoggedInUser _setLoggedInUser;
 
         public AttemptToLogIn([NotNull] IValidateUser userValidator, [NotNull] IDisplayAlertOnCurrentPage alertDisplay,
-            [NotNull, Named("GoToNewsFeed")] IGoToNextPage goToNextPage, [NotNull] GlobalUser globalUser)
+            [NotNull, Named("GoToNewsFeed")] IGoToNextPage goToNextPage, [NotNull] ISetLoggedInUser setLoggedInUser)
         {
             _userValidator = userValidator ?? throw new ArgumentNullException(nameof(userValidator));
             _alertDisplay = alertDisplay ?? throw new ArgumentNullException(nameof(alertDisplay));
             _goToNextPage = goToNextPage ?? throw new ArgumentNullException(nameof(goToNextPage));
-            _globalUser = globalUser ?? throw new ArgumentNullException(nameof(globalUser));
+            _setLoggedInUser = setLoggedInUser ?? throw new ArgumentNullException(nameof(setLoggedInUser));
         }
 
         public Task AttemptToLoginWithUser(User user)
@@ -30,7 +30,7 @@ namespace ViewModel
             try
             {
                 _userValidator.ValidateUser(user);
-                _globalUser.LoggedInUser = user;
+                _setLoggedInUser.LoggedInUser = user;
                 return _goToNextPage.GoToNextPage();
             }
             catch (InvalidUserNameException)

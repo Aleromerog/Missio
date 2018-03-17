@@ -10,12 +10,12 @@ namespace ViewModel
 {
     public class LocalNewsFeedPostsUpdater : INewsFeedPostsUpdater
     {
-        private readonly GlobalUser _globalUser;
+        private readonly IGetLoggedInUser _getLoggedInUser;
         private readonly INewsFeedPostsProvider _postsProvider;
 
-        public LocalNewsFeedPostsUpdater(GlobalUser globalUser, INewsFeedPostsProvider postsProvider)
+        public LocalNewsFeedPostsUpdater(IGetLoggedInUser getLoggedInUser, INewsFeedPostsProvider postsProvider)
         {
-            _globalUser = globalUser;
+            _getLoggedInUser = getLoggedInUser;
             _postsProvider = postsProvider;
         }
         
@@ -23,14 +23,19 @@ namespace ViewModel
         public void UpdatePosts(ObservableCollection<NewsFeedPost> posts)
         {
             posts.Clear();
-            foreach (var post in _postsProvider.GetMostRecentPosts(_globalUser.LoggedInUser))
+            foreach (var post in _postsProvider.GetMostRecentPosts(_getLoggedInUser.LoggedInUser))
             {
                 posts.Add(post);
             }
         }
     }
     
-    public class NewsFeedViewModel
+    public interface INewsFeedViewPosts
+    {
+        ObservableCollection<NewsFeedPost> Posts { get; }
+    }
+
+    public class NewsFeedViewModel : INewsFeedViewPosts
     {
         private readonly INewsFeedPostsUpdater _postsUpdater;
 

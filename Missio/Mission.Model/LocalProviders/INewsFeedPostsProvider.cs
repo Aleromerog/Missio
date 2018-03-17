@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Mission.Model.Data;
 
 namespace Mission.Model.LocalProviders
@@ -10,7 +11,7 @@ namespace Mission.Model.LocalProviders
         /// </summary>
         /// <param name="user"> The logged in user </param>
         /// <returns> A list containing the news feed posts </returns>
-        ObservableCollection<NewsFeedPost> GetMostRecentPosts(User user);
+        List<NewsFeedPost> GetMostRecentPosts(User user);
     }
 
     /// <summary>
@@ -46,7 +47,6 @@ namespace Mission.Model.LocalProviders
         /// <summary>
         /// Updates the collection of posts with the most recent posts
         /// </summary>
-        /// <param name="posts">The collection to update </param>
         void UpdatePosts(ObservableCollection<NewsFeedPost> posts);
     }
 }

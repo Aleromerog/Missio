@@ -37,7 +37,7 @@ namespace Missio
 		public override void Load()
 		{
 			Bind<IDisplayAlertOnCurrentPage>().To<DisplayAlertOnCurrentPage>().InSingletonScope();
-			Bind<IOnUserLoggedIn, GlobalUser>().To<GlobalUser>().InSingletonScope();
+			Bind<IOnUserLoggedIn, IGetLoggedInUser, ISetLoggedInUser, GlobalUser>().To<GlobalUser>().InSingletonScope();
             Bind<IAttemptToLogin>().To<AttemptToLogIn>().InSingletonScope();
         }
 	}
@@ -47,7 +47,7 @@ namespace Missio
         /// <inheritdoc />
         public override void Load()
         {
-            Bind<NewsFeedViewModel>().ToSelf().InSingletonScope();
+            Bind<INewsFeedViewPosts, NewsFeedViewModel>().To<NewsFeedViewModel>().InSingletonScope();
             Bind<NewsFeedPage>().ToSelf().InSingletonScope();
             Bind<IGoToNextPage>().To<GoToPage>().Named("GoToNewsFeed").WithConstructorArgument("page", x => x.Kernel.Get<NewsFeedPage>());
         }

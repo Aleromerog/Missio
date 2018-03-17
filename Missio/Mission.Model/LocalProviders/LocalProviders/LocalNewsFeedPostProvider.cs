@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Mission.Model.Data;
 
 namespace Mission.Model.LocalProviders
@@ -12,12 +11,12 @@ namespace Mission.Model.LocalProviders
         /// <summary>
         /// Maps users to collections of news feed posts that should be displayed to them (different users see different posts)
         /// </summary>
-        private static readonly Dictionary<User, ObservableCollection<NewsFeedPost>> UsersNewsFeedPosts =
-            new Dictionary<User, ObservableCollection<NewsFeedPost>>()
+        private static readonly Dictionary<User, List<NewsFeedPost>> UsersNewsFeedPosts =
+            new Dictionary<User, List<NewsFeedPost>>
             {
                 {
                     LocalUserDatabase.ValidUsers[0],
-                    new ObservableCollection<NewsFeedPost>
+                    new List<NewsFeedPost>
                     {
                         new StickyPost("Super important news", "A sticky message for user zero"),
                         new TextOnlyPost("Francisco Greco", "Hello Jorge Romero"),
@@ -26,7 +25,7 @@ namespace Mission.Model.LocalProviders
                 },
                 {
                     LocalUserDatabase.ValidUsers[1],
-                    new ObservableCollection<NewsFeedPost>
+                    new List<NewsFeedPost>
                     {
                         new StickyPost("Super important news", "A sticky message for user one"),
                         new TextOnlyPost("Francisco Greco", "Hello me"),
@@ -34,7 +33,7 @@ namespace Mission.Model.LocalProviders
                     }
                 },
             };
-        
+
         /// <summary>
         /// Gets the contents of the most recent posts as strings, useful for testing 
         /// </summary>
@@ -56,6 +55,7 @@ namespace Mission.Model.LocalProviders
                         break;
                 }
             }
+
             return contents;
         }
 
@@ -63,12 +63,12 @@ namespace Mission.Model.LocalProviders
         /// Gets a list of manually hardcoded news feed posts
         /// </summary>
         /// <returns> A list containing news feed posts</returns>
-        public ObservableCollection<NewsFeedPost> GetMostRecentPosts(User user)
+        public List<NewsFeedPost> GetMostRecentPosts(User user)
         {
             return UsersNewsFeedPosts[user];
         }
 
-        public void SetMostRecentPosts(User user, ObservableCollection<NewsFeedPost> newPosts)
+        public void SetMostRecentPosts(User user, List<NewsFeedPost> newPosts)
         {
             UsersNewsFeedPosts[user] = newPosts;
         }
