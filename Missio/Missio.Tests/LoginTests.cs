@@ -7,6 +7,7 @@ namespace Missio.Tests
 {
     [TestFixture(Platform.Android)]
     [TestFixture(Platform.iOS)]
+    [Category("UITests")]
     public class LoginTests
     {
         private IApp app;

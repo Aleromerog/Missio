@@ -8,6 +8,7 @@ namespace Missio.Tests
 {
     [TestFixture(Platform.Android)]
     [TestFixture(Platform.iOS)]
+    [Category("UITests")]
     public class NewsFeedTests
     {
         private IApp app;
