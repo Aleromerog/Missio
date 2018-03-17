@@ -72,7 +72,7 @@ namespace Missio
 #if USE_FAKE_DATA
             Bind<INewsFeedPostsProvider>().To<LocalNewsFeedPostProvider>().InSingletonScope();
             Bind<IValidateUser>().To<LocalUserDatabase>().InSingletonScope();
-            Bind<INewsFeedPostsUpdater>().To<LocalNewsFeedPostsUpdater>().InSingletonScope();
+            Bind<INewsFeedPostsUpdater>().To<NewsFeedPostsUpdater>().InSingletonScope();
 #else
 #endif
         }

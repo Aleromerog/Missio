@@ -79,11 +79,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtraNewsFeedPosts.cs" />
     <Compile Include="LocalNewsFeedPostProviderTests.cs" />
     <Compile Include="LocalUserDatabaseTests.cs" />
     <Compile Include="LoginTests.cs" />
     <Compile Include="AppInitializer.cs" />
     <Compile Include="LogInViewModelTests.cs" />
+    <Compile Include="NewsFeedPostsUpdaterTests.cs" />
     <Compile Include="NewsFeedTests.cs" />
     <Compile Include="NewsFeedViewModelTests.cs" />
   </ItemGroup>
