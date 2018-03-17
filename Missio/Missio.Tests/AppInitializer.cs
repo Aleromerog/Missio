@@ -34,9 +34,9 @@ namespace Missio.Tests
         /// <param name="app"></param>
         public static void LogIn(IApp app)
         {
-            if (LocalUserValidator.ValidUsers.Count == 0)
+            if (LocalUserDatabase.ValidUsers.Count == 0)
                 throw new InvalidOperationException("There are no valid users");
-            var validUser = LocalUserValidator.ValidUsers[0];
+            var validUser = LocalUserDatabase.ValidUsers[0];
             app.EnterText(c => c.Marked("UserNameEntry"), validUser.UserName);
             app.EnterText(c => c.Marked("PasswordEntry"), validUser.Password);
             app.Tap(c => c.Marked("LogInButton"));

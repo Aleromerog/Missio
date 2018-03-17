@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Mission.Model.Data;
 using Mission.Model.LocalProviders;
 using NUnit.Framework;
@@ -27,10 +26,10 @@ namespace Missio.Tests
 
         private static object[] GetOnAppearTestData()
         {
-            var testData = new object[LocalUserValidator.ValidUsers.Count];
-            for (var i = 0; i < LocalUserValidator.ValidUsers.Count; i++)
+            var testData = new object[LocalUserDatabase.ValidUsers.Count];
+            for (var i = 0; i < LocalUserDatabase.ValidUsers.Count; i++)
             {
-                var user = LocalUserValidator.ValidUsers[i];
+                var user = LocalUserDatabase.ValidUsers[i];
                 testData[i] = new object[] { user, LocalNewsFeedPostProvider.GetMostRecentPostsAsStrings(user) };
             }
             return testData;

@@ -14,10 +14,10 @@ namespace Missio.Tests
 
         private static object[] GetLogIncorrectPasswordTestsCases()
         {
-            var testData = new object[LocalUserValidator.ValidUsers.Count];
-            for (int i = 0; i < LocalUserValidator.ValidUsers.Count; i++)
+            var testData = new object[LocalUserDatabase.ValidUsers.Count];
+            for (int i = 0; i < LocalUserDatabase.ValidUsers.Count; i++)
             {
-                var user = LocalUserValidator.ValidUsers[i];
+                var user = LocalUserDatabase.ValidUsers[i];
                 testData[i] = new object[] { user.UserName, "" };
             }
             return testData;
@@ -25,12 +25,12 @@ namespace Missio.Tests
 
         private static object[] GetLogInIncorrectUserNameTestCases()
         {
-            return LocalUserValidator.GetListOfUsersInTestForm(LocalUserValidator.InvalidUsers);
+            return LocalUserDatabase.GetListOfUsersInTestForm(LocalUserDatabase.InvalidUsers);
         }
 
         private static object[] GetLogInSuccessfulTestsCases()
         {
-            return LocalUserValidator.GetListOfUsersInTestForm(LocalUserValidator.ValidUsers);
+            return LocalUserDatabase.GetListOfUsersInTestForm(LocalUserDatabase.ValidUsers);
         }
 
         public LoginTests(Platform platform)

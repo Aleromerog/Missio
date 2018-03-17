@@ -79,6 +79,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LocalNewsFeedPostProviderTests.cs" />
+    <Compile Include="LocalUserDatabaseTests.cs" />
     <Compile Include="LoginTests.cs" />
     <Compile Include="AppInitializer.cs" />
     <Compile Include="LogInViewModelTests.cs" />

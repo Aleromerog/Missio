@@ -16,7 +16,7 @@ namespace Mission.Model.LocalProviders
             new Dictionary<User, ObservableCollection<NewsFeedPost>>()
             {
                 {
-                    LocalUserValidator.ValidUsers[0],
+                    LocalUserDatabase.ValidUsers[0],
                     new ObservableCollection<NewsFeedPost>
                     {
                         new StickyPost("Super important news", "A sticky message for user zero"),
@@ -25,7 +25,7 @@ namespace Mission.Model.LocalProviders
                     }
                 },
                 {
-                    LocalUserValidator.ValidUsers[1],
+                    LocalUserDatabase.ValidUsers[1],
                     new ObservableCollection<NewsFeedPost>
                     {
                         new StickyPost("Super important news", "A sticky message for user one"),
@@ -66,6 +66,11 @@ namespace Mission.Model.LocalProviders
         public ObservableCollection<NewsFeedPost> GetMostRecentPosts(User user)
         {
             return UsersNewsFeedPosts[user];
+        }
+
+        public void SetMostRecentPosts(User user, ObservableCollection<NewsFeedPost> newPosts)
+        {
+            UsersNewsFeedPosts[user] = newPosts;
         }
     }
 }

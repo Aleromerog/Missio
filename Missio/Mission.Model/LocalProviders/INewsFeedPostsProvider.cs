@@ -16,7 +16,7 @@ namespace Mission.Model.LocalProviders
     /// <summary>
     /// Validates that the given user information is correct
     /// </summary>
-    public interface IUserValidator
+    public interface IValidateUser
     {
         /// <summary>
         /// Validates that the user given user information is correct, if it is 
@@ -24,6 +24,18 @@ namespace Mission.Model.LocalProviders
         /// <param name="user"> The user info to validate </param>
         /// <returns></returns>
         void ValidateUser(User user);
+    }
+
+    /// <summary>
+    /// Adds a user to the database
+    /// </summary>
+    public interface IAddUser
+    {
+        /// <summary>
+        /// Adds the given user to the database
+        /// </summary>
+        /// <param name="user"> The user to add </param>
+        void AddUser(User user);
     }
 
     /// <summary>

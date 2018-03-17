@@ -4,11 +4,10 @@ using Mission.Model.Exceptions;
 
 namespace Mission.Model.LocalProviders
 {
-    /// <inheritdoc />
     /// <summary>
     /// A fake user and password validator that checks the given parameters against the hardcoded data
     /// </summary>
-    public class LocalUserValidator : IUserValidator
+    public class LocalUserDatabase : IValidateUser, IAddUser
     {
         /// <summary>
         /// A list of users that are guaranteed to exist, useful for testing purposes
@@ -50,6 +49,12 @@ namespace Mission.Model.LocalProviders
                 if (validUser.UserName == user.UserName && validUser.Password != user.Password)
                     throw new InvalidPasswordException();
             }
+        }
+
+        /// <inheritdoc />
+        public void AddUser(User user)
+        {
+            ValidUsers.Add(user);
         }
     }
 }

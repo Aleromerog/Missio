@@ -11,12 +11,12 @@ namespace ViewModel
 {
     public class AttemptToLogIn : IAttemptToLogin
     {
-        private readonly IUserValidator _userValidator;
+        private readonly IValidateUser _userValidator;
         private readonly IDisplayAlertOnCurrentPage _alertDisplay;
         private readonly IGoToNextPage _goToNextPage;
         private readonly GlobalUser _globalUser;
 
-        public AttemptToLogIn([NotNull] IUserValidator userValidator, [NotNull] IDisplayAlertOnCurrentPage alertDisplay,
+        public AttemptToLogIn([NotNull] IValidateUser userValidator, [NotNull] IDisplayAlertOnCurrentPage alertDisplay,
             [NotNull, Named("GoToNewsFeed")] IGoToNextPage goToNextPage, [NotNull] GlobalUser globalUser)
         {
             _userValidator = userValidator ?? throw new ArgumentNullException(nameof(userValidator));
