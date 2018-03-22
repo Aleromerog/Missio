@@ -3,21 +3,6 @@ using Mission.Model.Data;
 
 namespace ViewModel
 {
-    public interface IGetLoggedInUser
-    {
-        User LoggedInUser { get; }
-    }
-
-    public interface ISetLoggedInUser
-    {
-        User LoggedInUser { set; }
-    }
-
-    public interface IOnUserLoggedIn
-    {
-        event Action OnUserLoggedIn;
-    }
-
     /// <summary>
     /// Class for getting the user that is logged in
     /// </summary>

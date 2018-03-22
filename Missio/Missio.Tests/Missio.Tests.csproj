@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtraNewsFeedPosts.cs" />
+    <Compile Include="GlobalUserTests.cs" />
     <Compile Include="LocalNewsFeedPostProviderTests.cs" />
     <Compile Include="LocalUserDatabaseTests.cs" />
     <Compile Include="LoginTests.cs" />

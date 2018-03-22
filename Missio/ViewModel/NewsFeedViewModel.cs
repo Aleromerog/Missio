@@ -8,33 +8,6 @@ using Xamarin.Forms;
 
 namespace ViewModel
 {
-    public class NewsFeedPostsUpdater : INewsFeedPostsUpdater
-    {
-        private readonly IGetLoggedInUser _getLoggedInUser;
-        private readonly INewsFeedPostsProvider _postsProvider;
-
-        public NewsFeedPostsUpdater(IGetLoggedInUser getLoggedInUser, INewsFeedPostsProvider postsProvider)
-        {
-            _getLoggedInUser = getLoggedInUser;
-            _postsProvider = postsProvider;
-        }
-        
-        /// <inheritdoc />
-        public void UpdatePosts(ObservableCollection<NewsFeedPost> posts)
-        {
-            posts.Clear();
-            foreach (var post in _postsProvider.GetMostRecentPosts(_getLoggedInUser.LoggedInUser))
-            {
-                posts.Add(post);
-            }
-        }
-    }
-    
-    public interface INewsFeedViewPosts
-    {
-        ObservableCollection<NewsFeedPost> Posts { get; }
-    }
-
     public class NewsFeedViewModel : INewsFeedViewPosts
     {
         private readonly INewsFeedPostsUpdater _postsUpdater;
