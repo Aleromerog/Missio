@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 using Mission.Model.LocalProviders;
 using Ninject;
 using Ninject.Modules;
@@ -13,6 +14,7 @@ namespace Missio
             var kernel = new KernelConfiguration(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new LogInModule()).BuildReadonlyKernel();
             InitializeComponent();
             MainPage = new NavigationPage(kernel.Get<LogInPage>());
+		    Console.WriteLine("Hello world");
 		}
 
 		protected override void OnStart ()
@@ -49,7 +51,9 @@ namespace Missio
         {
             Bind<INewsFeedViewPosts, NewsFeedViewModel>().To<NewsFeedViewModel>().InSingletonScope();
             Bind<NewsFeedPage>().ToSelf().InSingletonScope();
+            Bind<PublicationPage>().ToSelf().InSingletonScope();
             Bind<IGoToNextPage>().To<GoToPage>().Named("GoToNewsFeed").WithConstructorArgument("page", x => x.Kernel.Get<NewsFeedPage>());
+            Bind<IGoToNextPage>().To<GoToPage>().Named("GoToPublicationPage").WithConstructorArgument("page", x => x.Kernel.Get<PublicationPage>());
         }
     }
 

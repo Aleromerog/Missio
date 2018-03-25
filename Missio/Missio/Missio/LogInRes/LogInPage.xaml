@@ -28,7 +28,7 @@
             </Grid.RowDefinitions>
         
             <Image Grid.Row="1" 
-                   Source="lenguas2"
+                   Source="Lenguas2.png"
                    HorizontalOptions="{StaticResource LogInLayoutOptions}" 
                    />
 

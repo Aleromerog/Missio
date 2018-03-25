@@ -1,4 +1,6 @@
-﻿using ViewModel;
+﻿using System;
+using JetBrains.Annotations;
+using ViewModel;
 using Xamarin.Forms.Xaml;
 
 namespace Missio
@@ -6,6 +8,13 @@ namespace Missio
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class NewsFeedPage
 	{
+        [Obsolete("Only for previewing with the Xamarin previewer", true)]
+	    public NewsFeedPage()
+	    {
+	        InitializeComponent();
+	    }
+
+        [UsedImplicitly]
 	    public NewsFeedPage (NewsFeedViewModel NewsFeedViewModel)
 		{
             BindingContext = NewsFeedViewModel;

@@ -49,7 +49,17 @@ namespace Missio.Tests
                 var posts = app.WaitForElement(c => c.Text(expectedPost));
                 Assert.AreEqual(1, posts.Length, "Couldn't find post with text \"{0}\"", expectedPost);
             }
-            
+        }
+
+        [Test]
+        public void AddPostButton_NormalClick_GoesToPublicationPage()
+        {
+            //Arrange
+            AppInitializer.LogIn(app);
+            //Act
+            app.Tap(c => c.Button("AddPostButton"));
+            //Assert
+            app.WaitForElement(c => c.Marked("PublicationPage"));
         }
     }
 }
