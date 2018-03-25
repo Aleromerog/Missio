@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows.Input;
 using JetBrains.Annotations;
 using Mission.Model.Data;
@@ -33,18 +32,15 @@ namespace ViewModel
             UpdatePostsCommand = new Command(UpdatePosts);
             onUserLoggedIn.OnUserLoggedIn += UpdatePosts;
             GoToPublicationPageCommand = new Command(GoToPublicationPage);
-            Debug.WriteLine("Something");
         }
 
         public void UpdatePosts()
         {
-            Console.WriteLine("Updating posts");
             _postsUpdater.UpdatePosts(Posts);
         }
 
         public async void GoToPublicationPage()
         {
-            Console.WriteLine("Going to publication page");
             await _goToPublicationPage.GoToNextPage();
         }
     }

@@ -14,7 +14,6 @@ namespace Missio
             var kernel = new KernelConfiguration(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new LogInModule()).BuildReadonlyKernel();
             InitializeComponent();
             MainPage = new NavigationPage(kernel.Get<LogInPage>());
-		    Console.WriteLine("Hello world");
 		}
 
 		protected override void OnStart ()
