@@ -30,23 +30,9 @@ namespace Missio.Tests
             //Arrange
             FakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
             //Act
-            PublicationPageViewModel.PublishPost();
+            PublicationPageViewModel.PublishPostCommand.Execute(null);
             //Assert
             FakeUpdatePostsView.Received(1).UpdatePosts();
-        }
-
-        [Test]
-        public void PublishPost_TextOnly_PublishesPost()
-        {
-            //Arrange
-            var authorName = "Name of the author";
-            var newPostText = "The content of the new post";
-            FakeGetLoggedInUser.LoggedInUser.Returns(new User(authorName, ""));
-            PublicationPageViewModel.PostText = newPostText;
-            //Act
-            PublicationPageViewModel.PublishPost();
-            //Assert
-            FakePublishPost.Received(1).PublishPost(Arg.Is<TextOnlyPost>(x => x.Text == newPostText && x.Author == authorName));
         }
 
         [Test]
@@ -55,7 +41,7 @@ namespace Missio.Tests
             //Arrange
             FakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
             //Act
-            PublicationPageViewModel.PublishPost();
+            PublicationPageViewModel.PublishPostCommand.Execute(null);
             //Assert
             FakeReturnOnePage.Received(1).ReturnToPreviousPage();
         }

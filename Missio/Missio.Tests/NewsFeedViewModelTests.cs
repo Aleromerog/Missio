@@ -44,17 +44,6 @@ namespace Missio.Tests
         }
 
         [Test]
-        public void GoToPublicationPage_NormalCall_GoesToPublicationPage()
-        {
-            //Arrange
-
-            //Act
-            NewsFeedViewModel.GoToPublicationPage();
-            //Assert
-            _goToView.Received(1).GoToView("Publication page");
-        }
-
-        [Test]
         public void GoToPublicationPageCommand_NormalCall_GoesToPublicationPage()
         {
             //Arrange

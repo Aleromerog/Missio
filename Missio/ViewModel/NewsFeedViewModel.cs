@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
 using Mission.Model.Data;
@@ -33,7 +34,7 @@ namespace ViewModel
                 throw new ArgumentNullException(nameof(onUserLoggedIn));
             UpdatePostsCommand = new Command(UpdatePosts);
             onUserLoggedIn.OnUserLoggedIn += UpdatePosts;
-            GoToPublicationPageCommand = new Command(GoToPublicationPage);
+            GoToPublicationPageCommand = new Command(async() => await GoToPublicationPage());
         }
 
         public void UpdatePosts()
@@ -41,9 +42,9 @@ namespace ViewModel
             _postsUpdater.UpdatePosts(Posts);
         }
 
-        public async void GoToPublicationPage()
+        private Task GoToPublicationPage()
         {
-            await _goToView.GoToView("Publication page");
+            return _goToView.GoToView("Publication page");
         }
     }
 }
