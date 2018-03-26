@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
 using Mission.Model.Data;
@@ -42,16 +43,16 @@ namespace ViewModel
         public LogInViewModel([NotNull] IAttemptToLogin loginAttempt)
         {
             _loginAttempt = loginAttempt ?? throw new ArgumentNullException(nameof(loginAttempt));
-            LogInCommand = new Command(LogIn);
+            LogInCommand = new Command(async() => await LogIn());
         }
 
         /// <summary>
         /// Attempts to login the user with the given username and password
         /// </summary>
-        public async void LogIn()
+        private Task LogIn()
         {
             var user = new User(UserName, Password);
-            await _loginAttempt.AttemptToLoginWithUser(user);
+            return _loginAttempt.AttemptToLoginWithUser(user);
         }
     }
 }

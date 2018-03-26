@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
 using Mission.Model.Data;
@@ -34,14 +35,14 @@ namespace ViewModel
             _getLoggedInUser = getLoggedInUser ?? throw new ArgumentNullException(nameof(getLoggedInUser));
             _updateViewPosts = updateViewPosts ?? throw new ArgumentNullException(nameof(updateViewPosts));
             _returnOnePage = returnOnePage ?? throw new ArgumentNullException(nameof(returnOnePage));
-            PublishPostCommand = new Command(PublishPost);
+            PublishPostCommand = new Command(async() => await PublishPost());
         }
 
-        public async void PublishPost()
+        private Task PublishPost()
         {
             _publishPost.PublishPost(new TextOnlyPost(_getLoggedInUser.LoggedInUser.UserName, PostText));
             _updateViewPosts.UpdatePosts();
-            await _returnOnePage.ReturnToPreviousPage();
+            return _returnOnePage.ReturnToPreviousPage();
         }
     }
 }
