@@ -12,7 +12,7 @@
    
     <ContentPage Title="Calendario"/> 
 
-    <ContentPage Title="Missio :)">
+    <ContentPage Title="Missio">
         <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="TextOnlyPost">
