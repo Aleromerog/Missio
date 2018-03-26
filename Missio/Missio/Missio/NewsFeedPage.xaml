@@ -3,15 +3,19 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModel="clr-namespace:ViewModel;assembly=Mission.ViewModel"
+             xmlns:missio="clr-namespace:Missio;assembly=Missio"
              NavigationPage.HasBackButton="False"
              x:Class="Missio.NewsFeedPage"
+             Title="{Binding Title}"
              AutomationId="NewsFeedContentPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="TextOnlyPost">
                 <ViewCell>
                     <StackLayout Spacing="0" Margin="{StaticResource NewsFeedPostMargin}">
+                        <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                         <Label Text="{Binding Author}" FontAttributes="Bold" BackgroundColor="White" />
+                        <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                         <Label Text="{Binding Text}" BackgroundColor="White" />
                     </StackLayout>
                 </ViewCell>
@@ -19,8 +23,10 @@
             <DataTemplate x:Key="StickyPost">
                 <ViewCell>
                     <StackLayout Margin="{StaticResource NewsFeedPostMargin}" BackgroundColor="YellowGreen">
+                        <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                         <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="Large"
                                HorizontalTextAlignment="Center" />
+                        <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                         <Label Text="{Binding Message}" />
                     </StackLayout>
                 </ViewCell>
@@ -31,17 +37,27 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <RelativeLayout>
-            <BoxView x:Name="TopBox" Color="Aqua"
+        <RelativeLayout BackgroundColor="{StaticResource LoginBackground}">
+            <BoxView x:Name="TopBox" Color="{StaticResource PrimaryDarkColor}"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor={StaticResource NewsFeedBarHeight}}" />
-            <ListView BackgroundColor="Red"
+            <ListView
                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=TopBox, Property=Height, Factor=1}"
                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.90}"
-                      ItemsSource="{Binding NewsFeedPosts}" ItemTemplate="{StaticResource personDataTemplateSelector}"
-                      HasUnevenRows="True" />
-            <BoxView Color="Aqua"
+                      ItemsSource="{Binding Posts}" ItemTemplate="{StaticResource personDataTemplateSelector}"
+                      HasUnevenRows="True"  RefreshCommand="{Binding UpdatePostsCommand}"
+                      IsPullToRefreshEnabled="True"/>
+            <missio:RoundedButton
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.80}"
+                BackgroundColor="Red"
+                CornerRadius="10"
+                Image="AddPostSign.png"
+                Command="{Binding GoToPublicationPageCommand}"
+                AutomationId="AddPostButton"
+            />
+            <BoxView Color="{StaticResource PrimaryDarkColor}"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor={StaticResource NewsFeedBarHeight}}"
                      RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.95}" />

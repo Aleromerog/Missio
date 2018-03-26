@@ -6,8 +6,10 @@ using Xamarin.UITest;
 
 namespace Missio.Tests
 {
-    public class AppInitializer
+    public static class AppInitializer
     {
+        public static User LoggedInUser { get; private set; }
+
         /// <summary>
         /// Starts and the app on the given platform emulator
         /// </summary>
@@ -23,7 +25,7 @@ namespace Missio.Tests
             }
 
             if (Environment.OSVersion.Platform == PlatformID.Win32NT) // Cant run iOS test on windows
-                Assert.Pass();
+                Assert.Ignore();
             app = ConfigureApp.iOS.StartApp();
             return app;
         }
@@ -34,11 +36,11 @@ namespace Missio.Tests
         /// <param name="app"></param>
         public static void LogIn(IApp app)
         {
-            if (FakeUserValidator.ValidUsers.Count == 0)
+            if (LocalUserDatabase.ValidUsers.Count == 0)
                 throw new InvalidOperationException("There are no valid users");
-            var validUser = FakeUserValidator.ValidUsers[0];
-            app.EnterText(c => c.Marked("UserNameEntry"), validUser.UserName);
-            app.EnterText(c => c.Marked("PasswordEntry"), validUser.Password);
+            LoggedInUser = LocalUserDatabase.ValidUsers[0];
+            app.EnterText(c => c.Marked("UserNameEntry"), LoggedInUser.UserName);
+            app.EnterText(c => c.Marked("PasswordEntry"), LoggedInUser.Password);
             app.Tap(c => c.Marked("LogInButton"));
         }
 
@@ -49,8 +51,9 @@ namespace Missio.Tests
         /// <param name="user"> The user information </param>
         public static void TryToLogIn(IApp app, User user)
         {
-            app.EnterText(c => c.Marked("UserNameEntry"), user.UserName);
-            app.EnterText(c => c.Marked("PasswordEntry"), user.Password);
+            LoggedInUser = user;
+            app.EnterText(c => c.Marked("UserNameEntry"), LoggedInUser.UserName);
+            app.EnterText(c => c.Marked("PasswordEntry"), LoggedInUser.Password);
             app.Tap(c => c.Marked("LogInButton"));
         }
     }

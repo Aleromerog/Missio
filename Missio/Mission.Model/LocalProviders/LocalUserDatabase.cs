@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Mission.Model.Data;
+using Mission.Model.Exceptions;
 
 namespace Mission.Model.LocalProviders
 {
-    /// <inheritdoc />
     /// <summary>
     /// A fake user and password validator that checks the given parameters against the hardcoded data
     /// </summary>
-    public class FakeUserValidator : IUserValidator
+    public class LocalUserDatabase : IValidateUser, IAddUser
     {
         /// <summary>
         /// A list of users that are guaranteed to exist, useful for testing purposes
@@ -41,18 +40,21 @@ namespace Mission.Model.LocalProviders
         }
 
         /// <inheritdoc />
-        public UserValidationResult IsUserValid(User user)
+        public void ValidateUser(User user)
         {
             if (!ValidUsers.Exists(x => x.UserName == user.UserName))
-                return UserValidationResult.IncorrectUsername;
+                throw new InvalidUserNameException();
             foreach (var validUser in ValidUsers)
             {
                 if (validUser.UserName == user.UserName && validUser.Password != user.Password)
-                    return UserValidationResult.IncorrectPassword;
-                if (validUser.UserName == user.UserName && validUser.Password == user.Password)
-                    return UserValidationResult.Succeeded;
+                    throw new InvalidPasswordException();
             }
-            throw new ArgumentException(nameof(user));
+        }
+
+        /// <inheritdoc />
+        public void AddUser(User user)
+        {
+            ValidUsers.Add(user);
         }
     }
 }

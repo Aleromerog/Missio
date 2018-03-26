@@ -6,19 +6,19 @@ using Xamarin.Forms.Xaml;
 namespace Missio
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NewsFeedPage
+	public partial class LogInPage
 	{
         [Obsolete("Only for previewing with the Xamarin previewer", true)]
-	    public NewsFeedPage()
+	    public LogInPage()
 	    {
 	        InitializeComponent();
 	    }
 
         [UsedImplicitly]
-	    public NewsFeedPage (NewsFeedViewModel NewsFeedViewModel)
-		{
-            BindingContext = NewsFeedViewModel;
-			InitializeComponent ();
-		}
+	    public LogInPage(LogInViewModel logInViewModel)
+	    {
+	        BindingContext = logInViewModel;
+	        InitializeComponent();
+	    }
 	}
 }

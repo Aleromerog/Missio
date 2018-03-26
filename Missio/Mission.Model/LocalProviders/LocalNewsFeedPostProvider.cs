@@ -1,24 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using Mission.Model.Data;
+using ViewModel;
 
 namespace Mission.Model.LocalProviders
 {
     /// <summary>
     /// A news feed provider that returns hard coded data
     /// </summary>
-    public class FakeNewsFeedPostProvider : INewsFeedPostsProvider
+    public class LocalNewsFeedPostProvider : IGetMostRecentPosts, IPublishPost
     {
+        private readonly IGetLoggedInUser _getLoggedInUser;
+
         /// <summary>
         /// Maps users to collections of news feed posts that should be displayed to them (different users see different posts)
         /// </summary>
-        private static readonly Dictionary<User, ObservableCollection<NewsFeedPost>> UsersNewsFeedPosts =
-            new Dictionary<User, ObservableCollection<NewsFeedPost>>()
+        private static readonly Dictionary<User, List<NewsFeedPost>> UsersNewsFeedPosts =
+            new Dictionary<User, List<NewsFeedPost>>
             {
                 {
-                    FakeUserValidator.ValidUsers[0],
-                    new ObservableCollection<NewsFeedPost>
+                    LocalUserDatabase.ValidUsers[0],
+                    new List<NewsFeedPost>
                     {
                         new StickyPost("Super important news", "A sticky message for user zero"),
                         new TextOnlyPost("Francisco Greco", "Hello Jorge Romero"),
@@ -26,8 +27,8 @@ namespace Mission.Model.LocalProviders
                     }
                 },
                 {
-                    FakeUserValidator.ValidUsers[1],
-                    new ObservableCollection<NewsFeedPost>
+                    LocalUserDatabase.ValidUsers[1],
+                    new List<NewsFeedPost>
                     {
                         new StickyPost("Super important news", "A sticky message for user one"),
                         new TextOnlyPost("Francisco Greco", "Hello me"),
@@ -35,7 +36,12 @@ namespace Mission.Model.LocalProviders
                     }
                 },
             };
-        
+
+        public LocalNewsFeedPostProvider(IGetLoggedInUser getLoggedInUser)
+        {
+            _getLoggedInUser = getLoggedInUser;
+        }
+
         /// <summary>
         /// Gets the contents of the most recent posts as strings, useful for testing 
         /// </summary>
@@ -57,6 +63,7 @@ namespace Mission.Model.LocalProviders
                         break;
                 }
             }
+
             return contents;
         }
 
@@ -64,9 +71,20 @@ namespace Mission.Model.LocalProviders
         /// Gets a list of manually hardcoded news feed posts
         /// </summary>
         /// <returns> A list containing news feed posts</returns>
-        public ObservableCollection<NewsFeedPost> GetMostRecentPosts(User user)
+        public List<NewsFeedPost> GetMostRecentPosts()
         {
-            return UsersNewsFeedPosts[user];
+            return UsersNewsFeedPosts[_getLoggedInUser.LoggedInUser];
+        }
+
+        public void SetMostRecentPosts(List<NewsFeedPost> newPosts)
+        {
+            UsersNewsFeedPosts[_getLoggedInUser.LoggedInUser] = newPosts;
+        }
+
+        /// <inheritdoc />
+        public void PublishPost(NewsFeedPost post)
+        {
+            UsersNewsFeedPosts[_getLoggedInUser.LoggedInUser].Insert(0, post);
         }
     }
 }

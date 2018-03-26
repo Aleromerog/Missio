@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Mission.Model.Data;
 using Mission.Model.LocalProviders;
-using NSubstitute;
 using NUnit.Framework;
-using ViewModel;
 using Xamarin.UITest;
 
 namespace Missio.Tests
 {
     [TestFixture(Platform.Android)]
     [TestFixture(Platform.iOS)]
+    [Category("UITests")]
     public class NewsFeedTests
     {
         private IApp app;
@@ -31,11 +27,11 @@ namespace Missio.Tests
 
         private static object[] GetOnAppearTestData()
         {
-            var testData = new object[FakeUserValidator.ValidUsers.Count];
-            for (var i = 0; i < FakeUserValidator.ValidUsers.Count; i++)
+            var testData = new object[LocalUserDatabase.ValidUsers.Count];
+            for (var i = 0; i < LocalUserDatabase.ValidUsers.Count; i++)
             {
-                var user = FakeUserValidator.ValidUsers[i];
-                testData[i] = new object[] { user, FakeNewsFeedPostProvider.GetMostRecentPostsAsStrings(user) };
+                var user = LocalUserDatabase.ValidUsers[i];
+                testData[i] = new object[] {user, LocalNewsFeedPostProvider.GetMostRecentPostsAsStrings(user)};
             }
             return testData;
         }
@@ -50,44 +46,19 @@ namespace Missio.Tests
             //Assert
             foreach (var expectedPost in expectedPosts)
             {
-                var posts = app.Query(c => c.Text(expectedPost));
-                Assert.AreEqual(1, posts.Length);
+                app.WaitForElement(c => c.Text(expectedPost));
             }
-        }
-    }
-
-    [TestFixture]
-    public class NewsFeedViewModelTests
-    {
-        private NewsFeedViewModel NewsFeedViewModel;
-        private UserInformation UserInformation;
-        private INewsFeedPostsProvider FakeNewsFeedPostsProvider;
-
-        [SetUp]
-        public void SetUp()
-        {
-            FakeNewsFeedPostsProvider = Substitute.For<INewsFeedPostsProvider>();
-            UserInformation = new UserInformation();
-            NewsFeedViewModel = new NewsFeedViewModel(UserInformation, FakeNewsFeedPostsProvider);
-        }
-
-        private static object[] GetUsers()
-        {
-            return FakeUserValidator.ValidUsers.Cast<object>().ToArray();
         }
 
         [Test]
-        [TestCaseSource(nameof(GetUsers))]
-        public void OnUserLoggedIn_GivenUser_UpdatesPosts(User user)
+        public void AddPostButton_NormalClick_GoesToPublicationPage()
         {
             //Arrange
-            var posts = new ObservableCollection<NewsFeedPost> { new NewsFeedPost(), new NewsFeedPost() };
-            FakeNewsFeedPostsProvider.GetMostRecentPosts(user).Returns(posts);
+            AppInitializer.LogIn(app);
             //Act
-            UserInformation.LoggedInUser = user;
+            app.Tap(c => c.Button("AddPostButton"));
             //Assert
-            Assert.AreEqual(posts, NewsFeedViewModel.NewsFeedPosts);
+            app.WaitForElement(c => c.Marked("PublicationPage"));
         }
     }
-
 }

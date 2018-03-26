@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:missio="clr-namespace:Missio;assembly=Missio"
              xmlns:resources="clr-namespace:Missio.Resources;assembly=Missio"
-             x:Class="Missio.LogIn"
+             x:Class="Missio.LogInPage"
              BackgroundColor="{StaticResource LoginBackground}"
              NavigationPage.HasNavigationBar="False">
     <StackLayout>
@@ -28,7 +28,7 @@
             </Grid.RowDefinitions>
         
             <Image Grid.Row="1" 
-                   Source="lenguas2"
+                   Source="Lenguas2.png"
                    HorizontalOptions="{StaticResource LogInLayoutOptions}" 
                    />
 
@@ -43,7 +43,7 @@
             <Entry Grid.Row="3"
                    FontSize="18"
                    Placeholder="  Missionero"
-                   PlaceholderColor="Gray"
+                   PlaceholderColor="{StaticResource PlaceholderTextColor}"
                    BackgroundColor="Transparent"
                    TextColor="{StaticResource PrimaryDarkColor}"
                    Text="{Binding Path=UserName, Mode=OneWayToSource}"
@@ -52,13 +52,13 @@
             <Entry Grid.Row="4"
                    FontSize="18"
                    Placeholder="  Contraseña"
-                   PlaceholderColor="Gray"
+                   PlaceholderColor="{StaticResource PlaceholderTextColor}"
                    IsPassword="True"
                    TextColor="{StaticResource PrimaryDarkColor}"
                    Text="{Binding Path=Password, Mode=OneWayToSource}"
                    AutomationId="PasswordEntry"/>
 
-            <missio:RoundedButton Grid.Row="6"
+            <missio:RoundedButton Grid.Row="5"
                                   BackgroundColor="{StaticResource PrimaryColor}"
                                   Text="Entrar"
                                   FontSize="18"
@@ -70,7 +70,7 @@
                    Text="O ingresa con:"
                    TextColor="{StaticResource PrimaryColor}"
                    HorizontalOptions="Center" />
-            <StackLayout Grid.Row="8"
+            <StackLayout Grid.Row="7"
                          Orientation="Horizontal"
                          HorizontalOptions="Center" VerticalOptions="Start">
                 <Button BackgroundColor="DarkBlue" CornerRadius="65" HeightRequest="65" WidthRequest="65"/>
@@ -78,7 +78,7 @@
                 <Button BackgroundColor="DarkRed" CornerRadius="65" HeightRequest="65" WidthRequest="65"/> 
             </StackLayout>
 
-            <Grid Grid.Row="9">
+            <Grid Grid.Row="8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="2*" />
