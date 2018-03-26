@@ -1,14 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<xamarinForms:BottomBarPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModel="clr-namespace:ViewModel;assembly=Mission.ViewModel"
              xmlns:missio="clr-namespace:Missio;assembly=Missio"
+             xmlns:xamarinForms="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
              NavigationPage.HasBackButton="False"
              x:Class="Missio.NewsFeedPage"
              Title="{Binding Title}"
              AutomationId="NewsFeedContentPage">
-    <ContentPage.Resources>
+   
+    <ContentPage Title="Calendario"/> 
+
+    <ContentPage Title="Missio">
+        <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="TextOnlyPost">
                 <ViewCell>
@@ -38,9 +43,6 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <RelativeLayout BackgroundColor="{StaticResource LoginBackground}">
-            <BoxView x:Name="TopBox" Color="{StaticResource PrimaryDarkColor}"
-                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
-                     RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor={StaticResource NewsFeedBarHeight}}" />
             <ListView
                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=TopBox, Property=Height, Factor=1}"
                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
@@ -48,19 +50,21 @@
                       ItemsSource="{Binding Posts}" ItemTemplate="{StaticResource personDataTemplateSelector}"
                       HasUnevenRows="True"  RefreshCommand="{Binding UpdatePostsCommand}"
                       IsPullToRefreshEnabled="True"/>
-            <missio:RoundedButton
+            <Button
                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.80}"
                 BackgroundColor="Red"
+                HeightRequest="10"
+                WidthRequest="10"
                 CornerRadius="10"
                 Image="AddPostSign.png"
                 Command="{Binding GoToPublicationPageCommand}"
                 AutomationId="AddPostButton"
             />
-            <BoxView Color="{StaticResource PrimaryDarkColor}"
-                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
-                     RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor={StaticResource NewsFeedBarHeight}}"
-                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.95}" />
-        </RelativeLayout>
+             </RelativeLayout>
     </ContentPage.Content>
-</ContentPage>
+    </ContentPage>
+    
+    <ContentPage Title="Perfil"/> 
+    
+</xamarinForms:BottomBarPage>
