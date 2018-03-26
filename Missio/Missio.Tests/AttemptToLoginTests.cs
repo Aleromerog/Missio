@@ -15,7 +15,7 @@ namespace Missio.Tests
         private IValidateUser fakeUserValidator;
         private IDisplayAlertOnCurrentPage displayAlertOnCurrentPage;
         private ISetLoggedInUser setLoggedInUser;
-        private IGoToNextPage goToNextPage;
+        private IGoToView _goToView;
 
         [SetUp]
         public void SetUp()
@@ -23,9 +23,9 @@ namespace Missio.Tests
             fakeUserValidator = Substitute.For<IValidateUser>();
             displayAlertOnCurrentPage = Substitute.For<IDisplayAlertOnCurrentPage>();
             setLoggedInUser = Substitute.For<ISetLoggedInUser>();
-            goToNextPage = Substitute.For<IGoToNextPage>();
+            _goToView = Substitute.For<IGoToView>();
             AttemptToLogIn = new AttemptToLogIn(fakeUserValidator, displayAlertOnCurrentPage,
-                goToNextPage, setLoggedInUser);
+                _goToView, setLoggedInUser);
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace Missio.Tests
             //Assert
             fakeUserValidator.Received(1).ValidateUser(user);
             setLoggedInUser.Received(1).LoggedInUser = user;
-            goToNextPage.Received(1).GoToNextPage();
+            _goToView.Received(1).GoToView("News feed page");
         }
 
         [Test]

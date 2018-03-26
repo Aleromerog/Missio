@@ -1,5 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Mission.Model.LocalProviders;
 using Ninject;
 using Ninject.Modules;
@@ -9,14 +8,14 @@ namespace Missio
 {
 	public partial class App
 	{
-		public App ()
-		{
-            var kernel = new KernelConfiguration(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new LogInModule()).BuildReadonlyKernel();
+	    public App()
+	    {
+	        var kernel = new KernelConfiguration(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(), new AppViewModule()).BuildReadonlyKernel();
             InitializeComponent();
-            MainPage = new NavigationPage(kernel.Get<LogInPage>());
-		}
+	        kernel.Get<AppViewModel>().StartFromPage(kernel.Get<LogInPage>());
+        }
 
-		protected override void OnStart ()
+        protected override void OnStart ()
 		{
 			// Handle when your app starts
 		}
@@ -31,7 +30,17 @@ namespace Missio
 			// Handle when your app resumes
 		}
 	}
-	
+
+    public class AppViewModule : NinjectModule
+    {
+        /// <inheritdoc />
+        public override void Load()
+        {
+            Bind<AppViewModel>().ToSelf().InSingletonScope();
+            Bind<IGoToPage, IGoToView, IReturnToPreviousPage>().To<ApplicationNavigation>().InSingletonScope();
+        }
+    }
+
 	public class ViewModelModule : NinjectModule
 	{
 		/// <inheritdoc />
@@ -43,16 +52,22 @@ namespace Missio
         }
 	}
 
+    public class PublicationPageModule : NinjectModule
+    {
+        public override void Load()
+        {
+            Bind<PublicationPageViewModel>().ToSelf().InSingletonScope();
+            Bind<Page>().To<PublicationPage>().InSingletonScope();
+        }
+    }
+
     public class NewsFeedModule : NinjectModule
     {
         /// <inheritdoc />
         public override void Load()
         {
-            Bind<INewsFeedViewPosts, NewsFeedViewModel>().To<NewsFeedViewModel>().InSingletonScope();
-            Bind<NewsFeedPage>().ToSelf().InSingletonScope();
-            Bind<PublicationPage>().ToSelf().InSingletonScope();
-            Bind<IGoToNextPage>().To<GoToPage>().Named("GoToNewsFeed").WithConstructorArgument("page", x => x.Kernel.Get<NewsFeedPage>());
-            Bind<IGoToNextPage>().To<GoToPage>().Named("GoToPublicationPage").WithConstructorArgument("page", x => x.Kernel.Get<PublicationPage>());
+            Bind<INewsFeedViewPosts, IUpdateViewPosts, NewsFeedViewModel>().To<NewsFeedViewModel>().InSingletonScope();
+            Bind<Page>().To<NewsFeedPage>().InSingletonScope();
         }
     }
 
@@ -63,7 +78,7 @@ namespace Missio
 		{
 			Bind<AttemptToLogIn>().ToSelf().InSingletonScope();
             Bind<LogInViewModel>().ToSelf().InSingletonScope();
-            Bind<LogInPage>().ToSelf().InSingletonScope();
+            Bind<Page>().To<LogInPage>().InSingletonScope();
 		}
 	}
 
@@ -73,7 +88,7 @@ namespace Missio
         public override void Load()
         {
 #if USE_FAKE_DATA
-            Bind<INewsFeedPostsProvider>().To<LocalNewsFeedPostProvider>().InSingletonScope();
+            Bind<IGetMostRecentPosts, IPublishPost>().To<LocalNewsFeedPostProvider>().InSingletonScope();
             Bind<IValidateUser>().To<LocalUserDatabase>().InSingletonScope();
             Bind<INewsFeedPostsUpdater>().To<NewsFeedPostsUpdater>().InSingletonScope();
 #else

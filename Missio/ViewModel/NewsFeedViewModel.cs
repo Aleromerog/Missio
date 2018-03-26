@@ -4,15 +4,17 @@ using System.Windows.Input;
 using JetBrains.Annotations;
 using Mission.Model.Data;
 using Mission.Model.LocalProviders;
-using Ninject;
 using Xamarin.Forms;
 
 namespace ViewModel
 {
-    public class NewsFeedViewModel : INewsFeedViewPosts
+    public class NewsFeedViewModel : INewsFeedViewPosts, IUpdateViewPosts
     {
         private readonly INewsFeedPostsUpdater _postsUpdater;
-        private readonly IGoToNextPage _goToPublicationPage;
+        private readonly IGoToView _goToView;
+
+        [UsedImplicitly]
+        public string Title { get; } = "News feed page";
 
         [UsedImplicitly]
         public ICommand UpdatePostsCommand { get; }
@@ -23,10 +25,10 @@ namespace ViewModel
         [UsedImplicitly]
         public ObservableCollection<NewsFeedPost> Posts { get; } = new ObservableCollection<NewsFeedPost>();
 
-        public NewsFeedViewModel([NotNull] INewsFeedPostsUpdater postsUpdater, [NotNull] IOnUserLoggedIn onUserLoggedIn, [Named("GoToPublicationPage"), NotNull] IGoToNextPage goToPublicationPage)
+        public NewsFeedViewModel([NotNull] INewsFeedPostsUpdater postsUpdater, [NotNull] IOnUserLoggedIn onUserLoggedIn, [NotNull] IGoToView goToView)
         {
             _postsUpdater = postsUpdater ?? throw new ArgumentNullException(nameof(postsUpdater));
-            _goToPublicationPage = goToPublicationPage ?? throw new ArgumentNullException(nameof(goToPublicationPage));
+            _goToView = goToView ?? throw new ArgumentNullException(nameof(goToView));
             if (onUserLoggedIn == null)
                 throw new ArgumentNullException(nameof(onUserLoggedIn));
             UpdatePostsCommand = new Command(UpdatePosts);
@@ -41,7 +43,7 @@ namespace ViewModel
 
         public async void GoToPublicationPage()
         {
-            await _goToPublicationPage.GoToNextPage();
+            await _goToView.GoToView("Publication page");
         }
     }
 }

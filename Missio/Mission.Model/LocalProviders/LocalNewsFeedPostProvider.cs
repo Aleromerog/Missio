@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
 using Mission.Model.Data;
+using ViewModel;
 
 namespace Mission.Model.LocalProviders
 {
     /// <summary>
     /// A news feed provider that returns hard coded data
     /// </summary>
-    public class LocalNewsFeedPostProvider : INewsFeedPostsProvider
+    public class LocalNewsFeedPostProvider : IGetMostRecentPosts, IPublishPost
     {
+        private readonly IGetLoggedInUser _getLoggedInUser;
+
         /// <summary>
         /// Maps users to collections of news feed posts that should be displayed to them (different users see different posts)
         /// </summary>
@@ -33,6 +36,11 @@ namespace Mission.Model.LocalProviders
                     }
                 },
             };
+
+        public LocalNewsFeedPostProvider(IGetLoggedInUser getLoggedInUser)
+        {
+            _getLoggedInUser = getLoggedInUser;
+        }
 
         /// <summary>
         /// Gets the contents of the most recent posts as strings, useful for testing 
@@ -63,14 +71,20 @@ namespace Mission.Model.LocalProviders
         /// Gets a list of manually hardcoded news feed posts
         /// </summary>
         /// <returns> A list containing news feed posts</returns>
-        public List<NewsFeedPost> GetMostRecentPosts(User user)
+        public List<NewsFeedPost> GetMostRecentPosts()
         {
-            return UsersNewsFeedPosts[user];
+            return UsersNewsFeedPosts[_getLoggedInUser.LoggedInUser];
         }
 
-        public void SetMostRecentPosts(User user, List<NewsFeedPost> newPosts)
+        public void SetMostRecentPosts(List<NewsFeedPost> newPosts)
         {
-            UsersNewsFeedPosts[user] = newPosts;
+            UsersNewsFeedPosts[_getLoggedInUser.LoggedInUser] = newPosts;
+        }
+
+        /// <inheritdoc />
+        public void PublishPost(NewsFeedPost post)
+        {
+            UsersNewsFeedPosts[_getLoggedInUser.LoggedInUser].Insert(0, post);
         }
     }
 }

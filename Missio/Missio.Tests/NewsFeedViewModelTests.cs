@@ -12,15 +12,15 @@ namespace Missio.Tests
         private NewsFeedViewModel NewsFeedViewModel;
         private INewsFeedPostsUpdater NewsFeedPostsUpdater;
         private IOnUserLoggedIn OnUserLoggedIn;
-        private IGoToNextPage GoToPublicationPage;
+        private IGoToView _goToView;
 
         [SetUp]
         public void SetUp()
         {
             NewsFeedPostsUpdater = Substitute.For<INewsFeedPostsUpdater>();
             OnUserLoggedIn = Substitute.For<IOnUserLoggedIn>();
-            GoToPublicationPage = Substitute.For<IGoToNextPage>();
-            NewsFeedViewModel = new NewsFeedViewModel(NewsFeedPostsUpdater, OnUserLoggedIn, GoToPublicationPage);
+            _goToView = Substitute.For<IGoToView>();
+            NewsFeedViewModel = new NewsFeedViewModel(NewsFeedPostsUpdater, OnUserLoggedIn, _goToView);
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace Missio.Tests
             //Act
             NewsFeedViewModel.GoToPublicationPage();
             //Assert
-            GoToPublicationPage.Received(1).GoToNextPage();
+            _goToView.Received(1).GoToView("Publication page");
         }
 
         [Test]
@@ -62,7 +62,7 @@ namespace Missio.Tests
             //Act
             NewsFeedViewModel.GoToPublicationPageCommand.Execute(null);
             //Assert
-            GoToPublicationPage.Received(1).GoToNextPage();
+            _goToView.Received(1).GoToView("Publication page");
     }
 }
 }

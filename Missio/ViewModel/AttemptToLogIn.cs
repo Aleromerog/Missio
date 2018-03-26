@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
-using Ninject;
 using Mission.Model.Data;
 using Mission.Model.Exceptions;
 using Mission.Model.LocalProviders;
@@ -13,15 +12,15 @@ namespace ViewModel
     {
         private readonly IValidateUser _userValidator;
         private readonly IDisplayAlertOnCurrentPage _alertDisplay;
-        private readonly IGoToNextPage _goToNextPage;
+        private readonly IGoToView _goToView;
         private readonly ISetLoggedInUser _setLoggedInUser;
 
         public AttemptToLogIn([NotNull] IValidateUser userValidator, [NotNull] IDisplayAlertOnCurrentPage alertDisplay,
-            [NotNull, Named("GoToNewsFeed")] IGoToNextPage goToNextPage, [NotNull] ISetLoggedInUser setLoggedInUser)
+            [NotNull] IGoToView goToView, [NotNull] ISetLoggedInUser setLoggedInUser)
         {
             _userValidator = userValidator ?? throw new ArgumentNullException(nameof(userValidator));
             _alertDisplay = alertDisplay ?? throw new ArgumentNullException(nameof(alertDisplay));
-            _goToNextPage = goToNextPage ?? throw new ArgumentNullException(nameof(goToNextPage));
+            _goToView = goToView ?? throw new ArgumentNullException(nameof(goToView));
             _setLoggedInUser = setLoggedInUser ?? throw new ArgumentNullException(nameof(setLoggedInUser));
         }
 
@@ -31,7 +30,7 @@ namespace ViewModel
             {
                 _userValidator.ValidateUser(user);
                 _setLoggedInUser.LoggedInUser = user;
-                return _goToNextPage.GoToNextPage();
+                return _goToView.GoToView("News feed page");
             }
             catch (InvalidUserNameException)
             {

@@ -6,6 +6,7 @@
              xmlns:missio="clr-namespace:Missio;assembly=Missio"
              NavigationPage.HasBackButton="False"
              x:Class="Missio.NewsFeedPage"
+             Title="{Binding Title}"
              AutomationId="NewsFeedContentPage">
     <ContentPage.Resources>
         <ResourceDictionary>

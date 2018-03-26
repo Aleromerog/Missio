@@ -6,12 +6,10 @@ namespace ViewModel
 {
     public class NewsFeedPostsUpdater : INewsFeedPostsUpdater
     {
-        private readonly IGetLoggedInUser _getLoggedInUser;
-        private readonly INewsFeedPostsProvider _postsProvider;
+        private readonly IGetMostRecentPosts _postsProvider;
 
-        public NewsFeedPostsUpdater(IGetLoggedInUser getLoggedInUser, INewsFeedPostsProvider postsProvider)
+        public NewsFeedPostsUpdater(IGetMostRecentPosts postsProvider)
         {
-            _getLoggedInUser = getLoggedInUser;
             _postsProvider = postsProvider;
         }
         
@@ -19,7 +17,7 @@ namespace ViewModel
         public void UpdatePosts(ObservableCollection<NewsFeedPost> posts)
         {
             posts.Clear();
-            foreach (var post in _postsProvider.GetMostRecentPosts(_getLoggedInUser.LoggedInUser))
+            foreach (var post in _postsProvider.GetMostRecentPosts())
             {
                 posts.Add(post);
             }

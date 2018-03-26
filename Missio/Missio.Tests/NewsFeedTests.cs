@@ -31,7 +31,7 @@ namespace Missio.Tests
             for (var i = 0; i < LocalUserDatabase.ValidUsers.Count; i++)
             {
                 var user = LocalUserDatabase.ValidUsers[i];
-                testData[i] = new object[] { user, LocalNewsFeedPostProvider.GetMostRecentPostsAsStrings(user) };
+                testData[i] = new object[] {user, LocalNewsFeedPostProvider.GetMostRecentPostsAsStrings(user)};
             }
             return testData;
         }
@@ -46,8 +46,7 @@ namespace Missio.Tests
             //Assert
             foreach (var expectedPost in expectedPosts)
             {
-                var posts = app.WaitForElement(c => c.Text(expectedPost));
-                Assert.AreEqual(1, posts.Length, "Couldn't find post with text \"{0}\"", expectedPost);
+                app.WaitForElement(c => c.Text(expectedPost));
             }
         }
 

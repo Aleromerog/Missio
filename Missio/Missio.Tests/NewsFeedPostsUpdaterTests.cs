@@ -11,15 +11,13 @@ namespace Missio.Tests
     public class NewsFeedPostsUpdaterTests
     {
         private NewsFeedPostsUpdater _newsFeedPostProvider;
-        private IGetLoggedInUser GetLoggedInUser;
-        private INewsFeedPostsProvider NewsFeedPostProvider;
+        private IGetMostRecentPosts NewsFeedPostProvider;
 
         [SetUp]
         public void SetUp()
         {
-            GetLoggedInUser = Substitute.For<IGetLoggedInUser>();
-            NewsFeedPostProvider = Substitute.For<INewsFeedPostsProvider>();
-            _newsFeedPostProvider = new NewsFeedPostsUpdater(GetLoggedInUser, NewsFeedPostProvider);
+            NewsFeedPostProvider = Substitute.For<IGetMostRecentPosts>();
+            _newsFeedPostProvider = new NewsFeedPostsUpdater(NewsFeedPostProvider);
         }
 
         [Test]
@@ -28,9 +26,7 @@ namespace Missio.Tests
         {
             //Arrange
             var currentPosts = new ObservableCollection<NewsFeedPost>();
-            var currentUser = new User("Some user", "");
-            GetLoggedInUser.LoggedInUser.Returns(currentUser);
-            NewsFeedPostProvider.GetMostRecentPosts(currentUser).Returns(postsToAdd);
+            NewsFeedPostProvider.GetMostRecentPosts().Returns(postsToAdd);
             //Act
             _newsFeedPostProvider.UpdatePosts(currentPosts);
             //Assert
