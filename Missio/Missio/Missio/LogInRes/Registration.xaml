@@ -1,12 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Missio.LogInRes.Registration">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             xmlns:missio="clr-namespace:Missio;assembly=Missio"
+             x:Class="Missio.LogInRes.Registration"
+             BackgroundColor="{StaticResource LoginBackground}"
+             NavigationPage.HasNavigationBar="False">
+    
+    <Grid Padding="20,20,20,0" RowSpacing="20">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row ="0"
+               Source="Lenguas2.png"
+               HorizontalOptions="Center"/>
+        <Label Grid.Row="1"
+               Text="Crear nueva cuenta"
+               TextColor="{StaticResource PrimaryColor}"
+               Font="Bold"
+               HorizontalOptions="Start"
+               FontSize="20"/>
+        <Entry Grid.Row="2"
+               FontSize="18"
+               Placeholder="  Usuario Missionero"
+               PlaceholderColor="{StaticResource PlaceholderTextColor}"
+               BackgroundColor="Transparent"
+               TextColor="{StaticResource PrimaryDarkColor}"
+               Text="{Binding Path=UserName, Mode=OneWayToSource}"
+               AutomationId="UserNameEntry"/>
+
+        <Entry Grid.Row="3"
+               FontSize="18"
+               Placeholder="  Contraseña"
+               PlaceholderColor="{StaticResource PlaceholderTextColor}"
+               IsPassword="True"
+               TextColor="{StaticResource PrimaryDarkColor}"
+               Text="{Binding Path=Password, Mode=OneWayToSource}"
+               AutomationId="PasswordEntry"/>
+        <Entry Grid.Row="4"
+               FontSize="18"
+               Placeholder="  Confirme contraseña"
+               PlaceholderColor="{StaticResource PlaceholderTextColor}"
+               IsPassword="True"
+               TextColor="{StaticResource PrimaryDarkColor}"
+               Text="{Binding Path=Password, Mode=OneWayToSource}"
+               AutomationId="PasswordEntry"/>
+        <Entry Grid.Row="5"
+               FontSize="18"
+               Placeholder="  Correo electrónico"
+               PlaceholderColor="{StaticResource PlaceholderTextColor}"
+               BackgroundColor="Transparent"
+               TextColor="{StaticResource PrimaryDarkColor}"
+               Text="{Binding Path=UserName, Mode=OneWayToSource}"
+               AutomationId="UserNameEntry"/>
+        <missio:RoundedButton Grid.Row="6"
+                              BackgroundColor="{StaticResource PrimaryColor}"
+                              Text="Registrar"
+                              FontSize="18"
+                              CornerRadius="20"
+                              TextColor="{StaticResource MainTextColor}"
+                              Command="{Binding LogInCommand}"
+                              AutomationId="LogInButton"/>
+        <Grid Grid.Row="7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="O ingresa con:" Grid.Row="0" VerticalOptions="Center" TextColor="{StaticResource PrimaryDarkColor}"/>
+            <Grid Grid.Column="1" VerticalOptions="Center">
+                <StackLayout 
+                             Orientation="Horizontal"
+                             HorizontalOptions="Center" VerticalOptions="Start"
+                             Spacing="10">
+                    <Button BackgroundColor="White" CornerRadius="55" HeightRequest="55" WidthRequest="55"/>
+                    <Button BackgroundColor="White" CornerRadius="55" HeightRequest="55" WidthRequest="55"/>
+                    <Button BackgroundColor="White" CornerRadius="55" HeightRequest="55" WidthRequest="55"/>
+                </StackLayout>
+            </Grid>
+
+                
+        </Grid>
+        
+    </Grid>
 </ContentPage>

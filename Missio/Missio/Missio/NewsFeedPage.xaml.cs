@@ -12,6 +12,7 @@ namespace Missio
 	    public NewsFeedPage()
 	    {
 	        InitializeComponent();
+            
 	    }
 
         [UsedImplicitly]
