@@ -30,7 +30,7 @@ namespace ViewModel
             {
                 _userValidator.ValidateUser(user);
                 _setLoggedInUser.LoggedInUser = user;
-                return _goToView.GoToView("News feed page");
+                return _goToView.GoToView("Main tabbed page");
             }
             catch (InvalidUserNameException)
             {

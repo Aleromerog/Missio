@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
 
@@ -15,16 +14,7 @@ namespace Missio.Droid
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(bundle);
             Xamarin.Forms.Forms.Init(this, bundle);
-            try
-            {
-                LoadApplication(new App());
-            }
-            catch (TargetInvocationException exception)
-            {
-                if (exception.InnerException != null)
-                    throw exception.InnerException;
-                throw;
-            }
+            LoadApplication(new App());
         }
     }
 }
