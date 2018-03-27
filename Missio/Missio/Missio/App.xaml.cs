@@ -1,5 +1,4 @@
-﻿using Missio.LogInRes;
-using Mission.Model.LocalProviders;
+﻿using Mission.Model.LocalProviders;
 using Xamarin.Forms;
 using Ninject;
 using Ninject.Modules;

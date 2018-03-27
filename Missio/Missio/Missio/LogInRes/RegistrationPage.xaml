@@ -16,6 +16,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Image Grid.Row ="0"
@@ -24,7 +25,7 @@
         <Label Grid.Row="1"
                Text="Crear nueva cuenta"
                TextColor="{StaticResource PrimaryColor}"
-               Font="Bold"
+               FontAttributes="Bold"
                HorizontalOptions="Start"
                FontSize="20"/>
         <Entry Grid.Row="2"
@@ -65,9 +66,7 @@
                               Text="Registrar"
                               FontSize="18"
                               CornerRadius="20"
-                              TextColor="{StaticResource MainTextColor}"
-                              Command="{Binding LogInCommand}"
-                              AutomationId="LogInButton"/>
+                              TextColor="{StaticResource MainTextColor}"/>
         <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -85,8 +84,6 @@
                     <Button BackgroundColor="White" CornerRadius="55" HeightRequest="55" WidthRequest="55"/>
                 </StackLayout>
             </Grid>
-
-                
         </Grid>
         
     </Grid>

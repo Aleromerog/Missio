@@ -41,6 +41,7 @@ namespace Missio.Tests
             LoggedInUser = LocalUserDatabase.ValidUsers[0];
             app.EnterText(c => c.Marked("UserNameEntry"), LoggedInUser.UserName);
             app.EnterText(c => c.Marked("PasswordEntry"), LoggedInUser.Password);
+            app.DismissKeyboard();
             app.Tap(c => c.Marked("LogInButton"));
         }
 
@@ -54,6 +55,7 @@ namespace Missio.Tests
             LoggedInUser = user;
             app.EnterText(c => c.Marked("UserNameEntry"), LoggedInUser.UserName);
             app.EnterText(c => c.Marked("PasswordEntry"), LoggedInUser.Password);
+            app.DismissKeyboard();
             app.Tap(c => c.Marked("LogInButton"));
         }
     }

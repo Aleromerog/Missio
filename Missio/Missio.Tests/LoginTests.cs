@@ -30,6 +30,7 @@ namespace Missio.Tests
             // Arrange
             app.EnterText(c => c.Marked("UserNameEntry"), userName);
             app.EnterText(c => c.Marked("PasswordEntry"), password);
+            app.DismissKeyboard();
             // Act
             app.Tap(c => c.Marked("LogInButton"));
             // Assert
@@ -43,6 +44,7 @@ namespace Missio.Tests
             // Arrange
             app.EnterText(c => c.Marked("UserNameEntry"), userName);
             app.EnterText(c => c.Marked("PasswordEntry"), password);
+            app.DismissKeyboard();
             // Act
             app.Tap(c => c.Marked("LogInButton"));
             // Assert
@@ -56,6 +58,7 @@ namespace Missio.Tests
             //Arrange
             app.EnterText(c => c.Marked("UserNameEntry"), userName);
             app.EnterText(c => c.Marked("PasswordEntry"), password);
+            app.DismissKeyboard();
             //Act
             app.Tap(c => c.Marked("LogInButton"));
             //Assert

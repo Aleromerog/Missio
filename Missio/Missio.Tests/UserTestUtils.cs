@@ -1,4 +1,6 @@
-﻿using Mission.Model.LocalProviders;
+﻿using System.Collections.Generic;
+using Mission.Model.Data;
+using Mission.Model.LocalProviders;
 
 namespace Missio.Tests
 {
@@ -6,23 +8,19 @@ namespace Missio.Tests
     {
         public static object[] GetInvalidUsers()
         {
-            return LocalUserDatabase.GetListOfUsersInTestForm(LocalUserDatabase.InvalidUsers);
+            var invalidUsers = new List<User> { LocalUserDatabase.InvalidUsers[0] };
+            return LocalUserDatabase.GetListOfUsersInTestForm(invalidUsers);
         }
 
         public static object[] GetValidUsers()
         {
-            return LocalUserDatabase.GetListOfUsersInTestForm(LocalUserDatabase.ValidUsers);
+            var validUsers = new List<User> { LocalUserDatabase.ValidUsers[0] };
+            return LocalUserDatabase.GetListOfUsersInTestForm(validUsers);
         }
 
         public static object[] GetLogIncorrectPasswordTestsCases()
         {
-            var testData = new object[LocalUserDatabase.ValidUsers.Count];
-            for (int i = 0; i < LocalUserDatabase.ValidUsers.Count; i++)
-            {
-                var user = LocalUserDatabase.ValidUsers[i];
-                testData[i] = new object[] { user.UserName, "" };
-            }
-            return testData;
+            return new object[] { new object[] { LocalUserDatabase.ValidUsers[0].UserName, "" } };
         }
     }
 }
