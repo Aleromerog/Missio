@@ -1,19 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<xamarinForms:BottomBarPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModel="clr-namespace:ViewModel;assembly=Mission.ViewModel"
-             xmlns:missio="clr-namespace:Missio;assembly=Missio"
              xmlns:xamarinForms="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
-             NavigationPage.HasBackButton="False"
+             xamarinForms:BottomBarPageExtensions.TabColor="{StaticResource PrimaryDarkColor}"
+             Icon="Lenguas2.png"
              x:Class="Missio.NewsFeedPage"
              Title="{Binding Title}"
              AutomationId="NewsFeedContentPage">
-   
-    <ContentPage Title="Calendario"/> 
-
-    <ContentPage Title="Missio">
-        <ContentPage.Resources>
+    <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="TextOnlyPost">
                 <ViewCell>
@@ -51,8 +47,6 @@
                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.80}"
                 BackgroundColor="Red"
-                HeightRequest="10"
-                WidthRequest="10"
                 CornerRadius="10"
                 Image="AddPostSign.png"
                 Command="{Binding GoToPublicationPageCommand}"
@@ -60,8 +54,4 @@
             />
         </RelativeLayout>
     </ContentPage.Content>
-    </ContentPage>
-    
-    <ContentPage Title="Perfil"/> 
-    
-</xamarinForms:BottomBarPage>
+</ContentPage>

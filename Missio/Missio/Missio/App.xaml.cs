@@ -1,6 +1,5 @@
-﻿    using Missio.LogInRes;
-    using Xamarin.Forms;
-using Mission.Model.LocalProviders;
+﻿using Mission.Model.LocalProviders;
+using Xamarin.Forms;
 using Ninject;
 using Ninject.Modules;
 using ViewModel;
@@ -11,7 +10,7 @@ namespace Missio
 	{
 	    public App()
 	    {
-	        var kernel = new KernelConfiguration(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(), new AppViewModule()).BuildReadonlyKernel();
+	        var kernel = new KernelConfiguration(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new AppViewModule()).BuildReadonlyKernel();
             InitializeComponent();
 	        kernel.Get<AppViewModel>().StartFromPage(kernel.Get<Registration>());
         }
@@ -31,6 +30,16 @@ namespace Missio
 			// Handle when your app resumes
 		}
 	}
+
+    public class MainViewModule : NinjectModule
+    {
+        /// <inheritdoc />
+        public override void Load()
+        {
+            Bind<MainTabbedPageViewModel>().ToSelf().InSingletonScope();
+            Bind<Page>().To<MainTabbedPage>().InSingletonScope();
+        }
+    } 
 
     public class AppViewModule : NinjectModule
     {
@@ -68,7 +77,7 @@ namespace Missio
         public override void Load()
         {
             Bind<INewsFeedViewPosts, IUpdateViewPosts, NewsFeedViewModel>().To<NewsFeedViewModel>().InSingletonScope();
-            Bind<Page>().To<NewsFeedPage>().InSingletonScope();
+            Bind<Page, NewsFeedPage>().To<NewsFeedPage>().InSingletonScope();
         }
     }
 

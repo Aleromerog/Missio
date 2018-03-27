@@ -38,7 +38,7 @@ namespace Missio.Tests
             //Assert
             fakeUserValidator.Received(1).ValidateUser(user);
             setLoggedInUser.Received(1).LoggedInUser = user;
-            _goToView.Received(1).GoToView("News feed page");
+            _goToView.Received(1).GoToView("Main tabbed page");
         }
 
         [Test]
