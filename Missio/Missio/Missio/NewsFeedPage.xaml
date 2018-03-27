@@ -45,7 +45,7 @@
                 ItemsSource="{Binding Posts}" ItemTemplate="{StaticResource personDataTemplateSelector}"
                 HasUnevenRows="True" RefreshCommand="{Binding UpdatePostsCommand}"
                 IsPullToRefreshEnabled="True" />
-            <missio:RoundedButton
+            <Button
                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.80}"
                 BackgroundColor="Red"

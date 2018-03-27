@@ -72,10 +72,11 @@
                    HorizontalOptions="Center" />
             <StackLayout Grid.Row="7"
                          Orientation="Horizontal"
-                         HorizontalOptions="Center" VerticalOptions="Start">
-                <Button BackgroundColor="DarkBlue" CornerRadius="65" HeightRequest="65" WidthRequest="65"/>
-                <Button BackgroundColor="DodgerBlue" CornerRadius="65" HeightRequest="65" WidthRequest="65"/> 
-                <Button BackgroundColor="DarkRed" CornerRadius="65" HeightRequest="65" WidthRequest="65"/> 
+                         HorizontalOptions="Center" VerticalOptions="Start"
+                         Spacing="20">
+                <Button BackgroundColor="White" CornerRadius="55" HeightRequest="55" WidthRequest="55"/>
+                <Button BackgroundColor="White" CornerRadius="55" HeightRequest="55" WidthRequest="55"/>
+                <Button BackgroundColor="White" CornerRadius="55" HeightRequest="55" WidthRequest="55"/>
             </StackLayout>
 
             <Grid Grid.Row="8">
@@ -87,7 +88,12 @@
                 <resources:TransparentButtonShared Grid.Column="0"
                                                    Text="Regístrate"
                                                    TextColor="{StaticResource PrimaryColor}"
-                                                   HorizontalOptions="Center"
+                                                   HorizontalOptions="Start"
+                                                   FontSize="12" />
+                <resources:TransparentButtonShared Grid.Column="1"
+                                                   Text="Recuperar contraseña"
+                                                   TextColor="{StaticResource PrimaryColor}"
+                                                   HorizontalOptions="End"
                                                    FontSize="12" />
 
                 
