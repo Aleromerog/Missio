@@ -13,7 +13,7 @@ namespace Missio
 	    {
 	        var kernel = new KernelConfiguration(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new AppViewModule()).BuildReadonlyKernel();
             InitializeComponent();
-	        kernel.Get<AppViewModel>().StartFromPage(kernel.Get<RegistrationPage>());
+	        kernel.Get<AppViewModel>().StartFromPage(kernel.Get<LogInPage>());
         }
 
         protected override void OnStart ()

@@ -40,6 +40,7 @@
     <ContentPage.Content>
         <RelativeLayout BackgroundColor="{StaticResource LoginBackground}">
             <ListView
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
                 ItemsSource="{Binding Posts}" ItemTemplate="{StaticResource personDataTemplateSelector}"
                 HasUnevenRows="True" RefreshCommand="{Binding UpdatePostsCommand}"
                 IsPullToRefreshEnabled="True" />
