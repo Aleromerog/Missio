@@ -11,8 +11,8 @@ namespace Missio
         [Obsolete("Only for previewing with the Xamarin previewer", true)]
 	    public NewsFeedPage()
 	    {
-	        InitializeComponent();
-            
+	        App.AssertIsPreviewing();
+            InitializeComponent();
 	    }
 
         [UsedImplicitly]

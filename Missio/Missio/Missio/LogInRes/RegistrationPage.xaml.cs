@@ -10,7 +10,8 @@ namespace Missio.LogInRes
 	    [Obsolete("Only for previewing with the Xamarin previewer", true)]
         public RegistrationPage ()
 		{
-			InitializeComponent ();
+            App.AssertIsPreviewing();
+            InitializeComponent();
 		}
 
 	    public RegistrationPage(RegistrationViewModel registrationViewModel)

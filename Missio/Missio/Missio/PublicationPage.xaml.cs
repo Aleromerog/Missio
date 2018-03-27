@@ -11,6 +11,7 @@ namespace Missio
 	    [Obsolete("Only for previewing with the Xamarin previewer", true)]
         public PublicationPage ()
 		{
+            App.AssertIsPreviewing();
 			InitializeComponent ();
 		}
 

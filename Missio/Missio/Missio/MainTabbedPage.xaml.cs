@@ -11,13 +11,16 @@ namespace Missio
 	    [Obsolete("Only for previewing with the Xamarin previewer", true)]
         public MainTabbedPage ()
 		{
-			InitializeComponent ();
+		    App.AssertIsPreviewing();
+            InitializeComponent();
 		}
 
 	    [UsedImplicitly]
-	    public MainTabbedPage(MainTabbedPageViewModel mainTabbedPageViewModel, NewsFeedPage newsFeedPage)
+	    public MainTabbedPage(MainTabbedPageViewModel mainTabbedPageViewModel, NewsFeedPage newsFeedPage, ProfilePage profilePage, CalendarPage calendarPage)
 	    {
             Children.Add(newsFeedPage);  
+            Children.Add(profilePage);  
+            Children.Add(calendarPage);  
             BindingContext = mainTabbedPageViewModel;
             InitializeComponent();
 	    }

@@ -11,7 +11,8 @@ namespace Missio
         [Obsolete("Only for previewing with the Xamarin previewer", true)]
 	    public LogInPage()
 	    {
-	        InitializeComponent();
+	        App.AssertIsPreviewing();
+            InitializeComponent();
 	    }
 
         [UsedImplicitly]

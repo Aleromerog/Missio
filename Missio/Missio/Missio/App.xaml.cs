@@ -1,4 +1,5 @@
-﻿using Missio.LogInRes;
+﻿using System;
+using Missio.LogInRes;
 using Mission.Model.LocalProviders;
 using Xamarin.Forms;
 using Ninject;
@@ -9,11 +10,20 @@ namespace Missio
 {
 	public partial class App
 	{
+        private static bool IsPreviewing = true;
+
 	    public App()
 	    {
-	        var kernel = new KernelConfiguration(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new RegistrationPageModule(), new AppViewModule()).BuildReadonlyKernel();
+            IsPreviewing = false;
+	        var kernel = new KernelConfiguration(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new AppViewModule()).BuildReadonlyKernel();
             InitializeComponent();
 	        kernel.Get<AppViewModel>().StartFromPage(kernel.Get<LogInPage>());
+        }
+
+        public static void AssertIsPreviewing()
+        {
+            if (!IsPreviewing)
+                throw new Exception("Application is not in preview mode, make sure you used the right constructor");
         }
 
         protected override void OnStart ()
@@ -32,6 +42,24 @@ namespace Missio
 		}
 	}
     
+    public class ProfilePageModule : NinjectModule
+    {
+        /// <inheritdoc />
+        public override void Load()
+        {
+            Bind<Page, ProfilePage>().To<ProfilePage>().InSingletonScope();
+        }
+    }
+
+    public class CalendarPageModule : NinjectModule
+    {
+        /// <inheritdoc />
+        public override void Load()
+        {
+            Bind<Page, CalendarPage>().To<CalendarPage>().InSingletonScope();
+        }
+    }
+
     public class RegistrationPageModule : NinjectModule
     {
         /// <inheritdoc />
