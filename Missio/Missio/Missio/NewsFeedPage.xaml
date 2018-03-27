@@ -46,7 +46,7 @@
                 IsPullToRefreshEnabled="True" />
             <Button
                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.80}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.85}"
                 BackgroundColor="Red"
                 CornerRadius="10"
                 Image="AddPostSign.png"
