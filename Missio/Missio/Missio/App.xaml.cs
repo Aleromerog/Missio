@@ -1,4 +1,5 @@
-﻿using Mission.Model.LocalProviders;
+﻿using Missio.LogInRes;
+using Mission.Model.LocalProviders;
 using Xamarin.Forms;
 using Ninject;
 using Ninject.Modules;
@@ -12,7 +13,7 @@ namespace Missio
 	    {
 	        var kernel = new KernelConfiguration(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new AppViewModule()).BuildReadonlyKernel();
             InitializeComponent();
-	        kernel.Get<AppViewModel>().StartFromPage(kernel.Get<Registration>());
+	        kernel.Get<AppViewModel>().StartFromPage(kernel.Get<RegistrationPage>());
         }
 
         protected override void OnStart ()

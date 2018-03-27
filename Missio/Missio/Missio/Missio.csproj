@@ -21,6 +21,9 @@
     <Compile Update="LogInRes\LogInPage.xaml.cs">
       <DependentUpon>LogInPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="LogInRes\RegistrationPage.xaml.cs">
+      <DependentUpon>RegistrationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="NewsFeedPage.xaml.cs">
       <DependentUpon>NewsFeedPage.xaml</DependentUpon>
     </Compile>
@@ -33,7 +36,7 @@
     <ProjectReference Include="..\..\ViewModel\Mission.ViewModel.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="LogInRes\Registration.xaml">
+    <EmbeddedResource Update="LogInRes\RegistrationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="MainTabbedPage.xaml">

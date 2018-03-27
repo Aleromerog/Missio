@@ -3,9 +3,9 @@
 namespace Missio.LogInRes
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Registration
+	public partial class RegistrationPage
 	{
-		public Registration ()
+		public RegistrationPage ()
 		{
 			InitializeComponent ();
 		}
