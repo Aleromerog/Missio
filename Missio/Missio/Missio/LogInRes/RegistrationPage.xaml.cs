@@ -1,13 +1,22 @@
-﻿using Xamarin.Forms.Xaml;
+﻿using System;
+using ViewModel;
+using Xamarin.Forms.Xaml;
 
 namespace Missio.LogInRes
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class RegistrationPage
 	{
-		public RegistrationPage ()
+	    [Obsolete("Only for previewing with the Xamarin previewer", true)]
+        public RegistrationPage ()
 		{
 			InitializeComponent ();
 		}
+
+	    public RegistrationPage(RegistrationViewModel registrationViewModel)
+	    {
+            BindingContext = registrationViewModel;
+            InitializeComponent();
+	    }
 	}
 }

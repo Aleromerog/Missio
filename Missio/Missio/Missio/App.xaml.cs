@@ -1,4 +1,5 @@
-﻿using Mission.Model.LocalProviders;
+﻿using Missio.LogInRes;
+using Mission.Model.LocalProviders;
 using Xamarin.Forms;
 using Ninject;
 using Ninject.Modules;
@@ -10,7 +11,7 @@ namespace Missio
 	{
 	    public App()
 	    {
-	        var kernel = new KernelConfiguration(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new AppViewModule()).BuildReadonlyKernel();
+	        var kernel = new KernelConfiguration(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new RegistrationPageModule(), new AppViewModule()).BuildReadonlyKernel();
             InitializeComponent();
 	        kernel.Get<AppViewModel>().StartFromPage(kernel.Get<LogInPage>());
         }
@@ -30,6 +31,16 @@ namespace Missio
 			// Handle when your app resumes
 		}
 	}
+    
+    public class RegistrationPageModule : NinjectModule
+    {
+        /// <inheritdoc />
+        public override void Load()
+        {
+            Bind<RegistrationViewModel>().ToSelf().InSingletonScope();
+            Bind<Page>().To<RegistrationPage>().InSingletonScope();
+        }
+    }
 
     public class MainViewModule : NinjectModule
     {

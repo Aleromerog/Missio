@@ -64,6 +64,17 @@ namespace Missio.Tests
             //Assert
             app.WaitForElement(c => c.Marked("NewsFeedContentPage"));
         }
+
+        [Test]
+        public void LogIn_GoToRegistrationPage_GoesToRegistrationPage()
+        {
+            //Arrange
+            
+            //Act
+            app.Tap(c => c.Marked("RegisterButton"));
+            //Assert
+            app.WaitForElement(c => c.Marked("RegistrationPage"));
+        }
     }
 }
 

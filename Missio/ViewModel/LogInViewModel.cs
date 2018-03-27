@@ -36,12 +36,18 @@ namespace ViewModel
         [UsedImplicitly]
         public ICommand LogInCommand { get; }
 
+        [UsedImplicitly]
+        public ICommand GoToRegistrationPageCommand { get; }
+
         private string userName;
         private string password;
         private readonly IAttemptToLogin _loginAttempt;
 
-        public LogInViewModel([NotNull] IAttemptToLogin loginAttempt)
+        public LogInViewModel([NotNull] IAttemptToLogin loginAttempt, [NotNull] IGoToView goToView)
         {
+            if (goToView == null)
+                throw new ArgumentNullException(nameof(goToView));
+            GoToRegistrationPageCommand = new Command(() => goToView.GoToView("Registration page"));
             _loginAttempt = loginAttempt ?? throw new ArgumentNullException(nameof(loginAttempt));
             LogInCommand = new Command(async() => await LogIn());
         }

@@ -89,7 +89,9 @@
                                                 Text="Regístrate"
                                                 TextColor="{StaticResource PrimaryColor}"
                                                 HorizontalOptions="Start"
-                                                FontSize="12" />
+                                                FontSize="12" 
+                                                Command="{Binding GoToRegistrationPageCommand}"
+                                                AutomationId="RegisterButton"/>
             <resources:TransparentButtonShared Grid.Column="1"
                                                 Text="Recuperar contraseña"
                                                 TextColor="{StaticResource PrimaryColor}"

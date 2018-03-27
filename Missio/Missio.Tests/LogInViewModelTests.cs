@@ -10,12 +10,14 @@ namespace Missio.Tests
     {
         private LogInViewModel LogInViewModel;
         private IAttemptToLogin AttemptToLogin;
+        private IGoToView FakeGoToView;
 
         [SetUp]
         public void SetUp()
         {
             AttemptToLogin = Substitute.For<IAttemptToLogin>();
-            LogInViewModel = new LogInViewModel(AttemptToLogin);
+            FakeGoToView = Substitute.For<IGoToView>();
+            LogInViewModel = new LogInViewModel(AttemptToLogin, FakeGoToView);
         }
 
         [Test]
@@ -53,6 +55,17 @@ namespace Missio.Tests
             //Assert
             AttemptToLogin.Received(1)
                 .AttemptToLoginWithUser(Arg.Is<User>(x => x.UserName == userName && x.Password == password));
+        }
+
+        [Test]
+        public void GoToRegistrationPageCommand_NormalExecute_GoesToRegistrationPage()
+        {
+            //Arrange
+
+            //Act
+            LogInViewModel.GoToRegistrationPageCommand.Execute(null);
+            //Assert
+            FakeGoToView.Received(1).GoToView("Registration page");
         }
     }
 }
