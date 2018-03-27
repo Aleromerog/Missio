@@ -3,7 +3,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModel="clr-namespace:ViewModel;assembly=Mission.ViewModel"
-             xmlns:missio="clr-namespace:Missio;assembly=Missio"
              xmlns:xamarinForms="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
              xamarinForms:BottomBarPageExtensions.TabColor="{StaticResource PrimaryDarkColor}"
              Icon="Lenguas2.png"
