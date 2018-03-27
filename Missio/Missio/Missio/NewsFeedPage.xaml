@@ -6,7 +6,6 @@
              xmlns:xamarinForms="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
              xamarinForms:BottomBarPageExtensions.TabColor="{StaticResource PrimaryDarkColor}"
              Icon="Lenguas2.png"
-             NavigationPage.HasBackButton="False"
              x:Class="Missio.NewsFeedPage"
              Title="{Binding Title}"
              AutomationId="NewsFeedContentPage">
