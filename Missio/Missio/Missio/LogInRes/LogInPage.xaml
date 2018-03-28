@@ -6,7 +6,8 @@
              xmlns:resources="clr-namespace:Missio.Resources;assembly=Missio"
              x:Class="Missio.LogInPage"
              BackgroundColor="{StaticResource LoginBackground}"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             AutomationId="LogInPage">
 
     <Grid Padding="20,0,20,0" RowSpacing="20">
 

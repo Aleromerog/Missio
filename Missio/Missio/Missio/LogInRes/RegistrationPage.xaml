@@ -67,7 +67,8 @@
                               FontSize="18"
                               CornerRadius="20"
                               TextColor="{StaticResource MainTextColor}"
-                              Command="{Binding RegisterCommand}"/>
+                              Command="{Binding RegisterCommand}"
+                              AutomationId="RegisterButton"/>
         <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

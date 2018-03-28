@@ -12,9 +12,7 @@ namespace ViewModel
     {
         private readonly IDisplayAlertOnCurrentPage _alertDisplayer;
         private readonly IRegisterUser _registerUser;
-        [NotNull]
         private readonly IDoesUserExist _doesUserExist;
-
         private readonly IReturnToPreviousPage _returnToPreviousPage;
 
         [UsedImplicitly]
@@ -84,12 +82,8 @@ namespace ViewModel
                 return _alertDisplayer.DisplayAlert(AppResources.PasswordTooShortTitle, AppResources.PasswordTooShortMessage, AppResources.Ok);
             }
             _registerUser.RegisterUser(UserName, Password, Email);
-            return Task.Run(() =>
-            {
-                _alertDisplayer.DisplayAlert(AppResources.RegistrationSuccessfulTitle,
-                    AppResources.RegistrationSuccessfulMessage, AppResources.Ok);
-                _returnToPreviousPage.ReturnToPreviousPage();
-            });
+            _alertDisplayer.DisplayAlert(AppResources.RegistrationSuccessfulTitle, AppResources.RegistrationSuccessfulMessage, AppResources.Ok);
+            return _returnToPreviousPage.ReturnToPreviousPage();
         }
     }
 }

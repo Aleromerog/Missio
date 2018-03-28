@@ -98,6 +98,7 @@
     <Compile Include="NewsFeedViewModelTests.cs" />
     <Compile Include="PublicationPageTests.cs" />
     <Compile Include="PublicationPageViewModelTests.cs" />
+    <Compile Include="RegistrationTests.cs" />
     <Compile Include="RegistrationViewModelTests.cs" />
     <Compile Include="UserTestUtils.cs" />
   </ItemGroup>
