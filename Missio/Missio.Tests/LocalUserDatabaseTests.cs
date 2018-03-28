@@ -10,13 +10,6 @@ namespace Missio.Tests
     {
         private LocalUserDatabase _localUserDatabase;
 
-        private static object[] newUsers =
-        {
-            new User("New user 1", "New user 1 pass"), 
-            new User("New user 2", "New user 2 pass"), 
-        };
-
-
         private static object[] incorrectUserNames =
         {
             new User("Incorrect username 1", ""),
@@ -33,18 +26,6 @@ namespace Missio.Tests
         public void SetUp()
         {
             _localUserDatabase = new LocalUserDatabase();
-        }
-
-        [Test]
-        [TestCaseSource(nameof(newUsers))]
-        public void AddUser_GivenUser_AddsUser(User newUser)
-        {
-            //Arrange
-            
-            //Act
-            _localUserDatabase.AddUser(newUser);
-            //Assert
-            Assert.DoesNotThrow(() => _localUserDatabase.ValidateUser(newUser));
         }
 
         [Test]
@@ -65,6 +46,33 @@ namespace Missio.Tests
 
             //Act and assert
             Assert.Throws<InvalidPasswordException>(() => _localUserDatabase.ValidateUser(incorrectUser));
+        }
+
+        [Test]
+        [TestCase("Jorge Romero", true)]
+        [TestCase("Ultron", false)]
+        [TestCase("Thanos", false)]
+        public void DoesUserExist_GivenUsername_ReturnsIfUserExists(string userName, bool doesUserExist)
+        {
+            //Arrange
+            
+            //Act
+            var result = _localUserDatabase.DoesUserExist(userName);
+            //Assert
+            Assert.AreEqual(doesUserExist, result);
+        }
+
+        [Test]
+        [TestCase("New user name", "Some pass", "someEmail")]
+        [TestCase("New another user name", "Another pass", "anotherEmail")]
+        public void RegisterUser_GivenData_RegistersUser(string userName, string password, string email)
+        {
+            //Arrange
+            
+            //Act
+            _localUserDatabase.RegisterUser(userName, password, email);
+            //Assert
+            Assert.IsTrue(_localUserDatabase.DoesUserExist(userName));
         }
     }
 }

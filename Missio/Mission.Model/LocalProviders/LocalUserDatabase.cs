@@ -7,7 +7,7 @@ namespace Mission.Model.LocalProviders
     /// <summary>
     /// A fake user and password validator that checks the given parameters against the hardcoded data
     /// </summary>
-    public class LocalUserDatabase : IValidateUser, IAddUser
+    public class LocalUserDatabase : IValidateUser, IDoesUserExist, IRegisterUser
     {
         /// <summary>
         /// A list of users that are guaranteed to exist, useful for testing purposes
@@ -52,9 +52,15 @@ namespace Mission.Model.LocalProviders
         }
 
         /// <inheritdoc />
-        public void AddUser(User user)
+        public bool DoesUserExist(string userName)
         {
-            ValidUsers.Add(user);
+            return ValidUsers.Exists(x => x.UserName == userName);
+        }
+
+        /// <inheritdoc />
+        public void RegisterUser(string userName, string password, string email)
+        {
+            ValidUsers.Add(new User(userName, password));
         }
     }
 }

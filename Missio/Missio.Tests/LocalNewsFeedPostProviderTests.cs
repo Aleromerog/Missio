@@ -10,14 +10,14 @@ namespace Missio.Tests
     [TestFixture]
     public class LocalNewsFeedPostProviderTests
     {
-        private LocalNewsFeedPostProvider LocalNewsFeedPostProvider;
+        private LocalNewsFeedPostDatabase _localNewsFeedPostDatabase;
         private IGetLoggedInUser fakeGetLoggedInUser;
 
         [SetUp]
         public void SetUp()
         {
             fakeGetLoggedInUser = Substitute.For<IGetLoggedInUser>();
-            LocalNewsFeedPostProvider = new LocalNewsFeedPostProvider(fakeGetLoggedInUser);
+            _localNewsFeedPostDatabase = new LocalNewsFeedPostDatabase(fakeGetLoggedInUser);
             fakeGetLoggedInUser.LoggedInUser.Returns(LocalUserDatabase.ValidUsers[0]);
         }
 
@@ -28,9 +28,9 @@ namespace Missio.Tests
             //Arrange
 
             //Act
-            LocalNewsFeedPostProvider.SetMostRecentPosts(newPosts);
+            _localNewsFeedPostDatabase.SetMostRecentPosts(newPosts);
             //Assert
-            Assert.That(LocalNewsFeedPostProvider.GetMostRecentPosts(), Is.EquivalentTo(newPosts));
+            Assert.That(_localNewsFeedPostDatabase.GetMostRecentPosts(), Is.EquivalentTo(newPosts));
         }
 
         [Test]
@@ -39,9 +39,9 @@ namespace Missio.Tests
             //Arrange
             var post = new TextOnlyPost("Some user", "The content of the post");
             //Act
-            LocalNewsFeedPostProvider.PublishPost(post);
+            _localNewsFeedPostDatabase.PublishPost(post);
             //Assert
-            Assert.Contains(post, LocalNewsFeedPostProvider.GetMostRecentPosts());
+            Assert.Contains(post, _localNewsFeedPostDatabase.GetMostRecentPosts());
         }
     }
 }

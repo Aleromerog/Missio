@@ -4,7 +4,6 @@
              xmlns:missio="clr-namespace:Missio;assembly=Missio"
              x:Class="Missio.LogInRes.RegistrationPage"
              BackgroundColor="{StaticResource LoginBackground}"
-             NavigationPage.HasNavigationBar="False"
              Title="{Binding Title}"
              AutomationId="RegistrationPage">
     
@@ -38,7 +37,6 @@
                TextColor="{StaticResource PrimaryDarkColor}"
                Text="{Binding Path=UserName, Mode=OneWayToSource}"
                AutomationId="UserNameEntry"/>
-
         <Entry Grid.Row="3"
                FontSize="18"
                Placeholder="  Contraseña"
@@ -53,22 +51,23 @@
                PlaceholderColor="{StaticResource PlaceholderTextColor}"
                IsPassword="True"
                TextColor="{StaticResource PrimaryDarkColor}"
-               Text="{Binding Path=Password, Mode=OneWayToSource}"
-               AutomationId="PasswordEntry"/>
+               Text="{Binding Path=ConfirmPassword, Mode=OneWayToSource}"
+               AutomationId="ConfirmPasswordEntry"/>
         <Entry Grid.Row="5"
                FontSize="18"
                Placeholder="  Correo electrónico"
                PlaceholderColor="{StaticResource PlaceholderTextColor}"
                BackgroundColor="Transparent"
                TextColor="{StaticResource PrimaryDarkColor}"
-               Text="{Binding Path=UserName, Mode=OneWayToSource}"
-               AutomationId="UserNameEntry"/>
+               Text="{Binding Path=Email, Mode=OneWayToSource}"
+               AutomationId="EmailEntry"/>
         <missio:RoundedButton Grid.Row="6"
                               BackgroundColor="{StaticResource PrimaryColor}"
                               Text="Registrar"
                               FontSize="18"
                               CornerRadius="20"
-                              TextColor="{StaticResource MainTextColor}"/>
+                              TextColor="{StaticResource MainTextColor}"
+                              Command="{Binding RegisterCommand}"/>
         <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

@@ -7,7 +7,7 @@ namespace Mission.Model.LocalProviders
     /// <summary>
     /// A news feed provider that returns hard coded data
     /// </summary>
-    public class LocalNewsFeedPostProvider : IGetMostRecentPosts, IPublishPost
+    public class LocalNewsFeedPostDatabase : IGetMostRecentPosts, IPublishPost
     {
         private readonly IGetLoggedInUser _getLoggedInUser;
 
@@ -37,7 +37,7 @@ namespace Mission.Model.LocalProviders
                 },
             };
 
-        public LocalNewsFeedPostProvider(IGetLoggedInUser getLoggedInUser)
+        public LocalNewsFeedPostDatabase(IGetLoggedInUser getLoggedInUser)
         {
             _getLoggedInUser = getLoggedInUser;
         }

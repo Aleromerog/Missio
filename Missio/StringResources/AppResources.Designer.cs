@@ -104,5 +104,95 @@ namespace StringResources {
                 return ResourceManager.GetString("Ok", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asegurate de que las contraseñas sean iguales.
+        /// </summary>
+        public static string PasswordsDontMatchMessage {
+            get {
+                return ResourceManager.GetString("PasswordsDontMatchMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Las contraseñas no son iguales.
+        /// </summary>
+        public static string PasswordsDontMatchTitle {
+            get {
+                return ResourceManager.GetString("PasswordsDontMatchTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La contraseña debe tener por lo menos cinco caracteres.
+        /// </summary>
+        public static string PasswordTooShortMessage {
+            get {
+                return ResourceManager.GetString("PasswordTooShortMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contraseña muy corta.
+        /// </summary>
+        public static string PasswordTooShortTitle {
+            get {
+                return ResourceManager.GetString("PasswordTooShortTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Se ha enviado un correo de confirmacion :).
+        /// </summary>
+        public static string RegistrationSuccessfulMessage {
+            get {
+                return ResourceManager.GetString("RegistrationSuccessfulMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registro completado.
+        /// </summary>
+        public static string RegistrationSuccessfulTitle {
+            get {
+                return ResourceManager.GetString("RegistrationSuccessfulTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El nombre ya esta uso, intenta con otro :(.
+        /// </summary>
+        public static string UserNameAlreadyInUseMessage {
+            get {
+                return ResourceManager.GetString("UserNameAlreadyInUseMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre de usuario ya esta en uso.
+        /// </summary>
+        public static string UserNameAlreadyInUseTitle {
+            get {
+                return ResourceManager.GetString("UserNameAlreadyInUseTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El nombre tener al menos tres caracteres.
+        /// </summary>
+        public static string UserNameTooShortMessage {
+            get {
+                return ResourceManager.GetString("UserNameTooShortMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre demasiado corto.
+        /// </summary>
+        public static string UserNameTooShortTitle {
+            get {
+                return ResourceManager.GetString("UserNameTooShortTitle", resourceCulture);
+            }
+        }
     }
 }
