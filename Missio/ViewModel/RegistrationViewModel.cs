@@ -63,27 +63,32 @@ namespace ViewModel
             RegisterCommand = new Command(async() => await TryToRegister());
         }
 
-        public Task TryToRegister()
+        public async Task TryToRegister()
         {
             if (UserName.Length <= 3)
             {
-                return _alertDisplayer.DisplayAlert(AppResources.UserNameTooShortTitle, AppResources.UserNameTooShortMessage, AppResources.Ok);
+                await _alertDisplayer.DisplayAlert(AppResources.UserNameTooShortTitle, AppResources.UserNameTooShortMessage, AppResources.Ok);
+                return;
             }
             if (_doesUserExist.DoesUserExist(UserName))
             {
-                return _alertDisplayer.DisplayAlert(AppResources.UserNameAlreadyInUseTitle, AppResources.UserNameAlreadyInUseMessage, AppResources.Ok);
+                await _alertDisplayer.DisplayAlert(AppResources.UserNameAlreadyInUseTitle, AppResources.UserNameAlreadyInUseMessage, AppResources.Ok);
+                return;
             }
             if (password != confirmPassword)
             {
-                return _alertDisplayer.DisplayAlert(AppResources.PasswordsDontMatchTitle, AppResources.PasswordsDontMatchMessage, AppResources.Ok);
+                await _alertDisplayer.DisplayAlert(AppResources.PasswordsDontMatchTitle, AppResources.PasswordsDontMatchMessage, AppResources.Ok);
+                return;
             }
             if (password.Length < 5)
             {
-                return _alertDisplayer.DisplayAlert(AppResources.PasswordTooShortTitle, AppResources.PasswordTooShortMessage, AppResources.Ok);
+                await _alertDisplayer.DisplayAlert(AppResources.PasswordTooShortTitle, AppResources.PasswordTooShortMessage, AppResources.Ok);
+                return;
             }
             _registerUser.RegisterUser(UserName, Password, Email);
-            _alertDisplayer.DisplayAlert(AppResources.RegistrationSuccessfulTitle, AppResources.RegistrationSuccessfulMessage, AppResources.Ok);
-            return _returnToPreviousPage.ReturnToPreviousPage();
+            var alertTask = _alertDisplayer.DisplayAlert(AppResources.RegistrationSuccessfulTitle, AppResources.RegistrationSuccessfulMessage, AppResources.Ok);
+            await  _returnToPreviousPage.ReturnToPreviousPage();
+            await alertTask;
         }
     }
 }

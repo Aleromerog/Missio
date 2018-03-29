@@ -55,10 +55,10 @@ namespace ViewModel
         /// <summary>
         /// Attempts to login the user with the given username and password
         /// </summary>
-        private Task LogIn()
+        private async Task LogIn()
         {
             var user = new User(UserName, Password);
-            return _loginAttempt.AttemptToLoginWithUser(user);
+            await _loginAttempt.AttemptToLoginWithUser(user);
         }
     }
 }

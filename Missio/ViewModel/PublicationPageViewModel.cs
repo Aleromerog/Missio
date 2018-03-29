@@ -38,11 +38,11 @@ namespace ViewModel
             PublishPostCommand = new Command(async() => await PublishPost());
         }
 
-        private Task PublishPost()
+        private async Task PublishPost()
         {
             _publishPost.PublishPost(new TextOnlyPost(_getLoggedInUser.LoggedInUser.UserName, PostText));
             _updateViewPosts.UpdatePosts();
-            return _returnOnePage.ReturnToPreviousPage();
+            await _returnOnePage.ReturnToPreviousPage();
         }
     }
 }

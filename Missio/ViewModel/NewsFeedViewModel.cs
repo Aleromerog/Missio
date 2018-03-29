@@ -42,9 +42,9 @@ namespace ViewModel
             _postsUpdater.UpdatePosts(Posts);
         }
 
-        private Task GoToPublicationPage()
+        private async Task GoToPublicationPage()
         {
-            return _goToView.GoToView("Publication page");
+            await _goToView.GoToView("Publication page");
         }
     }
 }
