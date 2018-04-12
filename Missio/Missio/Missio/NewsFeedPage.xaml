@@ -43,6 +43,7 @@
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
                 ItemsSource="{Binding Posts}" ItemTemplate="{StaticResource personDataTemplateSelector}"
                 HasUnevenRows="True" RefreshCommand="{Binding UpdatePostsCommand}"
+                IsRefreshing="{Binding IsRefreshing}"
                 IsPullToRefreshEnabled="True" />
             <Button
                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"

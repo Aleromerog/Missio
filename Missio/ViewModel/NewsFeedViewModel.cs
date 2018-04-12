@@ -9,16 +9,24 @@ using Xamarin.Forms;
 
 namespace ViewModel
 {
-    public class NewsFeedViewModel : INewsFeedViewPosts, IUpdateViewPosts
+    public class NewsFeedViewModel : ViewModel, INewsFeedViewPosts, IUpdateViewPosts
     {
         private readonly INewsFeedPostsUpdater _postsUpdater;
         private readonly IGoToView _goToView;
+        private bool isRefreshing;
 
         [UsedImplicitly]
         public string Title { get; } = "News feed page";
 
         [UsedImplicitly]
         public ICommand UpdatePostsCommand { get; }
+
+        [UsedImplicitly]
+        public bool IsRefreshing
+        {
+            get { return isRefreshing; }
+            set { SetField(ref isRefreshing, value); }
+        }
 
         [UsedImplicitly]
         public ICommand GoToPublicationPageCommand { get; }
@@ -40,6 +48,7 @@ namespace ViewModel
         public void UpdatePosts()
         {
             _postsUpdater.UpdatePosts(Posts);
+            IsRefreshing = false;
         }
 
         private async Task GoToPublicationPage()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using Missio.LogInRes;
 using Mission.Model.LocalProviders;
 using Xamarin.Forms;
@@ -115,7 +116,7 @@ namespace Missio
         /// <inheritdoc />
         public override void Load()
         {
-            Bind<INewsFeedViewPosts, IUpdateViewPosts, NewsFeedViewModel>().To<NewsFeedViewModel>().InSingletonScope();
+            Bind<IUpdateViewPosts, NewsFeedViewModel>().To<NewsFeedViewModel>().InSingletonScope();
             Bind<Page, NewsFeedPage>().To<NewsFeedPage>().InSingletonScope();
         }
     }

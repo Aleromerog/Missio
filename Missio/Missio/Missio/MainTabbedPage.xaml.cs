@@ -7,15 +7,15 @@ namespace Missio
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MainTabbedPage
-	{
-	    [Obsolete("Only for previewing with the Xamarin previewer", true)]
-        public MainTabbedPage ()
-		{
-		    App.AssertIsPreviewing();
+    {
+        [Obsolete("Only for previewing with the Xamarin previewer", true)]
+        public MainTabbedPage()
+        {
+            App.AssertIsPreviewing();
             InitializeComponent();
-		}
+        }
 
-	    [UsedImplicitly]
+        [UsedImplicitly]
 	    public MainTabbedPage(MainTabbedPageViewModel mainTabbedPageViewModel, NewsFeedPage newsFeedPage, ProfilePage profilePage, CalendarPage calendarPage)
 	    {
             Children.Add(newsFeedPage);  
