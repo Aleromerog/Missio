@@ -20,7 +20,7 @@ namespace Missio.Tests
         public void SetUp()
         {
             app = AppInitializer.StartApp(platform);
-            AppInitializer.LogIn(app);
+            app.LogInWithDefaultUser();
             app.Tap(c => c.Button("AddPostButton"));
         }
 
@@ -33,7 +33,7 @@ namespace Missio.Tests
             app.EnterText(c => c.TextField("PostTextEntry"), postText);
             app.Tap(c => c.Button("PublishPostButton"));
             //Assert
-            app.WaitForElement(c => c.Marked("NewsFeedContentPage"));
+            app.WaitForElement(c => c.Marked("NewsFeedPage"));
             app.WaitForElement(c => c.Text(postText));
         }
     }

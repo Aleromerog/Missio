@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Mission.Model.Data;
+using NUnit.Framework;
 using StringResources;
 using Xamarin.UITest;
 
@@ -89,6 +90,23 @@ namespace Missio.Tests
             //Assert
             app.WaitForElement(c => c.Text(AppResources.RegistrationSuccessfulMessage));
             app.WaitForElement(c => c.Marked("LogInPage"));
+        }
+
+        [Test]
+        public void RegisterCommand_TryToLogInWithCreatedUser_SuccessfullyLogsIn()
+        {
+            //Arrange
+            app.EnterText(c => c.Marked("UserNameEntry"), "Some username");
+            app.EnterText(c => c.Marked("PasswordEntry"), "Some password");
+            app.EnterText(c => c.Marked("ConfirmPasswordEntry"), "Some password");
+            app.DismissKeyboard();
+            app.Tap(c => c.Marked("RegisterButton"));
+            app.Tap(c => c.Text(AppResources.Ok));
+            app.WaitForElement(c => c.Marked("LogInPage"));
+            //Act
+            app.LogInWithUser(new User("Some username", "Some password"));
+            //Assert
+            app.WaitForElement(c => c.Marked("NewsFeedPage"));
         }
     }
 }

@@ -44,6 +44,17 @@ namespace Missio.Tests
         }
 
         [Test]
+        public void UpdatePosts_IsRefreshingSetToTrue_SetsIsRefreshingToFalse()
+        {
+            //Arrange
+            NewsFeedViewModel.IsRefreshing = true;
+            //Act
+            NewsFeedViewModel.UpdatePosts();
+            //Assert
+            Assert.IsFalse(NewsFeedViewModel.IsRefreshing);
+        }
+
+        [Test]
         public void GoToPublicationPageCommand_NormalCall_GoesToPublicationPage()
         {
             //Arrange

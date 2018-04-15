@@ -26,11 +26,22 @@ namespace Missio.Tests
         public void SetUserPosts_GivenPosts_SetsUserPosts(List<NewsFeedPost> newPosts)
         {
             //Arrange
-
+            
             //Act
             _localNewsFeedPostDatabase.SetMostRecentPosts(newPosts);
             //Assert
             Assert.That(_localNewsFeedPostDatabase.GetMostRecentPosts(), Is.EquivalentTo(newPosts));
+        }
+
+        [Test]
+        public void GetMostRecentPosts_NonExistingUser_ReturnsEmptyList()
+        {
+            //Arrange
+            fakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
+            //Act
+            var posts = _localNewsFeedPostDatabase.GetMostRecentPosts();
+            //Assert
+            Assert.AreEqual(0, posts.Count);
         }
 
         [Test]

@@ -88,6 +88,7 @@
     <Compile Include="AttemptToLoginTests.cs" />
     <Compile Include="ExtraNewsFeedPosts.cs" />
     <Compile Include="GlobalUserTests.cs" />
+    <Compile Include="IAppExtensionMethods.cs" />
     <Compile Include="LocalNewsFeedPostProviderTests.cs" />
     <Compile Include="LocalUserDatabaseTests.cs" />
     <Compile Include="LoginTests.cs" />

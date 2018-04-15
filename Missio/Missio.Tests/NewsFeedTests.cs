@@ -41,7 +41,7 @@ namespace Missio.Tests
         public void OnAppear_GivenNewsFeedPosts_DisplaysPosts(User user, List<string> expectedPosts)
         {
             //Arrange and act
-            AppInitializer.TryToLogIn(app, user);
+            app.LogInWithUser(user);
 
             //Assert
             foreach (var expectedPost in expectedPosts)
@@ -54,7 +54,7 @@ namespace Missio.Tests
         public void AddPostButton_NormalClick_GoesToPublicationPage()
         {
             //Arrange
-            AppInitializer.LogIn(app);
+            app.LogInWithDefaultUser();
             //Act
             app.Tap(c => c.Button("AddPostButton"));
             //Assert

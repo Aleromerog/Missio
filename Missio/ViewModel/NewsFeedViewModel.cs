@@ -24,8 +24,8 @@ namespace ViewModel
         [UsedImplicitly]
         public bool IsRefreshing
         {
-            get { return isRefreshing; }
-            set { SetField(ref isRefreshing, value); }
+            get => isRefreshing;
+            set => SetField(ref isRefreshing, value);
         }
 
         [UsedImplicitly]

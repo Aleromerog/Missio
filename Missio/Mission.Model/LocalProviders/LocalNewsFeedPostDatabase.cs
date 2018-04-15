@@ -73,7 +73,9 @@ namespace Mission.Model.LocalProviders
         /// <returns> A list containing news feed posts</returns>
         public List<NewsFeedPost> GetMostRecentPosts()
         {
-            return UsersNewsFeedPosts[_getLoggedInUser.LoggedInUser];
+            if (UsersNewsFeedPosts.TryGetValue(_getLoggedInUser.LoggedInUser, out var posts))
+                return posts;
+            return new List<NewsFeedPost>();
         }
 
         public void SetMostRecentPosts(List<NewsFeedPost> newPosts)

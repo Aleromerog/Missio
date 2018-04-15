@@ -62,7 +62,7 @@ namespace Missio.Tests
             //Act
             app.Tap(c => c.Marked("LogInButton"));
             //Assert
-            app.WaitForElement(c => c.Marked("NewsFeedContentPage"));
+            app.WaitForElement(c => c.Marked("NewsFeedPage"));
         }
 
         [Test]

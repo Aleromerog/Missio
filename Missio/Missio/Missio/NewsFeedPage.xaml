@@ -8,7 +8,7 @@
              Icon="Lenguas2.png"
              x:Class="Missio.NewsFeedPage"
              Title="{Binding Title}"
-             AutomationId="NewsFeedContentPage">
+             AutomationId="NewsFeedPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="TextOnlyPost">
