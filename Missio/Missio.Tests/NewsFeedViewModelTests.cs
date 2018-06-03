@@ -9,18 +9,18 @@ namespace Missio.Tests
     [TestFixture]
     public class NewsFeedViewModelTests
     {
-        private NewsFeedViewModel NewsFeedViewModel;
-        private INewsFeedPostsUpdater NewsFeedPostsUpdater;
-        private IOnUserLoggedIn OnUserLoggedIn;
+        private NewsFeedViewModel _newsFeedViewModel;
+        private INewsFeedPostsUpdater _newsFeedPostsUpdater;
+        private IOnUserLoggedIn _onUserLoggedIn;
         private IGoToView _goToView;
 
         [SetUp]
         public void SetUp()
         {
-            NewsFeedPostsUpdater = Substitute.For<INewsFeedPostsUpdater>();
-            OnUserLoggedIn = Substitute.For<IOnUserLoggedIn>();
+            _newsFeedPostsUpdater = Substitute.For<INewsFeedPostsUpdater>();
+            _onUserLoggedIn = Substitute.For<IOnUserLoggedIn>();
             _goToView = Substitute.For<IGoToView>();
-            NewsFeedViewModel = new NewsFeedViewModel(NewsFeedPostsUpdater, OnUserLoggedIn, _goToView);
+            _newsFeedViewModel = new NewsFeedViewModel(_newsFeedPostsUpdater, _onUserLoggedIn, _goToView);
         }
 
         [Test]
@@ -28,9 +28,9 @@ namespace Missio.Tests
         {
             //Arrange
             //Act
-            OnUserLoggedIn.OnUserLoggedIn += Raise.Event<Action>();
+            _onUserLoggedIn.OnUserLoggedIn += Raise.Event<Action>();
             //Assert
-            NewsFeedPostsUpdater.Received(1).UpdatePosts(NewsFeedViewModel.Posts);
+            _newsFeedPostsUpdater.Received(1).UpdatePosts(_newsFeedViewModel.Posts);
         }
 
         [Test]
@@ -38,20 +38,20 @@ namespace Missio.Tests
         {
             //Arrange
             //Act
-            NewsFeedViewModel.UpdatePosts();
+            _newsFeedViewModel.UpdatePosts();
             //Assert
-            NewsFeedPostsUpdater.Received(1).UpdatePosts(NewsFeedViewModel.Posts);
+            _newsFeedPostsUpdater.Received(1).UpdatePosts(_newsFeedViewModel.Posts);
         }
 
         [Test]
         public void UpdatePosts_IsRefreshingSetToTrue_SetsIsRefreshingToFalse()
         {
             //Arrange
-            NewsFeedViewModel.IsRefreshing = true;
+            _newsFeedViewModel.IsRefreshing = true;
             //Act
-            NewsFeedViewModel.UpdatePosts();
+            _newsFeedViewModel.UpdatePosts();
             //Assert
-            Assert.IsFalse(NewsFeedViewModel.IsRefreshing);
+            Assert.IsFalse(_newsFeedViewModel.IsRefreshing);
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace Missio.Tests
             //Arrange
             
             //Act
-            NewsFeedViewModel.GoToPublicationPageCommand.Execute(null);
+            _newsFeedViewModel.GoToPublicationPageCommand.Execute(null);
             //Assert
             _goToView.Received(1).GoToView("Publication page");
     }

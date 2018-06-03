@@ -8,16 +8,16 @@ namespace Missio.Tests
     [TestFixture]
     public class LogInViewModelTests
     {
-        private LogInViewModel LogInViewModel;
-        private IAttemptToLogin AttemptToLogin;
-        private IGoToView FakeGoToView;
+        private LogInViewModel _logInViewModel;
+        private IAttemptToLogin _attemptToLogin;
+        private IGoToView _fakeGoToView;
 
         [SetUp]
         public void SetUp()
         {
-            AttemptToLogin = Substitute.For<IAttemptToLogin>();
-            FakeGoToView = Substitute.For<IGoToView>();
-            LogInViewModel = new LogInViewModel(AttemptToLogin, FakeGoToView);
+            _attemptToLogin = Substitute.For<IAttemptToLogin>();
+            _fakeGoToView = Substitute.For<IGoToView>();
+            _logInViewModel = new LogInViewModel(_attemptToLogin, _fakeGoToView);
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace Missio.Tests
         {
             //Arrange
             //Act
-            var password = LogInViewModel.Password;
+            var password = _logInViewModel.Password;
             //Assert
             Assert.AreEqual("", password);
         }
@@ -36,7 +36,7 @@ namespace Missio.Tests
             //Arrange
 
             //Act
-            var name = LogInViewModel.UserName;
+            var name = _logInViewModel.UserName;
             //Assert
             Assert.AreEqual("", name);
         }
@@ -48,12 +48,12 @@ namespace Missio.Tests
         public void LogInCommand_GivenUserNameAndPassword_AttemptsToLogin(string userName, string password)
         {
             //Arrange
-            LogInViewModel.UserName = userName;
-            LogInViewModel.Password = password;
+            _logInViewModel.UserName = userName;
+            _logInViewModel.Password = password;
             //Act
-            LogInViewModel.LogInCommand.Execute(null);
+            _logInViewModel.LogInCommand.Execute(null);
             //Assert
-            AttemptToLogin.Received(1)
+            _attemptToLogin.Received(1)
                 .AttemptToLoginWithUser(Arg.Is<User>(x => x.UserName == userName && x.Password == password));
         }
 
@@ -63,9 +63,9 @@ namespace Missio.Tests
             //Arrange
 
             //Act
-            LogInViewModel.GoToRegistrationPageCommand.Execute(null);
+            _logInViewModel.GoToRegistrationPageCommand.Execute(null);
             //Assert
-            FakeGoToView.Received(1).GoToView("Registration page");
+            _fakeGoToView.Received(1).GoToView("Registration page");
         }
     }
 }

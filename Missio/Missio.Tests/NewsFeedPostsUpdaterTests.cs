@@ -10,25 +10,25 @@ namespace Missio.Tests
 {
     public class NewsFeedPostsUpdaterTests
     {
-        private NewsFeedPostsUpdater _newsFeedPostProvider;
-        private IGetMostRecentPosts NewsFeedPostProvider;
+        private NewsFeedPostsUpdater _newsFeedPostUpdater;
+        private IGetMostRecentPosts _newsFeedPostProvider;
 
         [SetUp]
         public void SetUp()
         {
-            NewsFeedPostProvider = Substitute.For<IGetMostRecentPosts>();
-            _newsFeedPostProvider = new NewsFeedPostsUpdater(NewsFeedPostProvider);
+            _newsFeedPostProvider = Substitute.For<IGetMostRecentPosts>();
+            _newsFeedPostUpdater = new NewsFeedPostsUpdater(_newsFeedPostProvider);
         }
 
         [Test]
-        [TestCaseSource(typeof(ExtraNewsFeedPosts), nameof(ExtraNewsFeedPosts.extraPosts))]
+        [TestCaseSource(typeof(ExtraNewsFeedPosts), nameof(ExtraNewsFeedPosts.ExtraPosts))]
         public void UpdatePosts_GivenCollection_ClearsCollectionAndAddsPosts(List<NewsFeedPost> postsToAdd)
         {
             //Arrange
             var currentPosts = new ObservableCollection<NewsFeedPost>();
-            NewsFeedPostProvider.GetMostRecentPosts().Returns(postsToAdd);
+            _newsFeedPostProvider.GetMostRecentPosts().Returns(postsToAdd);
             //Act
-            _newsFeedPostProvider.UpdatePosts(currentPosts);
+            _newsFeedPostUpdater.UpdatePosts(currentPosts);
             //Assert
             Assert.That(currentPosts, Is.EquivalentTo(postsToAdd));
         }

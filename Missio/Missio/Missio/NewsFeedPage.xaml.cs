@@ -16,9 +16,9 @@ namespace Missio
 	    }
 
         [UsedImplicitly]
-	    public NewsFeedPage (NewsFeedViewModel NewsFeedViewModel)
+	    public NewsFeedPage (NewsFeedViewModel newsFeedViewModel)
 		{
-            BindingContext = NewsFeedViewModel;
+            BindingContext = newsFeedViewModel;
 			InitializeComponent ();
 		}
 	}

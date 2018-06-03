@@ -9,18 +9,18 @@ namespace Missio.Tests
     [Category("UITests")]
     public class LoginTests
     {
-        private IApp app;
-        private readonly Platform platform;
+        private IApp _app;
+        private readonly Platform _platform;
 
         public LoginTests(Platform platform)
         {
-            this.platform = platform;
+            this._platform = platform;
         }
 
         [SetUp]
         public void BeforeEachTest()
         {
-            app = AppInitializer.StartApp(platform);
+            _app = AppInitializer.StartApp(_platform);
         }
 
         [Test]
@@ -28,13 +28,13 @@ namespace Missio.Tests
         public void LogIn_GivenUserName_DisplaysIncorrectPassword(string userName, string password)
         {
             // Arrange
-            app.EnterText(c => c.Marked("UserNameEntry"), userName);
-            app.EnterText(c => c.Marked("PasswordEntry"), password);
-            app.DismissKeyboard();
+            _app.EnterText(c => c.Marked("UserNameEntry"), userName);
+            _app.EnterText(c => c.Marked("PasswordEntry"), password);
+            _app.DismissKeyboard();
             // Act
-            app.Tap(c => c.Marked("LogInButton"));
+            _app.Tap(c => c.Marked("LogInButton"));
             // Assert
-            app.WaitForElement(c => c.Text(AppResources.IncorrectPasswordMessage));
+            _app.WaitForElement(c => c.Text(AppResources.IncorrectPasswordMessage));
         }
 
         [Test]
@@ -42,13 +42,13 @@ namespace Missio.Tests
         public void LogIn_GivenUserName_DisplaysIncorrectUserName(string userName, string password)
         {
             // Arrange
-            app.EnterText(c => c.Marked("UserNameEntry"), userName);
-            app.EnterText(c => c.Marked("PasswordEntry"), password);
-            app.DismissKeyboard();
+            _app.EnterText(c => c.Marked("UserNameEntry"), userName);
+            _app.EnterText(c => c.Marked("PasswordEntry"), password);
+            _app.DismissKeyboard();
             // Act
-            app.Tap(c => c.Marked("LogInButton"));
+            _app.Tap(c => c.Marked("LogInButton"));
             // Assert
-            app.WaitForElement(c => c.Text(AppResources.IncorrectUserNameMessage));
+            _app.WaitForElement(c => c.Text(AppResources.IncorrectUserNameMessage));
         }
 
         [Test]
@@ -56,13 +56,13 @@ namespace Missio.Tests
         public void LogIn_ValidUserNameAndPassword_DisplaysNewsFeed(string userName, string password)
         {
             //Arrange
-            app.EnterText(c => c.Marked("UserNameEntry"), userName);
-            app.EnterText(c => c.Marked("PasswordEntry"), password);
-            app.DismissKeyboard();
+            _app.EnterText(c => c.Marked("UserNameEntry"), userName);
+            _app.EnterText(c => c.Marked("PasswordEntry"), password);
+            _app.DismissKeyboard();
             //Act
-            app.Tap(c => c.Marked("LogInButton"));
+            _app.Tap(c => c.Marked("LogInButton"));
             //Assert
-            app.WaitForElement(c => c.Marked("NewsFeedPage"));
+            _app.WaitForElement(c => c.Marked("NewsFeedPage"));
         }
 
         [Test]
@@ -71,9 +71,9 @@ namespace Missio.Tests
             //Arrange
             
             //Act
-            app.Tap(c => c.Marked("RegisterButton"));
+            _app.Tap(c => c.Marked("RegisterButton"));
             //Assert
-            app.WaitForElement(c => c.Marked("RegistrationPage"));
+            _app.WaitForElement(c => c.Marked("RegistrationPage"));
         }
     }
 }

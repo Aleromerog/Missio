@@ -10,103 +10,103 @@ namespace Missio.Tests
     [Category("UITests")]
     public class RegistrationTests
     {
-        private IApp app;
-        private readonly Platform platform;
+        private IApp _app;
+        private readonly Platform _platform;
 
         public RegistrationTests(Platform platform)
         {
-            this.platform = platform;
+            this._platform = platform;
         }
 
         [SetUp]
         public void SetUp()
         {
-            app = AppInitializer.StartApp(platform);
-            app.Tap(c => c.Marked("RegisterButton"));
+            _app = AppInitializer.StartApp(_platform);
+            _app.Tap(c => c.Marked("RegisterButton"));
         }
 
         [Test]
         public void RegisterCommand_UserNameIsTooShort_DisplaysAlert()
         {
             //Arrange
-            app.EnterText(c => c.Marked("UserNameEntry"), "AB");
-            app.DismissKeyboard();
+            _app.EnterText(c => c.Marked("UserNameEntry"), "AB");
+            _app.DismissKeyboard();
             //Act
-            app.Tap(c => c.Marked("RegisterButton"));
+            _app.Tap(c => c.Marked("RegisterButton"));
             //Assert
-            app.WaitForElement(c => c.Text(AppResources.UserNameTooShortMessage));
+            _app.WaitForElement(c => c.Text(AppResources.UserNameTooShortMessage));
         }
 
         [Test]
         public void RegisterCommand_PasswordIsTooShort_DisplaysAlert()
         {
             //Arrange
-            app.EnterText(c => c.Marked("UserNameEntry"), "Some username");
-            app.EnterText(c => c.Marked("PasswordEntry"), "AB");
-            app.EnterText(c => c.Marked("ConfirmPasswordEntry"), "AB");
-            app.DismissKeyboard();
+            _app.EnterText(c => c.Marked("UserNameEntry"), "Some username");
+            _app.EnterText(c => c.Marked("PasswordEntry"), "AB");
+            _app.EnterText(c => c.Marked("ConfirmPasswordEntry"), "AB");
+            _app.DismissKeyboard();
             //Act
-            app.Tap(c => c.Marked("RegisterButton"));
+            _app.Tap(c => c.Marked("RegisterButton"));
             //Assert
-            app.WaitForElement(c => c.Text(AppResources.PasswordTooShortMessage));
+            _app.WaitForElement(c => c.Text(AppResources.PasswordTooShortMessage));
         }
 
         [Test]
         public void RegisterCommand_PasswordsDontMatch_DisplaysAlert()
         {
             //Arrange
-            app.EnterText(c => c.Marked("UserNameEntry"), "Some username");
-            app.EnterText(c => c.Marked("PasswordEntry"), "AB");
-            app.EnterText(c => c.Marked("ConfirmPasswordEntry"), "A");
-            app.DismissKeyboard();
+            _app.EnterText(c => c.Marked("UserNameEntry"), "Some username");
+            _app.EnterText(c => c.Marked("PasswordEntry"), "AB");
+            _app.EnterText(c => c.Marked("ConfirmPasswordEntry"), "A");
+            _app.DismissKeyboard();
             //Act
-            app.Tap(c => c.Marked("RegisterButton"));
+            _app.Tap(c => c.Marked("RegisterButton"));
             //Assert
-            app.WaitForElement(c => c.Text(AppResources.PasswordsDontMatchMessage));
+            _app.WaitForElement(c => c.Text(AppResources.PasswordsDontMatchMessage));
         }
 
         [Test]
         public void RegisterCommand_UserNameAlreadyInUse_DisplaysAlert()
         {
             //Arrange
-            app.EnterText(c => c.Marked("UserNameEntry"), "Jorge Romero");
-            app.DismissKeyboard();
+            _app.EnterText(c => c.Marked("UserNameEntry"), "Jorge Romero");
+            _app.DismissKeyboard();
             //Act
-            app.Tap(c => c.Marked("RegisterButton"));
+            _app.Tap(c => c.Marked("RegisterButton"));
             //Assert
-            app.WaitForElement(c => c.Text(AppResources.UserNameAlreadyInUseMessage));
+            _app.WaitForElement(c => c.Text(AppResources.UserNameAlreadyInUseMessage));
         }
 
         [Test]
         public void RegisterCommand_EverythingIsOkay_DisplaysSuccessMessageAndGoesBack()
         {
             //Arrange
-            app.EnterText(c => c.Marked("UserNameEntry"), "Some username");
-            app.EnterText(c => c.Marked("PasswordEntry"), "Some password");
-            app.EnterText(c => c.Marked("ConfirmPasswordEntry"), "Some password");
-            app.DismissKeyboard();
+            _app.EnterText(c => c.Marked("UserNameEntry"), "Some username");
+            _app.EnterText(c => c.Marked("PasswordEntry"), "Some password");
+            _app.EnterText(c => c.Marked("ConfirmPasswordEntry"), "Some password");
+            _app.DismissKeyboard();
             //Act
-            app.Tap(c => c.Marked("RegisterButton"));
+            _app.Tap(c => c.Marked("RegisterButton"));
             //Assert
-            app.WaitForElement(c => c.Text(AppResources.RegistrationSuccessfulMessage));
-            app.WaitForElement(c => c.Marked("LogInPage"));
+            _app.WaitForElement(c => c.Text(AppResources.RegistrationSuccessfulMessage));
+            _app.WaitForElement(c => c.Marked("LogInPage"));
         }
 
         [Test]
         public void RegisterCommand_TryToLogInWithCreatedUser_SuccessfullyLogsIn()
         {
             //Arrange
-            app.EnterText(c => c.Marked("UserNameEntry"), "Some username");
-            app.EnterText(c => c.Marked("PasswordEntry"), "Some password");
-            app.EnterText(c => c.Marked("ConfirmPasswordEntry"), "Some password");
-            app.DismissKeyboard();
-            app.Tap(c => c.Marked("RegisterButton"));
-            app.Tap(c => c.Text(AppResources.Ok));
-            app.WaitForElement(c => c.Marked("LogInPage"));
+            _app.EnterText(c => c.Marked("UserNameEntry"), "Some username");
+            _app.EnterText(c => c.Marked("PasswordEntry"), "Some password");
+            _app.EnterText(c => c.Marked("ConfirmPasswordEntry"), "Some password");
+            _app.DismissKeyboard();
+            _app.Tap(c => c.Marked("RegisterButton"));
+            _app.Tap(c => c.Text(AppResources.Ok));
+            _app.WaitForElement(c => c.Marked("LogInPage"));
             //Act
-            app.LogInWithUser(new User("Some username", "Some password"));
+            _app.LogInWithUser(new User("Some username", "Some password"));
             //Assert
-            app.WaitForElement(c => c.Marked("NewsFeedPage"));
+            _app.WaitForElement(c => c.Marked("NewsFeedPage"));
         }
     }
 }

@@ -7,12 +7,12 @@ namespace Missio.Tests
 {
     public class GlobalUserTests
     {
-        private GlobalUser GlobalUser;
+        private GlobalUser _globalUser;
 
         [SetUp]
         public void SetUp()
         {
-            GlobalUser = new GlobalUser();
+            _globalUser = new GlobalUser();
         }
 
         [Test]
@@ -22,7 +22,7 @@ namespace Missio.Tests
 
             //Act and assert
             // ReSharper disable once UnusedVariable
-            Assert.Throws<InvalidOperationException>(() => { var User =  GlobalUser.LoggedInUser; } );
+            Assert.Throws<InvalidOperationException>(() => { var user =  _globalUser.LoggedInUser; } );
         }
 
         [Test]
@@ -31,9 +31,9 @@ namespace Missio.Tests
             //Arrange
             User user = new User("Some user ", "Pass");
             //Act
-            GlobalUser.LoggedInUser = user;
+            _globalUser.LoggedInUser = user;
             //Assert
-            Assert.AreEqual(user, GlobalUser.LoggedInUser);
+            Assert.AreEqual(user, _globalUser.LoggedInUser);
         }
 
         [Test]
@@ -41,10 +41,10 @@ namespace Missio.Tests
         {
             //Arrange
             bool wasEventRaised = false;
-            GlobalUser.OnUserLoggedIn += () => wasEventRaised = true;
+            _globalUser.OnUserLoggedIn += () => wasEventRaised = true;
             User user = new User("Some user ", "Pass");
             //Act
-            GlobalUser.LoggedInUser = user;
+            _globalUser.LoggedInUser = user;
             //Assert
             Assert.IsTrue(wasEventRaised);
         }

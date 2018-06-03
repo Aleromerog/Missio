@@ -8,42 +8,42 @@ namespace Missio.Tests
     [TestFixture]
     public class PublicationPageViewModelTests
     {
-        private PublicationPageViewModel PublicationPageViewModel;
-        private IPublishPost FakePublishPost;
-        private IGetLoggedInUser FakeGetLoggedInUser;
-        private IReturnToPreviousPage FakeReturnOnePage;
-        private IUpdateViewPosts FakeUpdatePostsView;
+        private PublicationPageViewModel _publicationPageViewModel;
+        private IPublishPost _fakePublishPost;
+        private IGetLoggedInUser _fakeGetLoggedInUser;
+        private IReturnToPreviousPage _fakeReturnOnePage;
+        private IUpdateViewPosts _fakeUpdatePostsView;
 
         [SetUp]
         public void SetUp()
         {
-            FakePublishPost = Substitute.For<IPublishPost>();
-            FakeGetLoggedInUser = Substitute.For<IGetLoggedInUser>();
-            FakeReturnOnePage = Substitute.For<IReturnToPreviousPage>();
-            FakeUpdatePostsView = Substitute.For<IUpdateViewPosts>();
-            PublicationPageViewModel = new PublicationPageViewModel(FakePublishPost, FakeGetLoggedInUser, FakeUpdatePostsView, FakeReturnOnePage);
+            _fakePublishPost = Substitute.For<IPublishPost>();
+            _fakeGetLoggedInUser = Substitute.For<IGetLoggedInUser>();
+            _fakeReturnOnePage = Substitute.For<IReturnToPreviousPage>();
+            _fakeUpdatePostsView = Substitute.For<IUpdateViewPosts>();
+            _publicationPageViewModel = new PublicationPageViewModel(_fakePublishPost, _fakeGetLoggedInUser, _fakeUpdatePostsView, _fakeReturnOnePage);
         }
 
         [Test]
         public void PublishPost_TextOnly_UpdatesPostsView()
         {
             //Arrange
-            FakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
+            _fakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
             //Act
-            PublicationPageViewModel.PublishPostCommand.Execute(null);
+            _publicationPageViewModel.PublishPostCommand.Execute(null);
             //Assert
-            FakeUpdatePostsView.Received(1).UpdatePosts();
+            _fakeUpdatePostsView.Received(1).UpdatePosts();
         }
 
         [Test]
         public void PublishPost_TextOnly_ReturnsToNewsFeed()
         {
             //Arrange
-            FakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
+            _fakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
             //Act
-            PublicationPageViewModel.PublishPostCommand.Execute(null);
+            _publicationPageViewModel.PublishPostCommand.Execute(null);
             //Assert
-            FakeReturnOnePage.Received(1).ReturnToPreviousPage();
+            _fakeReturnOnePage.Received(1).ReturnToPreviousPage();
         }
         
         [Test]
@@ -52,12 +52,12 @@ namespace Missio.Tests
             //Arrange
             var authorName = "Name of the author";
             var newPostText = "The content of the new post";
-            FakeGetLoggedInUser.LoggedInUser.Returns(new User(authorName, ""));
-            PublicationPageViewModel.PostText = newPostText;
+            _fakeGetLoggedInUser.LoggedInUser.Returns(new User(authorName, ""));
+            _publicationPageViewModel.PostText = newPostText;
             //Act
-            PublicationPageViewModel.PublishPostCommand.Execute(null);
+            _publicationPageViewModel.PublishPostCommand.Execute(null);
             //Assert
-            FakePublishPost.Received(1).PublishPost(Arg.Is<TextOnlyPost>(x => x.Text == newPostText && x.Author == authorName));
+            _fakePublishPost.Received(1).PublishPost(Arg.Is<TextOnlyPost>(x => x.Text == newPostText && x.Author == authorName));
         }
     }
 }

@@ -8,20 +8,20 @@ namespace Missio.Tests
     [Category("UITests")]
     public class PublicationPageTests
     {
-        private IApp app;
-        private readonly Platform platform;
+        private IApp _app;
+        private readonly Platform _platform;
 
         public PublicationPageTests(Platform platform)
         {
-            this.platform = platform;
+            this._platform = platform;
         }
 
         [SetUp]
         public void SetUp()
         {
-            app = AppInitializer.StartApp(platform);
-            app.LogInWithDefaultUser();
-            app.Tap(c => c.Button("AddPostButton"));
+            _app = AppInitializer.StartApp(_platform);
+            _app.LogInWithDefaultUser();
+            _app.Tap(c => c.Button("AddPostButton"));
         }
 
         [Test]
@@ -30,11 +30,11 @@ namespace Missio.Tests
             //Arrange
             var postText = "Content of the new post";
             //Act
-            app.EnterText(c => c.TextField("PostTextEntry"), postText);
-            app.Tap(c => c.Button("PublishPostButton"));
+            _app.EnterText(c => c.TextField("PostTextEntry"), postText);
+            _app.Tap(c => c.Button("PublishPostButton"));
             //Assert
-            app.WaitForElement(c => c.Marked("NewsFeedPage"));
-            app.WaitForElement(c => c.Text(postText));
+            _app.WaitForElement(c => c.Marked("NewsFeedPage"));
+            _app.WaitForElement(c => c.Text(postText));
         }
     }
 }

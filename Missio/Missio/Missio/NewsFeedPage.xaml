@@ -32,7 +32,7 @@
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
-            <viewModel:NewsFeedPostDataTemplateSelector x:Key="personDataTemplateSelector"
+            <viewModel:NewsFeedPostDataTemplateSelector x:Key="PersonDataTemplateSelector"
                                                          StickyPostTemplate="{StaticResource StickyPost}"
                                                          TextOnlyPostTemplate="{StaticResource TextOnlyPost}" />
         </ResourceDictionary>
@@ -41,7 +41,7 @@
         <RelativeLayout BackgroundColor="{StaticResource LoginBackground}">
             <ListView
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
-                ItemsSource="{Binding Posts}" ItemTemplate="{StaticResource personDataTemplateSelector}"
+                ItemsSource="{Binding Posts}" ItemTemplate="{StaticResource PersonDataTemplateSelector}"
                 HasUnevenRows="True" RefreshCommand="{Binding UpdatePostsCommand}"
                 IsRefreshing="{Binding IsRefreshing}"
                 IsPullToRefreshEnabled="True" />

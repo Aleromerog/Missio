@@ -10,13 +10,13 @@ namespace Missio.Tests
     {
         private LocalUserDatabase _localUserDatabase;
 
-        private static object[] incorrectUserNames =
+        private static object[] _incorrectUserNames =
         {
             new User("Incorrect username 1", ""),
             new User("Incorrect username 2", ""),
         };
 
-        private static object[] incorrectUserPasswords =
+        private static object[] _incorrectUserPasswords =
         {
             new User(LocalUserDatabase.ValidUsers[0].UserName, "Invalid pass"),
             new User(LocalUserDatabase.ValidUsers[1].UserName, "Invalid pass"),
@@ -29,7 +29,7 @@ namespace Missio.Tests
         }
 
         [Test]
-        [TestCaseSource(nameof(incorrectUserNames))]
+        [TestCaseSource(nameof(_incorrectUserNames))]
         public void ValidateUser_IncorrectUserName_ThrowsException(User incorrectUser)
         {
             //Arrange
@@ -39,7 +39,7 @@ namespace Missio.Tests
         }
 
         [Test]
-        [TestCaseSource(nameof(incorrectUserPasswords))]
+        [TestCaseSource(nameof(_incorrectUserPasswords))]
         public void ValidateUser_IncorrectPassword_ThrowsException(User incorrectUser)
         {
             //Arrange

@@ -11,21 +11,21 @@ namespace Missio.Tests
     [TestFixture]
     public class AttemptToLoginTests
     {
-        private AttemptToLogIn AttemptToLogIn;
-        private IValidateUser fakeUserValidator;
-        private IDisplayAlertOnCurrentPage displayAlertOnCurrentPage;
-        private ISetLoggedInUser setLoggedInUser;
+        private AttemptToLogIn _attemptToLogIn;
+        private IValidateUser _fakeUserValidator;
+        private IDisplayAlertOnCurrentPage _displayAlertOnCurrentPage;
+        private ISetLoggedInUser _setLoggedInUser;
         private IGoToView _goToView;
 
         [SetUp]
         public void SetUp()
         {
-            fakeUserValidator = Substitute.For<IValidateUser>();
-            displayAlertOnCurrentPage = Substitute.For<IDisplayAlertOnCurrentPage>();
-            setLoggedInUser = Substitute.For<ISetLoggedInUser>();
+            _fakeUserValidator = Substitute.For<IValidateUser>();
+            _displayAlertOnCurrentPage = Substitute.For<IDisplayAlertOnCurrentPage>();
+            _setLoggedInUser = Substitute.For<ISetLoggedInUser>();
             _goToView = Substitute.For<IGoToView>();
-            AttemptToLogIn = new AttemptToLogIn(fakeUserValidator, displayAlertOnCurrentPage,
-                _goToView, setLoggedInUser);
+            _attemptToLogIn = new AttemptToLogIn(_fakeUserValidator, _displayAlertOnCurrentPage,
+                _goToView, _setLoggedInUser);
         }
 
         [Test]
@@ -34,10 +34,10 @@ namespace Missio.Tests
             //Arrange
             var user = new User("Someone", "");
             //Act
-            AttemptToLogIn.AttemptToLoginWithUser(user);
+            _attemptToLogIn.AttemptToLoginWithUser(user);
             //Assert
-            fakeUserValidator.Received(1).ValidateUser(user);
-            setLoggedInUser.Received(1).LoggedInUser = user;
+            _fakeUserValidator.Received(1).ValidateUser(user);
+            _setLoggedInUser.Received(1).LoggedInUser = user;
             _goToView.Received(1).GoToView("Main tabbed page");
         }
 
@@ -46,22 +46,22 @@ namespace Missio.Tests
         {
             //Arrange
             var user = new User("Someone", "");
-            fakeUserValidator.When(x => x.ValidateUser(user)).Throw<InvalidPasswordException>();
+            _fakeUserValidator.When(x => x.ValidateUser(user)).Throw<InvalidPasswordException>();
             //Act
-            AttemptToLogIn.AttemptToLoginWithUser(user);
+            _attemptToLogIn.AttemptToLoginWithUser(user);
             //Assert
-            displayAlertOnCurrentPage.Received(1).DisplayAlert(AppResources.IncorrectPasswordTitle, AppResources.IncorrectPasswordMessage, AppResources.Ok);
+            _displayAlertOnCurrentPage.Received(1).DisplayAlert(AppResources.IncorrectPasswordTitle, AppResources.IncorrectPasswordMessage, AppResources.Ok);
         }
 
         [Test]
         public void AttemptToLogin_InvalidUserName_DisplaysAlert()
         {
             var user = new User("Someone", "");
-            fakeUserValidator.When(x => x.ValidateUser(user)).Throw<InvalidUserNameException>();
+            _fakeUserValidator.When(x => x.ValidateUser(user)).Throw<InvalidUserNameException>();
             //Act
-            AttemptToLogIn.AttemptToLoginWithUser(user);
+            _attemptToLogIn.AttemptToLoginWithUser(user);
             //Assert
-            displayAlertOnCurrentPage.Received(1).DisplayAlert(AppResources.IncorrectUserNameTitle, AppResources.IncorrectUserNameMessage, AppResources.Ok);
+            _displayAlertOnCurrentPage.Received(1).DisplayAlert(AppResources.IncorrectUserNameTitle, AppResources.IncorrectUserNameMessage, AppResources.Ok);
         }
     }
 }

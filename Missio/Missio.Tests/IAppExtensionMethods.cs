@@ -5,7 +5,7 @@ using Xamarin.UITest;
 
 namespace Missio.Tests
 {
-    public static class IAppExtensionMethods
+    public static class AppExtensionMethods
     {
         /// <summary>
         /// Logs in onto the app with an existing user, use <see cref="LogInWithUser"/> if you want to use an specific user

@@ -13,7 +13,7 @@ namespace ViewModel
         private readonly IGetLoggedInUser _getLoggedInUser;
         private readonly IUpdateViewPosts _updateViewPosts;
         private readonly IReturnToPreviousPage _returnOnePage;
-        private string postText;
+        private string _postText;
 
         [UsedImplicitly]
         public string Title { get; } = "Publication page";
@@ -24,8 +24,8 @@ namespace ViewModel
         [UsedImplicitly]
         public string PostText
         {
-            get => postText ?? "";
-            set => postText = value;
+            get => _postText ?? "";
+            set => _postText = value;
         }
 
         public PublicationPageViewModel([NotNull] IPublishPost publishPost, [NotNull] IGetLoggedInUser getLoggedInUser,

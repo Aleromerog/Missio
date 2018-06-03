@@ -11,18 +11,18 @@ namespace Missio.Tests
     public class LocalNewsFeedPostProviderTests
     {
         private LocalNewsFeedPostDatabase _localNewsFeedPostDatabase;
-        private IGetLoggedInUser fakeGetLoggedInUser;
+        private IGetLoggedInUser _fakeGetLoggedInUser;
 
         [SetUp]
         public void SetUp()
         {
-            fakeGetLoggedInUser = Substitute.For<IGetLoggedInUser>();
-            _localNewsFeedPostDatabase = new LocalNewsFeedPostDatabase(fakeGetLoggedInUser);
-            fakeGetLoggedInUser.LoggedInUser.Returns(LocalUserDatabase.ValidUsers[0]);
+            _fakeGetLoggedInUser = Substitute.For<IGetLoggedInUser>();
+            _localNewsFeedPostDatabase = new LocalNewsFeedPostDatabase(_fakeGetLoggedInUser);
+            _fakeGetLoggedInUser.LoggedInUser.Returns(LocalUserDatabase.ValidUsers[0]);
         }
 
         [Test]
-        [TestCaseSource(typeof(ExtraNewsFeedPosts), nameof(ExtraNewsFeedPosts.extraPosts))]
+        [TestCaseSource(typeof(ExtraNewsFeedPosts), nameof(ExtraNewsFeedPosts.ExtraPosts))]
         public void SetUserPosts_GivenPosts_SetsUserPosts(List<NewsFeedPost> newPosts)
         {
             //Arrange
@@ -37,7 +37,7 @@ namespace Missio.Tests
         public void GetMostRecentPosts_NonExistingUser_ReturnsEmptyList()
         {
             //Arrange
-            fakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
+            _fakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
             //Act
             var posts = _localNewsFeedPostDatabase.GetMostRecentPosts();
             //Assert

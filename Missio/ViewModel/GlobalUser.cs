@@ -8,19 +8,19 @@ namespace ViewModel
     /// </summary>
     public class GlobalUser : IGetLoggedInUser, ISetLoggedInUser, IOnUserLoggedIn
     {
-        private User loggedInUser;
+        private User _loggedInUser;
 
         public User LoggedInUser
         {
             get
             {
-                if (loggedInUser == null)
+                if (_loggedInUser == null)
                     throw new InvalidOperationException("No user is currently logged in");
-                return loggedInUser;
+                return _loggedInUser;
             }
             set
             {
-                loggedInUser = value;
+                _loggedInUser = value;
                 OnUserLoggedIn();
             }
         }

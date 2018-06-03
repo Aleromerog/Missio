@@ -11,18 +11,18 @@ namespace Missio.Tests
     [Category("UITests")]
     public class NewsFeedTests
     {
-        private IApp app;
-        private readonly Platform platform;
+        private IApp _app;
+        private readonly Platform _platform;
 
         public NewsFeedTests(Platform platform)
         {
-            this.platform = platform;
+            this._platform = platform;
         }
 
         [SetUp]
         public void BeforeEachTest()
         {
-            app = AppInitializer.StartApp(platform);
+            _app = AppInitializer.StartApp(_platform);
         }
 
         private static object[] GetOnAppearTestData()
@@ -41,12 +41,12 @@ namespace Missio.Tests
         public void OnAppear_GivenNewsFeedPosts_DisplaysPosts(User user, List<string> expectedPosts)
         {
             //Arrange and act
-            app.LogInWithUser(user);
+            _app.LogInWithUser(user);
 
             //Assert
             foreach (var expectedPost in expectedPosts)
             {
-                app.WaitForElement(c => c.Text(expectedPost));
+                _app.WaitForElement(c => c.Text(expectedPost));
             }
         }
 
@@ -54,11 +54,11 @@ namespace Missio.Tests
         public void AddPostButton_NormalClick_GoesToPublicationPage()
         {
             //Arrange
-            app.LogInWithDefaultUser();
+            _app.LogInWithDefaultUser();
             //Act
-            app.Tap(c => c.Button("AddPostButton"));
+            _app.Tap(c => c.Button("AddPostButton"));
             //Assert
-            app.WaitForElement(c => c.Marked("PublicationPage"));
+            _app.WaitForElement(c => c.Marked("PublicationPage"));
         }
     }
 }

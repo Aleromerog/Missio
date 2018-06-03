@@ -14,11 +14,11 @@ namespace ViewModel
         {
             get
             {
-                if (userName == null)
+                if (_userName == null)
                     return "";
-                return userName;
+                return _userName;
             }
-            set => userName = value;
+            set => _userName = value;
         }
 
         [UsedImplicitly]
@@ -26,11 +26,11 @@ namespace ViewModel
         {
             get
             {
-                if (password == null)
+                if (_password == null)
                     return "";
-                return password;
+                return _password;
             }
-            set => password = value;
+            set => _password = value;
         }
 
         [UsedImplicitly]
@@ -39,8 +39,8 @@ namespace ViewModel
         [UsedImplicitly]
         public ICommand GoToRegistrationPageCommand { get; }
 
-        private string userName;
-        private string password;
+        private string _userName;
+        private string _password;
         private readonly IAttemptToLogin _loginAttempt;
 
         public LogInViewModel([NotNull] IAttemptToLogin loginAttempt, [NotNull] IGoToView goToView)

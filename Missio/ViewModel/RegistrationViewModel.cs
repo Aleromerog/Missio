@@ -18,37 +18,37 @@ namespace ViewModel
         [UsedImplicitly]
         public string Title { get; } = "Registration page";
 
-        private string userName;
-        private string password;
-        private string confirmPassword;
-        private string email;
+        private string _userName;
+        private string _password;
+        private string _confirmPassword;
+        private string _email;
 
         [UsedImplicitly]
         public string UserName
         {
-            get => userName ?? "";
-            set => userName = value;
+            get => _userName ?? "";
+            set => _userName = value;
         }
 
         [UsedImplicitly]
         public string Password
         {
-            get => password ?? "";
-            set => password = value;
+            get => _password ?? "";
+            set => _password = value;
         }
 
         [UsedImplicitly]
         public string Email
         {
-            get => email ?? "";
-            set => email = value;
+            get => _email ?? "";
+            set => _email = value;
         }
 
         [UsedImplicitly]
         public string ConfirmPassword
         {
-            get => confirmPassword ?? "";
-            set => confirmPassword = value;
+            get => _confirmPassword ?? "";
+            set => _confirmPassword = value;
         }
 
         [UsedImplicitly]
@@ -75,12 +75,12 @@ namespace ViewModel
                 await _alertDisplayer.DisplayAlert(AppResources.UserNameAlreadyInUseTitle, AppResources.UserNameAlreadyInUseMessage, AppResources.Ok);
                 return;
             }
-            if (password != confirmPassword)
+            if (_password != _confirmPassword)
             {
                 await _alertDisplayer.DisplayAlert(AppResources.PasswordsDontMatchTitle, AppResources.PasswordsDontMatchMessage, AppResources.Ok);
                 return;
             }
-            if (password.Length < 5)
+            if (_password.Length < 5)
             {
                 await _alertDisplayer.DisplayAlert(AppResources.PasswordTooShortTitle, AppResources.PasswordTooShortMessage, AppResources.Ok);
                 return;

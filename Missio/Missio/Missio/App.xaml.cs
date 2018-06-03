@@ -10,11 +10,10 @@ namespace Missio
 {
 	public partial class App
 	{
-        private static bool IsPreviewing = true;
+        private static bool _isPreviewing = true;
 
 	    public App()
 	    {
-            IsPreviewing = false;
 	        var kernel = new KernelConfiguration(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new AppViewModule()).BuildReadonlyKernel();
             InitializeComponent();
 	        kernel.Get<AppViewModel>().StartFromPage(kernel.Get<LogInPage>());
@@ -22,24 +21,14 @@ namespace Missio
 
         public static void AssertIsPreviewing()
         {
-            if (!IsPreviewing)
-                throw new Exception("Application is not in preview mode, make sure you used the right constructor");
+            if (!_isPreviewing)
+                throw new InvalidOperationException("Application is not in preview mode, make sure you used the right constructor");
         }
 
         protected override void OnStart ()
 		{
-			// Handle when your app starts
-		}
-
-		protected override void OnSleep ()
-		{
-			// Handle when your app sleeps
-		}
-
-		protected override void OnResume ()
-		{
-			// Handle when your app resumes
-		}
+		    _isPreviewing = false;
+        }
 	}
     
     public class ProfilePageModule : NinjectModule

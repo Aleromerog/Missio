@@ -13,7 +13,7 @@ namespace ViewModel
     {
         private readonly INewsFeedPostsUpdater _postsUpdater;
         private readonly IGoToView _goToView;
-        private bool isRefreshing;
+        private bool _isRefreshing;
 
         [UsedImplicitly]
         public string Title { get; } = "News feed page";
@@ -24,8 +24,8 @@ namespace ViewModel
         [UsedImplicitly]
         public bool IsRefreshing
         {
-            get => isRefreshing;
-            set => SetField(ref isRefreshing, value);
+            get => _isRefreshing;
+            set => SetField(ref _isRefreshing, value);
         }
 
         [UsedImplicitly]
