@@ -67,7 +67,7 @@ namespace Mission.Model.LocalProviders
         {
             if (UsersNewsFeedPosts.TryGetValue(_getLoggedInUser.LoggedInUser, out var posts))
             {
-                return posts.OrderByDescending(x => x.Priority).ToList();
+                return posts.OrderByDescending(x => x.PostPriority).ToList();
             }
 
             return new List<NewsFeedPost>();

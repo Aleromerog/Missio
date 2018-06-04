@@ -9,7 +9,7 @@ namespace Mission.Model.Data
         public string Message { [UsedImplicitly] get; }
 
         /// <inheritdoc />
-        public override int Priority { get; } = 10;
+        public override int PostPriority { get; } = 10;
 
         public StickyPost([NotNull] string title, [NotNull] string message)
         {

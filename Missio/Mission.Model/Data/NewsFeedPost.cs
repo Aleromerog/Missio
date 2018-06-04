@@ -1,8 +1,8 @@
 ﻿namespace Mission.Model.Data
 {
-    public class NewsFeedPost : IPriority
+    public class NewsFeedPost : IPostPriority
     {
         /// <inheritdoc />
-        public virtual int Priority { get; } = 0;
+        public virtual int PostPriority { get; } = 0;
     }
 }

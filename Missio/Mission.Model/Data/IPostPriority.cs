@@ -1,7 +1,7 @@
 ﻿namespace Mission.Model.Data
 {
-    public interface IPriority
+    public interface IPostPriority
     {
-        int Priority { get; }
+        int PostPriority { get; }
     }
 }
