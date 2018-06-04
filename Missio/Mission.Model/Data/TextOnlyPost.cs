@@ -3,15 +3,15 @@ using JetBrains.Annotations;
 
 namespace Mission.Model.Data
 {
-    public class TextOnlyPost : NewsFeedPost
+    public class TextOnlyPost : NewsFeedPost, IAuthorName, IMessage
     {
-        public string Author { [UsedImplicitly] get; }
-        public string Text { [UsedImplicitly] get; }
+        public string AuthorName { [UsedImplicitly] get; }
+        public string Message { [UsedImplicitly] get; }
 
-        public TextOnlyPost([NotNull] string author, [NotNull] string text)
+        public TextOnlyPost([NotNull] string author, [NotNull] string message)
         {
-            Text = text ?? throw new ArgumentNullException(nameof(text));
-            Author = author ?? throw new ArgumentNullException(nameof(author));
+            Message = message ?? throw new ArgumentNullException(nameof(message));
+            AuthorName = author ?? throw new ArgumentNullException(nameof(author));
         }
     }
 }

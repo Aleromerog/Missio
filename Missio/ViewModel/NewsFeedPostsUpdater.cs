@@ -17,7 +17,7 @@ namespace ViewModel
         public void UpdatePosts(ObservableCollection<NewsFeedPost> posts)
         {
             posts.Clear();
-            foreach (var post in _postsProvider.GetMostRecentPosts())
+            foreach (var post in _postsProvider.GetMostRecentPostsInOrder())
             {
                 posts.Add(post);
             }

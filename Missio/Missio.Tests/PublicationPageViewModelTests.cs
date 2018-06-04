@@ -57,7 +57,7 @@ namespace Missio.Tests
             //Act
             _publicationPageViewModel.PublishPostCommand.Execute(null);
             //Assert
-            _fakePublishPost.Received(1).PublishPost(Arg.Is<TextOnlyPost>(x => x.Text == newPostText && x.Author == authorName));
+            _fakePublishPost.Received(1).PublishPost(Arg.Is<TextOnlyPost>(x => x.Message == newPostText && x.AuthorName == authorName));
         }
     }
 }

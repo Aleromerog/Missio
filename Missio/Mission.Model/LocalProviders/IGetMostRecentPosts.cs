@@ -9,6 +9,6 @@ namespace Mission.Model.LocalProviders
         /// Gets the most recent posts to display on the News Feed page
         /// </summary>
         /// <returns> A list containing the news feed posts </returns>
-        List<NewsFeedPost> GetMostRecentPosts();
+        List<NewsFeedPost> GetMostRecentPostsInOrder();
     }
 }

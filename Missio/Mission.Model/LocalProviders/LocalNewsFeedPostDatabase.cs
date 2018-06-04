@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Mission.Model.Data;
 using ViewModel;
 
@@ -49,21 +50,12 @@ namespace Mission.Model.LocalProviders
         /// <returns> A list of strings containing the contents of the posts </returns>
         public static List<string> GetMostRecentPostsAsStrings(User user)
         {
-            var posts = UsersNewsFeedPosts[user];
+            var posts = UsersNewsFeedPosts[user].Where(x => x is IMessage).Cast<IMessage>();
             var contents = new List<string>();
             foreach (var post in posts)
             {
-                switch (post)
-                {
-                    case TextOnlyPost onlyPost:
-                        contents.Add(onlyPost.Text);
-                        break;
-                    case StickyPost stickyPost:
-                        contents.Add(stickyPost.Message);
-                        break;
-                }
+                contents.Add(post.Message);
             }
-
             return contents;
         }
 
@@ -71,10 +63,13 @@ namespace Mission.Model.LocalProviders
         /// Gets a list of manually hardcoded news feed posts
         /// </summary>
         /// <returns> A list containing news feed posts</returns>
-        public List<NewsFeedPost> GetMostRecentPosts()
+        public List<NewsFeedPost> GetMostRecentPostsInOrder()
         {
             if (UsersNewsFeedPosts.TryGetValue(_getLoggedInUser.LoggedInUser, out var posts))
-                return posts;
+            {
+                return posts.OrderByDescending(x => x.Priority).ToList();
+            }
+
             return new List<NewsFeedPost>();
         }
 

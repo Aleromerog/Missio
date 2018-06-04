@@ -15,9 +15,9 @@
                 <ViewCell>
                     <StackLayout Spacing="0" Margin="{StaticResource NewsFeedPostMargin}">
                         <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
-                        <Label Text="{Binding Author}" FontAttributes="Bold" BackgroundColor="White" />
+                        <Label Text="{Binding AuthorName}" FontAttributes="Bold" BackgroundColor="White" />
                         <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
-                        <Label Text="{Binding Text}" BackgroundColor="White" />
+                        <Label Text="{Binding Message}" BackgroundColor="White" />
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>

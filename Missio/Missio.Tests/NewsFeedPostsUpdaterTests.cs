@@ -26,7 +26,7 @@ namespace Missio.Tests
         {
             //Arrange
             var currentPosts = new ObservableCollection<NewsFeedPost>();
-            _newsFeedPostProvider.GetMostRecentPosts().Returns(postsToAdd);
+            _newsFeedPostProvider.GetMostRecentPostsInOrder().Returns(postsToAdd);
             //Act
             _newsFeedPostUpdater.UpdatePosts(currentPosts);
             //Assert
