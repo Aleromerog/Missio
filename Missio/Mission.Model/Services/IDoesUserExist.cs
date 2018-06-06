@@ -1,4 +1,4 @@
-﻿namespace Mission.Model.LocalProviders
+﻿namespace Mission.Model.Services
 {
     public interface IDoesUserExist
     {

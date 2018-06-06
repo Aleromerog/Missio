@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Mission.Model.Data;
-using Mission.Model.LocalProviders;
+using Mission.Model.LocalServices;
+using Mission.Model.Services;
 using NSubstitute;
 using NUnit.Framework;
-using ViewModel;
 
 namespace Missio.Tests
 {

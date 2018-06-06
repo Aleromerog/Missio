@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using Mission.Model.Data;
 using Mission.Model.Exceptions;
+using Mission.Model.Services;
 
-namespace Mission.Model.LocalProviders
+namespace Mission.Model.LocalServices
 {
     /// <summary>
     /// A fake user and password validator that checks the given parameters against the hardcoded data
@@ -58,9 +59,11 @@ namespace Mission.Model.LocalProviders
         }
 
         /// <inheritdoc />
-        public void RegisterUser(string userName, string password, string email)
+        public void RegisterUser(RegistrationInfo registrationInfo)
         {
-            ValidUsers.Add(new User(userName, password));
+            if(DoesUserExist(registrationInfo.UserName))
+                throw new UserNameAlreadyInUseException();
+            ValidUsers.Add(new User(registrationInfo.UserName, registrationInfo.Password));
         }
     }
 }

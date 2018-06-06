@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Mission.Model.Data;
-using ViewModel;
+using Mission.Model.Services;
 
-namespace Mission.Model.LocalProviders
+namespace Mission.Model.LocalServices
 {
     /// <summary>
     /// A news feed provider that returns hard coded data

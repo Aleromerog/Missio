@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Mission.Model.Data;
-using Mission.Model.LocalProviders;
+using Mission.Model.LocalServices;
 
 namespace Missio.Tests
 {

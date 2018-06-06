@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Mission.Model.Data;
 
-namespace Mission.Model.LocalProviders
+namespace Mission.Model.Services
 {
     /// <summary>
     /// Updates a collection of news feed posts

@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 
 namespace Mission.Model.Data
 {
-    public class User : IEquatable<User>
+    public class User : IUserName, IPassword, IEquatable<User>
     {
         public string UserName { get; }
         public string Password { get; }

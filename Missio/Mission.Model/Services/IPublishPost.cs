@@ -1,6 +1,6 @@
 ﻿using Mission.Model.Data;
 
-namespace ViewModel
+namespace Mission.Model.Services
 {
     public interface IPublishPost
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Mission.Model.Data;
 
-namespace Mission.Model.LocalProviders
+namespace Mission.Model.Services
 {
     public interface IGetMostRecentPosts
     {

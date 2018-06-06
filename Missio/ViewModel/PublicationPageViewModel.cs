@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
 using Mission.Model.Data;
+using Mission.Model.Services;
 using Xamarin.Forms;
 
 namespace ViewModel

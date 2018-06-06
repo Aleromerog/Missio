@@ -1,11 +1,11 @@
 ﻿using System;
 using Mission.Model.Data;
-using Mission.Model.LocalProviders;
+using Mission.Model.LocalServices;
 using Xamarin.UITest;
 
 namespace Missio.Tests
 {
-    public static class AppExtensionMethods
+    public static class IAppExtensionMethods
     {
         /// <summary>
         /// Logs in onto the app with an existing user, use <see cref="LogInWithUser"/> if you want to use an specific user

@@ -1,6 +1,6 @@
 ﻿using Mission.Model.Data;
 
-namespace Mission.Model.LocalProviders
+namespace Mission.Model.Services
 {
     /// <summary>
     /// Validates that the given user information is correct

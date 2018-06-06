@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Mission.Model.Data;
 using Mission.Model.Exceptions;
-using Mission.Model.LocalProviders;
+using Mission.Model.Services;
 using StringResources;
 
 namespace ViewModel

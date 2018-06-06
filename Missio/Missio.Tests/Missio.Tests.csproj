@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="AttemptToLoginTests.cs" />
     <Compile Include="ExtraNewsFeedPosts.cs" />
+    <Compile Include="ExternalDatabaseTests.cs" />
     <Compile Include="GlobalUserTests.cs" />
     <Compile Include="IAppExtensionMethods.cs" />
     <Compile Include="LocalNewsFeedPostProviderTests.cs" />

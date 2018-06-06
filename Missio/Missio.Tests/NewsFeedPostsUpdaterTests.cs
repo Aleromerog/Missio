@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Mission.Model.Data;
-using Mission.Model.LocalProviders;
+using Mission.Model.Services;
 using NSubstitute;
 using NUnit.Framework;
 using ViewModel;

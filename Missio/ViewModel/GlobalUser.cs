@@ -1,5 +1,6 @@
 ﻿using System;
 using Mission.Model.Data;
+using Mission.Model.Services;
 
 namespace ViewModel
 {

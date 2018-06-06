@@ -1,5 +1,5 @@
 ﻿using System;
-using Mission.Model.LocalProviders;
+using Mission.Model.Services;
 using NSubstitute;
 using NUnit.Framework;
 using ViewModel;

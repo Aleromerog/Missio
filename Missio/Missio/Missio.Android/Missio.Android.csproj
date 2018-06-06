@@ -45,6 +45,9 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Firebase.Xamarin">
+      <HintPath>C:\Users\GrecoFlores\.nuget\packages\firebase.xamarin\0.3.6\lib\Firebase.Xamarin.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
     <Reference Include="System.Core" />

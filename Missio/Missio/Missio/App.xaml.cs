@@ -1,6 +1,7 @@
 ﻿using System;
 using Missio.LogInRes;
-using Mission.Model.LocalProviders;
+using Mission.Model.LocalServices;
+using Mission.Model.Services;
 using Xamarin.Forms;
 using Ninject;
 using Ninject.Modules;
@@ -130,6 +131,7 @@ namespace Missio
             Bind<IValidateUser, IDoesUserExist, IRegisterUser>().To<LocalUserDatabase>().InSingletonScope();
             Bind<INewsFeedPostsUpdater>().To<NewsFeedPostsUpdater>().InSingletonScope();
 #else
+            
 #endif
         }
     }

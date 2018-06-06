@@ -1,4 +1,5 @@
-﻿using Mission.Model.LocalProviders;
+﻿using Mission.Model.Exceptions;
+using Mission.Model.Services;
 using NSubstitute;
 using NUnit.Framework;
 using StringResources;
@@ -7,12 +8,69 @@ using ViewModel;
 namespace Missio.Tests
 {
     [TestFixture]
+    public class RegistrationInfoTests
+    {
+        private RegistrationInfo _registrationInfo;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _registrationInfo = new RegistrationInfo("", "", "", "");
+        }
+
+        [Test]
+        [TestCase("")]
+        [TestCase("AA")]
+        [TestCase("BBB")]
+        public void GetOfflineErrorMessages_UserNameIsTooShort_DisplaysAlert(string username)
+        {
+            //Arrange
+            var expectedError = new AlertTextMessage(AppResources.UserNameTooShortTitle, AppResources.UserNameTooShortMessage, AppResources.Ok);
+            _registrationInfo.UserName = username;
+            //Act
+            var errorMessages = _registrationInfo.GetOfflineErrorMessages();
+            //Assert
+            Assert.Contains(expectedError, errorMessages);
+        }
+
+        [Test]
+        [TestCase("haha")]
+        [TestCase("GG")]
+        [TestCase("WP")]
+        public void GetOfflineErrorMessages_PasswordIsTooShort_DisplaysAlert(string password)
+        {
+            //Arrange
+            var expectedError = new AlertTextMessage(AppResources.PasswordTooShortTitle, AppResources.PasswordTooShortMessage, AppResources.Ok);
+            _registrationInfo.Password = password;
+            _registrationInfo.ConfirmPassword = password;
+            //Act
+            var errorMessages = _registrationInfo.GetOfflineErrorMessages();
+            //Assert
+            Assert.Contains(expectedError, errorMessages);
+        }
+
+        [Test]
+        [TestCase("no", "si")]
+        [TestCase("hola", "mundo")]
+        public void GetOfflineErrorMessages_PasswordsDontMatch_DisplaysAlert(string first, string second)
+        {
+            //Arrange
+            var expectedError = new AlertTextMessage(AppResources.PasswordsDontMatchTitle, AppResources.PasswordsDontMatchMessage, AppResources.Ok);
+            _registrationInfo.Password = first;
+            _registrationInfo.ConfirmPassword = second;
+            //Act
+            var errorMessages = _registrationInfo.GetOfflineErrorMessages();
+            //Assert
+            Assert.Contains(expectedError, errorMessages);
+        }
+    }
+
+    [TestFixture]
     public class RegistrationViewModelTests
     {
         private RegistrationViewModel _registrationViewModel;
         private IDisplayAlertOnCurrentPage _fakeDisplayAlert;
         private IRegisterUser _fakeRegisterUser;
-        private IDoesUserExist _fakeDoesUserExist;
         private IReturnToPreviousPage _fakeReturnToPreviousPage;
 
         [SetUp]
@@ -20,109 +78,33 @@ namespace Missio.Tests
         {
             _fakeDisplayAlert = Substitute.For<IDisplayAlertOnCurrentPage>();
             _fakeRegisterUser = Substitute.For<IRegisterUser>();
-            _fakeDoesUserExist = Substitute.For<IDoesUserExist>();
             _fakeReturnToPreviousPage = Substitute.For<IReturnToPreviousPage>();
-            _registrationViewModel = new RegistrationViewModel(_fakeDisplayAlert, _fakeRegisterUser, _fakeDoesUserExist, _fakeReturnToPreviousPage);
+            _registrationViewModel = new RegistrationViewModel(_fakeDisplayAlert, _fakeRegisterUser, _fakeReturnToPreviousPage);
         }
 
         [Test]
-        public void UserName_IsNull_ReturnsEmptyString()
+        public void Constructor_NormalConstruction_AllFieldsAreEmptyStrings()
         {
-            //Arrange
-            //Act
             //Assert
-            Assert.AreEqual("", _registrationViewModel.UserName);
+            Assert.IsEmpty(_registrationViewModel.RegistrationInfo.UserName);
+            Assert.IsEmpty(_registrationViewModel.RegistrationInfo.Email);
+            Assert.IsEmpty(_registrationViewModel.RegistrationInfo.Password);
+            Assert.IsEmpty(_registrationViewModel.RegistrationInfo.ConfirmPassword);
         }
 
         [Test]
-        public void Password_IsNull_ReturnsEmptyString()
-        {
-            //Arrange
-            //Act
-            //Assert
-            Assert.AreEqual("", _registrationViewModel.Password);
-        }
-
-        [Test]
-        public void ConfirmPassword_IsNull_ReturnsEmptyString()
-        {
-            //Arrange
-            //Act
-            //Assert
-            Assert.AreEqual("", _registrationViewModel.ConfirmPassword);
-        }
-
-        [Test]
-        public void Email_IsNull_ReturnsEmptyString()
-        {
-            //Arrange
-            //Act
-            //Assert
-            Assert.AreEqual("", _registrationViewModel.Email);
-        }
-
-        [Test]
-        [TestCase("")]
-        [TestCase("AA")]
-        [TestCase("BBB")]
-        public async void TryToRegister_UserNameIsTooShort_DisplaysAlert(string username)
-        {
-            //Arrange
-            _registrationViewModel.UserName = username;
-            //Act
-            await _registrationViewModel.TryToRegister();
-            //Assert
-            await _fakeDisplayAlert.Received(1).DisplayAlert(AppResources.UserNameTooShortTitle,
-                AppResources.UserNameTooShortMessage, AppResources.Ok);
-        }
-
-
-        [Test]
-        [TestCase("haha")]
-        [TestCase("GG")]
-        [TestCase("WP")]
-        public async void TryToRegister_PasswordIsTooShort_DisplaysAlert(string password)
-        {
-            //Arrange
-            _registrationViewModel.UserName = "Valid name";
-            _registrationViewModel.Password = password;
-            _registrationViewModel.ConfirmPassword = password;
-            //Act
-            await _registrationViewModel.TryToRegister();
-            //Assert
-            await _fakeDisplayAlert.DisplayAlert(AppResources.PasswordTooShortTitle, AppResources.PasswordTooShortMessage, AppResources.Ok);
-        }
-
-        [Test]
-        [TestCase("no", "si")]
-        [TestCase("hola", "mundo")]
-        public async void TryToRegister_PasswordsDontMatch_DisplaysAlert(string first, string second)
-        {
-            //Arrange
-            _registrationViewModel.UserName = "Valid name";
-            _registrationViewModel.Password = first;
-            _registrationViewModel.ConfirmPassword = second;
-            //Act
-            await _registrationViewModel.TryToRegister();
-            //Assert
-            await _fakeDisplayAlert.DisplayAlert(AppResources.PasswordsDontMatchTitle, AppResources.PasswordsDontMatchMessage, AppResources.Ok);
-        }
-
-        [Test]
-        [TestCase("Un nombre")]
-        [TestCase("Otro nombre")]
+        [TestCaseSource(typeof(UserNamesAlreadyInUse), nameof(UserNamesAlreadyInUse.NamesAlreadyInUse))]
         public async void TryToRegister_UserNameAlreadyInUse_DisplaysAlert(string userName)
         {
             //Arrange
-            _registrationViewModel.UserName = userName;
-            _registrationViewModel.Password = "Valid password";
-            _registrationViewModel.ConfirmPassword = "Valid password";
-            _fakeDoesUserExist.DoesUserExist(userName).Returns(true);
+            var userNameException = new UserNameAlreadyInUseException();
+            _fakeRegisterUser.When(x => x.RegisterUser(Arg.Is<RegistrationInfo>(c => c.UserName == userName))).Do(x => throw userNameException);
+            var registrationInfo = _registrationViewModel.RegistrationInfo;
+            registrationInfo.UserName = userName;
             //Act
             await _registrationViewModel.TryToRegister();
             //Assert
-            await _fakeDisplayAlert.DisplayAlert(AppResources.UserNameAlreadyInUseTitle,
-                AppResources.UserNameAlreadyInUseMessage, AppResources.Ok);
+            await _fakeDisplayAlert.Received().DisplayAlert(Arg.Is(userNameException.AlertMessage));
         }
 
         [Test]
@@ -131,14 +113,15 @@ namespace Missio.Tests
         public async void TryToRegister_EverythingIsOk_RegistersUser(string userName, string password, string email)
         {
             //Arrange
-            _registrationViewModel.UserName = userName;
-            _registrationViewModel.Password = password;
-            _registrationViewModel.ConfirmPassword = password;
-            _registrationViewModel.Email = email;
+            var registrationInfo = _registrationViewModel.RegistrationInfo;
+            registrationInfo.UserName = userName;
+            registrationInfo.Password = password;
+            registrationInfo.ConfirmPassword = password;
+            registrationInfo.Email = email;
             //Act
             await _registrationViewModel.TryToRegister();
             //Assert
-            _fakeRegisterUser.Received(1).RegisterUser(userName, password, email);
+            _fakeRegisterUser.Received(1).RegisterUser(registrationInfo);
         }
 
         [Test]
@@ -147,14 +130,15 @@ namespace Missio.Tests
         public async void TryToRegister_EverythingIsOk_DisplaysEmailWasSent(string userName, string password, string email)
         {
             //Arrange
-            _registrationViewModel.UserName = userName;
-            _registrationViewModel.Password = password;
-            _registrationViewModel.ConfirmPassword = password;
-            _registrationViewModel.Email = email;
+            var registrationInfo = _registrationViewModel.RegistrationInfo;
+            registrationInfo.UserName = userName;
+            registrationInfo.Password = password;
+            registrationInfo.ConfirmPassword = password;
+            registrationInfo.Email = email;
             //Act
             await _registrationViewModel.TryToRegister();
             //Assert
-            await _fakeDisplayAlert.DisplayAlert(AppResources.RegistrationSuccessfulTitle, AppResources.RegistrationSuccessfulMessage, AppResources.Ok);
+            await _fakeDisplayAlert.Received().DisplayAlert(AppResources.RegistrationSuccessfulTitle, AppResources.RegistrationSuccessfulMessage, AppResources.Ok);
         }
 
         [Test]
@@ -163,14 +147,15 @@ namespace Missio.Tests
         public async void TryToRegister_EverythingIsOk_ReturnsToPreviousPage(string userName, string password, string email)
         {
             //Arrange
-            _registrationViewModel.UserName = userName;
-            _registrationViewModel.Password = password;
-            _registrationViewModel.ConfirmPassword = password;
-            _registrationViewModel.Email = email;
+            var registrationInfo = _registrationViewModel.RegistrationInfo;
+            registrationInfo.UserName = userName;
+            registrationInfo.Password = password;
+            registrationInfo.ConfirmPassword = password;
+            registrationInfo.Email = email;
             //Act
             await _registrationViewModel.TryToRegister();
             //Assert
-            await _fakeReturnToPreviousPage.ReturnToPreviousPage();
+            await _fakeReturnToPreviousPage.Received().ReturnToPreviousPage();
         }
     }
 }

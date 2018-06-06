@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Mission.Model.Data;
-using Mission.Model.LocalProviders;
+using Mission.Model.Services;
 
 namespace ViewModel
 {
