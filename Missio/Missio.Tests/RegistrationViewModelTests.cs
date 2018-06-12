@@ -8,64 +8,6 @@ using ViewModel;
 namespace Missio.Tests
 {
     [TestFixture]
-    public class RegistrationInfoTests
-    {
-        private RegistrationInfo _registrationInfo;
-
-        [SetUp]
-        public void SetUp()
-        {
-            _registrationInfo = new RegistrationInfo("", "", "", "");
-        }
-
-        [Test]
-        [TestCase("")]
-        [TestCase("AA")]
-        [TestCase("BBB")]
-        public void GetOfflineErrorMessages_UserNameIsTooShort_DisplaysAlert(string username)
-        {
-            //Arrange
-            var expectedError = new AlertTextMessage(AppResources.UserNameTooShortTitle, AppResources.UserNameTooShortMessage, AppResources.Ok);
-            _registrationInfo.UserName = username;
-            //Act
-            var errorMessages = _registrationInfo.GetOfflineErrorMessages();
-            //Assert
-            Assert.Contains(expectedError, errorMessages);
-        }
-
-        [Test]
-        [TestCase("haha")]
-        [TestCase("GG")]
-        [TestCase("WP")]
-        public void GetOfflineErrorMessages_PasswordIsTooShort_DisplaysAlert(string password)
-        {
-            //Arrange
-            var expectedError = new AlertTextMessage(AppResources.PasswordTooShortTitle, AppResources.PasswordTooShortMessage, AppResources.Ok);
-            _registrationInfo.Password = password;
-            _registrationInfo.ConfirmPassword = password;
-            //Act
-            var errorMessages = _registrationInfo.GetOfflineErrorMessages();
-            //Assert
-            Assert.Contains(expectedError, errorMessages);
-        }
-
-        [Test]
-        [TestCase("no", "si")]
-        [TestCase("hola", "mundo")]
-        public void GetOfflineErrorMessages_PasswordsDontMatch_DisplaysAlert(string first, string second)
-        {
-            //Arrange
-            var expectedError = new AlertTextMessage(AppResources.PasswordsDontMatchTitle, AppResources.PasswordsDontMatchMessage, AppResources.Ok);
-            _registrationInfo.Password = first;
-            _registrationInfo.ConfirmPassword = second;
-            //Act
-            var errorMessages = _registrationInfo.GetOfflineErrorMessages();
-            //Assert
-            Assert.Contains(expectedError, errorMessages);
-        }
-    }
-
-    [TestFixture]
     public class RegistrationViewModelTests
     {
         private RegistrationViewModel _registrationViewModel;
@@ -89,7 +31,6 @@ namespace Missio.Tests
             Assert.IsEmpty(_registrationViewModel.RegistrationInfo.UserName);
             Assert.IsEmpty(_registrationViewModel.RegistrationInfo.Email);
             Assert.IsEmpty(_registrationViewModel.RegistrationInfo.Password);
-            Assert.IsEmpty(_registrationViewModel.RegistrationInfo.ConfirmPassword);
         }
 
         [Test]
@@ -116,7 +57,6 @@ namespace Missio.Tests
             var registrationInfo = _registrationViewModel.RegistrationInfo;
             registrationInfo.UserName = userName;
             registrationInfo.Password = password;
-            registrationInfo.ConfirmPassword = password;
             registrationInfo.Email = email;
             //Act
             await _registrationViewModel.TryToRegister();
@@ -133,7 +73,6 @@ namespace Missio.Tests
             var registrationInfo = _registrationViewModel.RegistrationInfo;
             registrationInfo.UserName = userName;
             registrationInfo.Password = password;
-            registrationInfo.ConfirmPassword = password;
             registrationInfo.Email = email;
             //Act
             await _registrationViewModel.TryToRegister();
@@ -150,7 +89,6 @@ namespace Missio.Tests
             var registrationInfo = _registrationViewModel.RegistrationInfo;
             registrationInfo.UserName = userName;
             registrationInfo.Password = password;
-            registrationInfo.ConfirmPassword = password;
             registrationInfo.Email = email;
             //Act
             await _registrationViewModel.TryToRegister();

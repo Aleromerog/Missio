@@ -43,7 +43,6 @@ namespace Missio.Tests
             //Arrange
             _app.EnterText(c => c.Marked("UserNameEntry"), "Some username");
             _app.EnterText(c => c.Marked("PasswordEntry"), "AB");
-            _app.EnterText(c => c.Marked("ConfirmPasswordEntry"), "AB");
             _app.DismissKeyboard();
             //Act
             _app.Tap(c => c.Marked("RegisterButton"));
@@ -52,24 +51,11 @@ namespace Missio.Tests
         }
 
         [Test]
-        public void RegisterCommand_PasswordsDontMatch_DisplaysAlert()
-        {
-            //Arrange
-            _app.EnterText(c => c.Marked("UserNameEntry"), "Some username");
-            _app.EnterText(c => c.Marked("PasswordEntry"), "AB");
-            _app.EnterText(c => c.Marked("ConfirmPasswordEntry"), "A");
-            _app.DismissKeyboard();
-            //Act
-            _app.Tap(c => c.Marked("RegisterButton"));
-            //Assert
-            _app.WaitForElement(c => c.Text(AppResources.PasswordsDontMatchMessage));
-        }
-
-        [Test]
         public void RegisterCommand_UserNameAlreadyInUse_DisplaysAlert()
         {
             //Arrange
             _app.EnterText(c => c.Marked("UserNameEntry"), "Jorge Romero");
+            _app.EnterText(c => c.Marked("PasswordEntry"), "Some password");
             _app.DismissKeyboard();
             //Act
             _app.Tap(c => c.Marked("RegisterButton"));
@@ -83,7 +69,6 @@ namespace Missio.Tests
             //Arrange
             _app.EnterText(c => c.Marked("UserNameEntry"), "Some username");
             _app.EnterText(c => c.Marked("PasswordEntry"), "Some password");
-            _app.EnterText(c => c.Marked("ConfirmPasswordEntry"), "Some password");
             _app.DismissKeyboard();
             //Act
             _app.Tap(c => c.Marked("RegisterButton"));
@@ -98,7 +83,6 @@ namespace Missio.Tests
             //Arrange
             _app.EnterText(c => c.Marked("UserNameEntry"), "Some username");
             _app.EnterText(c => c.Marked("PasswordEntry"), "Some password");
-            _app.EnterText(c => c.Marked("ConfirmPasswordEntry"), "Some password");
             _app.DismissKeyboard();
             _app.Tap(c => c.Marked("RegisterButton"));
             _app.Tap(c => c.Text(AppResources.Ok));

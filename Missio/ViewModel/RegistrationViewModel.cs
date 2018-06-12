@@ -18,7 +18,7 @@ namespace ViewModel
         [UsedImplicitly]
         public string Title { get; } = "Registration page";
 
-        public readonly RegistrationInfo RegistrationInfo;
+        public RegistrationInfo RegistrationInfo { get; }
 
         [UsedImplicitly]
         public ICommand RegisterCommand { get; set; }
@@ -28,7 +28,7 @@ namespace ViewModel
             _alertDisplayer = alertDisplayer ?? throw new ArgumentNullException(nameof(alertDisplayer));
             _registerUser = registerUser ?? throw new ArgumentNullException(nameof(registerUser));
             _returnToPreviousPage = returnToPreviousPage ?? throw new ArgumentNullException(nameof(returnToPreviousPage));
-            RegistrationInfo = new RegistrationInfo("", "", "", "");
+            RegistrationInfo = new RegistrationInfo("", "", "");
             RegisterCommand = new Command(async() => await TryToRegister());
         }
 

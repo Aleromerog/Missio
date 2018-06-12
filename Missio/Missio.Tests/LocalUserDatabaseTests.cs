@@ -78,7 +78,7 @@ namespace Missio.Tests
             //Arrange
             
             //Act
-            _localUserDatabase.RegisterUser(new RegistrationInfo(userName, password, password, email));
+            _localUserDatabase.RegisterUser(new RegistrationInfo(userName, password, email));
             //Assert
             Assert.IsTrue(_localUserDatabase.DoesUserExist(userName));
         }
@@ -88,7 +88,14 @@ namespace Missio.Tests
         public void RegisterUser_UserNameAlreadyInUse_ThrowsException(string userName)
         {
             //Act and assert
-            Assert.Throws<UserNameAlreadyInUseException>(() => _localUserDatabase.RegisterUser(new RegistrationInfo(userName, "", "", "")));
+            Assert.Throws<UserNameAlreadyInUseException>(() => _localUserDatabase.RegisterUser(new RegistrationInfo(userName, "hello world", "")));
+        }
+
+        [Test]
+        public void RegisterUser_RegistrationInfoContainsExceptions_ThrowsExceptions()
+        {
+            //Act and assert
+            Assert.Throws<UserNameTooShortException>(() => _localUserDatabase.RegisterUser(new RegistrationInfo("", "hello there", "")));
         }
     }
 }

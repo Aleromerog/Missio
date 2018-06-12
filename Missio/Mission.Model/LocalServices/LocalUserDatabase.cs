@@ -61,6 +61,7 @@ namespace Mission.Model.LocalServices
         /// <inheritdoc />
         public void RegisterUser(RegistrationInfo registrationInfo)
         {
+            registrationInfo.ThrowExceptionIfStateIsInvalid();
             if(DoesUserExist(registrationInfo.UserName))
                 throw new UserNameAlreadyInUseException();
             ValidUsers.Add(new User(registrationInfo.UserName, registrationInfo.Password));

@@ -74,7 +74,7 @@ namespace Missio.Tests
             //Arrange
             
             //Act
-            _externalDatabase.RegisterUser(new RegistrationInfo(userName, password, password, email));
+            _externalDatabase.RegisterUser(new RegistrationInfo(userName, password, email));
             //Assert
             Assert.IsTrue(_externalDatabase.DoesUserExist(userName));
         }
