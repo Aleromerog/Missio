@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Firebase.Xamarin.Database.Query;
 using Mission.Model.Data;
 using Mission.Model.Services;
 
@@ -48,6 +47,6 @@ namespace Mission.Model.LocalServices
 
     public interface IGetChildQuery
     {
-        ChildQuery Child(string resourceName);
+        //ChildQuery Child(string resourceName);
     }
 }
