@@ -19,5 +19,6 @@ namespace ViewModel
             CurrentPage = new NavigationPage(page);
             Application.Current.MainPage = CurrentPage;
         }
+        
     }
 }
