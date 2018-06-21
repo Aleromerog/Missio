@@ -17,7 +17,7 @@ namespace Missio
 	    {
 	        var kernel = new KernelConfiguration(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new AppViewModule()).BuildReadonlyKernel();
             InitializeComponent();
-	        kernel.Get<AppViewModel>().StartFromPage(kernel.Get<LogInPage>());
+	        kernel.Get<AppViewModel>().StartFromPage(kernel.Get<NewLoginPage>());
         }
 
         public static void AssertIsPreviewing()
