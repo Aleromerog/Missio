@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              NavigationPage.HasNavigationBar="False"
@@ -13,9 +13,11 @@
                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Height}"
                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}"/>
         <Image Source="lenguas.png"
-               BackgroundColor="Aqua"
+               x:Name="lenguas"
                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.2, Property=Height}"
-               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.05, Property=Height}"/>
+               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.05, Property=Height}"
+               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}"
+               />
 
     </RelativeLayout>
 </ContentPage>

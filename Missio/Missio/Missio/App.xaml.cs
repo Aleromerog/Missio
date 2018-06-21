@@ -17,15 +17,9 @@ namespace Missio
 	    {
 	        var kernel = new KernelConfiguration(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new AppViewModule()).BuildReadonlyKernel();
             InitializeComponent();
-<<<<<<< HEAD
-<<<<<<< HEAD
-            kernel.Get<AppViewModel>().StartFromPage(kernel.Get<LogInPage>());
-=======
+
 	        kernel.Get<AppViewModel>().StartFromPage(kernel.Get<NewLoginPage>());
->>>>>>> cd9161357f69506b4fe6b8e439e53f73f739904f
-=======
-	        kernel.Get<AppViewModel>().StartFromPage(kernel.Get<LogInPage>());
->>>>>>> parent of 35346c3... Changes in appdelegate
+
         }
 
         public static void AssertIsPreviewing()

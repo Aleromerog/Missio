@@ -28,9 +28,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <AotAssemblies>false</AotAssemblies>
-    <EnableLLVM>false</EnableLLVM>
-    <BundleAssemblies>false</BundleAssemblies>
     <AndroidSupportedAbis />
     <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
   </PropertyGroup>
@@ -103,7 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Missio\Missio.csproj">
-      <Project>{FE08F306-8A6F-40DD-836E-0170CAD8978F}</Project>
+      <Project>{6F9D2CEB-144A-40C2-AEC3-117CB8700BB3}</Project>
       <Name>Missio</Name>
     </ProjectReference>
   </ItemGroup>
