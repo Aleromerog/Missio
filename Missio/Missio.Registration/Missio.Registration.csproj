@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Missio.Navigation\Missio.Navigation.csproj" />
+    <ProjectReference Include="..\StringResources\StringResources.csproj" />
+  </ItemGroup>
+
+</Project>

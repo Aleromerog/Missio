@@ -28,7 +28,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Mission.Model\Mission.Model.csproj" />
+    <ProjectReference Include="..\..\Missio.LocalDatabase\Missio.LocalDatabase.csproj" />
     <ProjectReference Include="..\..\ViewModel\Mission.ViewModel.csproj" />
   </ItemGroup>
   <ItemGroup>

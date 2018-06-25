@@ -1,7 +1,8 @@
-﻿using Mission.Model.Data;
+﻿using Missio.LogIn;
+using Missio.Navigation;
+using Missio.User;
 using NSubstitute;
 using NUnit.Framework;
-using ViewModel;
 
 namespace Missio.Tests
 {
@@ -9,52 +10,28 @@ namespace Missio.Tests
     public class LogInViewModelTests
     {
         private LogInViewModel _logInViewModel;
-        private IAttemptToLogin _attemptToLogin;
         private IGoToView _fakeGoToView;
+        private ISetLoggedInUser _fakeSetLoggedInUser;
+        private IDisplayAlertOnCurrentPage _fakeDisplayAlertOnCurrentPage;
+        private IValidateUser _fakeUserValidator;
 
         [SetUp]
         public void SetUp()
         {
-            _attemptToLogin = Substitute.For<IAttemptToLogin>();
             _fakeGoToView = Substitute.For<IGoToView>();
-            _logInViewModel = new LogInViewModel(_attemptToLogin, _fakeGoToView);
+            _fakeSetLoggedInUser = Substitute.For<ISetLoggedInUser>();
+            _fakeDisplayAlertOnCurrentPage = Substitute.For<IDisplayAlertOnCurrentPage>();
+            _fakeUserValidator = Substitute.For<IValidateUser>();
+            _logInViewModel = new LogInViewModel(_fakeGoToView, _fakeUserValidator, _fakeDisplayAlertOnCurrentPage,
+                _fakeSetLoggedInUser);
         }
 
         [Test]
-        public void GetPassword_FieldIsNull_ReturnsEmptyString()
+        public void Constructor_NormalConstructor_InitializesUserWithEmptyFields()
         {
-            //Arrange
-            //Act
-            var password = _logInViewModel.Password;
             //Assert
-            Assert.AreEqual("", password);
-        }
-
-        [Test]
-        public void GetUserName_FieldIsNull_ReturnsEmptyString()
-        {
-            //Arrange
-
-            //Act
-            var name = _logInViewModel.UserName;
-            //Assert
-            Assert.AreEqual("", name);
-        }
-
-        [Test]
-        [TestCase("Paco", "ElPass")]
-        [TestCase("Jorge", "999")]
-        [TestCase("UnMen", "password")]
-        public void LogInCommand_GivenUserNameAndPassword_AttemptsToLogin(string userName, string password)
-        {
-            //Arrange
-            _logInViewModel.UserName = userName;
-            _logInViewModel.Password = password;
-            //Act
-            _logInViewModel.LogInCommand.Execute(null);
-            //Assert
-            _attemptToLogin.Received(1)
-                .AttemptToLoginWithUser(Arg.Is<User>(x => x.UserName == userName && x.Password == password));
+            Assert.IsEmpty(_logInViewModel.UserName);
+            Assert.IsEmpty(_logInViewModel.Password);
         }
 
         [Test]
@@ -66,6 +43,45 @@ namespace Missio.Tests
             _logInViewModel.GoToRegistrationPageCommand.Execute(null);
             //Assert
             _fakeGoToView.Received(1).GoToView("Registration page");
+        }
+
+        [Test]
+        public void LogInCommand_ValidUser_SetsLoggedInUserAndGoesToNextPage()
+        {
+            //Arrange
+            var user = new User.User("Someone", "");
+            _logInViewModel.User = user;
+            //Act
+            _logInViewModel.LogInCommand.Execute(null);
+            //Assert
+            _fakeUserValidator.Received(1).ValidateUser(user);
+            _fakeSetLoggedInUser.Received(1).LoggedInUser = user;
+            _fakeGoToView.Received(1).GoToView("Main tabbed page");
+        }
+
+        [Test]
+        public void AttemptToLogin_InvalidPassword_DisplaysAlert()
+        {
+            //Arrange
+            var user = new User.User("Someone", "");
+            _logInViewModel.User = user;
+            _fakeUserValidator.When(x => x.ValidateUser(user)).Throw<InvalidPasswordException>();
+            //Act
+            _logInViewModel.LogInCommand.Execute(null);
+            //Assert
+            _fakeDisplayAlertOnCurrentPage.Received(1).DisplayAlert(new InvalidPasswordException().AlertTextMessage);
+        }
+
+        [Test]
+        public void AttemptToLogin_InvalidUserName_DisplaysAlert()
+        {
+            var user = new User.User("Someone", "");
+            _logInViewModel.User = user;
+            _fakeUserValidator.When(x => x.ValidateUser(user)).Throw<InvalidUserNameException>();
+            //Act
+            _logInViewModel.LogInCommand.Execute(null);
+            //Assert
+            _fakeDisplayAlertOnCurrentPage.Received(1).DisplayAlert(new InvalidUserNameException().AlertTextMessage);
         }
     }
 }

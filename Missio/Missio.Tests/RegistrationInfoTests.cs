@@ -1,6 +1,5 @@
 ﻿using System.Linq;
-using Mission.Model.Exceptions;
-using Mission.Model.Services;
+using Missio.Registration;
 using NUnit.Framework;
 
 namespace Missio.Tests

@@ -2,8 +2,8 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModel="clr-namespace:ViewModel;assembly=Mission.ViewModel"
              xmlns:xamarinForms="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
+             xmlns:newsFeed="clr-namespace:Missio.NewsFeed;assembly=Missio.NewsFeed"
              xamarinForms:BottomBarPageExtensions.TabColor="{StaticResource PrimaryDarkColor}"
              Icon="Lenguas2.png"
              x:Class="Missio.NewsFeedPage"
@@ -32,7 +32,7 @@
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
-            <viewModel:NewsFeedPostDataTemplateSelector x:Key="PersonDataTemplateSelector"
+            <newsFeed:NewsFeedPostDataTemplateSelector x:Key="PersonDataTemplateSelector"
                                                          StickyPostTemplate="{StaticResource StickyPost}"
                                                          TextOnlyPostTemplate="{StaticResource TextOnlyPost}" />
         </ResourceDictionary>

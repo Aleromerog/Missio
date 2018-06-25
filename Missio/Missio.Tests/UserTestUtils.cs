@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using Mission.Model.Data;
-using Mission.Model.LocalServices;
+using Missio.LocalDatabase;
 
 namespace Missio.Tests
 {
@@ -8,13 +7,13 @@ namespace Missio.Tests
     {
         public static object[] GetInvalidUsers()
         {
-            var invalidUsers = new List<User> { LocalUserDatabase.InvalidUsers[0] };
+            var invalidUsers = new List<User.User> { LocalUserDatabase.InvalidUsers[0] };
             return LocalUserDatabase.GetListOfUsersInTestForm(invalidUsers);
         }
 
         public static object[] GetValidUsers()
         {
-            var validUsers = new List<User> { LocalUserDatabase.ValidUsers[0] };
+            var validUsers = new List<User.User> { LocalUserDatabase.ValidUsers[0] };
             return LocalUserDatabase.GetListOfUsersInTestForm(validUsers);
         }
 

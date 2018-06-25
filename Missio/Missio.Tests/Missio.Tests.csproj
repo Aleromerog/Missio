@@ -79,7 +79,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttemptToLoginTests.cs" />
     <Compile Include="ExtraNewsFeedPosts.cs" />
     <Compile Include="ExternalDatabaseTests.cs" />
     <Compile Include="GlobalUserTests.cs" />
@@ -89,7 +88,6 @@
     <Compile Include="LoginTests.cs" />
     <Compile Include="AppInitializer.cs" />
     <Compile Include="LogInViewModelTests.cs" />
-    <Compile Include="NewsFeedPostsUpdaterTests.cs" />
     <Compile Include="NewsFeedTests.cs" />
     <Compile Include="NewsFeedViewModelTests.cs" />
     <Compile Include="PublicationPageTests.cs" />
@@ -104,9 +102,33 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mission.Model\Mission.Model.csproj">
-      <Project>{D53A6AC6-0799-4096-8706-88075C600CD9}</Project>
-      <Name>Mission.Model</Name>
+    <ProjectReference Include="..\Missio.ExternalDatabase\Missio.ExternalDatabase.csproj">
+      <Project>{24468A3E-8D60-4524-81DB-6371705A117F}</Project>
+      <Name>Missio.ExternalDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Missio.LocalDatabase\Missio.LocalDatabase.csproj">
+      <Project>{86ED73DC-F6DA-4BAF-90AA-C230C6741E02}</Project>
+      <Name>Missio.LocalDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Missio.LogIn\Missio.LogIn.csproj">
+      <Project>{4DD1EF16-36F3-443C-9116-6B980584BE04}</Project>
+      <Name>Missio.LogIn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Missio.Navigation\Missio.Navigation.csproj">
+      <Project>{1EF28F5B-A94A-483E-A621-C79BDD191BD2}</Project>
+      <Name>Missio.Navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Missio.NewsFeed\Missio.NewsFeed.csproj">
+      <Project>{9DFCA398-6844-4CE5-A5FE-A9128F5A160D}</Project>
+      <Name>Missio.NewsFeed</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Missio.Registration\Missio.Registration.csproj">
+      <Project>{FE4F486E-DEF1-48EA-AFE6-573CB1437ECC}</Project>
+      <Name>Missio.Registration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Missio.User\Missio.User.csproj">
+      <Project>{08617C3E-0528-45B0-BA48-884F637C6089}</Project>
+      <Name>Missio.User</Name>
     </ProjectReference>
     <ProjectReference Include="..\Missio\Missio.Android\Missio.Android.csproj">
       <Project>{f8802880-468a-4cc1-be77-3f666123639a}</Project>
@@ -115,6 +137,10 @@
     <ProjectReference Include="..\Missio\Missio\Missio.csproj">
       <Project>{6F9D2CEB-144A-40C2-AEC3-117CB8700BB3}</Project>
       <Name>Missio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PostPublication\PostPublication.csproj">
+      <Project>{763A6D7F-8590-4F3E-9D1A-2454C989DC69}</Project>
+      <Name>PostPublication</Name>
     </ProjectReference>
     <ProjectReference Include="..\StringResources\StringResources.csproj">
       <Project>{BA270304-C3F4-42CB-9462-D1A961C38F18}</Project>

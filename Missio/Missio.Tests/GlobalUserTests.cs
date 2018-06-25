@@ -1,7 +1,6 @@
 ﻿using System;
-using Mission.Model.Data;
+using Missio.LogIn;
 using NUnit.Framework;
-using ViewModel;
 
 namespace Missio.Tests
 {
@@ -29,7 +28,7 @@ namespace Missio.Tests
         public void SetUser_GivenUser_SetsUser()
         {
             //Arrange
-            User user = new User("Some user ", "Pass");
+            User.User user = new User.User("Some user ", "Pass");
             //Act
             _globalUser.LoggedInUser = user;
             //Assert
@@ -42,7 +41,7 @@ namespace Missio.Tests
             //Arrange
             bool wasEventRaised = false;
             _globalUser.OnUserLoggedIn += () => wasEventRaised = true;
-            User user = new User("Some user ", "Pass");
+            User.User user = new User.User("Some user ", "Pass");
             //Act
             _globalUser.LoggedInUser = user;
             //Assert

@@ -1,7 +1,6 @@
-﻿using Mission.Model.Data;
-using Mission.Model.Exceptions;
-using Mission.Model.LocalServices;
-using Mission.Model.Services;
+﻿using Missio.LocalDatabase;
+using Missio.LogIn;
+using Missio.Registration;
 using NUnit.Framework;
 
 namespace Missio.Tests
@@ -20,14 +19,14 @@ namespace Missio.Tests
 
         private static object[] _incorrectUserNames =
         {
-            new User("Incorrect username 1", ""),
-            new User("Incorrect username 2", ""),
+            new User.User("Incorrect username 1", ""),
+            new User.User("Incorrect username 2", ""),
         };
 
         private static object[] _incorrectUserPasswords =
         {
-            new User(LocalUserDatabase.ValidUsers[0].UserName, "Invalid pass"),
-            new User(LocalUserDatabase.ValidUsers[1].UserName, "Invalid pass"),
+            new User.User(LocalUserDatabase.ValidUsers[0].UserName, "Invalid pass"),
+            new User.User(LocalUserDatabase.ValidUsers[1].UserName, "Invalid pass"),
         };
 
         [SetUp]
@@ -38,7 +37,7 @@ namespace Missio.Tests
 
         [Test]
         [TestCaseSource(nameof(_incorrectUserNames))]
-        public void ValidateUser_IncorrectUserName_ThrowsException(User incorrectUser)
+        public void ValidateUser_IncorrectUserName_ThrowsException(User.User incorrectUser)
         {
             //Arrange
             
@@ -48,7 +47,7 @@ namespace Missio.Tests
 
         [Test]
         [TestCaseSource(nameof(_incorrectUserPasswords))]
-        public void ValidateUser_IncorrectPassword_ThrowsException(User incorrectUser)
+        public void ValidateUser_IncorrectPassword_ThrowsException(User.User incorrectUser)
         {
             //Arrange
 

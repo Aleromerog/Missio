@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Mission.Model.Data;
-using Mission.Model.LocalServices;
-using Mission.Model.Services;
+using Missio.LocalDatabase;
+using Missio.LogIn;
+using Missio.NewsFeed;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -37,7 +37,7 @@ namespace Missio.Tests
         public void GetMostRecentPostsInOrder_NonExistingUser_ReturnsEmptyList()
         {
             //Arrange
-            _fakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
+            _fakeGetLoggedInUser.LoggedInUser.Returns(new User.User("", ""));
             //Act
             var posts = _localNewsFeedPostDatabase.GetMostRecentPostsInOrder();
             //Assert

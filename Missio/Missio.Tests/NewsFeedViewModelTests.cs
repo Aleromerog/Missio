@@ -1,8 +1,10 @@
 ﻿using System;
-using Mission.Model.Services;
+using System.Collections.Generic;
+using Missio.LogIn;
+using Missio.Navigation;
+using Missio.NewsFeed;
 using NSubstitute;
 using NUnit.Framework;
-using ViewModel;
 
 namespace Missio.Tests
 {
@@ -10,37 +12,17 @@ namespace Missio.Tests
     public class NewsFeedViewModelTests
     {
         private NewsFeedViewModel _newsFeedViewModel;
-        private INewsFeedPostsUpdater _newsFeedPostsUpdater;
+        private IGetMostRecentPosts _fakeGetMostRecentPosts;
         private IOnUserLoggedIn _onUserLoggedIn;
         private IGoToView _goToView;
 
         [SetUp]
         public void SetUp()
         {
-            _newsFeedPostsUpdater = Substitute.For<INewsFeedPostsUpdater>();
+            _fakeGetMostRecentPosts = Substitute.For<IGetMostRecentPosts>();
             _onUserLoggedIn = Substitute.For<IOnUserLoggedIn>();
             _goToView = Substitute.For<IGoToView>();
-            _newsFeedViewModel = new NewsFeedViewModel(_newsFeedPostsUpdater, _onUserLoggedIn, _goToView);
-        }
-
-        [Test]
-        public void OnUserLoggedIn_GivenUser_UpdatesPosts()
-        {
-            //Arrange
-            //Act
-            _onUserLoggedIn.OnUserLoggedIn += Raise.Event<Action>();
-            //Assert
-            _newsFeedPostsUpdater.Received(1).UpdatePosts(_newsFeedViewModel.Posts);
-        }
-
-        [Test]
-        public void UpdatePosts_GivenPosts_UpdatesPosts()
-        {
-            //Arrange
-            //Act
-            _newsFeedViewModel.UpdatePosts();
-            //Assert
-            _newsFeedPostsUpdater.Received(1).UpdatePosts(_newsFeedViewModel.Posts);
+            _newsFeedViewModel = new NewsFeedViewModel(_fakeGetMostRecentPosts, _onUserLoggedIn, _goToView);
         }
 
         [Test]
@@ -63,6 +45,18 @@ namespace Missio.Tests
             _newsFeedViewModel.GoToPublicationPageCommand.Execute(null);
             //Assert
             _goToView.Received(1).GoToView("Publication page");
+        }
+
+        [Test]
+        [TestCaseSource(typeof(ExtraNewsFeedPosts), nameof(ExtraNewsFeedPosts.ExtraPosts))]
+        public void OnUserLoggedIn_UserLoggedIn_UpdatesPosts(List<NewsFeedPost> postsToAdd)
+        {
+            //Arrange
+            _fakeGetMostRecentPosts.GetMostRecentPostsInOrder().Returns(postsToAdd);
+            //Act
+            _onUserLoggedIn.OnUserLoggedIn += Raise.Event<Action>();
+            //Assert
+            Assert.That(_newsFeedViewModel.Posts, Is.EquivalentTo(postsToAdd));
+        }
     }
-}
 }

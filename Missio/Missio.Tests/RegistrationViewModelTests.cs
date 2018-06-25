@@ -1,9 +1,8 @@
-﻿using Mission.Model.Exceptions;
-using Mission.Model.Services;
+﻿using Missio.Navigation;
+using Missio.Registration;
 using NSubstitute;
 using NUnit.Framework;
 using StringResources;
-using ViewModel;
 
 namespace Missio.Tests
 {

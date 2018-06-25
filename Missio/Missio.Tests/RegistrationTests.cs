@@ -1,5 +1,4 @@
-﻿using Mission.Model.Data;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using StringResources;
 using Xamarin.UITest;
 
@@ -88,7 +87,7 @@ namespace Missio.Tests
             _app.Tap(c => c.Text(AppResources.Ok));
             _app.WaitForElement(c => c.Marked("LogInPage"));
             //Act
-            _app.LogInWithUser(new User("Some username", "Some password"));
+            _app.LogInWithUser(new User.User("Some username", "Some password"));
             //Assert
             _app.WaitForElement(c => c.Marked("NewsFeedPage"));
         }
