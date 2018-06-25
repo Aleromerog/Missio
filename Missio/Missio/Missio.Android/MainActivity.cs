@@ -4,7 +4,7 @@ using Android.OS;
 
 namespace Missio.Droid
 {
-    [Activity(Label = "Missio", Icon = "@drawable/icon", Theme = "@style/MainTheme",MainLauncher = true,
+    [Activity(Label = "Missio", Icon = "@drawable/ic_logo", Theme = "@style/MainTheme",MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
