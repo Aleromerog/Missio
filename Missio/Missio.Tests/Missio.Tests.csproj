@@ -83,7 +83,7 @@
     <Compile Include="ExtraNewsFeedPosts.cs" />
     <Compile Include="ExternalDatabaseTests.cs" />
     <Compile Include="GlobalUserTests.cs" />
-    <Compile Include="IAppExtensionMethods.cs" />
+    <Compile Include="AppInterfaceExtensionMethods.cs" />
     <Compile Include="LocalNewsFeedPostProviderTests.cs" />
     <Compile Include="LocalUserDatabaseTests.cs" />
     <Compile Include="LoginTests.cs" />
