@@ -56,7 +56,7 @@ namespace Missio
     {
         /// <inheritdoc />
         public override void Load()
-      {
+        {
             Bind<RegistrationViewModel>().ToSelf().InSingletonScope();
             Bind<Page>().To<RegistrationPage>().InSingletonScope();
         }

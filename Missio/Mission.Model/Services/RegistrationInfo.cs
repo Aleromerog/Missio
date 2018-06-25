@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Mission.Model.Exceptions;
-using StringResources;
 
 namespace Mission.Model.Services
 {
