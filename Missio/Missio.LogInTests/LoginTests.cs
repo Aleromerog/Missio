@@ -1,8 +1,10 @@
-﻿using NUnit.Framework;
+﻿using Missio.Tests;
+using Missio.UserTests;
+using NUnit.Framework;
 using StringResources;
 using Xamarin.UITest;
 
-namespace Missio.Tests
+namespace Missio.LogInTests
 {
     [TestFixture(Platform.Android)]
     [TestFixture(Platform.iOS)]

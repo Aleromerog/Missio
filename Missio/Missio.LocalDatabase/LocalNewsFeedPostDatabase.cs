@@ -2,7 +2,7 @@
 using System.Linq;
 using Missio.LogIn;
 using Missio.NewsFeed;
-using PostPublication;
+using Missio.PostPublication;
 
 namespace Missio.LocalDatabase
 {

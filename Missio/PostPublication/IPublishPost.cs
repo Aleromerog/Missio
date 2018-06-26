@@ -1,6 +1,6 @@
 ﻿using Missio.NewsFeed;
 
-namespace PostPublication
+namespace Missio.PostPublication
 {
     public interface IPublishPost
     {

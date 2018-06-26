@@ -1,10 +1,11 @@
-﻿using Missio.Navigation;
+﻿using Missio.LocalDatabaseTests;
+using Missio.Navigation;
 using Missio.Registration;
 using NSubstitute;
 using NUnit.Framework;
 using StringResources;
 
-namespace Missio.Tests
+namespace Missio.RegistrationTests
 {
     [TestFixture]
     public class RegistrationViewModelTests

@@ -4,13 +4,13 @@ using Missio.LogIn;
 using Missio.LogInRes;
 using Missio.Navigation;
 using Missio.NewsFeed;
+using Missio.PostPublication;
 using Missio.Registration;
 using Missio.User;
+using Mission.ViewModel;
 using Ninject;
 using Xamarin.Forms;
 using Ninject.Modules;
-using PostPublication;
-using ViewModel;
 
 namespace Missio
 {
@@ -22,7 +22,9 @@ namespace Missio
 	    {
 	        var kernel = new StandardKernel(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new ApplicationNavigation());
             InitializeComponent();
-	        kernel.Get<Navigation.ApplicationNavigation>().StartFromPage(kernel.Get<NewLoginPage>());
+            var appNavigation = kernel.Get<Navigation.ApplicationNavigation>();
+            appNavigation.Pages = kernel.Get<ApplicationPages>();
+            appNavigation.StartFromPage(kernel.Get<LogInPage>());
 
         }
 

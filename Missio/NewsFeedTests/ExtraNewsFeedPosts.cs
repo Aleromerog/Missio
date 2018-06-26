@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Missio.NewsFeed;
 
-namespace Missio.Tests
+namespace Missio.NewsFeedTests
 {
     public class ExtraNewsFeedPosts
     {

@@ -2,7 +2,7 @@
 using Missio.Registration;
 using NUnit.Framework;
 
-namespace Missio.Tests
+namespace Missio.RegistrationTests
 {
     [TestFixture]
     public class RegistrationInfoTests

@@ -1,20 +1,13 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 using Xamarin.Forms;
 
 namespace Missio.Navigation
 {
     public class ApplicationNavigation : IGoToView, IGoToPage, IReturnToPreviousPage
     {
-        private static Page[] AvailableViews { get; set; }
+        public ApplicationPages Pages;
         private Page CurrentPage { get; set; }
-
-        public ApplicationNavigation([NotNull] Page[] availableViews)
-        {
-            AvailableViews = availableViews ?? throw new ArgumentNullException(nameof(availableViews));
-        }
 
         public void StartFromPage(Page page)
         {
@@ -37,7 +30,7 @@ namespace Missio.Navigation
         /// <inheritdoc />
         public Task GoToView(string viewTitle)
         {
-            return GoToPage(AvailableViews.First(x => x.Title == viewTitle));
+            return GoToPage(Pages.AvailableViews.First(x => x.Title == viewTitle));
         }
     }
 }

@@ -1,7 +1,8 @@
-﻿using NUnit.Framework;
+﻿using Missio.Tests;
+using NUnit.Framework;
 using Xamarin.UITest;
 
-namespace Missio.Tests
+namespace Missio.PostPublicationTests
 {
     [TestFixture(Platform.Android)]
     [TestFixture(Platform.iOS)]

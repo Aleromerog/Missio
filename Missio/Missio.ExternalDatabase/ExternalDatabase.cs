@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Missio.NewsFeed;
+using Missio.PostPublication;
 using Missio.Registration;
 using Missio.User;
-using PostPublication;
 
 namespace Missio.ExternalDatabase
 {
@@ -39,10 +39,5 @@ namespace Missio.ExternalDatabase
         public void PublishPost(NewsFeedPost post)
         {
         }
-    }
-
-    public interface IGetChildQuery
-    {
-        //ChildQuery Child(string resourceName);
     }
 }

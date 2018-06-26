@@ -2,10 +2,11 @@
 using Missio.LocalDatabase;
 using Missio.LogIn;
 using Missio.NewsFeed;
+using Missio.NewsFeedTests;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Missio.Tests
+namespace Missio.LocalDatabaseTests
 {
     [TestFixture]
     public class LocalNewsFeedPostProviderTests

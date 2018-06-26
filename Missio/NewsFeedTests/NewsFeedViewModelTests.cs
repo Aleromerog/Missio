@@ -6,7 +6,7 @@ using Missio.NewsFeed;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Missio.Tests
+namespace Missio.NewsFeedTests
 {
     [TestFixture]
     public class NewsFeedViewModelTests

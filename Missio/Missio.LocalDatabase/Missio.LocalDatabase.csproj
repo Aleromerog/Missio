@@ -9,7 +9,7 @@
     <ProjectReference Include="..\Missio.NewsFeed\Missio.NewsFeed.csproj" />
     <ProjectReference Include="..\Missio.Registration\Missio.Registration.csproj" />
     <ProjectReference Include="..\Missio.User\Missio.User.csproj" />
-    <ProjectReference Include="..\PostPublication\PostPublication.csproj" />
+    <ProjectReference Include="..\PostPublication\Missio.PostPublication.csproj" />
   </ItemGroup>
 
 </Project>

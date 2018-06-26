@@ -16,14 +16,14 @@ namespace Missio.LogIn
         public string UserName
         {
             get => User.UserName ?? "";
-            set => User = new User.User(value, User.Password);
+            set => User = value == null ? new User.User("", User.Password) : new User.User(value, User.Password);
         }
 
         [UsedImplicitly]
         public string Password
         {
             get => User.Password ?? "";
-            set => User = new User.User(User.UserName, value);
+            set => User = value == null ? new User.User(User.UserName, "") : new User.User(User.UserName, value);
         }
 
         [UsedImplicitly]

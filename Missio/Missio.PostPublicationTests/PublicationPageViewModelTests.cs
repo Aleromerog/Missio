@@ -1,11 +1,11 @@
 ﻿using Missio.LogIn;
 using Missio.Navigation;
 using Missio.NewsFeed;
+using Missio.PostPublication;
 using NSubstitute;
 using NUnit.Framework;
-using PostPublication;
 
-namespace Missio.Tests
+namespace Missio.PostPublicationTests
 {
     [TestFixture]
     public class PublicationPageViewModelTests

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using Missio.LocalDatabase;
+using Missio.Tests;
 using NUnit.Framework;
 using Xamarin.UITest;
 
-namespace Missio.Tests
+namespace Missio.NewsFeedTests
 {
     [TestFixture(Platform.Android)]
     [TestFixture(Platform.iOS)]

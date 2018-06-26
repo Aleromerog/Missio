@@ -5,11 +5,12 @@ using System.Windows.Input;
 using JetBrains.Annotations;
 using Missio.LogIn;
 using Missio.Navigation;
+using Mission.ViewModel;
 using Xamarin.Forms;
 
 namespace Missio.NewsFeed
 {
-    public class NewsFeedViewModel : ViewModel.ViewModel, IUpdateViewPosts
+    public class NewsFeedViewModel : ViewModel, IUpdateViewPosts
     {
         [UsedImplicitly]
         public string Title { get; } = "News feed page";

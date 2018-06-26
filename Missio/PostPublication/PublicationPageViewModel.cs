@@ -7,7 +7,7 @@ using Missio.Navigation;
 using Missio.NewsFeed;
 using Xamarin.Forms;
 
-namespace PostPublication
+namespace Missio.PostPublication
 {
     public class PublicationPageViewModel
     {

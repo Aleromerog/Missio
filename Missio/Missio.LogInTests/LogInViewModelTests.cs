@@ -4,7 +4,7 @@ using Missio.User;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Missio.Tests
+namespace Missio.LogInTests
 {
     [TestFixture]
     public class LogInViewModelTests
@@ -31,6 +31,28 @@ namespace Missio.Tests
         {
             //Assert
             Assert.IsEmpty(_logInViewModel.UserName);
+            Assert.IsEmpty(_logInViewModel.Password);
+        }
+
+        [Test]
+        public void UserNameSetter_ValueIsNull_IsSetToEmptyString()
+        {
+            //Arrange
+
+            //Act
+            _logInViewModel.UserName = null;
+            //Assert
+            Assert.IsEmpty(_logInViewModel.UserName);
+        }
+
+        [Test]
+        public void PasswordSetter_ValueIsNull_IsSetToEmptyString()
+        {
+            //Arrange
+
+            //Act
+            _logInViewModel.Password = null;
+            //Assert
             Assert.IsEmpty(_logInViewModel.Password);
         }
 

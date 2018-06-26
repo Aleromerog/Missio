@@ -1,17 +1,14 @@
-﻿using Missio.ExternalDatabase;
-using Missio.LocalDatabase;
+﻿using Missio.LocalDatabase;
 using Missio.LogIn;
 using Missio.Registration;
-using NSubstitute;
 using NUnit.Framework;
 
-namespace Missio.Tests
+namespace Missio.LocalDatabaseTests
 {
     [TestFixture]
-    public class ExternalDatabaseTests
+    public class LocalUserDatabaseTests
     {
-        private ExternalDatabase.ExternalDatabase _externalDatabase;
-        private IGetChildQuery _fakeGetChildQuery;
+        private LocalUserDatabase _localUserDatabase;
 
         private static object[] _incorrectUserNames =
         {
@@ -28,8 +25,7 @@ namespace Missio.Tests
         [SetUp]
         public void SetUp()
         {
-            _fakeGetChildQuery = Substitute.For<IGetChildQuery>();
-            _externalDatabase = new ExternalDatabase.ExternalDatabase(_fakeGetChildQuery);
+            _localUserDatabase = new LocalUserDatabase();
         }
 
         [Test]
@@ -39,7 +35,7 @@ namespace Missio.Tests
             //Arrange
             
             //Act and assert
-            Assert.Throws<InvalidUserNameException>(() => _externalDatabase.ValidateUser(incorrectUser));
+            Assert.Throws<InvalidUserNameException>(() => _localUserDatabase.ValidateUser(incorrectUser));
         }
 
         [Test]
@@ -49,7 +45,7 @@ namespace Missio.Tests
             //Arrange
 
             //Act and assert
-            Assert.Throws<InvalidPasswordException>(() => _externalDatabase.ValidateUser(incorrectUser));
+            Assert.Throws<InvalidPasswordException>(() => _localUserDatabase.ValidateUser(incorrectUser));
         }
 
         [Test]
@@ -61,7 +57,7 @@ namespace Missio.Tests
             //Arrange
             
             //Act
-            var result = _externalDatabase.DoesUserExist(userName);
+            var result = _localUserDatabase.DoesUserExist(userName);
             //Assert
             Assert.AreEqual(doesUserExist, result);
         }
@@ -74,9 +70,24 @@ namespace Missio.Tests
             //Arrange
             
             //Act
-            _externalDatabase.RegisterUser(new RegistrationInfo(userName, password, email));
+            _localUserDatabase.RegisterUser(new RegistrationInfo(userName, password, email));
             //Assert
-            Assert.IsTrue(_externalDatabase.DoesUserExist(userName));
+            Assert.IsTrue(_localUserDatabase.DoesUserExist(userName));
+        }
+
+        [Test]
+        [TestCaseSource(typeof(UserNamesAlreadyInUse), nameof(UserNamesAlreadyInUse.NamesAlreadyInUse))]
+        public void RegisterUser_UserNameAlreadyInUse_ThrowsException(string userName)
+        {
+            //Act and assert
+            Assert.Throws<UserNameAlreadyInUseException>(() => _localUserDatabase.RegisterUser(new RegistrationInfo(userName, "hello world", "")));
+        }
+
+        [Test]
+        public void RegisterUser_RegistrationInfoContainsExceptions_ThrowsExceptions()
+        {
+            //Act and assert
+            Assert.Throws<UserNameTooShortException>(() => _localUserDatabase.RegisterUser(new RegistrationInfo("", "hello there", "")));
         }
     }
 }

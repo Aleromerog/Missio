@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Missio.LocalDatabase;
 
-namespace Missio.Tests
+namespace Missio.UserTests
 {
     public static class UserTestUtils
     {

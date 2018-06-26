@@ -2,7 +2,7 @@
 using Missio.LogIn;
 using NUnit.Framework;
 
-namespace Missio.Tests
+namespace Missio.LogInTests
 {
     public class GlobalUserTests
     {
