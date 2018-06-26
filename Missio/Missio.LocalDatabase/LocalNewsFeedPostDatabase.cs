@@ -3,6 +3,7 @@ using System.Linq;
 using Missio.LogIn;
 using Missio.NewsFeed;
 using Missio.PostPublication;
+using Missio.Users;
 
 namespace Missio.LocalDatabase
 {
@@ -16,8 +17,8 @@ namespace Missio.LocalDatabase
         /// <summary>
         /// Maps users to collections of news feed posts that should be displayed to them (different users see different posts)
         /// </summary>
-        private static readonly Dictionary<User.User, List<NewsFeedPost>> UsersNewsFeedPosts =
-            new Dictionary<User.User, List<NewsFeedPost>>
+        private static readonly Dictionary<User, List<NewsFeedPost>> UsersNewsFeedPosts =
+            new Dictionary<User, List<NewsFeedPost>>
             {
                 {
                     LocalUserDatabase.ValidUsers[0],
@@ -49,7 +50,7 @@ namespace Missio.LocalDatabase
         /// </summary>
         /// <param name="user"> The user logged in </param>
         /// <returns> A list of strings containing the contents of the posts </returns>
-        public static List<string> GetMostRecentPostsAsStrings(User.User user)
+        public static List<string> GetMostRecentPostsAsStrings(User user)
         {
             var posts = UsersNewsFeedPosts[user].Where(x => x is IMessage).Cast<IMessage>();
             var contents = new List<string>();

@@ -85,13 +85,13 @@
       <Project>{8C25431E-66AF-4B55-8169-D76461975667}</Project>
       <Name>Missio.Tests</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Missio.UserTests\Missio.UserTests.csproj">
+    <ProjectReference Include="..\Missio.UsersTests\Missio.UsersTests.csproj">
       <Project>{0987CEAA-DFEC-4F26-BD75-F42E602165E2}</Project>
-      <Name>Missio.UserTests</Name>
+      <Name>Missio.UsersTests</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Missio.User\Missio.User.csproj">
-      <Project>{08617C3E-0528-45B0-BA48-884F637C6089}</Project>
-      <Name>Missio.User</Name>
+    <ProjectReference Include="..\Missio.Users\Missio.Users.csproj">
+      <Project>{5FF0747B-B2A7-4FEC-BA86-E14E3E6F39EF}</Project>
+      <Name>Missio.Users</Name>
     </ProjectReference>
     <ProjectReference Include="..\StringResources\StringResources.csproj">
       <Project>{BA270304-C3F4-42CB-9462-D1A961C38F18}</Project>

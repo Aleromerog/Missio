@@ -1,5 +1,6 @@
 ﻿using System;
 using Missio.LogIn;
+using Missio.Users;
 using NUnit.Framework;
 
 namespace Missio.LogInTests
@@ -28,7 +29,7 @@ namespace Missio.LogInTests
         public void SetUser_GivenUser_SetsUser()
         {
             //Arrange
-            var user = new User.User("Some user ", "Pass");
+            var user = new User("Some user ", "Pass");
             //Act
             _globalUser.LoggedInUser = user;
             //Assert
@@ -41,7 +42,7 @@ namespace Missio.LogInTests
             //Arrange
             var wasEventRaised = false;
             _globalUser.OnUserLoggedIn += () => wasEventRaised = true;
-            var user = new User.User("Some user ", "Pass");
+            var user = new User("Some user ", "Pass");
             //Act
             _globalUser.LoggedInUser = user;
             //Assert

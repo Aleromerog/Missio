@@ -1,5 +1,6 @@
 ﻿using System;
 using Missio.LocalDatabase;
+using Missio.Users;
 using Xamarin.UITest;
 
 namespace Missio.Tests
@@ -25,7 +26,7 @@ namespace Missio.Tests
         /// </summary>
         /// <param name="app"> The app to login onto </param>
         /// <param name="user"> The user information </param>
-        public static void LogInWithUser(this IApp app, User.User user)
+        public static void LogInWithUser(this IApp app, User user)
         {
             app.EnterText(c => c.Marked("UserNameEntry"), user.UserName);
             app.EnterText(c => c.Marked("PasswordEntry"), user.Password);

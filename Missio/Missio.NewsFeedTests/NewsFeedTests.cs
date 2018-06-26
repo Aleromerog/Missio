@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Missio.LocalDatabase;
 using Missio.Tests;
+using Missio.Users;
 using NUnit.Framework;
 using Xamarin.UITest;
 
@@ -38,7 +39,7 @@ namespace Missio.NewsFeedTests
 
         [Test]
         [TestCaseSource(nameof(GetOnAppearTestData))]
-        public void OnAppear_GivenNewsFeedPosts_DisplaysPosts(User.User user, List<string> expectedPosts)
+        public void OnAppear_GivenNewsFeedPosts_DisplaysPosts(User user, List<string> expectedPosts)
         {
             //Arrange and act
             _app.LogInWithUser(user);

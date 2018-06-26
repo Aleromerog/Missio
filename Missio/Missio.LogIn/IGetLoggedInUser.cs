@@ -1,7 +1,9 @@
-﻿namespace Missio.LogIn
+﻿using Missio.Users;
+
+namespace Missio.LogIn
 {
     public interface IGetLoggedInUser
     {
-        User.User LoggedInUser { get; }
+        User LoggedInUser { get; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Missio.LocalDatabase;
 using Missio.LogIn;
 using Missio.Registration;
+using Missio.Users;
 using NUnit.Framework;
 
 namespace Missio.LocalDatabaseTests
@@ -12,14 +13,14 @@ namespace Missio.LocalDatabaseTests
 
         private static object[] _incorrectUserNames =
         {
-            new User.User("Incorrect username 1", ""),
-            new User.User("Incorrect username 2", ""),
+            new User("Incorrect username 1", ""),
+            new User("Incorrect username 2", ""),
         };
 
         private static object[] _incorrectUserPasswords =
         {
-            new User.User(LocalUserDatabase.ValidUsers[0].UserName, "Invalid pass"),
-            new User.User(LocalUserDatabase.ValidUsers[1].UserName, "Invalid pass"),
+            new User(LocalUserDatabase.ValidUsers[0].UserName, "Invalid pass"),
+            new User(LocalUserDatabase.ValidUsers[1].UserName, "Invalid pass"),
         };
 
         [SetUp]
@@ -30,7 +31,7 @@ namespace Missio.LocalDatabaseTests
 
         [Test]
         [TestCaseSource(nameof(_incorrectUserNames))]
-        public void ValidateUser_IncorrectUserName_ThrowsException(User.User incorrectUser)
+        public void ValidateUser_IncorrectUserName_ThrowsException(User incorrectUser)
         {
             //Arrange
             
@@ -40,7 +41,7 @@ namespace Missio.LocalDatabaseTests
 
         [Test]
         [TestCaseSource(nameof(_incorrectUserPasswords))]
-        public void ValidateUser_IncorrectPassword_ThrowsException(User.User incorrectUser)
+        public void ValidateUser_IncorrectPassword_ThrowsException(User incorrectUser)
         {
             //Arrange
 

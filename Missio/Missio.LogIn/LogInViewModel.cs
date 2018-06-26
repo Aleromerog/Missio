@@ -3,27 +3,27 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
 using Missio.Navigation;
-using Missio.User;
+using Missio.Users;
 using Xamarin.Forms;
 
 namespace Missio.LogIn
 {
     public class LogInViewModel
     {
-        public User.User User { get; set; }
+        public User User { get; set; }
 
         [UsedImplicitly]
         public string UserName
         {
             get => User.UserName ?? "";
-            set => User = value == null ? new User.User("", User.Password) : new User.User(value, User.Password);
+            set => User = value == null ? new User("", User.Password) : new User(value, User.Password);
         }
 
         [UsedImplicitly]
         public string Password
         {
             get => User.Password ?? "";
-            set => User = value == null ? new User.User(User.UserName, "") : new User.User(User.UserName, value);
+            set => User = value == null ? new User(User.UserName, "") : new User(User.UserName, value);
         }
 
         [UsedImplicitly]
@@ -44,7 +44,7 @@ namespace Missio.LogIn
             _userValidator = userValidator ?? throw new ArgumentNullException(nameof(userValidator));
             _alertDisplay = alertDisplay ?? throw new ArgumentNullException(nameof(alertDisplay));
             _setLoggedInUser = setLoggedInUser ?? throw new ArgumentNullException(nameof(setLoggedInUser));
-            User = new User.User("", "");
+            User = new User("", "");
             GoToRegistrationPageCommand = new Command(() => goToView.GoToView("Registration page"));
             LogInCommand = new Command(async() => await LogIn());
         }

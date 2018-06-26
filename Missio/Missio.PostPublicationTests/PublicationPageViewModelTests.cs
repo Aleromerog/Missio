@@ -2,6 +2,7 @@
 using Missio.Navigation;
 using Missio.NewsFeed;
 using Missio.PostPublication;
+using Missio.Users;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -30,7 +31,7 @@ namespace Missio.PostPublicationTests
         public void PublishPost_TextOnly_UpdatesPostsView()
         {
             //Arrange
-            _fakeGetLoggedInUser.LoggedInUser.Returns(new User.User("", ""));
+            _fakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
             //Act
             _publicationPageViewModel.PublishPostCommand.Execute(null);
             //Assert
@@ -41,7 +42,7 @@ namespace Missio.PostPublicationTests
         public void PublishPost_TextOnly_ReturnsToNewsFeed()
         {
             //Arrange
-            _fakeGetLoggedInUser.LoggedInUser.Returns(new User.User("", ""));
+            _fakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
             //Act
             _publicationPageViewModel.PublishPostCommand.Execute(null);
             //Assert
@@ -54,7 +55,7 @@ namespace Missio.PostPublicationTests
             //Arrange
             var authorName = "Name of the author";
             var newPostText = "The content of the new post";
-            _fakeGetLoggedInUser.LoggedInUser.Returns(new User.User(authorName, ""));
+            _fakeGetLoggedInUser.LoggedInUser.Returns(new User(authorName, ""));
             _publicationPageViewModel.PostText = newPostText;
             //Act
             _publicationPageViewModel.PublishPostCommand.Execute(null);

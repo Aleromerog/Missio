@@ -1,4 +1,5 @@
 ﻿using Missio.Tests;
+using Missio.Users;
 using NUnit.Framework;
 using StringResources;
 using Xamarin.UITest;
@@ -88,7 +89,7 @@ namespace Missio.RegistrationTests
             _app.Tap(c => c.Text(AppResources.Ok));
             _app.WaitForElement(c => c.Marked("LogInPage"));
             //Act
-            _app.LogInWithUser(new User.User("Some username", "Some password"));
+            _app.LogInWithUser(new User("Some username", "Some password"));
             //Assert
             _app.WaitForElement(c => c.Marked("NewsFeedPage"));
         }

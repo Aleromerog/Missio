@@ -1,6 +1,6 @@
 ﻿using Missio.LogIn;
 using Missio.Navigation;
-using Missio.User;
+using Missio.Users;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -71,7 +71,7 @@ namespace Missio.LogInTests
         public void LogInCommand_ValidUser_SetsLoggedInUserAndGoesToNextPage()
         {
             //Arrange
-            var user = new User.User("Someone", "");
+            var user = new User("Someone", "");
             _logInViewModel.User = user;
             //Act
             _logInViewModel.LogInCommand.Execute(null);
@@ -85,7 +85,7 @@ namespace Missio.LogInTests
         public void AttemptToLogin_InvalidPassword_DisplaysAlert()
         {
             //Arrange
-            var user = new User.User("Someone", "");
+            var user = new User("Someone", "");
             _logInViewModel.User = user;
             _fakeUserValidator.When(x => x.ValidateUser(user)).Throw<InvalidPasswordException>();
             //Act
@@ -97,7 +97,7 @@ namespace Missio.LogInTests
         [Test]
         public void AttemptToLogin_InvalidUserName_DisplaysAlert()
         {
-            var user = new User.User("Someone", "");
+            var user = new User("Someone", "");
             _logInViewModel.User = user;
             _fakeUserValidator.When(x => x.ValidateUser(user)).Throw<InvalidUserNameException>();
             //Act

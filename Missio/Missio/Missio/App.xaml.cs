@@ -6,7 +6,7 @@ using Missio.Navigation;
 using Missio.NewsFeed;
 using Missio.PostPublication;
 using Missio.Registration;
-using Missio.User;
+using Missio.Users;
 using Mission.ViewModel;
 using Ninject;
 using Xamarin.Forms;

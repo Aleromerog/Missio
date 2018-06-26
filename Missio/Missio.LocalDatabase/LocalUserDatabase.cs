@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Missio.LogIn;
 using Missio.Registration;
-using Missio.User;
+using Missio.Users;
 
 namespace Missio.LocalDatabase
 {
@@ -13,16 +13,16 @@ namespace Missio.LocalDatabase
         /// <summary>
         /// A list of users that are guaranteed to exist, useful for testing purposes
         /// </summary>
-        public static readonly List<User.User> ValidUsers =
-            new List<User.User> {new User.User("Jorge Romero", "Yolo"), new User.User("Francisco Greco", "ElPass") };
+        public static readonly List<User> ValidUsers =
+            new List<User> {new User("Jorge Romero", "Yolo"), new User("Francisco Greco", "ElPass") };
 
         /// <summary>
         /// A list of users that are guaranteed to not exist, useful for testing purposes
         /// </summary>
-        public static readonly List<User.User> InvalidUsers = new List<User.User>()
+        public static readonly List<User> InvalidUsers = new List<User>()
         {
-            new User.User("Invalid user", ""),
-            new User.User("Invalid user 2", "")
+            new User("Invalid user", ""),
+            new User("Invalid user 2", "")
         };
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Missio.LocalDatabase
         /// </summary>
         /// <param name="users">The list to cast</param>
         /// <returns> An array of objects with the users information </returns>
-        public static object[] GetListOfUsersInTestForm(List<User.User> users)
+        public static object[] GetListOfUsersInTestForm(List<User> users)
         {
             var testData = new object[users.Count];
             for (var i = 0; i < users.Count; i++)
@@ -41,7 +41,7 @@ namespace Missio.LocalDatabase
         }
 
         /// <inheritdoc />
-        public void ValidateUser(User.User user)
+        public void ValidateUser(User user)
         {
             if (!ValidUsers.Exists(x => x.UserName == user.UserName))
                 throw new InvalidUserNameException();
@@ -64,7 +64,7 @@ namespace Missio.LocalDatabase
             registrationInfo.ThrowExceptionIfStateIsInvalid();
             if(DoesUserExist(registrationInfo.UserName))
                 throw new UserNameAlreadyInUseException();
-            ValidUsers.Add(new User.User(registrationInfo.UserName, registrationInfo.Password));
+            ValidUsers.Add(new User(registrationInfo.UserName, registrationInfo.Password));
         }
     }
 }

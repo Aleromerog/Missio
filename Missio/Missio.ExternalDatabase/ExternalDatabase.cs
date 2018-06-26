@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Missio.NewsFeed;
 using Missio.PostPublication;
 using Missio.Registration;
-using Missio.User;
+using Missio.Users;
 
 namespace Missio.ExternalDatabase
 {
@@ -16,7 +16,7 @@ namespace Missio.ExternalDatabase
             _getChildQuery = getChildQuery;
         }
 
-        public void ValidateUser(User.User user)
+        public void ValidateUser(User user)
         {
         }
 

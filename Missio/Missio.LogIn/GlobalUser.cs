@@ -1,4 +1,5 @@
 ﻿using System;
+using Missio.Users;
 
 namespace Missio.LogIn
 {
@@ -7,9 +8,9 @@ namespace Missio.LogIn
     /// </summary>
     public class GlobalUser : IGetLoggedInUser, ISetLoggedInUser, IOnUserLoggedIn
     {
-        private User.User _loggedInUser;
+        private User _loggedInUser;
 
-        public User.User LoggedInUser
+        public User LoggedInUser
         {
             get
             {
