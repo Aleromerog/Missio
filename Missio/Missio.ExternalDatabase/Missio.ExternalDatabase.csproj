@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.1" />
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.583944" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Missio.NewsFeed\Missio.NewsFeed.csproj" />
     <ProjectReference Include="..\Missio.Registration\Missio.Registration.csproj" />
     <ProjectReference Include="..\Missio.User\Missio.User.csproj" />

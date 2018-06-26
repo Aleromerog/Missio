@@ -29,6 +29,7 @@ namespace Missio.NewsFeedTests
         public void UpdatePosts_IsRefreshingSetToTrue_SetsIsRefreshingToFalse()
         {
             //Arrange
+            _fakeGetMostRecentPosts.GetMostRecentPostsInOrder().Returns(new List<NewsFeedPost>());
             _newsFeedViewModel.IsRefreshing = true;
             //Act
             _newsFeedViewModel.UpdatePosts();

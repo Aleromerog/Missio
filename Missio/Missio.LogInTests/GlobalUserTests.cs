@@ -28,7 +28,7 @@ namespace Missio.LogInTests
         public void SetUser_GivenUser_SetsUser()
         {
             //Arrange
-            User.User user = new User.User("Some user ", "Pass");
+            var user = new User.User("Some user ", "Pass");
             //Act
             _globalUser.LoggedInUser = user;
             //Assert
@@ -39,9 +39,9 @@ namespace Missio.LogInTests
         public void SetUser_GivenUser_FiresOnUserLoggedIn()
         {
             //Arrange
-            bool wasEventRaised = false;
+            var wasEventRaised = false;
             _globalUser.OnUserLoggedIn += () => wasEventRaised = true;
-            User.User user = new User.User("Some user ", "Pass");
+            var user = new User.User("Some user ", "Pass");
             //Act
             _globalUser.LoggedInUser = user;
             //Assert
