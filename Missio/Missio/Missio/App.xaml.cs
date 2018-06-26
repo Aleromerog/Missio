@@ -25,7 +25,6 @@ namespace Missio
             var appNavigation = kernel.Get<Navigation.ApplicationNavigation>();
             appNavigation.Pages = kernel.Get<ApplicationPages>();
             appNavigation.StartFromPage(kernel.Get<LogInPage>());
-
         }
 
         public static void AssertIsPreviewing()
