@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Missio.LocalDatabase;
 using Missio.LogIn;
 using Missio.LogInRes;
@@ -23,7 +24,7 @@ namespace Missio
 	        var kernel = new StandardKernel(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new ApplicationNavigation());
             InitializeComponent();
             var appNavigation = kernel.Get<Navigation.ApplicationNavigation>();
-            appNavigation.Pages = kernel.Get<Page[]>();
+            appNavigation.Pages = kernel.GetAll<Page>().ToArray();
             appNavigation.StartFromPage(kernel.Get<LogInPage>());
         }
 
