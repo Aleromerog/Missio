@@ -9,6 +9,7 @@ using NUnit.Framework;
 namespace Missio.ExternalDatabaseTests
 {
     [TestFixture]
+    [Ignore("Ignore until we implement azure functionality")]
     public class ExternalDatabaseTests
     {
         private ExternalDatabase.ExternalDatabase _externalDatabase;
