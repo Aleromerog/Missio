@@ -83,8 +83,7 @@ namespace Missio
         /// <inheritdoc />
         public override void Load()
         {
-            Bind<Navigation.ApplicationNavigation>().ToSelf().InSingletonScope();
-            Bind<IGoToPage, IGoToView, IReturnToPreviousPage>().To<Navigation.ApplicationNavigation>().InSingletonScope();
+            Bind<IGoToPage, IGoToView, IReturnToPreviousPage, Navigation.ApplicationNavigation>().To<Navigation.ApplicationNavigation>().InSingletonScope();
         }
     }
 
