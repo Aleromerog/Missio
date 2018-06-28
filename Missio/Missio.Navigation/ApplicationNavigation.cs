@@ -6,7 +6,7 @@ namespace Missio.Navigation
 {
     public class ApplicationNavigation : IGoToView, IGoToPage, IReturnToPreviousPage
     {
-        public ApplicationPages Pages;
+        public Page[] Pages;
         private Page CurrentPage { get; set; }
 
         public void StartFromPage(Page page)
@@ -30,7 +30,7 @@ namespace Missio.Navigation
         /// <inheritdoc />
         public Task GoToView(string viewTitle)
         {
-            return GoToPage(Pages.AvailableViews.First(x => x.Title == viewTitle));
+            return GoToPage(Pages.First(x => x.Title == viewTitle));
         }
     }
 }

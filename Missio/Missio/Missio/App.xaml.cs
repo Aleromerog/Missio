@@ -23,7 +23,7 @@ namespace Missio
 	        var kernel = new StandardKernel(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new ApplicationNavigation());
             InitializeComponent();
             var appNavigation = kernel.Get<Navigation.ApplicationNavigation>();
-            appNavigation.Pages = kernel.Get<ApplicationPages>();
+            appNavigation.Pages = kernel.Get<Page[]>();
             appNavigation.StartFromPage(kernel.Get<LogInPage>());
         }
 
