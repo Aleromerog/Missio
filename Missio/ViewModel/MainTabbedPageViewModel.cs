@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace ViewModel
+namespace Mission.ViewModel
 {
     public class MainTabbedPageViewModel
     {

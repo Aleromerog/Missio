@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace ViewModel
+namespace Mission.ViewModel
 {
     public class ViewModel : INotifyPropertyChanged
     {

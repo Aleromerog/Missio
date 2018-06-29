@@ -1,5 +1,5 @@
 ﻿using System;
-using ViewModel;
+using Missio.Registration;
 using Xamarin.Forms.Xaml;
 
 namespace Missio.LogInRes

@@ -1,6 +1,6 @@
 ﻿using System;
-using Mission.Model.Data;
-using Mission.Model.LocalServices;
+using Missio.LocalDatabase;
+using Missio.Users;
 using Xamarin.UITest;
 
 namespace Missio.Tests

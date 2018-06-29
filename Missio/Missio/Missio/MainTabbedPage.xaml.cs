@@ -1,6 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
-using ViewModel;
+using Mission.ViewModel;
 using Xamarin.Forms.Xaml;
 
 namespace Missio

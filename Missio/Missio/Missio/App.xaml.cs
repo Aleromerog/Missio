@@ -1,11 +1,17 @@
 ﻿using System;
+using System.Linq;
+using Missio.LocalDatabase;
+using Missio.LogIn;
 using Missio.LogInRes;
-using Mission.Model.LocalServices;
-using Mission.Model.Services;
+using Missio.Navigation;
+using Missio.NewsFeed;
+using Missio.PostPublication;
+using Missio.Registration;
+using Missio.Users;
+using Mission.ViewModel;
 using Ninject;
 using Xamarin.Forms;
 using Ninject.Modules;
-using ViewModel;
 
 namespace Missio
 {
@@ -15,10 +21,11 @@ namespace Missio
 
 	    public App()
 	    {
-	        var kernel = new StandardKernel(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new AppViewModule());
+	        var kernel = new StandardKernel(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new ApplicationNavigation());
             InitializeComponent();
-	        kernel.Get<AppViewModel>().StartFromPage(kernel.Get<NewLoginPage>());
-
+            var appNavigation = kernel.Get<Navigation.ApplicationNavigation>();
+            appNavigation.Pages = kernel.GetAll<Page>().ToArray();
+            appNavigation.StartFromPage(kernel.Get<LogInPage>());
         }
 
         public static void AssertIsPreviewing()
@@ -71,13 +78,12 @@ namespace Missio
         }
     } 
 
-    public class AppViewModule : NinjectModule
+    public class ApplicationNavigation : NinjectModule
     {
         /// <inheritdoc />
         public override void Load()
         {
-            Bind<AppViewModel>().ToSelf().InSingletonScope();
-            Bind<IGoToPage, IGoToView, IReturnToPreviousPage>().To<ApplicationNavigation>().InSingletonScope();
+            Bind<IGoToPage, IGoToView, IReturnToPreviousPage, Navigation.ApplicationNavigation>().To<Navigation.ApplicationNavigation>().InSingletonScope();
         }
     }
 
@@ -88,7 +94,6 @@ namespace Missio
 		{
 			Bind<IDisplayAlertOnCurrentPage>().To<DisplayAlertOnCurrentPage>().InSingletonScope();
 			Bind<IOnUserLoggedIn, IGetLoggedInUser, ISetLoggedInUser, GlobalUser>().To<GlobalUser>().InSingletonScope();
-            Bind<IAttemptToLogin>().To<AttemptToLogIn>().InSingletonScope();
         }
 	}
 
@@ -116,7 +121,6 @@ namespace Missio
 		/// <inheritdoc />
 		public override void Load()
 		{
-			Bind<AttemptToLogIn>().ToSelf().InSingletonScope();
             Bind<LogInViewModel>().ToSelf().InSingletonScope();
             Bind<Page>().To<LogInPage>().InSingletonScope();
 		}
@@ -130,7 +134,6 @@ namespace Missio
 #if USE_FAKE_DATA
             Bind<IGetMostRecentPosts, IPublishPost>().To<LocalNewsFeedPostDatabase>().InSingletonScope();
             Bind<IValidateUser, IDoesUserExist, IRegisterUser>().To<LocalUserDatabase>().InSingletonScope();
-            Bind<INewsFeedPostsUpdater>().To<NewsFeedPostsUpdater>().InSingletonScope();
 #else
             
 #endif
