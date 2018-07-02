@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using ButtonCircle.FormsPlugin.Droid;
 
 namespace Missio.Droid
 {
@@ -14,6 +15,7 @@ namespace Missio.Droid
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(bundle);
             Xamarin.Forms.Forms.Init(this, bundle);
+            ButtonCircleRenderer.Init();
             LoadApplication(new App());
         }
     }

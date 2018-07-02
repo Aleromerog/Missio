@@ -13,6 +13,7 @@
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.1" />
     <PackageReference Include="ThriveGmbH.BottomNavigationBar.XF" Version="1.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.583944" />
+    <PackageReference Include="Plugins.Forms.ButtonCircle" Version="2.0.2.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
@@ -36,6 +37,12 @@
     <ProjectReference Include="..\..\ViewModel\Mission.ViewModel.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Images\LogInBackground.png" />
+    <EmbeddedResource Include="Images\square.png" />
+    <EmbeddedResource Include="Images\logo.png" />
+    <EmbeddedResource Include="Images\LogInBackground2.png" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="CalendarPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -57,5 +64,14 @@
     <EmbeddedResource Update="PublicationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Images\LogInBackground.png" />
+    <None Remove="Images\square.png" />
+    <None Remove="Images\logo.png" />
+    <None Remove="Images\LoginBackground2.png" />
   </ItemGroup>
 </Project>

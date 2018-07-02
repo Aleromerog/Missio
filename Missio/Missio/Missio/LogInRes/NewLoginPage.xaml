@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              NavigationPage.HasNavigationBar="False"
-             x:Class="Missio.LogInRes.NewLoginPage">
+             x:Class="Missio.LogInRes.NewLoginPage"
+             xmlns:local="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions">
     <RelativeLayout x:Name="Parent">
-        <Image Source="LogInBackground.jpg"
+        <Image x:Name="background"
                Aspect="AspectFill"
                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Height}"
                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}"/>
@@ -12,35 +13,41 @@
                  Opacity=".65"
                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Height}"
                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}"/>
-        <Image Source="logo.png"
-               x:Name="lenguas"
+        <Image x:Name="lenguas"
                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.2, Property=Height}"
-               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.05, Property=Height}"
-               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}"
-               />
-        <Image Source="square.png"
-               x:Name="square"
-               
-               RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.28, Property=Height}"
-               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.35, Property=Height}"
-               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}"
-               />
-        <Button BackgroundColor="{StaticResource PrimaryColor}"
-                CornerRadius="50"
-                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=square, Factor = .22, Property=Width}"
-                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=square, Factor=.45, Property=Height}"
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=square, Factor=.4, Property=Width}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=square, Factor=1.65, Property=Y}"
-                />
+               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.075, Property=Height}"
+               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}"/>
         <StackLayout HorizontalOptions="Center"
                      Spacing="1"
+                     x:Name="algo"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}"
                      RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=lenguas, Factor=1.5, Property=Height}">
-            <Label Text="Iniciar Sesión"
+            <Label FontFamily="{StaticResource MissioBold}" 
+                   Text="Iniciar sesión"
+                   FontSize="Large"
                    TextColor="{StaticResource SecondaryColor}"/>
             <BoxView Color="{StaticResource SecondaryColor}"
-                     HeightRequest=".8"/>
+                     HeightRequest="1"/>
         </StackLayout>
+        <Image x:Name="square"
+               RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.28, Property=Height}"
+               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.35, Property=Height}"
+               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.05, Property=Width}"
+               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.9, Property=Width}"/>
+        <StackLayout RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=square, Factor=2, Property=X}"
+                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=square, Factor=1.1, Property=Y}">
+            <Label Text="Missionero"
+                   FontFamily="MissioRegular"
+                   TextColor="{StaticResource PrimaryColor}"/>
+            <Entry WidthRequest="20"
+                   />
+            
+        </StackLayout>
+        <local:CircleButton BackgroundColor="{StaticResource PrimaryColor}"
+                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=square, Factor=8, Property=X}"
+                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=square, Factor=1.65, Property=Y}"
+                            HeightRequest="80"
+                            WidthRequest="80"/>
         
     </RelativeLayout>
 </ContentPage>

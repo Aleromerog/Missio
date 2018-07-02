@@ -1,4 +1,5 @@
 ﻿using Xamarin.Forms.Xaml;
+using Xamarin.Forms;
 
 namespace Missio.LogInRes
 {
@@ -8,6 +9,11 @@ namespace Missio.LogInRes
 		public NewLoginPage ()
 		{
 			InitializeComponent ();
+            background.Source = ImageSource.FromResource("Missio.Images.LogInBackground2.png");
+            square.Source = ImageSource.FromResource("Missio.Images.square.png");
+            lenguas.Source = ImageSource.FromResource("Missio.Images.logo.png");
+
+
 		}
 	}
 }

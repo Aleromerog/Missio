@@ -1,10 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Missio.App">
     <Application.Resources>
         <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="MissioBold">
+                <On Platform="Android" Value="Raleway-Bold.ttf#Raleway"/>
+                <On Platform="iOS" Value="Raleway-Bold"/>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="MisisoRegular">
+                <On Platform="Android" Value="Raleway-Regular.ttf#Raleway"/>
+                <On Platform="iOS" Value="Raleway-Regular.ttf"/>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="MissioLight">
+                <On Platform="Android" Value="Raleway-ExtraLight.ttf#Raleway"/>
+                <On Platform="iOS" Value="Raleway-ExtraLight.ttf"/>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="MissioThin">
+                <On Platform="Android" Value="Raleway-Thin.ttf#Raleway"/>
+                <On Platform="iOS" Value="Raleway-Thin.ttf"/>
+            </OnPlatform>
             <Color x:Key="MainTextColor">White</Color>
             <Color x:Key="PlaceholderTextColor">Gray</Color>
             <Color x:Key="LoginBackground">#EBEBEB</Color>
