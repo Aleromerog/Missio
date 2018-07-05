@@ -9,17 +9,17 @@
                 <On Platform="Android" Value="Raleway-Bold.ttf#Raleway"/>
                 <On Platform="iOS" Value="Raleway-Bold"/>
             </OnPlatform>
-            <OnPlatform x:TypeArguments="x:String" x:Key="MisisoRegular">
+            <OnPlatform x:TypeArguments="x:String" x:Key="MissioRegular">
                 <On Platform="Android" Value="Raleway-Regular.ttf#Raleway"/>
-                <On Platform="iOS" Value="Raleway-Regular.ttf"/>
+                <On Platform="iOS" Value="Raleway-Regular"/>
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="MissioLight">
                 <On Platform="Android" Value="Raleway-ExtraLight.ttf#Raleway"/>
-                <On Platform="iOS" Value="Raleway-ExtraLight.ttf"/>
+                <On Platform="iOS" Value="Raleway-ExtraLight"/>
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="MissioThin">
                 <On Platform="Android" Value="Raleway-Thin.ttf#Raleway"/>
-                <On Platform="iOS" Value="Raleway-Thin.ttf"/>
+                <On Platform="iOS" Value="Raleway-Thin"/>
             </OnPlatform>
             <Color x:Key="MainTextColor">White</Color>
             <Color x:Key="PlaceholderTextColor">Gray</Color>

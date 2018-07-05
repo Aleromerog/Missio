@@ -87,6 +87,22 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable\facebook.png" />
+    <AndroidResource Include="Resources\drawable\google.png" />
+    <AndroidResource Include="Resources\drawable\twitter.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\facebook.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\google.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\twitter.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\facebook.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\google.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\twitter.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\facebook.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\google.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\twitter.png" />
+    <AndroidResource Include="Resources\drawable\check.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\check.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\check.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\check.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
