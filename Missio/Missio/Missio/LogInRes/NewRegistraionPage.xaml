@@ -1,5 +1,50 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Missio.LogInRes.NewRegistraionPage">
-    <ContentPage.Content>
-    </ContentPage.Content>
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Missio.LogInRes.NewRegistraionPage"
+             BackgroundColor="{StaticResource SecondaryColor}"
+             Title="Crear nueva cuenta"
+             xmlns:bcircle="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions">
+   
+    <StackLayout Padding="20,10,20,0">
+        <bcircle:CircleButton WidthRequest="120"
+                              HeightRequest="120"
+                              HorizontalOptions="Center"                         
+                              BackgroundColor="{StaticResource SecondaryDarkColor}"
+                              Image="camera.png"/>
+        <Label Text="Foto de perfil"
+               HorizontalOptions="Center"
+               FontFamily="{StaticResource MissioBold}"
+               TextColor="{StaticResource PrimaryColor}"/>
+        <FlexLayout Direction="Column"
+                    JustifyContent="SpaceEvenly"
+                    HeightRequest="400"
+                    >
+        
+            <Label Text="Missionero"
+                   FontFamily="{StaticResource MissioRegular}"
+                   TextColor="{StaticResource PrimaryDarkColor}"/>
+            <Entry Placeholder="Usuario"/>
+            <Label Text="E-mail"
+                   FontFamily="{StaticResource MissioRegular}"
+                   TextColor="{StaticResource PrimaryDarkColor}"/>
+            <Entry Placeholder="Ingrese correo valido"/>
+            <Label Text="Contrasena"
+                   FontFamily="{StaticResource MissioRegular}"
+                   TextColor="{StaticResource PrimaryDarkColor}"/>
+            <Entry Placeholder="Minimo 8 caracteres"
+                   IsPassword="true"/>
+            <Label Text="Confirmar Contrasena"
+                   FontFamily="{StaticResource MissioRegular}"
+                   TextColor="{StaticResource PrimaryDarkColor}"/>
+            <Entry Placeholder="Repetir contrasena"
+                   IsPassword="true"/>
+            
+        </FlexLayout>
+        <Button Text="Registrate"
+                FontFamily="{StaticResource MissioBold}"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                TextColor="{StaticResource SecondaryColor}"/>
+    </StackLayout>
+
 </ContentPage>

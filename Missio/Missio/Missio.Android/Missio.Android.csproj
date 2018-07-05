@@ -103,6 +103,10 @@
     <AndroidResource Include="Resources\drawable-hdpi\check.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\check.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\check.png" />
+    <AndroidResource Include="Resources\drawable\camera.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\camera.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\camera.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\camera.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

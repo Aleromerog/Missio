@@ -10,15 +10,15 @@
                 <On Platform="iOS" Value="Raleway-Bold"/>
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="MissioRegular">
-                <On Platform="Android" Value="Raleway-Regular.ttf#Raleway"/>
+                <On Platform="Android" Value="Raleway-Regular.ttf#RalewayReg"/>
                 <On Platform="iOS" Value="Raleway-Regular"/>
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="MissioLight">
-                <On Platform="Android" Value="Raleway-ExtraLight.ttf#Raleway"/>
+                <On Platform="Android" Value="Raleway-ExtraLight.ttf#RalewayLi"/>
                 <On Platform="iOS" Value="Raleway-ExtraLight"/>
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="MissioThin">
-                <On Platform="Android" Value="Raleway-Thin.ttf#Raleway"/>
+                <On Platform="Android" Value="Raleway-Thin.ttf#RalewayTh"/>
                 <On Platform="iOS" Value="Raleway-Thin"/>
             </OnPlatform>
             <Color x:Key="MainTextColor">White</Color>
@@ -33,6 +33,7 @@
             <Color x:Key="PrimaryColor">#590016</Color>
             <Color x:Key="PrimaryDarkColor">#3D000F</Color>
             <Color x:Key="SecondaryColor"> #FCFCFC</Color>
+            <Color x:Key="SecondaryDarkColor">#F5F5F5</Color>
             <LayoutOptions x:Key="LogInLayoutOptions" Alignment="Center" />
             <Color x:Key="EntryBackgroundColor">Transparent</Color>
         </ResourceDictionary>
