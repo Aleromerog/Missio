@@ -20,7 +20,8 @@ namespace Missio
 	    {
             Children.Add(newsFeedPage);  
             Children.Add(profilePage);  
-            Children.Add(calendarPage);  
+            Children.Add(calendarPage); 
+
             BindingContext = mainTabbedPageViewModel;
             InitializeComponent();
 	    }

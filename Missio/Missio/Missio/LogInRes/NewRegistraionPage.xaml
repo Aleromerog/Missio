@@ -19,13 +19,17 @@
         <FlexLayout Direction="Column"
                     JustifyContent="SpaceEvenly"
                     HeightRequest="400"
+                    Wrap="Wrap"
                     >
         
-            <Label Text="Missionero"
+            <Label Text="Missionero:"
                    FontFamily="{StaticResource MissioRegular}"
                    TextColor="{StaticResource PrimaryDarkColor}"/>
             <Entry Placeholder="Usuario"/>
-            <Label Text="E-mail"
+            <Label Text="No debe contener espacios ni caracteres especiales."
+                   FontSize="11"
+                   TextColor="Gray"/>
+            <Label Text="E-mail:"
                    FontFamily="{StaticResource MissioRegular}"
                    TextColor="{StaticResource PrimaryDarkColor}"/>
             <Entry Placeholder="Ingrese correo valido"/>
@@ -34,7 +38,7 @@
                    TextColor="{StaticResource PrimaryDarkColor}"/>
             <Entry Placeholder="Minimo 8 caracteres"
                    IsPassword="true"/>
-            <Label Text="Confirmar Contrasena"
+            <Label Text="Confirmar Contrasena:"
                    FontFamily="{StaticResource MissioRegular}"
                    TextColor="{StaticResource PrimaryDarkColor}"/>
             <Entry Placeholder="Repetir contrasena"
