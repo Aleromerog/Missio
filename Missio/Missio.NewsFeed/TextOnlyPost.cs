@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 
 namespace Missio.NewsFeed
 {
-    public class TextOnlyPost : NewsFeedPost, IAuthorName, IMessage
+    public class TextOnlyPost : IPost, IAuthorName, IMessage
     {
         public string AuthorName { [UsedImplicitly] get; }
         public string Message { [UsedImplicitly] get; }
@@ -12,6 +12,12 @@ namespace Missio.NewsFeed
         {
             Message = message ?? throw new ArgumentNullException(nameof(message));
             AuthorName = author ?? throw new ArgumentNullException(nameof(author));
+        }
+
+        /// <inheritdoc />
+        public int GetPostPriority()
+        {
+            return 0;
         }
     }
 }

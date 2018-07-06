@@ -29,7 +29,7 @@ namespace Missio.NewsFeed
         public ICommand GoToPublicationPageCommand { get; }
 
         [UsedImplicitly]
-        public ObservableCollection<NewsFeedPost> Posts { get; } = new ObservableCollection<NewsFeedPost>();
+        public ObservableCollection<IPost> Posts { get; } = new ObservableCollection<IPost>();
 
         private readonly IGetMostRecentPosts _getMostRecentPosts;
         private readonly IGoToView _goToView;

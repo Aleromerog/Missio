@@ -29,7 +29,7 @@ namespace Missio.NewsFeedTests
         public void UpdatePosts_IsRefreshingSetToTrue_SetsIsRefreshingToFalse()
         {
             //Arrange
-            _fakeGetMostRecentPosts.GetMostRecentPostsInOrder().Returns(new List<NewsFeedPost>());
+            _fakeGetMostRecentPosts.GetMostRecentPostsInOrder().Returns(new List<IPost>());
             _newsFeedViewModel.IsRefreshing = true;
             //Act
             _newsFeedViewModel.UpdatePosts();
@@ -50,7 +50,7 @@ namespace Missio.NewsFeedTests
 
         [Test]
         [TestCaseSource(typeof(ExtraNewsFeedPosts), nameof(ExtraNewsFeedPosts.ExtraPosts))]
-        public void OnUserLoggedIn_UserLoggedIn_UpdatesPosts(List<NewsFeedPost> postsToAdd)
+        public void OnUserLoggedIn_UserLoggedIn_UpdatesPosts(List<IPost> postsToAdd)
         {
             //Arrange
             _fakeGetMostRecentPosts.GetMostRecentPostsInOrder().Returns(postsToAdd);

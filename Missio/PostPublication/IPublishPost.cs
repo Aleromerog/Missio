@@ -4,6 +4,6 @@ namespace Missio.PostPublication
 {
     public interface IPublishPost
     {
-        void PublishPost(NewsFeedPost post);
+        void PublishPost(IPost post);
     }
 }

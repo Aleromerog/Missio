@@ -1,43 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using Missio.NewsFeed;
-using Missio.PostPublication;
-using Missio.Registration;
-using Missio.Users;
-
-namespace Missio.ExternalDatabase
+﻿namespace Missio.ExternalDatabase
 {
-    public class ExternalDatabase : IDoesUserExist, IGetMostRecentPosts, IPublishPost, IRegisterUser, IValidateUser
-    {
-        private readonly IGetChildQuery _getChildQuery;
+    //public class UserExternalDatabase : IDoesUserExist, IRegisterUser, IValidateUser
+    //{
+    //    private readonly MobileServiceClient _service;
 
-        public ExternalDatabase(IGetChildQuery getChildQuery)
-        {
-            _getChildQuery = getChildQuery;
-        }
+    //    public UserExternalDatabase(MobileServiceClient service)
+    //    {
+    //        _service = service;
+    //    }
 
-        public void ValidateUser(User user)
-        {
-        }
+    //    /// <inheritdoc />
+    //    public bool DoesUserExist(string userName)
+    //    {
+    //    }
 
-        public bool DoesUserExist(string userName)
-        {
-            throw new InvalidOperationException();
-        }
+    //    /// <inheritdoc />
+    //    public void RegisterUser(RegistrationInfo registrationInfo)
+    //    {
+    //    }
 
-        public void RegisterUser(RegistrationInfo registrationInfo)
-        {
-        }
+    //    /// <inheritdoc />
+    //    public void ValidateUser(User user)
+    //    {
+    //    }
+    //}
 
-        /// <inheritdoc />
-        public List<NewsFeedPost> GetMostRecentPostsInOrder()
-        {
-            throw new InvalidOperationException();
-        }
+    //public class GenericPostAzureDatabase<T>
+    //{
+    //    private readonly IMobileServiceClient _service;
 
-        /// <inheritdoc />
-        public void PublishPost(NewsFeedPost post)
-        {
-        }
-    }
+    //    public GenericPostAzureDatabase(IMobileServiceClient service)
+    //    {
+    //        _service = service;
+    //    }
+
+    //    public Task<List<IPost>> GetPosts()
+    //    {
+    //        return _service.GetTable<T>().ToListAsync());
+    //    }
+    //}
+
+    //public class PostAzureDatabase : IGetMostRecentPosts, IPublishPost
+    //{
+    //    public PostAzureDatabase(List<GenericPostAzureDatabase>)
+    //    {
+    //    }
+
+    //    /// <inheritdoc />
+    //    public List<IPost> GetMostRecentPostsInOrder()
+    //    {
+    //    }
+
+    //    /// <inheritdoc />
+    //    public void PublishPost(IPost post)
+    //    {
+    //    }
+    //}
 }

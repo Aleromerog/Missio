@@ -25,7 +25,7 @@ namespace Missio.LocalDatabaseTests
 
         [Test]
         [TestCaseSource(typeof(ExtraNewsFeedPosts), nameof(ExtraNewsFeedPosts.ExtraPosts))]
-        public void SetUserPosts_GivenPosts_SetsUserPosts(List<NewsFeedPost> newPosts)
+        public void SetUserPosts_GivenPosts_SetsUserPosts(List<IPost> newPosts)
         {
             //Arrange
             

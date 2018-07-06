@@ -68,6 +68,8 @@
     <Compile Include="NewsFeedTests.cs" />
     <Compile Include="NewsFeedViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StickyPostTests.cs" />
+    <Compile Include="TextOnlyPostTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

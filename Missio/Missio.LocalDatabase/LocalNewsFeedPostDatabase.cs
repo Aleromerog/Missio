@@ -17,12 +17,12 @@ namespace Missio.LocalDatabase
         /// <summary>
         /// Maps users to collections of news feed posts that should be displayed to them (different users see different posts)
         /// </summary>
-        private static readonly Dictionary<User, List<NewsFeedPost>> UsersNewsFeedPosts =
-            new Dictionary<User, List<NewsFeedPost>>
+        private static readonly Dictionary<User, List<IPost>> UsersNewsFeedPosts =
+            new Dictionary<User, List<IPost>>
             {
                 {
                     LocalUserDatabase.ValidUsers[0],
-                    new List<NewsFeedPost>
+                    new List<IPost>
                     {
                         new StickyPost("Super important news", "A sticky message for user zero"),
                         new TextOnlyPost("Francisco Greco", "Hello Jorge Romero"),
@@ -31,7 +31,7 @@ namespace Missio.LocalDatabase
                 },
                 {
                     LocalUserDatabase.ValidUsers[1],
-                    new List<NewsFeedPost>
+                    new List<IPost>
                     {
                         new StickyPost("Super important news", "A sticky message for user one"),
                         new TextOnlyPost("Francisco Greco", "Hello me"),
@@ -65,23 +65,23 @@ namespace Missio.LocalDatabase
         /// Gets a list of manually hardcoded news feed posts
         /// </summary>
         /// <returns> A list containing news feed posts</returns>
-        public List<NewsFeedPost> GetMostRecentPostsInOrder()
+        public List<IPost> GetMostRecentPostsInOrder()
         {
             if (UsersNewsFeedPosts.TryGetValue(_getLoggedInUser.LoggedInUser, out var posts))
             {
-                return posts.OrderByDescending(x => x.PostPriority).ToList();
+                return posts.OrderByDescending(x => x.GetPostPriority()).ToList();
             }
 
-            return new List<NewsFeedPost>();
+            return new List<IPost>();
         }
 
-        public void SetMostRecentPosts(List<NewsFeedPost> newPosts)
+        public void SetMostRecentPosts(List<IPost> newPosts)
         {
             UsersNewsFeedPosts[_getLoggedInUser.LoggedInUser] = newPosts;
         }
 
         /// <inheritdoc />
-        public void PublishPost(NewsFeedPost post)
+        public void PublishPost(IPost post)
         {
             UsersNewsFeedPosts[_getLoggedInUser.LoggedInUser].Insert(0, post);
         }

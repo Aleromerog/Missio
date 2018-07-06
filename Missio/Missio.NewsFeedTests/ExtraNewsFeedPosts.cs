@@ -7,8 +7,8 @@ namespace Missio.NewsFeedTests
     {
         public static readonly object[] ExtraPosts =
         {
-            new List<NewsFeedPost> {new TextOnlyPost("Francisco Greco", "Hello there")},
-            new List<NewsFeedPost> {new TextOnlyPost("Jorge Romero", "<3")},
+            new List<IPost> {new TextOnlyPost("Francisco Greco", "Hello there")},
+            new List<IPost> {new TextOnlyPost("Jorge Romero", "<3")},
         };
     }
 }
