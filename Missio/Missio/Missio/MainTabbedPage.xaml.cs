@@ -16,11 +16,12 @@ namespace Missio
         }
 
         [UsedImplicitly]
-	    public MainTabbedPage(MainTabbedPageViewModel mainTabbedPageViewModel, NewsFeedPage newsFeedPage, ProfilePage profilePage, CalendarPage calendarPage)
+	    public MainTabbedPage(MainTabbedPageViewModel mainTabbedPageViewModel, NewsFeedPage newsFeedPage, ProfilePage profilePage, CalendarPage calendarPage, ToolsPage toolsPage)
 	    {
             Children.Add(newsFeedPage);  
-            Children.Add(profilePage);  
-            Children.Add(calendarPage); 
+            Children.Add(toolsPage);
+            Children.Add(calendarPage);
+	        Children.Add(profilePage);
 
             BindingContext = mainTabbedPageViewModel;
             InitializeComponent();

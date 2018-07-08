@@ -9,7 +9,8 @@
     <RootNamespace>Missio.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>Missio.iOS</AssemblyName>
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,6 +63,18 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <BundleResource Include="Resources\bell%402x.png" />
+    <BundleResource Include="Resources\bell%403x.png" />
+    <BundleResource Include="Resources\home.png" />
+    <BundleResource Include="Resources\home%402x.png" />
+    <BundleResource Include="Resources\home%403x.png" />
+    <BundleResource Include="Resources\person.png" />
+    <BundleResource Include="Resources\person%402x.png" />
+    <BundleResource Include="Resources\person%403x.png" />
+    <BundleResource Include="Resources\roasry.png" />
+    <BundleResource Include="Resources\roasry%402x.png" />
+    <BundleResource Include="Resources\roasry%403x.png" />
+    <BundleResource Include="Resources\bell.png" />
     <None Include="GettingStarted.Xamarin" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
