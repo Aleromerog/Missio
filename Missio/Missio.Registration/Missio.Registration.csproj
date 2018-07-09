@@ -14,4 +14,16 @@
     <ProjectReference Include="..\StringResources\StringResources.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="ButtonCircle.FormsPlugin.Abstractions">
+      <HintPath>C:\Users\GrecoFlores\.nuget\packages\plugins.forms.buttoncircle\2.0.2.1\lib\MonoAndroid10\ButtonCircle.FormsPlugin.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="RegistrationPage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>

@@ -28,9 +28,9 @@ namespace Missio.Navigation
         }
 
         /// <inheritdoc />
-        public Task GoToView(string viewTitle)
+        public Task GoToView<T>() where T : Page
         {
-            return GoToPage(Pages.First(x => x.Title == viewTitle));
+            return GoToPage(Pages.First(x => x is T));
         }
     }
 }

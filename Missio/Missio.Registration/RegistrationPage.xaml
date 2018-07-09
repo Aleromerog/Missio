@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Missio.LogInRes.RegistrationPage"
+             BackgroundColor="{StaticResource SecondaryColor}"
+             Title="Crear nueva cuenta"
+             xmlns:registration="clr-namespace:Missio.Registration;assembly=Missio.Registration"
+             xmlns:abstractions="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions">
+    <ContentPage.BindingContext>
+        <registration:RegistrationViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout Padding="20,10,20,0">
+        <abstractions:CircleButton WidthRequest="120"
+                              HeightRequest="120"
+                              HorizontalOptions="Center"                         
+                              BackgroundColor="{StaticResource SecondaryDarkColor}"
+                              Image="camera.png"/>
+        <Label Text="Foto de perfil"
+               HorizontalOptions="Center"
+               FontFamily="{StaticResource MissioBold}"
+               TextColor="{StaticResource PrimaryColor}"/>
+        <FlexLayout Direction="Column"
+                    JustifyContent="SpaceEvenly"
+                    HeightRequest="400"
+                    Wrap="Wrap">
+            <Label Text="Missionero:"
+                   FontFamily="{StaticResource MissioRegular}"
+                   TextColor="{StaticResource PrimaryDarkColor}"/>
+            <Entry Placeholder="Usuario"
+                   Text="{Binding RegistrationInfo.UserName}"
+                   AutomationId="UserNameEntry"
+                   />
+            <Label Text="No debe contener espacios ni caracteres especiales."
+                   FontSize="11"
+                   TextColor="Gray"/>
+            <Label Text="E-mail:"
+                   FontFamily="{StaticResource MissioRegular}"
+                   TextColor="{StaticResource PrimaryDarkColor}"/>
+            <Entry Placeholder="Ingrese correo valido"
+                   Text="{Binding RegistrationInfo.Email}"
+                   AutomationId="EmailEntry"
+                   />
+            <Label Text="Contrasena"
+                   FontFamily="{StaticResource MissioRegular}"
+                   TextColor="{StaticResource PrimaryDarkColor}"/>
+            <Entry Placeholder="Minimo 8 caracteres"
+                   Text="{Binding RegistrationInfo.Password}"
+                   AutomationId="PasswordEntry"
+                   IsPassword="true"/>
+        </FlexLayout>
+        <Button Text="Registrate"
+                FontFamily="{StaticResource MissioBold}"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                TextColor="{StaticResource SecondaryColor}"
+                Command="{Binding RegisterCommand}"
+                AutomationId="RegisterButton"/>
+    </StackLayout>
+
+</ContentPage>

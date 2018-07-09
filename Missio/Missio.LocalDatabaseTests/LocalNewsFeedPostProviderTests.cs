@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Missio.LocalDatabase;
 using Missio.LogIn;
-using Missio.NewsFeed;
 using Missio.NewsFeedTests;
+using Missio.Posts;
 using Missio.Users;
 using NSubstitute;
 using NUnit.Framework;

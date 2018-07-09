@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Missio.NewsFeed;
+using Missio.Posts;
 
 namespace Missio.NewsFeedTests
 {

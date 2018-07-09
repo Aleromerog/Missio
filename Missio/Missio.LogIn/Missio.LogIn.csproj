@@ -10,9 +10,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Missio.MainView\Missio.MainView.csproj" />
     <ProjectReference Include="..\Missio.Navigation\Missio.Navigation.csproj" />
+    <ProjectReference Include="..\Missio.Registration\Missio.Registration.csproj" />
     <ProjectReference Include="..\Missio.Users\Missio.Users.csproj" />
     <ProjectReference Include="..\StringResources\StringResources.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ButtonCircle.FormsPlugin.Abstractions">
+      <HintPath>C:\Users\GrecoFlores\.nuget\packages\plugins.forms.buttoncircle\2.0.2.1\lib\MonoAndroid10\ButtonCircle.FormsPlugin.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="LoginPage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

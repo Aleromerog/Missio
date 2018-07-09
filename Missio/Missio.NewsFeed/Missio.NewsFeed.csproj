@@ -11,18 +11,29 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Missio.LocalDatabase\Missio.LocalDatabase.csproj" />
     <ProjectReference Include="..\Missio.LogIn\Missio.LogIn.csproj" />
     <ProjectReference Include="..\Missio.Navigation\Missio.Navigation.csproj" />
+    <ProjectReference Include="..\Missio.Posts\Missio.Posts.csproj" />
     <ProjectReference Include="..\ViewModel\Mission.ViewModel.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="BottomBar.XamarinForms">
+      <HintPath>C:\Users\GrecoFlores\.nuget\packages\thrivegmbh.bottomnavigationbar.xf\1.0.2\lib\MonoAndroid10\BottomBar.XamarinForms.dll</HintPath>
+    </Reference>
     <Reference Include="JetBrains.Annotations">
       <HintPath>..\packages\JetBrains.Annotations.11.1.0\lib\netstandard1.0\JetBrains.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\packages\Xamarin.Forms.3.1.0.583944\lib\netstandard2.0\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="NewsFeedPage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

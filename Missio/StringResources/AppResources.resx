@@ -162,4 +162,7 @@
   <data name="RegistrationSuccessfulTitle" xml:space="preserve">
     <value>Registro completado</value>
   </data>
+  <data name="ShouldNotHaveSpacesOrSpecialCharacters" xml:space="preserve">
+    <value>No debe contener espacios ni caracteres especiales.</value>
+  </data>
 </root>

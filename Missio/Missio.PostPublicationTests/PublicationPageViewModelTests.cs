@@ -2,6 +2,7 @@
 using Missio.Navigation;
 using Missio.NewsFeed;
 using Missio.PostPublication;
+using Missio.Posts;
 using Missio.Users;
 using NSubstitute;
 using NUnit.Framework;

@@ -38,7 +38,7 @@ namespace Missio.LogInTests
             // Assert
             _app.WaitForElement(c => c.Text(AppResources.IncorrectPasswordMessage));
         }
-
+        
         [Test]
         [TestCaseSource(typeof(UserTestUtils), nameof(UserTestUtils.GetInvalidUsers))]
         public void LogIn_GivenUserName_DisplaysIncorrectUserName(string userName, string password)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Missio.LogIn;
 using Missio.Navigation;
 using Missio.NewsFeed;
+using Missio.Posts;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -45,7 +46,7 @@ namespace Missio.NewsFeedTests
             //Act
             _newsFeedViewModel.GoToPublicationPageCommand.Execute(null);
             //Assert
-            _goToView.Received(1).GoToView("Publication page");
+            _goToView.Received(1).GoToView<PublicationPage>();
         }
 
         [Test]

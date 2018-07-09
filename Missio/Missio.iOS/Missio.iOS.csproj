@@ -74,14 +74,9 @@
     <Reference Include="BottomBar.XamarinForms, Version=1.0.6334.21543, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ThriveGmbH.BottomNavigationBar.XF.1.0.2\lib\Xamarin.iOS10\BottomBar.XamarinForms.dll</HintPath>
     </Reference>
-    <Reference Include="ButtonCircle.FormsPlugin.Android">
-      <HintPath>C:\Users\GrecoFlores\.nuget\packages\plugins.forms.buttoncircle\2.0.2.1\lib\MonoAndroid10\ButtonCircle.FormsPlugin.Android.dll</HintPath>
-    </Reference>
     <Reference Include="JetBrains.Annotations, Version=11.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\packages\JetBrains.Annotations.11.1.0\lib\netstandard1.0\JetBrains.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Forms.3.1.0.583944\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
@@ -107,10 +102,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Missio\Missio.Android\Missio.Android.csproj">
-      <Project>{f8802880-468a-4cc1-be77-3f666123639a}</Project>
-      <Name>Missio.Android</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Missio\Missio\Missio.csproj">
       <Project>{6f9d2ceb-144a-40c2-aec3-117cb8700bb3}</Project>
       <Name>Missio</Name>
@@ -123,6 +114,21 @@
     <BundleResource Include="Resources\Raleway-Thin.ttf" />
     <BundleResource Include="Resources\Raleway-Bold.ttf" />
     <BundleResource Include="Resources\Raleway-Regular.ttf" />
+    <BundleResource Include="Resources\facebook.png" />
+    <BundleResource Include="Resources\facebook%402x.png" />
+    <BundleResource Include="Resources\facebook%403x.png" />
+    <BundleResource Include="Resources\google.png" />
+    <BundleResource Include="Resources\google%402x copy.png" />
+    <BundleResource Include="Resources\google%403x.png" />
+    <BundleResource Include="Resources\twitter.png" />
+    <BundleResource Include="Resources\twitter%402x.png" />
+    <BundleResource Include="Resources\twitter%403x.png" />
+    <BundleResource Include="Resources\check.png" />
+    <BundleResource Include="Resources\check%403x.png" />
+    <BundleResource Include="Resources\check2%40x.png" />
+    <BundleResource Include="Resources\camera.png" />
+    <BundleResource Include="Resources\camera%402x.png" />
+    <BundleResource Include="Resources\camera%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

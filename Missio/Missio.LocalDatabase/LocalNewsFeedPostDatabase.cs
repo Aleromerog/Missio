@@ -3,6 +3,7 @@ using System.Linq;
 using Missio.LogIn;
 using Missio.NewsFeed;
 using Missio.PostPublication;
+using Missio.Posts;
 using Missio.Users;
 
 namespace Missio.LocalDatabase

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
+using Missio.LogInRes;
 using Missio.Navigation;
 using Missio.Users;
 using Xamarin.Forms;
@@ -45,7 +46,7 @@ namespace Missio.LogIn
             _alertDisplay = alertDisplay ?? throw new ArgumentNullException(nameof(alertDisplay));
             _setLoggedInUser = setLoggedInUser ?? throw new ArgumentNullException(nameof(setLoggedInUser));
             User = new User("", "");
-            GoToRegistrationPageCommand = new Command(() => goToView.GoToView("Registration page"));
+            GoToRegistrationPageCommand = new Command(() => goToView.GoToView<RegistrationPage>());
             LogInCommand = new Command(async() => await LogIn());
         }
 
@@ -58,7 +59,7 @@ namespace Missio.LogIn
             {
                 _userValidator.ValidateUser(User);
                 _setLoggedInUser.LoggedInUser = User;
-                await _goToView.GoToView("Main tabbed page");
+                await _goToView.GoToView<MainTabbedPage>();
             }
             catch (LogInException e)
             {

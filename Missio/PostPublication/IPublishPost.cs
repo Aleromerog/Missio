@@ -1,4 +1,5 @@
-﻿using Missio.NewsFeed;
+﻿
+using Missio.Posts;
 
 namespace Missio.PostPublication
 {

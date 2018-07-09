@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using Missio.LogIn;
 using Missio.Navigation;
 using Missio.NewsFeed;
+using Missio.Posts;
 using Xamarin.Forms;
 
 namespace Missio.PostPublication
@@ -14,7 +15,7 @@ namespace Missio.PostPublication
         private readonly IPublishPost _publishPost;
         private readonly IGetLoggedInUser _getLoggedInUser;
         private readonly IUpdateViewPosts _updateViewPosts;
-        private readonly IReturnToPreviousPage _returnOnePage;
+        private readonly IReturnToPreviousPage _returnToPreviousPage;
         private string _postText;
 
         [UsedImplicitly]
@@ -31,12 +32,12 @@ namespace Missio.PostPublication
         }
 
         public PublicationPageViewModel([NotNull] IPublishPost publishPost, [NotNull] IGetLoggedInUser getLoggedInUser,
-            [NotNull] IUpdateViewPosts updateViewPosts, [NotNull] IReturnToPreviousPage returnOnePage)
+            [NotNull] IUpdateViewPosts updateViewPosts, [NotNull] IReturnToPreviousPage returnToPreviousPage)
         {
             _publishPost = publishPost ?? throw new ArgumentNullException(nameof(publishPost));
             _getLoggedInUser = getLoggedInUser ?? throw new ArgumentNullException(nameof(getLoggedInUser));
             _updateViewPosts = updateViewPosts ?? throw new ArgumentNullException(nameof(updateViewPosts));
-            _returnOnePage = returnOnePage ?? throw new ArgumentNullException(nameof(returnOnePage));
+            _returnToPreviousPage = returnToPreviousPage ?? throw new ArgumentNullException(nameof(returnToPreviousPage));
             PublishPostCommand = new Command(async() => await PublishPost());
         }
 
@@ -44,7 +45,7 @@ namespace Missio.PostPublication
         {
             _publishPost.PublishPost(new TextOnlyPost(_getLoggedInUser.LoggedInUser.UserName, PostText));
             _updateViewPosts.UpdatePosts();
-            await _returnOnePage.ReturnToPreviousPage();
+            await _returnToPreviousPage.ReturnToPreviousPage();
         }
     }
 }

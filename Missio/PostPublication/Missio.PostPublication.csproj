@@ -12,13 +12,22 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Missio.LogIn\Missio.LogIn.csproj" />
-    <ProjectReference Include="..\Missio.NewsFeed\Missio.NewsFeed.csproj" />
+    <ProjectReference Include="..\Missio.Posts\Missio.Posts.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="ButtonCircle.FormsPlugin.Abstractions">
+      <HintPath>C:\Users\GrecoFlores\.nuget\packages\plugins.forms.buttoncircle\2.0.2.1\lib\MonoAndroid10\ButtonCircle.FormsPlugin.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="JetBrains.Annotations">
       <HintPath>..\packages\JetBrains.Annotations.11.1.0\lib\netstandard1.0\JetBrains.Annotations.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="PublicationPage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

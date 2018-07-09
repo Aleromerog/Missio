@@ -1,4 +1,4 @@
-﻿using Missio.NewsFeed;
+﻿using Missio.Posts;
 using NUnit.Framework;
 
 namespace Missio.NewsFeedTests

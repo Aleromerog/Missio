@@ -1,4 +1,5 @@
 ﻿using Missio.LogIn;
+using Missio.LogInRes;
 using Missio.Navigation;
 using Missio.Users;
 using NSubstitute;
@@ -64,7 +65,7 @@ namespace Missio.LogInTests
             //Act
             _logInViewModel.GoToRegistrationPageCommand.Execute(null);
             //Assert
-            _fakeGoToView.Received(1).GoToView("Registration page");
+            _fakeGoToView.Received(1).GoToView<RegistrationPage>();
         }
 
         [Test]
@@ -78,7 +79,7 @@ namespace Missio.LogInTests
             //Assert
             _fakeUserValidator.Received(1).ValidateUser(user);
             _fakeSetLoggedInUser.Received(1).LoggedInUser = user;
-            _fakeGoToView.Received(1).GoToView("Main tabbed page");
+            _fakeGoToView.Received(1).GoToView<MainTabbedPage>();
         }
 
         [Test]

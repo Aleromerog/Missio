@@ -5,6 +5,7 @@ using System.Windows.Input;
 using JetBrains.Annotations;
 using Missio.LogIn;
 using Missio.Navigation;
+using Missio.Posts;
 using Mission.ViewModel;
 using Xamarin.Forms;
 
@@ -56,7 +57,7 @@ namespace Missio.NewsFeed
 
         private async Task GoToPublicationPage()
         {
-            await _goToView.GoToView("Publication page");
+            await _goToView.GoToView<PublicationPage>();
         }
     }
 }

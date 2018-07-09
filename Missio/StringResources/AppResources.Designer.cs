@@ -160,6 +160,15 @@ namespace StringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No debe contener espacios ni caracteres especiales..
+        /// </summary>
+        public static string ShouldNotHaveSpacesOrSpecialCharacters {
+            get {
+                return ResourceManager.GetString("ShouldNotHaveSpacesOrSpecialCharacters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to El nombre ya esta uso, intenta con otro :(.
         /// </summary>
         public static string UserNameAlreadyInUseMessage {
