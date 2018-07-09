@@ -21,7 +21,7 @@ namespace Missio
 
 	    public App()
 	    {
-	        var kernel = new StandardKernel(new ModelModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new ApplicationNavigation());
+	        var kernel = new StandardKernel(new ModelModule(), new ToolsPageModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new ApplicationNavigation());
             InitializeComponent();
             var appNavigation = kernel.Get<Navigation.ApplicationNavigation>();
             appNavigation.Pages = kernel.GetAll<Page>().ToArray();
@@ -39,7 +39,15 @@ namespace Missio
 		    _isPreviewing = false;
         }
 	}
-    
+
+    public class ToolsPageModule : NinjectModule
+    {
+        public override void Load()
+        {
+            Bind<Page, ToolsPage>().To<ToolsPage>().InSingletonScope();
+        }
+    }
+
     public class ProfilePageModule : NinjectModule
     {
         /// <inheritdoc />

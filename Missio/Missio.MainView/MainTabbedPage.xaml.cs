@@ -19,11 +19,8 @@ namespace Missio
 	    public MainTabbedPage(MainTabbedPageViewModel mainTabbedPageViewModel, Page[] childPages)
 	    {
 	        foreach (var page in childPages)
-	        {
-                Children.Add(page);
-            }
-
-            BindingContext = mainTabbedPageViewModel;
+	            Children.Add(page);
+	        BindingContext = mainTabbedPageViewModel;
             InitializeComponent();
 	    }
 	}

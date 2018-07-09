@@ -2,12 +2,11 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xamarinForms="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
+             xmlns:xf="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
              xmlns:newsFeed="clr-namespace:Missio.NewsFeed;assembly=Missio.NewsFeed"
-             xamarinForms:BottomBarPageExtensions.TabColor="{StaticResource PrimaryDarkColor}"
-             Icon="Lenguas2.png"
+             Icon="home.png"
              x:Class="Missio.NewsFeedPage"
-             Title="{Binding Title}"
+            
              AutomationId="NewsFeedPage">
     <ContentPage.Resources>
         <ResourceDictionary>
