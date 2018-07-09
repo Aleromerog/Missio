@@ -5,6 +5,6 @@ namespace Missio.Navigation
 {
     public interface IGoToView
     {
-        Task GoToView<T>() where T : Page;
+        Task GoToView<T>();
     }
 }
