@@ -4,13 +4,10 @@
              x:Class="Missio.LogInRes.RegistrationPage"
              BackgroundColor="{StaticResource SecondaryColor}"
              Title="Crear nueva cuenta"
-             xmlns:registration="clr-namespace:Missio.Registration;assembly=Missio.Registration"
-             xmlns:abstractions="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions">
-    <ContentPage.BindingContext>
-        <registration:RegistrationViewModel />
-    </ContentPage.BindingContext>
+             xmlns:local="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions">
+    
     <StackLayout Padding="20,10,20,0">
-        <abstractions:CircleButton WidthRequest="120"
+        <local:CircleButton WidthRequest="120"
                               HeightRequest="120"
                               HorizontalOptions="Center"                         
                               BackgroundColor="{StaticResource SecondaryDarkColor}"

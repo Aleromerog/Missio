@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <Reference Include="ButtonCircle.FormsPlugin.Abstractions">
-      <HintPath>C:\Users\GrecoFlores\.nuget\packages\plugins.forms.buttoncircle\2.0.2.1\lib\MonoAndroid10\ButtonCircle.FormsPlugin.Abstractions.dll</HintPath>
+      <HintPath>C:\Users\Jorge\.nuget\packages\plugins.forms.buttoncircle\2.0.2.1\lib\MonoAndroid10\ButtonCircle.FormsPlugin.Abstractions.dll</HintPath>
     </Reference>
   </ItemGroup>
 
