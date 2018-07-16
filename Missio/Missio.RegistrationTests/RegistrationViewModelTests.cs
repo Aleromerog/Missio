@@ -13,15 +13,15 @@ namespace Missio.RegistrationTests
         private RegistrationViewModel _registrationViewModel;
         private IDisplayAlertOnCurrentPage _fakeDisplayAlert;
         private IRegisterUser _fakeRegisterUser;
-        private IReturnToPreviousPage _fakeReturnToPreviousPage;
+        private INavigation _fakeNavigation;
 
         [SetUp]
         public void SetUp()
         {
             _fakeDisplayAlert = Substitute.For<IDisplayAlertOnCurrentPage>();
             _fakeRegisterUser = Substitute.For<IRegisterUser>();
-            _fakeReturnToPreviousPage = Substitute.For<IReturnToPreviousPage>();
-            _registrationViewModel = new RegistrationViewModel(_fakeDisplayAlert, _fakeRegisterUser, _fakeReturnToPreviousPage);
+            _fakeNavigation = Substitute.For<INavigation>();
+            _registrationViewModel = new RegistrationViewModel(_fakeDisplayAlert, _fakeRegisterUser, _fakeNavigation);
         }
 
         [Test]
@@ -93,7 +93,7 @@ namespace Missio.RegistrationTests
             //Act
             await _registrationViewModel.TryToRegister();
             //Assert
-            await _fakeReturnToPreviousPage.Received().ReturnToPreviousPage();
+            await _fakeNavigation.Received().ReturnToPreviousPage();
         }
     }
 }

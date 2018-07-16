@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using Missio.Navigation;
 using StringResources;
 using Xamarin.Forms;
+using INavigation = Missio.Navigation.INavigation;
 
 namespace Missio.Registration
 {
@@ -12,21 +13,18 @@ namespace Missio.Registration
     {
         private readonly IDisplayAlertOnCurrentPage _alertDisplayer;
         private readonly IRegisterUser _registerUser;
-        private readonly IReturnToPreviousPage _returnToPreviousPage;
-
-        [UsedImplicitly]
-        public string Title { get; } = "Registration page";
+        private readonly INavigation _navigation;
 
         public RegistrationInfo RegistrationInfo { get; }
 
         [UsedImplicitly]
         public ICommand RegisterCommand { get; set; }
 
-        public RegistrationViewModel([NotNull] IDisplayAlertOnCurrentPage alertDisplayer, [NotNull] IRegisterUser registerUser, [NotNull] IReturnToPreviousPage returnToPreviousPage)
+        public RegistrationViewModel([NotNull] IDisplayAlertOnCurrentPage alertDisplayer, [NotNull] IRegisterUser registerUser, [NotNull] INavigation navigation)
         {
             _alertDisplayer = alertDisplayer ?? throw new ArgumentNullException(nameof(alertDisplayer));
             _registerUser = registerUser ?? throw new ArgumentNullException(nameof(registerUser));
-            _returnToPreviousPage = returnToPreviousPage ?? throw new ArgumentNullException(nameof(returnToPreviousPage));
+            _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
             RegistrationInfo = new RegistrationInfo("", "", "");
             RegisterCommand = new Command(async() => await TryToRegister());
         }
@@ -47,7 +45,7 @@ namespace Missio.Registration
         {
             _registerUser.RegisterUser(RegistrationInfo);
             var alertTask = _alertDisplayer.DisplayAlert(AppResources.RegistrationSuccessfulTitle, AppResources.RegistrationSuccessfulMessage, AppResources.Ok);
-            await _returnToPreviousPage.ReturnToPreviousPage();
+            await _navigation.ReturnToPreviousPage();
             await alertTask;
         }
     }

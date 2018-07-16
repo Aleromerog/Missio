@@ -3,8 +3,10 @@ using Xamarin.Forms;
 
 namespace Missio.Navigation
 {
-    public interface IGoToPage  
+    public interface INavigation
     {
+        Task GoToPage<T>() where T : Page;
         Task GoToPage(Page page);
+        Task ReturnToPreviousPage();
     }
 }

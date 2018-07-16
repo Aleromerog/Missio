@@ -1,16 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NUnit.3.10.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" />
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Xamarin.Forms.3.1.0.583944\build\netstandard2.0\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.3.1.0.583944\build\netstandard2.0\Xamarin.Forms.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7C010DE0-B880-470B-BB40-44966916D707}</ProjectGuid>
+    <ProjectGuid>{604B01AA-C749-4F45-B15A-0CBF8B9A6A4A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Missio.LogInTests</RootNamespace>
-    <AssemblyName>Missio.LogInTests</AssemblyName>
+    <RootNamespace>Missio.ApplicationResources</RootNamespace>
+    <AssemblyName>Missio.ApplicationResources</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -34,16 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BottomBar.XamarinForms, Version=1.0.6334.21543, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ThriveGmbH.BottomNavigationBar.XF.1.0.2\lib\portable-net45+win8+wpa81\BottomBar.XamarinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="NSubstitute, Version=3.1.0.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
-      <HintPath>..\packages\NSubstitute.3.1.0\lib\net46\NSubstitute.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Forms.3.1.0.583944\lib\netstandard2.0\Xamarin.Forms.Core.dll</HintPath>
@@ -54,69 +50,12 @@
     <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Forms.3.1.0.583944\lib\netstandard2.0\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.UITest, Version=2.2.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.UITest.2.2.4\lib\net45\Xamarin.UITest.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GlobalUserTests.cs" />
-    <Compile Include="LoginTests.cs" />
-    <Compile Include="LogInViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Missio.LogIn\Missio.LogIn.csproj">
-      <Project>{4DD1EF16-36F3-443C-9116-6B980584BE04}</Project>
-      <Name>Missio.LogIn</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Missio.MainView\Missio.MainView.csproj">
-      <Project>{D1413247-11F5-423B-AEE8-A6167A498C2C}</Project>
-      <Name>Missio.MainView</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Missio.Navigation\Missio.Navigation.csproj">
-      <Project>{1EF28F5B-A94A-483E-A621-C79BDD191BD2}</Project>
-      <Name>Missio.Navigation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Missio.Registration\Missio.Registration.csproj">
-      <Project>{FE4F486E-DEF1-48EA-AFE6-573CB1437ECC}</Project>
-      <Name>Missio.Registration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Missio.Tests\Missio.Tests.csproj">
-      <Project>{8C25431E-66AF-4B55-8169-D76461975667}</Project>
-      <Name>Missio.Tests</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Missio.UsersTests\Missio.UsersTests.csproj">
-      <Project>{0987CEAA-DFEC-4F26-BD75-F42E602165E2}</Project>
-      <Name>Missio.UsersTests</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Missio.Users\Missio.Users.csproj">
-      <Project>{5FF0747B-B2A7-4FEC-BA86-E14E3E6F39EF}</Project>
-      <Name>Missio.Users</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Missio\Missio\Missio.csproj">
-      <Project>{6F9D2CEB-144A-40C2-AEC3-117CB8700BB3}</Project>
-      <Name>Missio</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\StringResources\StringResources.csproj">
-      <Project>{BA270304-C3F4-42CB-9462-D1A961C38F18}</Project>
-      <Name>StringResources</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

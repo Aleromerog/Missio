@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
 using Missio.LogIn;
-using Missio.Navigation;
 using Missio.NewsFeed;
 using Missio.Posts;
 using Xamarin.Forms;
+using INavigation = Missio.Navigation.INavigation;
 
 namespace Missio.PostPublication
 {
@@ -15,11 +15,8 @@ namespace Missio.PostPublication
         private readonly IPublishPost _publishPost;
         private readonly IGetLoggedInUser _getLoggedInUser;
         private readonly IUpdateViewPosts _updateViewPosts;
-        private readonly IReturnToPreviousPage _returnToPreviousPage;
+        private readonly INavigation _navigation;
         private string _postText;
-
-        [UsedImplicitly]
-        public string Title { get; } = "Publication page";
 
         [UsedImplicitly]
         public ICommand PublishPostCommand { get; }
@@ -32,12 +29,12 @@ namespace Missio.PostPublication
         }
 
         public PublicationPageViewModel([NotNull] IPublishPost publishPost, [NotNull] IGetLoggedInUser getLoggedInUser,
-            [NotNull] IUpdateViewPosts updateViewPosts, [NotNull] IReturnToPreviousPage returnToPreviousPage)
+            [NotNull] IUpdateViewPosts updateViewPosts, [NotNull] INavigation navigation)
         {
             _publishPost = publishPost ?? throw new ArgumentNullException(nameof(publishPost));
             _getLoggedInUser = getLoggedInUser ?? throw new ArgumentNullException(nameof(getLoggedInUser));
             _updateViewPosts = updateViewPosts ?? throw new ArgumentNullException(nameof(updateViewPosts));
-            _returnToPreviousPage = returnToPreviousPage ?? throw new ArgumentNullException(nameof(returnToPreviousPage));
+            _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
             PublishPostCommand = new Command(async() => await PublishPost());
         }
 
@@ -45,7 +42,7 @@ namespace Missio.PostPublication
         {
             _publishPost.PublishPost(new TextOnlyPost(_getLoggedInUser.LoggedInUser.UserName, PostText));
             _updateViewPosts.UpdatePosts();
-            await _returnToPreviousPage.ReturnToPreviousPage();
+            await _navigation.ReturnToPreviousPage();
         }
     }
 }

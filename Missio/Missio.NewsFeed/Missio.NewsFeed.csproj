@@ -30,10 +30,4 @@
     </Reference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="NewsFeedPage.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
 </Project>

@@ -4,18 +4,15 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
 using Missio.LogIn;
-using Missio.Navigation;
 using Missio.Posts;
 using Mission.ViewModel;
 using Xamarin.Forms;
+using INavigation = Missio.Navigation.INavigation;
 
 namespace Missio.NewsFeed
 {
-    public class NewsFeedViewModel : ViewModel, IUpdateViewPosts
+    public class NewsFeedViewModel<TPublicationPage> : ViewModel, IUpdateViewPosts where TPublicationPage : Page
     {
-        [UsedImplicitly]
-        public string Title { get; } = "News feed page";
-
         [UsedImplicitly]
         public ICommand UpdatePostsCommand { get; }
 
@@ -33,13 +30,13 @@ namespace Missio.NewsFeed
         public ObservableCollection<IPost> Posts { get; } = new ObservableCollection<IPost>();
 
         private readonly IGetMostRecentPosts _getMostRecentPosts;
-        private readonly IGoToView _goToView;
+        private readonly INavigation _navigation;
         private bool _isRefreshing;
 
-        public NewsFeedViewModel([NotNull] IGetMostRecentPosts getMostRecentPosts, [NotNull] IOnUserLoggedIn onUserLoggedIn, [NotNull] IGoToView goToView)
+        public NewsFeedViewModel([NotNull] IGetMostRecentPosts getMostRecentPosts, [NotNull] IOnUserLoggedIn onUserLoggedIn, [NotNull] INavigation navigation)
         {
             _getMostRecentPosts = getMostRecentPosts ?? throw new ArgumentNullException(nameof(getMostRecentPosts));
-            _goToView = goToView ?? throw new ArgumentNullException(nameof(goToView));
+            _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
             if (onUserLoggedIn == null)
                 throw new ArgumentNullException(nameof(onUserLoggedIn));
             UpdatePostsCommand = new Command(UpdatePosts);
@@ -57,7 +54,7 @@ namespace Missio.NewsFeed
 
         private async Task GoToPublicationPage()
         {
-            await _goToView.GoToView<PublicationPage>();
+            await _navigation.GoToPage<TPublicationPage>();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Missio.PostPublicationTests
         private PublicationPageViewModel _publicationPageViewModel;
         private IPublishPost _fakePublishPost;
         private IGetLoggedInUser _fakeGetLoggedInUser;
-        private IReturnToPreviousPage _fakeReturnOnePage;
+        private INavigation _fakeNavigation;
         private IUpdateViewPosts _fakeUpdatePostsView;
 
         [SetUp]
@@ -23,9 +23,9 @@ namespace Missio.PostPublicationTests
         {
             _fakePublishPost = Substitute.For<IPublishPost>();
             _fakeGetLoggedInUser = Substitute.For<IGetLoggedInUser>();
-            _fakeReturnOnePage = Substitute.For<IReturnToPreviousPage>();
+            _fakeNavigation = Substitute.For<INavigation>();
             _fakeUpdatePostsView = Substitute.For<IUpdateViewPosts>();
-            _publicationPageViewModel = new PublicationPageViewModel(_fakePublishPost, _fakeGetLoggedInUser, _fakeUpdatePostsView, _fakeReturnOnePage);
+            _publicationPageViewModel = new PublicationPageViewModel(_fakePublishPost, _fakeGetLoggedInUser, _fakeUpdatePostsView, _fakeNavigation);
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace Missio.PostPublicationTests
             //Act
             _publicationPageViewModel.PublishPostCommand.Execute(null);
             //Assert
-            _fakeReturnOnePage.Received(1).ReturnToPreviousPage();
+            _fakeNavigation.Received(1).ReturnToPreviousPage();
         }
         
         [Test]

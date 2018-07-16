@@ -2,14 +2,14 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
-using Missio.LogInRes;
 using Missio.Navigation;
 using Missio.Users;
 using Xamarin.Forms;
+using INavigation = Missio.Navigation.INavigation;
 
 namespace Missio.LogIn
 {
-    public class LogInViewModel
+    public class LogInViewModel<TRegistrationPage> where TRegistrationPage : Page
     {
         public User User { get; set; }
 
@@ -35,18 +35,18 @@ namespace Missio.LogIn
 
         private readonly IValidateUser _userValidator;
         private readonly IDisplayAlertOnCurrentPage _alertDisplay;
-        private readonly IGoToView _goToView;
+        private readonly INavigation _navigation;
         private readonly ISetLoggedInUser _setLoggedInUser;
 
-        public LogInViewModel([NotNull] IGoToView goToView, [NotNull] IValidateUser userValidator,
+        public LogInViewModel([NotNull] INavigation navigation, [NotNull] IValidateUser userValidator,
             [NotNull] IDisplayAlertOnCurrentPage alertDisplay, [NotNull] ISetLoggedInUser setLoggedInUser)
         {
-            _goToView = goToView ?? throw new ArgumentNullException(nameof(goToView));
+            _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
             _userValidator = userValidator ?? throw new ArgumentNullException(nameof(userValidator));
             _alertDisplay = alertDisplay ?? throw new ArgumentNullException(nameof(alertDisplay));
             _setLoggedInUser = setLoggedInUser ?? throw new ArgumentNullException(nameof(setLoggedInUser));
             User = new User("", "");
-            GoToRegistrationPageCommand = new Command(() => goToView.GoToView<RegistrationPage>());
+            GoToRegistrationPageCommand = new Command(() => navigation.GoToPage<TRegistrationPage>());
             LogInCommand = new Command(async() => await LogIn());
         }
 
@@ -59,7 +59,7 @@ namespace Missio.LogIn
             {
                 _userValidator.ValidateUser(User);
                 _setLoggedInUser.LoggedInUser = User;
-                await _goToView.GoToView<MainTabbedPage>();
+                await _navigation.GoToPage<MainTabbedPage>();
             }
             catch (LogInException e)
             {

@@ -103,9 +103,6 @@
       <HintPath>..\packages\Xamarin.Forms.3.1.0.583944\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="Ninject">
-      <HintPath>..\packages\Portable.Ninject.3.3.1\lib\Xamarin.iOS\Ninject.dll</HintPath>
-    </Reference>
     <Reference Include="ButtonCircle.FormsPlugin.Abstractions">
       <HintPath>..\packages\Plugins.Forms.ButtonCircle.2.0.2.1\lib\Xamarin.iOS10\ButtonCircle.FormsPlugin.Abstractions.dll</HintPath>
     </Reference>

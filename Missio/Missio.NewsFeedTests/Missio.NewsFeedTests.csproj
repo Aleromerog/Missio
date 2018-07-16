@@ -108,6 +108,10 @@
       <Project>{5FF0747B-B2A7-4FEC-BA86-E14E3E6F39EF}</Project>
       <Name>Missio.Users</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Missio\Missio\Missio.csproj">
+      <Project>{6F9D2CEB-144A-40C2-AEC3-117CB8700BB3}</Project>
+      <Name>Missio</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PostPublication\Missio.PostPublication.csproj">
       <Project>{763A6D7F-8590-4F3E-9D1A-2454C989DC69}</Project>
       <Name>Missio.PostPublication</Name>

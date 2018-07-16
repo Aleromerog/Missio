@@ -1,29 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using Missio.LogIn;
-using Missio.Navigation;
 using Missio.NewsFeed;
 using Missio.Posts;
 using NSubstitute;
 using NUnit.Framework;
+using INavigation = Missio.Navigation.INavigation;
 
 namespace Missio.NewsFeedTests
 {
     [TestFixture]
     public class NewsFeedViewModelTests
     {
-        private NewsFeedViewModel _newsFeedViewModel;
+        private NewsFeedViewModel<PublicationPage> _newsFeedViewModel;
         private IGetMostRecentPosts _fakeGetMostRecentPosts;
         private IOnUserLoggedIn _onUserLoggedIn;
-        private IGoToView _goToView;
+        private INavigation _fakeNavigation;
 
         [SetUp]
         public void SetUp()
         {
             _fakeGetMostRecentPosts = Substitute.For<IGetMostRecentPosts>();
             _onUserLoggedIn = Substitute.For<IOnUserLoggedIn>();
-            _goToView = Substitute.For<IGoToView>();
-            _newsFeedViewModel = new NewsFeedViewModel(_fakeGetMostRecentPosts, _onUserLoggedIn, _goToView);
+            _fakeNavigation = Substitute.For<INavigation>();
+            _newsFeedViewModel = new NewsFeedViewModel<PublicationPage>(_fakeGetMostRecentPosts, _onUserLoggedIn, _fakeNavigation);
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace Missio.NewsFeedTests
             //Act
             _newsFeedViewModel.GoToPublicationPageCommand.Execute(null);
             //Assert
-            _goToView.Received(1).GoToView<PublicationPage>();
+            _fakeNavigation.Received(1).GoToPage<PublicationPage>();
         }
 
         [Test]

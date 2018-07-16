@@ -4,14 +4,15 @@ using Missio.Navigation;
 using Missio.Users;
 using NSubstitute;
 using NUnit.Framework;
+using INavigation = Missio.Navigation.INavigation;
 
 namespace Missio.LogInTests
 {
     [TestFixture]
     public class LogInViewModelTests
     {
-        private LogInViewModel _logInViewModel;
-        private IGoToView _fakeGoToView;
+        private LogInViewModel<RegistrationPage> _logInViewModel;
+        private INavigation _fakeNavigation;
         private ISetLoggedInUser _fakeSetLoggedInUser;
         private IDisplayAlertOnCurrentPage _fakeDisplayAlertOnCurrentPage;
         private IValidateUser _fakeUserValidator;
@@ -19,11 +20,11 @@ namespace Missio.LogInTests
         [SetUp]
         public void SetUp()
         {
-            _fakeGoToView = Substitute.For<IGoToView>();
+            _fakeNavigation = Substitute.For<INavigation>();
             _fakeSetLoggedInUser = Substitute.For<ISetLoggedInUser>();
             _fakeDisplayAlertOnCurrentPage = Substitute.For<IDisplayAlertOnCurrentPage>();
             _fakeUserValidator = Substitute.For<IValidateUser>();
-            _logInViewModel = new LogInViewModel(_fakeGoToView, _fakeUserValidator, _fakeDisplayAlertOnCurrentPage,
+            _logInViewModel = new LogInViewModel<RegistrationPage>(_fakeNavigation, _fakeUserValidator, _fakeDisplayAlertOnCurrentPage,
                 _fakeSetLoggedInUser);
         }
 
@@ -65,7 +66,7 @@ namespace Missio.LogInTests
             //Act
             _logInViewModel.GoToRegistrationPageCommand.Execute(null);
             //Assert
-            _fakeGoToView.Received(1).GoToView<RegistrationPage>();
+            _fakeNavigation.Received(1).GoToPage<RegistrationPage>();
         }
 
         [Test]
@@ -79,7 +80,7 @@ namespace Missio.LogInTests
             //Assert
             _fakeUserValidator.Received(1).ValidateUser(user);
             _fakeSetLoggedInUser.Received(1).LoggedInUser = user;
-            _fakeGoToView.Received(1).GoToView<MainTabbedPage>();
+            _fakeNavigation.Received(1).GoToPage<MainTabbedPage>();
         }
 
         [Test]

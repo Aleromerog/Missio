@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Missio.LocalDatabase;
 using Missio.LogIn;
 using Missio.LogInRes;
@@ -12,6 +11,7 @@ using Mission.ViewModel;
 using Ninject;
 using Xamarin.Forms;
 using Ninject.Modules;
+using INavigation = Missio.Navigation.INavigation;
 
 namespace Missio
 {
@@ -21,11 +21,10 @@ namespace Missio
 
 	    public App()
 	    {
-	        var kernel = new StandardKernel(new ModelModule(), new ToolsPageModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(),  new MainViewModule(), new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new ApplicationNavigation());
-            InitializeComponent();
+	        InitializeComponent();
+            var kernel = new StandardKernel(new ModelModule(), new ToolsPageModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(), new MainViewModule(), new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new ApplicationNavigation());
             var appNavigation = kernel.Get<Navigation.ApplicationNavigation>();
-            appNavigation.Pages = kernel.GetAll<Page>().ToArray();
-            appNavigation.StartFromPage(kernel.Get<LogInPage>());
+            appNavigation.GoToPage<LogInPage>();
         }
 
         public static void AssertIsPreviewing()
@@ -44,7 +43,6 @@ namespace Missio
     {
         public override void Load()
         {
-            Bind<Page, ToolsPage>().To<ToolsPage>().InSingletonScope();
         }
     }
 
@@ -53,7 +51,6 @@ namespace Missio
         /// <inheritdoc />
         public override void Load()
         {
-            Bind<Page, ProfilePage>().To<ProfilePage>().InSingletonScope();
         }
     }
 
@@ -62,7 +59,6 @@ namespace Missio
         /// <inheritdoc />
         public override void Load()
         {
-            Bind<Page, CalendarPage>().To<CalendarPage>().InSingletonScope();
         }
     }
 
@@ -72,7 +68,6 @@ namespace Missio
         public override void Load()
         {
             Bind<RegistrationViewModel>().ToSelf().InSingletonScope();
-            Bind<Page>().To<RegistrationPage>().InSingletonScope();
         }
     }
 
@@ -85,7 +80,6 @@ namespace Missio
             Bind<Page>().To<NewsFeedPage>().WhenInjectedExactlyInto<MainTabbedPage>();
             Bind<Page>().To<ProfilePage>().WhenInjectedExactlyInto<MainTabbedPage>();
             Bind<MainTabbedPageViewModel>().ToSelf().InSingletonScope();
-            Bind<Page>().To<MainTabbedPage>().InSingletonScope();
         }
     } 
 
@@ -94,7 +88,8 @@ namespace Missio
         /// <inheritdoc />
         public override void Load()
         {
-            Bind<IGoToPage, IGoToView, IReturnToPreviousPage, Navigation.ApplicationNavigation>().To<Navigation.ApplicationNavigation>().InSingletonScope();
+            Bind<IPageFactory>().To<PageFactory>();
+            Bind<INavigation, Navigation.ApplicationNavigation>().To<Navigation.ApplicationNavigation>().InSingletonScope();
         }
     }
 
@@ -113,7 +108,6 @@ namespace Missio
         public override void Load()
         {
             Bind<PublicationPageViewModel>().ToSelf().InSingletonScope();
-            Bind<Page>().To<PublicationPage>().InSingletonScope();
         }
     }
 
@@ -122,8 +116,7 @@ namespace Missio
         /// <inheritdoc />
         public override void Load()
         {
-            Bind<IUpdateViewPosts, NewsFeedViewModel>().To<NewsFeedViewModel>().InSingletonScope();
-            Bind<Page, NewsFeedPage>().To<NewsFeedPage>().InSingletonScope();
+            Bind<IUpdateViewPosts, NewsFeedViewModel<PublicationPage>>().To<NewsFeedViewModel<PublicationPage>>().InSingletonScope();
         }
     }
 
@@ -132,8 +125,7 @@ namespace Missio
 		/// <inheritdoc />
 		public override void Load()
 		{
-            Bind<LogInViewModel>().ToSelf().InSingletonScope();
-            Bind<Page>().To<LogInPage>().InSingletonScope();
+            Bind<LogInViewModel<RegistrationPage>>().ToSelf().InSingletonScope();
 		}
 	}
 
