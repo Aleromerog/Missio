@@ -51,6 +51,7 @@ namespace Missio.NewsFeedTests
         public void Constructor_NormalConstructor_UpdatesPosts(List<IPost> postsToAdd)
         {
             var fakeGetMostRecentPosts = MakeFakeGetMostRecentPosts(postsToAdd);
+
             var newsFeedViewModel = MakeNewsFeedViewModel(fakeGetMostRecentPosts, Substitute.For<INavigation>());
 
             Assert.That(newsFeedViewModel.Posts, Is.EquivalentTo(postsToAdd));

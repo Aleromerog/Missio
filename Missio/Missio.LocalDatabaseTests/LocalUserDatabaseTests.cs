@@ -33,9 +33,6 @@ namespace Missio.LocalDatabaseTests
         [TestCaseSource(nameof(_incorrectUserNames))]
         public void ValidateUser_IncorrectUserName_ThrowsException(User incorrectUser)
         {
-            //Arrange
-            
-            //Act and assert
             Assert.Throws<InvalidUserNameException>(() => _localUserDatabase.ValidateUser(incorrectUser));
         }
 
@@ -43,9 +40,6 @@ namespace Missio.LocalDatabaseTests
         [TestCaseSource(nameof(_incorrectUserPasswords))]
         public void ValidateUser_IncorrectPassword_ThrowsException(User incorrectUser)
         {
-            //Arrange
-
-            //Act and assert
             Assert.Throws<InvalidPasswordException>(() => _localUserDatabase.ValidateUser(incorrectUser));
         }
 
@@ -55,11 +49,8 @@ namespace Missio.LocalDatabaseTests
         [TestCase("Thanos", false)]
         public void DoesUserExist_GivenUsername_ReturnsIfUserExists(string userName, bool doesUserExist)
         {
-            //Arrange
-            
-            //Act
             var result = _localUserDatabase.DoesUserExist(userName);
-            //Assert
+
             Assert.AreEqual(doesUserExist, result);
         }
 
@@ -68,11 +59,8 @@ namespace Missio.LocalDatabaseTests
         [TestCase("New another user name", "Another pass", "anotherEmail")]
         public void RegisterUser_GivenData_RegistersUser(string userName, string password, string email)
         {
-            //Arrange
-            
-            //Act
             _localUserDatabase.RegisterUser(new RegistrationInfo(userName, password, email));
-            //Assert
+
             Assert.IsTrue(_localUserDatabase.DoesUserExist(userName));
         }
 
@@ -80,14 +68,12 @@ namespace Missio.LocalDatabaseTests
         [TestCaseSource(typeof(UserNamesAlreadyInUse), nameof(UserNamesAlreadyInUse.NamesAlreadyInUse))]
         public void RegisterUser_UserNameAlreadyInUse_ThrowsException(string userName)
         {
-            //Act and assert
             Assert.Throws<UserNameAlreadyInUseException>(() => _localUserDatabase.RegisterUser(new RegistrationInfo(userName, "hello world", "")));
         }
 
         [Test]
         public void RegisterUser_RegistrationInfoContainsExceptions_ThrowsExceptions()
         {
-            //Act and assert
             Assert.Throws<UserNameTooShortException>(() => _localUserDatabase.RegisterUser(new RegistrationInfo("", "hello there", "")));
         }
     }

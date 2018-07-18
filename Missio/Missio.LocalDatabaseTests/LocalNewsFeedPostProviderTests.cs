@@ -27,33 +27,28 @@ namespace Missio.LocalDatabaseTests
         [TestCaseSource(typeof(ExtraNewsFeedPosts), nameof(ExtraNewsFeedPosts.ExtraPosts))]
         public void SetUserPosts_GivenPosts_SetsUserPosts(List<IPost> newPosts)
         {
-            //Arrange
-            
-            //Act
             _localNewsFeedPostDatabase.SetMostRecentPosts(newPosts);
-            //Assert
+
             Assert.That(_localNewsFeedPostDatabase.GetMostRecentPostsInOrder(), Is.EquivalentTo(newPosts));
         }
 
         [Test]
         public void GetMostRecentPostsInOrder_NonExistingUser_ReturnsEmptyList()
         {
-            //Arrange
             _fakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
-            //Act
+
             var posts = _localNewsFeedPostDatabase.GetMostRecentPostsInOrder();
-            //Assert
+
             Assert.AreEqual(0, posts.Count);
         }
 
         [Test]
         public void GetMostRecentPostsInOrder_ValidUser_ReturnsPostsInOrder()
         {
-            //Arrange
             _fakeGetLoggedInUser.LoggedInUser.Returns(LocalUserDatabase.ValidUsers[0]);
-            //Act
+
             var posts = _localNewsFeedPostDatabase.GetMostRecentPostsInOrder();
-            //Assert
+
             Assert.AreEqual(3, posts.Count);
             Assert.IsAssignableFrom<StickyPost>(posts[0]);
         }
@@ -61,11 +56,10 @@ namespace Missio.LocalDatabaseTests
         [Test]
         public void PublishPost_GivenPost_AddsPost()
         {
-            //Arrange
             var post = new TextOnlyPost("Some user", "The content of the post");
-            //Act
+
             _localNewsFeedPostDatabase.PublishPost(post);
-            //Assert
+
             Assert.Contains(post, _localNewsFeedPostDatabase.GetMostRecentPostsInOrder());
         }
     }

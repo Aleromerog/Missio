@@ -21,11 +21,10 @@ namespace Missio.RegistrationTests
         [TestCase("AA")]
         public void GetOfflineErrorMessages_UserNameIsTooShort_IsContainedInList(string username)
         {
-            //Arrange
             _registrationInfo.UserName = username;
-            //Act
+
             var errorMessages = _registrationInfo.GetOfflineErrorExceptions();
-            //Assert
+
             Assert.That(errorMessages.Any(x => x is UserNameTooShortException));
         }
 
@@ -35,11 +34,10 @@ namespace Missio.RegistrationTests
         [TestCase("WP")]
         public void GetOfflineErrorMessages_PasswordIsTooShort_IsContainedInList(string password)
         {
-            //Arrange
             _registrationInfo.Password = password;
-            //Act
+
             var errorMessages = _registrationInfo.GetOfflineErrorExceptions();
-            //Assert
+
             Assert.That(errorMessages.Any(x => x is PasswordTooShortException));
         }
 
@@ -50,11 +48,10 @@ namespace Missio.RegistrationTests
         [TestCase("BBBBBB", false)]
         public void DoesUserNameHaveErrors_IsTooShort_ReturnsTrue(string username, bool expected)
         {
-            //Arrange
             _registrationInfo.UserName = username;
-            //Act
+
             var hasErrors = _registrationInfo.DoesUserNameHaveErrors();
-            //Assert
+
             Assert.AreEqual(expected, hasErrors);
         }
 
@@ -65,44 +62,40 @@ namespace Missio.RegistrationTests
         [TestCase("BBBBB", false)]
         public void DoesPasswordHaveErrors_IsTooShort_ReturnsTrue(string password, bool expected)
         {
-            //Arrange
             _registrationInfo.Password = password;
-            //Act
+
             var hasErrors = _registrationInfo.DoesPasswordHaveErrors();
-            //Assert
+
             Assert.AreEqual(expected, hasErrors);
         }
 
         [Test]
         public void UserName_IsNull_ReturnsEmptyString()
         {
-            //Arrange
             _registrationInfo.UserName = null;
-            //Act
+
             var result = _registrationInfo.UserName;
-            //Assert
+
             Assert.IsEmpty(result);
         }
 
         [Test]
         public void Password_IsNull_ReturnsEmptyString()
         {
-            //Arrange
             _registrationInfo.Password = null;
-            //Act
+
             var result = _registrationInfo.Password;
-            //Assert
+
             Assert.IsEmpty(result);
         }
 
         [Test]
         public void Email_IsNull_ReturnsEmptyString()
         {
-            //Arrange
             _registrationInfo.Email = null;
-            //Act
+
             var result = _registrationInfo.Email;
-            //Assert
+
             Assert.IsEmpty(result);
         }
     }

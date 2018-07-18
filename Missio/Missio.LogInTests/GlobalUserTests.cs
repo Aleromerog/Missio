@@ -18,9 +18,6 @@ namespace Missio.LogInTests
         [Test]
         public void GetUser_NoUserLoggedIn_ThrowsException()
         {
-            //Arrange
-
-            //Act and assert
             // ReSharper disable once UnusedVariable
             Assert.Throws<InvalidOperationException>(() => { var user =  _globalUser.LoggedInUser; } );
         }
@@ -28,11 +25,10 @@ namespace Missio.LogInTests
         [Test]
         public void SetUser_GivenUser_SetsUser()
         {
-            //Arrange
             var user = new User("Some user ", "Pass");
-            //Act
+
             _globalUser.LoggedInUser = user;
-            //Assert
+
             Assert.AreEqual(user, _globalUser.LoggedInUser);
         }
     }

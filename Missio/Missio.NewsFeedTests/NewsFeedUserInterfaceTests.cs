@@ -41,24 +41,19 @@ namespace Missio.NewsFeedTests
         [TestCaseSource(nameof(GetOnAppearTestData))]
         public void OnAppear_GivenNewsFeedPosts_DisplaysPosts(User user, List<string> expectedPosts)
         {
-            //Arrange and act
             _app.LogInWithUser(user);
 
-            //Assert
             foreach (var expectedPost in expectedPosts)
-            {
                 _app.WaitForElement(c => c.Text(expectedPost));
-            }
         }
 
         [Test]
         public void AddPostButton_NormalClick_GoesToPublicationPage()
         {
-            //Arrange
             _app.LogInWithDefaultUser();
-            //Act
+
             _app.Tap(c => c.Button("AddPostButton"));
-            //Assert
+
             _app.WaitForElement(c => c.Marked("PublicationPage"));
         }
     }

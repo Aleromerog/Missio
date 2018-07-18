@@ -28,12 +28,11 @@ namespace Missio.PostPublicationTests
         [Test]
         public void PublishButton_GivenPostContent_PublishesPost()
         {
-            //Arrange
             var postText = "Content of the new post";
-            //Act
+
             _app.EnterText(c => c.TextField("PostTextEntry"), postText);
             _app.Tap(c => c.Button("PublishPostButton"));
-            //Assert
+
             _app.WaitForElement(c => c.Marked("NewsFeedPage"));
             _app.WaitForElement(c => c.Text(postText));
         }

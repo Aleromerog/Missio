@@ -31,36 +31,33 @@ namespace Missio.PostPublicationTests
         [Test]
         public void PublishPost_TextOnly_UpdatesPostsView()
         {
-            //Arrange
             _fakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
-            //Act
+
             _publicationPageViewModel.PublishPostCommand.Execute(null);
-            //Assert
+
             _fakeUpdatePostsView.Received(1).UpdatePosts();
         }
 
         [Test]
         public void PublishPost_TextOnly_ReturnsToNewsFeed()
         {
-            //Arrange
             _fakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
-            //Act
+
             _publicationPageViewModel.PublishPostCommand.Execute(null);
-            //Assert
+
             _fakeNavigation.Received(1).ReturnToPreviousPage();
         }
         
         [Test]
         public void PublishPostCommand_TextOnly_PublishesPost()
         {
-            //Arrange
             var authorName = "Name of the author";
             var newPostText = "The content of the new post";
             _fakeGetLoggedInUser.LoggedInUser.Returns(new User(authorName, ""));
             _publicationPageViewModel.PostText = newPostText;
-            //Act
+
             _publicationPageViewModel.PublishPostCommand.Execute(null);
-            //Assert
+
             _fakePublishPost.Received(1).PublishPost(Arg.Is<TextOnlyPost>(x => x.Message == newPostText && x.AuthorName == authorName));
         }
     }
