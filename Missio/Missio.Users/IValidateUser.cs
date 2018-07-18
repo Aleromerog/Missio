@@ -6,7 +6,7 @@
     public interface IValidateUser
     {
         /// <summary>
-        /// Validates that the user given user information is correct, if it is 
+        /// Validates that the user given user information is correct
         /// </summary>
         /// <param name="user"> The user info to validate </param>
         /// <returns></returns>

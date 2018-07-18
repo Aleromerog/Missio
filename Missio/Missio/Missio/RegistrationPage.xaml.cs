@@ -2,6 +2,7 @@
 
 namespace Missio.LogInRes
 {
+    // ReSharper disable once MismatchedFileName
     public partial class RegistrationPage 
     {
         public RegistrationPage()

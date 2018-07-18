@@ -6,6 +6,7 @@ using Xamarin.Forms;
 namespace Missio.LogInRes
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+    // ReSharper disable once MismatchedFileName
     public partial class LogInPage
     {
         public LogInPage ()

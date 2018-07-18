@@ -7,6 +7,7 @@ using Xamarin.Forms.Xaml;
 namespace Missio
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
+	// ReSharper disable once MismatchedFileName
 	public partial class MainTabbedPage
     {
         [Obsolete("Only for previewing with the Xamarin previewer", true)]

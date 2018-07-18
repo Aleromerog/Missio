@@ -52,6 +52,7 @@
             <Entry HorizontalTextAlignment="Center"
                    FontFamily="{StaticResource MissioRegular}"
                    Text="{Binding UserName}"
+                   AutomationId="UserNameEntry"
                    Placeholder="E-mail o usuario"/>
             <Label Text="Contrasena"
                    FontFamily="{StaticResource MissioRegular}"
@@ -60,6 +61,7 @@
                    FontFamily="{StaticResource MissioRegular}"
                    Placeholder="Introudzca contrasena"
                    Text="{Binding Password}"
+                   AutomationId="PasswordEntry"
                    IsPassword="true"/>
             
         </FlexLayout>
@@ -82,6 +84,8 @@
                             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Square, Factor=1.78, Property=Y}"
                             HeightRequest="80"
                             WidthRequest="80"
+                            Command="{Binding LogInCommand}"
+                            AutomationId="LogInButton"
                             Image="check.png"/>
         <FlexLayout Direction="Row"
                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.8, Property=Width}"
@@ -134,7 +138,9 @@
             <Button Text="Registrate"
                     BackgroundColor="Transparent"
                     TextColor="{StaticResource SecondaryColor}"
-                    FontFamily="{StaticResource MissioRegular}" />
+                    FontFamily="{StaticResource MissioRegular}"
+                    Command="{Binding GoToRegistrationPageCommand}"
+                    AutomationId="RegisterButton"/>
         </StackLayout>
 
         

@@ -2,6 +2,7 @@
 
 namespace Missio.iOS
 {
+    // ReSharper disable once MismatchedFileName
     public class Application
     {
         // This is the main entry point of the application.
