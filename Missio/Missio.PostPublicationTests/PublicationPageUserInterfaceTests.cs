@@ -7,12 +7,12 @@ namespace Missio.PostPublicationTests
     [TestFixture(Platform.Android)]
     [TestFixture(Platform.iOS)]
     [Category("UITests")]
-    public class PublicationPageTests
+    public class PublicationPageUserInterfaceTests
     {
         private IApp _app;
         private readonly Platform _platform;
 
-        public PublicationPageTests(Platform platform)
+        public PublicationPageUserInterfaceTests(Platform platform)
         {
             this._platform = platform;
         }

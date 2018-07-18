@@ -6,7 +6,7 @@ namespace Missio.LogIn
     /// <summary>
     /// Class for getting the user that is logged in
     /// </summary>
-    public class GlobalUser : IGetLoggedInUser, ISetLoggedInUser, IOnUserLoggedIn
+    public class GlobalUser : IGetLoggedInUser, ISetLoggedInUser
     {
         private User _loggedInUser;
 
@@ -18,13 +18,7 @@ namespace Missio.LogIn
                     throw new InvalidOperationException("No user is currently logged in");
                 return _loggedInUser;
             }
-            set
-            {
-                _loggedInUser = value;
-                OnUserLoggedIn();
-            }
+            set => _loggedInUser = value;
         }
-
-        public event Action OnUserLoggedIn = delegate { };
     }
 }

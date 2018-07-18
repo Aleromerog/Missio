@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
-using Missio.LogIn;
 using Missio.Posts;
 using Mission.ViewModel;
 using Xamarin.Forms;
@@ -33,15 +32,13 @@ namespace Missio.NewsFeed
         private readonly INavigation _navigation;
         private bool _isRefreshing;
 
-        public NewsFeedViewModel([NotNull] IGetMostRecentPosts getMostRecentPosts, [NotNull] IOnUserLoggedIn onUserLoggedIn, [NotNull] INavigation navigation)
+        public NewsFeedViewModel([NotNull] IGetMostRecentPosts getMostRecentPosts, [NotNull] INavigation navigation)
         {
             _getMostRecentPosts = getMostRecentPosts ?? throw new ArgumentNullException(nameof(getMostRecentPosts));
             _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
-            if (onUserLoggedIn == null)
-                throw new ArgumentNullException(nameof(onUserLoggedIn));
             UpdatePostsCommand = new Command(UpdatePosts);
-            onUserLoggedIn.OnUserLoggedIn += UpdatePosts;
             GoToPublicationPageCommand = new Command(async() => await GoToPublicationPage());
+            UpdatePosts();
         }
 
         public void UpdatePosts()

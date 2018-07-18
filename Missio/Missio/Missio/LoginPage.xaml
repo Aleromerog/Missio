@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
              NavigationPage.HasNavigationBar="False"
-             x:Class="Missio.LogInRes.LogInPage">
+             x:Class="Missio.LogInRes.LogInPage"
+             AutomationId="LogInPage">
     <RelativeLayout>
         <Image x:Name="Background"
                Aspect="AspectFill"

@@ -76,8 +76,8 @@ namespace Missio
         /// <inheritdoc />
         public override void Load()
         {
-            Bind<Page>().To<CalendarPage>().WhenInjectedExactlyInto<MainTabbedPage>();
             Bind<Page>().To<NewsFeedPage>().WhenInjectedExactlyInto<MainTabbedPage>();
+            Bind<Page>().To<CalendarPage>().WhenInjectedExactlyInto<MainTabbedPage>();
             Bind<Page>().To<ProfilePage>().WhenInjectedExactlyInto<MainTabbedPage>();
             Bind<MainTabbedPageViewModel>().ToSelf().InSingletonScope();
         }
@@ -99,7 +99,7 @@ namespace Missio
 		public override void Load()
 		{
 			Bind<IDisplayAlertOnCurrentPage>().To<DisplayAlertOnCurrentPage>().InSingletonScope();
-			Bind<IOnUserLoggedIn, IGetLoggedInUser, ISetLoggedInUser, GlobalUser>().To<GlobalUser>().InSingletonScope();
+			Bind<IGetLoggedInUser, ISetLoggedInUser, GlobalUser>().To<GlobalUser>().InSingletonScope();
         }
 	}
 

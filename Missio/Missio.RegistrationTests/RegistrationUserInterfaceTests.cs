@@ -9,14 +9,14 @@ namespace Missio.RegistrationTests
     [TestFixture(Platform.Android)]
     [TestFixture(Platform.iOS)]
     [Category("UITests")]
-    public class RegistrationTests
+    public class RegistrationUserInterfaceTests
     {
         private IApp _app;
         private readonly Platform _platform;
 
-        public RegistrationTests(Platform platform)
+        public RegistrationUserInterfaceTests(Platform platform)
         {
-            this._platform = platform;
+            _platform = platform;
         }
 
         [SetUp]

@@ -9,14 +9,14 @@ namespace Missio.LogInTests
     [TestFixture(Platform.Android)]
     [TestFixture(Platform.iOS)]
     [Category("UITests")]
-    public class LoginTests
+    public class LogInUserInterfaceTests
     {
         private IApp _app;
         private readonly Platform _platform;
 
-        public LoginTests(Platform platform)
+        public LogInUserInterfaceTests(Platform platform)
         {
-            this._platform = platform;
+            _platform = platform;
         }
 
         [SetUp]

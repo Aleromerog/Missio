@@ -35,18 +35,5 @@ namespace Missio.LogInTests
             //Assert
             Assert.AreEqual(user, _globalUser.LoggedInUser);
         }
-
-        [Test]
-        public void SetUser_GivenUser_FiresOnUserLoggedIn()
-        {
-            //Arrange
-            var wasEventRaised = false;
-            _globalUser.OnUserLoggedIn += () => wasEventRaised = true;
-            var user = new User("Some user ", "Pass");
-            //Act
-            _globalUser.LoggedInUser = user;
-            //Assert
-            Assert.IsTrue(wasEventRaised);
-        }
     }
 }

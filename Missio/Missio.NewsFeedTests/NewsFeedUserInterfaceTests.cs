@@ -10,12 +10,12 @@ namespace Missio.NewsFeedTests
     [TestFixture(Platform.Android)]
     [TestFixture(Platform.iOS)]
     [Category("UITests")]
-    public class NewsFeedTests
+    public class NewsFeedUserInterfaceTests
     {
         private IApp _app;
         private readonly Platform _platform;
 
-        public NewsFeedTests(Platform platform)
+        public NewsFeedUserInterfaceTests(Platform platform)
         {
             this._platform = platform;
         }

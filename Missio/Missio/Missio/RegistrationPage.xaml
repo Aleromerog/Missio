@@ -4,7 +4,8 @@
              x:Class="Missio.LogInRes.RegistrationPage"
              BackgroundColor="{StaticResource SecondaryColor}"
              Title="Crear nueva cuenta"
-             xmlns:local="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions">
+             xmlns:local="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
+             AutomationId="RegistrationPage">
     
     <StackLayout Padding="20,10,20,0">
         <local:CircleButton WidthRequest="120"

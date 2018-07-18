@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Missio.LogIn;
+﻿using System.Collections.Generic;
 using Missio.NewsFeed;
 using Missio.Posts;
 using NSubstitute;
@@ -12,53 +10,50 @@ namespace Missio.NewsFeedTests
     [TestFixture]
     public class NewsFeedViewModelTests
     {
-        private NewsFeedViewModel<PublicationPage> _newsFeedViewModel;
-        private IGetMostRecentPosts _fakeGetMostRecentPosts;
-        private IOnUserLoggedIn _onUserLoggedIn;
-        private INavigation _fakeNavigation;
-
-        [SetUp]
-        public void SetUp()
+        private static NewsFeedViewModel<PublicationPage> MakeNewsFeedViewModel(IGetMostRecentPosts getMostRecentPosts, INavigation navigation)
         {
-            _fakeGetMostRecentPosts = Substitute.For<IGetMostRecentPosts>();
-            _onUserLoggedIn = Substitute.For<IOnUserLoggedIn>();
-            _fakeNavigation = Substitute.For<INavigation>();
-            _newsFeedViewModel = new NewsFeedViewModel<PublicationPage>(_fakeGetMostRecentPosts, _onUserLoggedIn, _fakeNavigation);
+            return new NewsFeedViewModel<PublicationPage>(getMostRecentPosts, navigation);
+        }
+
+        private static IGetMostRecentPosts MakeFakeGetMostRecentPosts(List<IPost> posts)
+        {
+            var fakeGetMostRecentPosts = Substitute.For<IGetMostRecentPosts>();
+            fakeGetMostRecentPosts.GetMostRecentPostsInOrder().Returns(posts);
+            return fakeGetMostRecentPosts;
         }
 
         [Test]
         public void UpdatePosts_IsRefreshingSetToTrue_SetsIsRefreshingToFalse()
         {
-            //Arrange
-            _fakeGetMostRecentPosts.GetMostRecentPostsInOrder().Returns(new List<IPost>());
-            _newsFeedViewModel.IsRefreshing = true;
-            //Act
-            _newsFeedViewModel.UpdatePosts();
-            //Assert
-            Assert.IsFalse(_newsFeedViewModel.IsRefreshing);
+            var fakeGetMostRecentPosts = MakeFakeGetMostRecentPosts(new List<IPost>());
+            var newsFeedViewModel = MakeNewsFeedViewModel(fakeGetMostRecentPosts, Substitute.For<INavigation>());
+            newsFeedViewModel.IsRefreshing = true;
+
+            newsFeedViewModel.UpdatePosts();
+
+            Assert.IsFalse(newsFeedViewModel.IsRefreshing);
         }
 
         [Test]
         public void GoToPublicationPageCommand_NormalCall_GoesToPublicationPage()
         {
-            //Arrange
-            
-            //Act
-            _newsFeedViewModel.GoToPublicationPageCommand.Execute(null);
-            //Assert
-            _fakeNavigation.Received(1).GoToPage<PublicationPage>();
+            var fakeGetMostRecentPosts = MakeFakeGetMostRecentPosts(new List<IPost>());
+            var fakeNavigation = Substitute.For<INavigation>();
+            var newsFeedViewModel = MakeNewsFeedViewModel(fakeGetMostRecentPosts, fakeNavigation);
+
+            newsFeedViewModel.GoToPublicationPageCommand.Execute(null);
+
+            fakeNavigation.Received(1).GoToPage<PublicationPage>();
         }
 
         [Test]
         [TestCaseSource(typeof(ExtraNewsFeedPosts), nameof(ExtraNewsFeedPosts.ExtraPosts))]
-        public void OnUserLoggedIn_UserLoggedIn_UpdatesPosts(List<IPost> postsToAdd)
+        public void Constructor_NormalConstructor_UpdatesPosts(List<IPost> postsToAdd)
         {
-            //Arrange
-            _fakeGetMostRecentPosts.GetMostRecentPostsInOrder().Returns(postsToAdd);
-            //Act
-            _onUserLoggedIn.OnUserLoggedIn += Raise.Event<Action>();
-            //Assert
-            Assert.That(_newsFeedViewModel.Posts, Is.EquivalentTo(postsToAdd));
+            var fakeGetMostRecentPosts = MakeFakeGetMostRecentPosts(postsToAdd);
+            var newsFeedViewModel = MakeNewsFeedViewModel(fakeGetMostRecentPosts, Substitute.For<INavigation>());
+
+            Assert.That(newsFeedViewModel.Posts, Is.EquivalentTo(postsToAdd));
         }
     }
 }

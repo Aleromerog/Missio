@@ -23,7 +23,7 @@ namespace Missio.Navigation
         {
             if (Application.Current.MainPage != null)
                 return Application.Current.MainPage.Navigation.PushAsync(page);
-            Application.Current.MainPage = page;
+            Application.Current.MainPage = new NavigationPage(page);
             return Task.CompletedTask;
         }
 
