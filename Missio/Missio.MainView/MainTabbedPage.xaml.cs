@@ -1,6 +1,4 @@
-﻿using System;
-using JetBrains.Annotations;
-using Mission.ViewModel;
+﻿using JetBrains.Annotations;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,19 +8,23 @@ namespace Missio
 	// ReSharper disable once MismatchedFileName
 	public partial class MainTabbedPage
     {
-        [Obsolete("Only for previewing with the Xamarin previewer", true)]
         public MainTabbedPage()
         {
             InitializeComponent();
         }
 
         [UsedImplicitly]
-	    public MainTabbedPage(MainTabbedPageViewModel mainTabbedPageViewModel, Page[] childPages)
+	    public MainTabbedPage(Page[] childPages)
 	    {
 	        foreach (var page in childPages)
 	            Children.Add(page);
-	        BindingContext = mainTabbedPageViewModel;
             InitializeComponent();
 	    }
-	}
+
+        /// <inheritdoc />
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
+    }
 }

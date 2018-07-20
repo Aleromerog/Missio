@@ -1,5 +1,4 @@
-﻿using System;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Missio.NewsFeed;
 using Xamarin.Forms.Xaml;
 
@@ -9,7 +8,6 @@ namespace Missio
 	// ReSharper disable once MismatchedFileName
 	public partial class NewsFeedPage
 	{
-        [Obsolete("Only for previewing with the Xamarin previewer", true)]
 	    public NewsFeedPage()
 	    {
             InitializeComponent();
