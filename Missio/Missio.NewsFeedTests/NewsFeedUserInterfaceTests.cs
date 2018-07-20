@@ -56,5 +56,15 @@ namespace Missio.NewsFeedTests
 
             _app.WaitForElement(c => c.Marked("PublicationPage"));
         }
+
+        [Test]
+        public void BackButton_IsPressed_StaysOnCurrentView()
+        {
+           _app.LogInWithDefaultUser();
+            
+           _app.Back();
+
+           _app.WaitForNoElement(c => c.Marked("LogInPage"));
+        }
     }
 }

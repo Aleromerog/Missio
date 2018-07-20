@@ -8,7 +8,7 @@ namespace Missio.MainViewTests
         [Test]
         public void OnBackButtonPressed_NormalCall_ReturnsFalse()
         {
-            Assert.IsFalse(OnBackButtonPressed());
+            Assert.IsTrue(OnBackButtonPressed());
         }
     }
 }
