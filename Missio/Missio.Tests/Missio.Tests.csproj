@@ -33,6 +33,7 @@
   <ItemGroup>
     <Compile Include="AppInterfaceExtensionMethods.cs" />
     <Compile Include="AppInitializer.cs" />
+    <Compile Include="AppTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -46,12 +47,26 @@
       <Project>{86ED73DC-F6DA-4BAF-90AA-C230C6741E02}</Project>
       <Name>Missio.LocalDatabase</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Missio.Navigation\Missio.Navigation.csproj">
+      <Project>{1EF28F5B-A94A-483E-A621-C79BDD191BD2}</Project>
+      <Name>Missio.Navigation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Missio.Users\Missio.Users.csproj">
       <Project>{5FF0747B-B2A7-4FEC-BA86-E14E3E6F39EF}</Project>
       <Name>Missio.Users</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Missio\Missio\Missio.csproj">
+      <Project>{6F9D2CEB-144A-40C2-AEC3-117CB8700BB3}</Project>
+      <Name>Missio</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="BottomBar.XamarinForms, Version=1.0.6334.21543, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ThriveGmbH.BottomNavigationBar.XF.1.0.2\lib\portable-net45+win8+wpa81\BottomBar.XamarinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.Ninject.3.3.1\lib\net40-client\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.7.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.7\lib\nunit.framework.dll</HintPath>
     </Reference>

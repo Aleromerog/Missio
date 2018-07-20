@@ -22,12 +22,19 @@ namespace Missio
 	    public App()
 	    {
 	        InitializeComponent();
-            var kernel = new StandardKernel(new ModelModule(), new ToolsPageModule(), new ViewModelModule(), new NewsFeedModule(), new PublicationPageModule(), new LogInModule(), new MainViewModule(), new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new ApplicationNavigation());
-            var appNavigation = kernel.Get<Navigation.ApplicationNavigation>();
-            appNavigation.GoToPage<LogInPage>();
+            var appNavigation = ResolveApplicationNavigation();
+	        appNavigation.GoToPage<LogInPage>();
         }
 
-        public static void AssertIsPreviewing()
+	    public static ApplicationNavigation ResolveApplicationNavigation()
+	    {
+	        var kernel = new StandardKernel(new ModelModule(), new ToolsPageModule(), new ViewModelModule(),
+	            new NewsFeedModule(), new PublicationPageModule(), new LogInModule(), new MainViewModule(),
+	            new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new ApplicationNavigationModule());
+            return kernel.Get<ApplicationNavigation>();
+	    }
+
+	    public static void AssertIsPreviewing()
         {
             if (!_isPreviewing)
                 throw new InvalidOperationException("Application is not in preview mode, make sure you used the right constructor");
@@ -83,13 +90,13 @@ namespace Missio
         }
     } 
 
-    public class ApplicationNavigation : NinjectModule
+    public class ApplicationNavigationModule : NinjectModule
     {
         /// <inheritdoc />
         public override void Load()
         {
             Bind<IPageFactory>().To<PageFactory>();
-            Bind<INavigation, Navigation.ApplicationNavigation>().To<Navigation.ApplicationNavigation>().InSingletonScope();
+            Bind<INavigation, ApplicationNavigation>().To<ApplicationNavigation>().InSingletonScope();
         }
     }
 

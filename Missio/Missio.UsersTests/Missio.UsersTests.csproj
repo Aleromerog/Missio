@@ -54,10 +54,6 @@
       <Project>{5FF0747B-B2A7-4FEC-BA86-E14E3E6F39EF}</Project>
       <Name>Missio.Users</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Missio.User\Missio.User.csproj">
-      <Project>{08617C3E-0528-45B0-BA48-884F637C6089}</Project>
-      <Name>Missio.User</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
