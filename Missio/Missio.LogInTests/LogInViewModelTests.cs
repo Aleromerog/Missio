@@ -11,7 +11,7 @@ namespace Missio.LogInTests
     [TestFixture]
     public class LogInViewModelTests
     {
-        private LogInViewModel<RegistrationPage> _logInViewModel;
+        private LogInViewModel _logInViewModel;
         private INavigation _fakeNavigation;
         private ISetLoggedInUser _fakeSetLoggedInUser;
         private IDisplayAlertOnCurrentPage _fakeDisplayAlertOnCurrentPage;
@@ -24,7 +24,7 @@ namespace Missio.LogInTests
             _fakeSetLoggedInUser = Substitute.For<ISetLoggedInUser>();
             _fakeDisplayAlertOnCurrentPage = Substitute.For<IDisplayAlertOnCurrentPage>();
             _fakeUserValidator = Substitute.For<IValidateUser>();
-            _logInViewModel = new LogInViewModel<RegistrationPage>(_fakeNavigation, _fakeUserValidator, _fakeDisplayAlertOnCurrentPage,
+            _logInViewModel = new LogInViewModel(_fakeNavigation, _fakeUserValidator, _fakeDisplayAlertOnCurrentPage,
                 _fakeSetLoggedInUser);
         }
 

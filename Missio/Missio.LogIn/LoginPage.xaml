@@ -2,9 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
+             xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources"
              NavigationPage.HasNavigationBar="False"
              x:Class="Missio.LogInRes.LogInPage"
              AutomationId="LogInPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <applicationResources:AppResources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <RelativeLayout>
         <Image x:Name="Background"
                Aspect="AspectFill"
@@ -64,7 +72,6 @@
                    Text="{Binding Password}"
                    AutomationId="PasswordEntry"
                    IsPassword="true"/>
-            
         </FlexLayout>
 
         <StackLayout RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.1, Property=Width}"

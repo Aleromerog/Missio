@@ -10,7 +10,7 @@ using INavigation = Missio.Navigation.INavigation;
 
 namespace Missio.NewsFeed
 {
-    public class NewsFeedViewModel<TPublicationPage> : ViewModel, IUpdateViewPosts where TPublicationPage : Page
+    public class NewsFeedViewModel : ViewModel, IUpdateViewPosts
     {
         [UsedImplicitly]
         public ICommand UpdatePostsCommand { get; }
@@ -51,7 +51,7 @@ namespace Missio.NewsFeed
 
         private async Task GoToPublicationPage()
         {
-            await _navigation.GoToPage<TPublicationPage>();
+            await _navigation.GoToPage<PublicationPage>();
         }
     }
 }

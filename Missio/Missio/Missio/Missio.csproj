@@ -19,18 +19,6 @@
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
-    <Compile Update="LoginPage.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
-    <Compile Update="NewsFeedPage.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
-    <Compile Update="PublicationPage.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
-    <Compile Update="RegistrationPage.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Missio.LocalDatabase\Missio.LocalDatabase.csproj" />
@@ -41,19 +29,10 @@
     <ProjectReference Include="..\..\ViewModel\Mission.ViewModel.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Images\LogInBackground.png" />
-    <EmbeddedResource Include="Images\square.png" />
-    <EmbeddedResource Include="Images\logo.png" />
-    <EmbeddedResource Include="Images\LogInBackground2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Update="CalendarPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="ProfilePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="PublicationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="ToolsPage.xaml">
@@ -61,13 +40,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\" />
     <Folder Include="Resources\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Images\LogInBackground.png" />
-    <None Remove="Images\square.png" />
-    <None Remove="Images\logo.png" />
-    <None Remove="Images\LoginBackground2.png" />
   </ItemGroup>
 </Project>

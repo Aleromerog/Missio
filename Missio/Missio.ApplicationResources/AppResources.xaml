@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Missio.ApplicationResources.AppResources">
+    <OnPlatform x:TypeArguments="x:String" x:Key="MissioBold">
+        <On Platform="Android" Value="Raleway-Bold.ttf#Raleway"/>
+        <On Platform="iOS" Value="Raleway-Bold"/>
+    </OnPlatform>
+    <OnPlatform x:TypeArguments="x:String" x:Key="MissioRegular">
+        <On Platform="Android" Value="Raleway-Regular.ttf#RalewayReg"/>
+        <On Platform="iOS" Value="Raleway-Regular"/>
+    </OnPlatform>
+    <OnPlatform x:TypeArguments="x:String" x:Key="MissioLight">
+        <On Platform="Android" Value="Raleway-ExtraLight.ttf#RalewayLi"/>
+        <On Platform="iOS" Value="Raleway-ExtraLight"/>
+    </OnPlatform>
+    <OnPlatform x:TypeArguments="x:String" x:Key="MissioThin">
+        <On Platform="Android" Value="Raleway-Thin.ttf#RalewayTh"/>
+        <On Platform="iOS" Value="Raleway-Thin"/>
+    </OnPlatform>
+    <Color x:Key="MainTextColor">White</Color>
+    <Color x:Key="PlaceholderTextColor">Gray</Color>
+    <Color x:Key="LoginBackground">#EBEBEB</Color>
+    <Color x:Key="SecondaryTextColor">Black</Color>
+    <Thickness x:Key="NewsFeedPostMargin">5, 3, 5, 3</Thickness>
+
+    <Style x:Key="ButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+    </Style>
+    <Color x:Key="PrimaryColor">#590016</Color>
+    <Color x:Key="PrimaryDarkColor">#3D000F</Color>
+    <Color x:Key="SecondaryColor">#FCFCFC</Color>
+    <Color x:Key="SecondaryDarkColor">#F5F5F5</Color>
+    <LayoutOptions x:Key="LogInLayoutOptions" Alignment="Center" />
+    <Color x:Key="EntryBackgroundColor">Transparent</Color>
+</ResourceDictionary>

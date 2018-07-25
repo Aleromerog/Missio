@@ -5,8 +5,15 @@
              BackgroundColor="{StaticResource SecondaryColor}"
              Title="Crear nueva cuenta"
              xmlns:local="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
+             xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources"
              AutomationId="RegistrationPage">
-    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <applicationResources:AppResources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <StackLayout Padding="20,10,20,0">
         <local:CircleButton WidthRequest="120"
                               HeightRequest="120"

@@ -121,7 +121,7 @@ namespace Missio
         /// <inheritdoc />
         public override void Load()
         {
-            Bind<IUpdateViewPosts, NewsFeedViewModel<PublicationPage>>().To<NewsFeedViewModel<PublicationPage>>().InSingletonScope();
+            Bind<IUpdateViewPosts, NewsFeedViewModel>().To<NewsFeedViewModel>().InSingletonScope();
         }
     }
 
@@ -130,7 +130,7 @@ namespace Missio
 		/// <inheritdoc />
 		public override void Load()
 		{
-            Bind<LogInViewModel<RegistrationPage>>().ToSelf().InSingletonScope();
+            Bind<LogInViewModel>().ToSelf().InSingletonScope();
 		}
 	}
 

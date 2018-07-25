@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
+using Missio.LogInRes;
 using Missio.Navigation;
 using Missio.Users;
 using Xamarin.Forms;
@@ -9,7 +10,7 @@ using INavigation = Missio.Navigation.INavigation;
 
 namespace Missio.LogIn
 {
-    public class LogInViewModel<TRegistrationPage> where TRegistrationPage : Page
+    public class LogInViewModel
     {
         public User User { get; set; }
 
@@ -46,7 +47,7 @@ namespace Missio.LogIn
             _alertDisplay = alertDisplay ?? throw new ArgumentNullException(nameof(alertDisplay));
             _setLoggedInUser = setLoggedInUser ?? throw new ArgumentNullException(nameof(setLoggedInUser));
             User = new User("", "");
-            GoToRegistrationPageCommand = new Command(() => navigation.GoToPage<TRegistrationPage>());
+            GoToRegistrationPageCommand = new Command(() => navigation.GoToPage<RegistrationPage>());
             LogInCommand = new Command(async() => await LogIn());
         }
 

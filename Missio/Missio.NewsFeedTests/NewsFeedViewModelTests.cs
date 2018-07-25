@@ -10,9 +10,9 @@ namespace Missio.NewsFeedTests
     [TestFixture]
     public class NewsFeedViewModelTests
     {
-        private static NewsFeedViewModel<PublicationPage> MakeNewsFeedViewModel(IGetMostRecentPosts getMostRecentPosts, INavigation navigation)
+        private static NewsFeedViewModel MakeNewsFeedViewModel(IGetMostRecentPosts getMostRecentPosts, INavigation navigation)
         {
-            return new NewsFeedViewModel<PublicationPage>(getMostRecentPosts, navigation);
+            return new NewsFeedViewModel(getMostRecentPosts, navigation);
         }
 
         private static IGetMostRecentPosts MakeFakeGetMostRecentPosts(List<IPost> posts)

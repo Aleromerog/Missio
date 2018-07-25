@@ -5,11 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Plugins.Forms.ButtonCircle" Version="2.0.2.1" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.1" />
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.583944" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Missio.ApplicationResources\Missio.ApplicationResources.csproj" />
     <ProjectReference Include="..\Missio.Navigation\Missio.Navigation.csproj" />
     <ProjectReference Include="..\StringResources\StringResources.csproj" />
   </ItemGroup>
@@ -18,6 +20,12 @@
     <Reference Include="ButtonCircle.FormsPlugin.Abstractions">
       <HintPath>C:\Users\Jorge\.nuget\packages\plugins.forms.buttoncircle\2.0.2.1\lib\MonoAndroid10\ButtonCircle.FormsPlugin.Abstractions.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="RegistrationPage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>
