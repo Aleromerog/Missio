@@ -44,9 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAuthorName.cs" />
-    <Compile Include="IGetMostRecentPosts.cs" />
     <Compile Include="IMessage.cs" />
     <Compile Include="IPost.cs" />
+    <Compile Include="IPostRepository.cs" />
     <Compile Include="ITitle.cs" />
     <Compile Include="IUpdateViewPosts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

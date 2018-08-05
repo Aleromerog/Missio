@@ -32,7 +32,7 @@ namespace Missio.NewsFeedTests
             for (var i = 0; i < LocalUserDatabase.ValidUsers.Count; i++)
             {
                 var user = LocalUserDatabase.ValidUsers[i];
-                testData[i] = new object[] {user, LocalNewsFeedPostDatabase.GetMostRecentPostsAsStrings(user)};
+                testData[i] = new object[] {user, LocalNewsFeedPostRepository.GetMostRecentPostsAsStrings(user)};
             }
             return testData;
         }

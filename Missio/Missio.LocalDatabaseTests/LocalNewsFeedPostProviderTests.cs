@@ -12,14 +12,14 @@ namespace Missio.LocalDatabaseTests
     [TestFixture]
     public class LocalNewsFeedPostProviderTests
     {
-        private LocalNewsFeedPostDatabase _localNewsFeedPostDatabase;
+        private LocalNewsFeedPostRepository _localNewsFeedPostRepository;
         private IGetLoggedInUser _fakeGetLoggedInUser;
 
         [SetUp]
         public void SetUp()
         {
             _fakeGetLoggedInUser = Substitute.For<IGetLoggedInUser>();
-            _localNewsFeedPostDatabase = new LocalNewsFeedPostDatabase(_fakeGetLoggedInUser);
+            _localNewsFeedPostRepository = new LocalNewsFeedPostRepository(_fakeGetLoggedInUser);
             _fakeGetLoggedInUser.LoggedInUser.Returns(LocalUserDatabase.ValidUsers[0]);
         }
 
@@ -27,9 +27,9 @@ namespace Missio.LocalDatabaseTests
         [TestCaseSource(typeof(ExtraNewsFeedPosts), nameof(ExtraNewsFeedPosts.ExtraPosts))]
         public void SetUserPosts_GivenPosts_SetsUserPosts(List<IPost> newPosts)
         {
-            _localNewsFeedPostDatabase.SetMostRecentPosts(newPosts);
+            _localNewsFeedPostRepository.SetMostRecentPosts(newPosts);
 
-            Assert.That(_localNewsFeedPostDatabase.GetMostRecentPostsInOrder(), Is.EquivalentTo(newPosts));
+            Assert.That(_localNewsFeedPostRepository.GetMostRecentPostsInOrder(), Is.EquivalentTo(newPosts));
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace Missio.LocalDatabaseTests
         {
             _fakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
 
-            var posts = _localNewsFeedPostDatabase.GetMostRecentPostsInOrder();
+            var posts = _localNewsFeedPostRepository.GetMostRecentPostsInOrder();
 
             Assert.AreEqual(0, posts.Count);
         }
@@ -47,7 +47,7 @@ namespace Missio.LocalDatabaseTests
         {
             _fakeGetLoggedInUser.LoggedInUser.Returns(LocalUserDatabase.ValidUsers[0]);
 
-            var posts = _localNewsFeedPostDatabase.GetMostRecentPostsInOrder();
+            var posts = _localNewsFeedPostRepository.GetMostRecentPostsInOrder();
 
             Assert.AreEqual(3, posts.Count);
             Assert.IsAssignableFrom<StickyPost>(posts[0]);
@@ -58,9 +58,9 @@ namespace Missio.LocalDatabaseTests
         {
             var post = new TextOnlyPost("Some user", "The content of the post");
 
-            _localNewsFeedPostDatabase.PublishPost(post);
+            _localNewsFeedPostRepository.PublishPost(post);
 
-            Assert.Contains(post, _localNewsFeedPostDatabase.GetMostRecentPostsInOrder());
+            Assert.Contains(post, _localNewsFeedPostRepository.GetMostRecentPostsInOrder());
         }
     }
 }

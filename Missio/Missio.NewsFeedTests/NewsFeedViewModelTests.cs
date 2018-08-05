@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Missio.LocalDatabase;
 using Missio.NewsFeed;
 using Missio.Posts;
 using NSubstitute;
@@ -10,23 +11,23 @@ namespace Missio.NewsFeedTests
     [TestFixture]
     public class NewsFeedViewModelTests
     {
-        private static NewsFeedViewModel MakeNewsFeedViewModel(IGetMostRecentPosts getMostRecentPosts, INavigation navigation)
+        private static NewsFeedViewModel MakeNewsFeedViewModel(IPostRepository postRepository, INavigation navigation)
         {
-            return new NewsFeedViewModel(getMostRecentPosts, navigation);
+            return new NewsFeedViewModel(postRepository, navigation);
         }
 
-        private static IGetMostRecentPosts MakeFakeGetMostRecentPosts(List<IPost> posts)
+        private static IPostRepository MakeFakePostRepository(List<IPost> posts)
         {
-            var fakeGetMostRecentPosts = Substitute.For<IGetMostRecentPosts>();
-            fakeGetMostRecentPosts.GetMostRecentPostsInOrder().Returns(posts);
-            return fakeGetMostRecentPosts;
+            var fakePostRepository = Substitute.For<IPostRepository>();
+            fakePostRepository.GetMostRecentPostsInOrder().Returns(posts);
+            return fakePostRepository;
         }
 
         [Test]
         public void UpdatePosts_IsRefreshingSetToTrue_SetsIsRefreshingToFalse()
         {
-            var fakeGetMostRecentPosts = MakeFakeGetMostRecentPosts(new List<IPost>());
-            var newsFeedViewModel = MakeNewsFeedViewModel(fakeGetMostRecentPosts, Substitute.For<INavigation>());
+            var fakePostRepository = MakeFakePostRepository(new List<IPost>());
+            var newsFeedViewModel = MakeNewsFeedViewModel(fakePostRepository, Substitute.For<INavigation>());
             newsFeedViewModel.IsRefreshing = true;
 
             newsFeedViewModel.UpdatePosts();
@@ -37,9 +38,9 @@ namespace Missio.NewsFeedTests
         [Test]
         public void GoToPublicationPageCommand_NormalCall_GoesToPublicationPage()
         {
-            var fakeGetMostRecentPosts = MakeFakeGetMostRecentPosts(new List<IPost>());
+            var fakePostRepository = MakeFakePostRepository(new List<IPost>());
             var fakeNavigation = Substitute.For<INavigation>();
-            var newsFeedViewModel = MakeNewsFeedViewModel(fakeGetMostRecentPosts, fakeNavigation);
+            var newsFeedViewModel = MakeNewsFeedViewModel(fakePostRepository, fakeNavigation);
 
             newsFeedViewModel.GoToPublicationPageCommand.Execute(null);
 
@@ -50,9 +51,9 @@ namespace Missio.NewsFeedTests
         [TestCaseSource(typeof(ExtraNewsFeedPosts), nameof(ExtraNewsFeedPosts.ExtraPosts))]
         public void Constructor_NormalConstructor_UpdatesPosts(List<IPost> postsToAdd)
         {
-            var fakeGetMostRecentPosts = MakeFakeGetMostRecentPosts(postsToAdd);
+            var fakePostRepository = MakeFakePostRepository(postsToAdd);
 
-            var newsFeedViewModel = MakeNewsFeedViewModel(fakeGetMostRecentPosts, Substitute.For<INavigation>());
+            var newsFeedViewModel = MakeNewsFeedViewModel(fakePostRepository, Substitute.For<INavigation>());
 
             Assert.That(newsFeedViewModel.Posts, Is.EquivalentTo(postsToAdd));
         }

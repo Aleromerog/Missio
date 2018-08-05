@@ -76,6 +76,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Missio.LocalDatabase\Missio.LocalDatabase.csproj">
+      <Project>{86ED73DC-F6DA-4BAF-90AA-C230C6741E02}</Project>
+      <Name>Missio.LocalDatabase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Missio.LogIn\Missio.LogIn.csproj">
       <Project>{4DD1EF16-36F3-443C-9116-6B980584BE04}</Project>
       <Name>Missio.LogIn</Name>

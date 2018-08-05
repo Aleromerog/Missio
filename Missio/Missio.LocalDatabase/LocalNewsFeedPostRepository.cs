@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Missio.LogIn;
-using Missio.NewsFeed;
-using Missio.PostPublication;
 using Missio.Posts;
 using Missio.Users;
 
@@ -11,7 +9,7 @@ namespace Missio.LocalDatabase
     /// <summary>
     /// A news feed provider that returns hard coded data
     /// </summary>
-    public class LocalNewsFeedPostDatabase : IGetMostRecentPosts, IPublishPost
+    public class LocalNewsFeedPostRepository : IPostRepository
     {
         private readonly IGetLoggedInUser _getLoggedInUser;
 
@@ -41,7 +39,7 @@ namespace Missio.LocalDatabase
                 },
             };
 
-        public LocalNewsFeedPostDatabase(IGetLoggedInUser getLoggedInUser)
+        public LocalNewsFeedPostRepository(IGetLoggedInUser getLoggedInUser)
         {
             _getLoggedInUser = getLoggedInUser;
         }

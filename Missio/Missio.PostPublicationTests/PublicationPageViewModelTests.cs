@@ -1,4 +1,5 @@
-﻿using Missio.LogIn;
+﻿using Missio.LocalDatabase;
+using Missio.LogIn;
 using Missio.Navigation;
 using Missio.NewsFeed;
 using Missio.PostPublication;
@@ -13,7 +14,7 @@ namespace Missio.PostPublicationTests
     public class PublicationPageViewModelTests
     {
         private PublicationPageViewModel _publicationPageViewModel;
-        private IPublishPost _fakePublishPost;
+        private IPostRepository _fakePostRepository;
         private IGetLoggedInUser _fakeGetLoggedInUser;
         private INavigation _fakeNavigation;
         private IUpdateViewPosts _fakeUpdatePostsView;
@@ -21,11 +22,11 @@ namespace Missio.PostPublicationTests
         [SetUp]
         public void SetUp()
         {
-            _fakePublishPost = Substitute.For<IPublishPost>();
+            _fakePostRepository = Substitute.For<IPostRepository>();
             _fakeGetLoggedInUser = Substitute.For<IGetLoggedInUser>();
             _fakeNavigation = Substitute.For<INavigation>();
             _fakeUpdatePostsView = Substitute.For<IUpdateViewPosts>();
-            _publicationPageViewModel = new PublicationPageViewModel(_fakePublishPost, _fakeGetLoggedInUser, _fakeUpdatePostsView, _fakeNavigation);
+            _publicationPageViewModel = new PublicationPageViewModel(_fakePostRepository, _fakeGetLoggedInUser, _fakeUpdatePostsView, _fakeNavigation);
         }
 
         [Test]
@@ -58,7 +59,7 @@ namespace Missio.PostPublicationTests
 
             _publicationPageViewModel.PublishPostCommand.Execute(null);
 
-            _fakePublishPost.Received(1).PublishPost(Arg.Is<TextOnlyPost>(x => x.Message == newPostText && x.AuthorName == authorName));
+            _fakePostRepository.Received(1).PublishPost(Arg.Is<TextOnlyPost>(x => x.Message == newPostText && x.AuthorName == authorName));
         }
     }
 }

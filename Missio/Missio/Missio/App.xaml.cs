@@ -140,7 +140,7 @@ namespace Missio
         public override void Load()
         {
 #if USE_FAKE_DATA
-            Bind<IGetMostRecentPosts, IPublishPost>().To<LocalNewsFeedPostDatabase>().InSingletonScope();
+            Bind<IPostRepository>().To<LocalNewsFeedPostRepository>().InSingletonScope();
             Bind<IValidateUser, IDoesUserExist, IRegisterUser>().To<LocalUserDatabase>().InSingletonScope();
 #else
             
