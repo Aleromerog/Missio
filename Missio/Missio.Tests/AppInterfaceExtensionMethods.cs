@@ -1,6 +1,5 @@
-﻿using System;
-using Missio.LocalDatabase;
-using Missio.Users;
+﻿using Missio.Users;
+using Missio.UserTests;
 using Xamarin.UITest;
 
 namespace Missio.Tests
@@ -12,9 +11,7 @@ namespace Missio.Tests
         /// </summary>
         public static void LogInWithDefaultUser(this IApp app)
         {
-            if (LocalUserDatabase.ValidUsers.Count == 0)
-                throw new InvalidOperationException("There are no valid users");
-            var user = LocalUserDatabase.ValidUsers[0];
+            var user = UserTestUtils.GetValidUsers()[0];
             app.EnterText(c => c.Marked("UserNameEntry"), user.UserName);
             app.EnterText(c => c.Marked("PasswordEntry"), user.Password);
             app.DismissKeyboard();

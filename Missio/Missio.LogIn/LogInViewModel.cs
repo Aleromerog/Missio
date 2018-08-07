@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
+using Missio.LocalDatabase;
 using Missio.LogInRes;
-using Missio.Navigation;
 using Missio.Users;
 using Xamarin.Forms;
 using INavigation = Missio.Navigation.INavigation;
@@ -12,20 +12,21 @@ namespace Missio.LogIn
 {
     public class LogInViewModel
     {
-        public User User { get; set; }
+        private string _userName;
+        private string _password;
 
         [UsedImplicitly]
         public string UserName
         {
-            get => User.UserName ?? "";
-            set => User = value == null ? new User("", User.Password) : new User(value, User.Password);
+            get => _userName ?? "";
+            set => _userName = value;
         }
 
         [UsedImplicitly]
         public string Password
         {
-            get => User.Password ?? "";
-            set => User = value == null ? new User(User.UserName, "") : new User(User.UserName, value);
+            get => _password ?? "";
+            set => _password = value;
         }
 
         [UsedImplicitly]
@@ -34,19 +35,15 @@ namespace Missio.LogIn
         [UsedImplicitly]
         public ICommand GoToRegistrationPageCommand { get; }
 
-        private readonly IValidateUser _userValidator;
-        private readonly IDisplayAlertOnCurrentPage _alertDisplay;
+        private readonly IUserRepository _userRepository;
         private readonly INavigation _navigation;
         private readonly ISetLoggedInUser _setLoggedInUser;
 
-        public LogInViewModel([NotNull] INavigation navigation, [NotNull] IValidateUser userValidator,
-            [NotNull] IDisplayAlertOnCurrentPage alertDisplay, [NotNull] ISetLoggedInUser setLoggedInUser)
+        public LogInViewModel([NotNull] INavigation navigation, [NotNull] IUserRepository userRepository, [NotNull] ISetLoggedInUser setLoggedInUser)
         {
             _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
-            _userValidator = userValidator ?? throw new ArgumentNullException(nameof(userValidator));
-            _alertDisplay = alertDisplay ?? throw new ArgumentNullException(nameof(alertDisplay));
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _setLoggedInUser = setLoggedInUser ?? throw new ArgumentNullException(nameof(setLoggedInUser));
-            User = new User("", "");
             GoToRegistrationPageCommand = new Command(() => navigation.GoToPage<RegistrationPage>());
             LogInCommand = new Command(async() => await LogIn());
         }
@@ -58,13 +55,14 @@ namespace Missio.LogIn
         {
             try
             {
-                _userValidator.ValidateUser(User);
-                _setLoggedInUser.LoggedInUser = User;
+                var user = new User(UserName, Password);
+                _userRepository.ValidateUser(user);
+                _setLoggedInUser.LoggedInUser = user;
                 await _navigation.GoToPage<MainTabbedPage>();
             }
             catch (LogInException e)
             {
-                await _alertDisplay.DisplayAlert(e.AlertTextMessage);
+                await _navigation.DisplayAlert(e.AlertTextMessage);
             }
         }
     }

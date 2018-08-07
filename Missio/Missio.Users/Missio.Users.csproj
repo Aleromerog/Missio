@@ -10,6 +10,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Missio.Navigation\Missio.Navigation.csproj" />
+    <ProjectReference Include="..\StringResources\StringResources.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="JetBrains.Annotations">
       <HintPath>..\packages\JetBrains.Annotations.11.1.0\lib\netstandard1.0\JetBrains.Annotations.dll</HintPath>
     </Reference>

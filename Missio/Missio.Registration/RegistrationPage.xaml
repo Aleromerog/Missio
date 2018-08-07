@@ -32,7 +32,7 @@
                    FontFamily="{StaticResource MissioRegular}"
                    TextColor="{StaticResource PrimaryDarkColor}"/>
             <Entry Placeholder="Usuario"
-                   Text="{Binding RegistrationInfo.UserName}"
+                   Text="{Binding UserName}"
                    AutomationId="UserNameEntry"
                    />
             <Label Text="No debe contener espacios ni caracteres especiales."
@@ -42,14 +42,14 @@
                    FontFamily="{StaticResource MissioRegular}"
                    TextColor="{StaticResource PrimaryDarkColor}"/>
             <Entry Placeholder="Ingrese correo valido"
-                   Text="{Binding RegistrationInfo.Email}"
+                   Text="{Binding Email}"
                    AutomationId="EmailEntry"
                    />
             <Label Text="Contrasena"
                    FontFamily="{StaticResource MissioRegular}"
                    TextColor="{StaticResource PrimaryDarkColor}"/>
             <Entry Placeholder="Minimo 8 caracteres"
-                   Text="{Binding RegistrationInfo.Password}"
+                   Text="{Binding Password}"
                    AutomationId="PasswordEntry"
                    IsPassword="true"/>
         </FlexLayout>

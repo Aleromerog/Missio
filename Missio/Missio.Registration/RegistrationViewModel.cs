@@ -2,7 +2,8 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
-using Missio.Navigation;
+using Missio.LocalDatabase;
+using Missio.Users;
 using StringResources;
 using Xamarin.Forms;
 using INavigation = Missio.Navigation.INavigation;
@@ -11,21 +12,37 @@ namespace Missio.Registration
 {
     public class RegistrationViewModel
     {
-        private readonly IDisplayAlertOnCurrentPage _alertDisplayer;
-        private readonly IRegisterUser _registerUser;
+        private readonly IUserRepository _userRepository;
         private readonly INavigation _navigation;
+        private string _userName;
+        private string _password;
+        private string _email;
 
-        public RegistrationInfo RegistrationInfo { get; }
+        public string UserName
+        {
+            get => _userName ?? "";
+            set => _userName = value;
+        }
+
+        public string Password
+        {
+            get => _password ?? "";
+            set => _password = value;
+        }
+
+        public string Email
+        {
+            get => _email ?? "";
+            set => _email = value;
+        }
 
         [UsedImplicitly]
         public ICommand RegisterCommand { get; set; }
 
-        public RegistrationViewModel([NotNull] IDisplayAlertOnCurrentPage alertDisplayer, [NotNull] IRegisterUser registerUser, [NotNull] INavigation navigation)
+        public RegistrationViewModel([NotNull] IUserRepository registerUser, [NotNull] INavigation navigation)
         {
-            _alertDisplayer = alertDisplayer ?? throw new ArgumentNullException(nameof(alertDisplayer));
-            _registerUser = registerUser ?? throw new ArgumentNullException(nameof(registerUser));
+            _userRepository = registerUser ?? throw new ArgumentNullException(nameof(registerUser));
             _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
-            RegistrationInfo = new RegistrationInfo("", "", "");
             RegisterCommand = new Command(async() => await TryToRegister());
         }
 
@@ -35,16 +52,17 @@ namespace Missio.Registration
             {
                 await SendRegistrationAndResetView();
             }
-            catch(RegistrationException registrationException)
+            catch(UserRegistrationException registrationException)
             {
-                await _alertDisplayer.DisplayAlert(registrationException.AlertMessage);
+                Console.WriteLine(registrationException.ErrorMessages[0].Message);
+                await _navigation.DisplayAlert(registrationException.ErrorMessages[0]);
             }
         }
 
         private async Task SendRegistrationAndResetView()
         {
-            _registerUser.RegisterUser(RegistrationInfo);
-            var alertTask = _alertDisplayer.DisplayAlert(AppResources.RegistrationSuccessfulTitle, AppResources.RegistrationSuccessfulMessage, AppResources.Ok);
+            _userRepository.AttemptToRegisterUser(new User(UserName, Password, Email));
+            var alertTask = _navigation.DisplayAlert(AppResources.RegistrationSuccessfulTitle, AppResources.RegistrationSuccessfulMessage, AppResources.Ok);
             await _navigation.ReturnToPreviousPage();
             await alertTask;
         }

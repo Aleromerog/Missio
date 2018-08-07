@@ -1,4 +1,5 @@
 ﻿using Missio.Tests;
+using Missio.Users;
 using Missio.UserTests;
 using NUnit.Framework;
 using StringResources;
@@ -26,11 +27,11 @@ namespace Missio.LogInTests
         }
 
         [Test]
-        [TestCaseSource(typeof(UserTestUtils), nameof(UserTestUtils.GetLogIncorrectPasswordTestsCases))]
-        public void LogIn_GivenUserName_DisplaysIncorrectPassword(string userName, string password)
+        [TestCaseSource(typeof(UserTestUtils), nameof(UserTestUtils.GetUsersWithIncorrectPasswords))]
+        public void LogIn_GivenUserName_DisplaysIncorrectPassword(User user)
         {
-            _app.EnterText(c => c.Marked("UserNameEntry"), userName);
-            _app.EnterText(c => c.Marked("PasswordEntry"), password);
+            _app.EnterText(c => c.Marked("UserNameEntry"), user.UserName);
+            _app.EnterText(c => c.Marked("PasswordEntry"), user.Password);
             _app.DismissKeyboard();
 
             _app.Tap(c => c.Marked("LogInButton"));
@@ -40,10 +41,10 @@ namespace Missio.LogInTests
         
         [Test]
         [TestCaseSource(typeof(UserTestUtils), nameof(UserTestUtils.GetInvalidUsers))]
-        public void LogIn_GivenUserName_DisplaysIncorrectUserName(string userName, string password)
+        public void LogIn_GivenUserName_DisplaysIncorrectUserName(User invalidUser)
         {
-            _app.EnterText(c => c.Marked("UserNameEntry"), userName);
-            _app.EnterText(c => c.Marked("PasswordEntry"), password);
+            _app.EnterText(c => c.Marked("UserNameEntry"), invalidUser.UserName);
+            _app.EnterText(c => c.Marked("PasswordEntry"), invalidUser.Password);
             _app.DismissKeyboard();
 
             _app.Tap(c => c.Marked("LogInButton"));
@@ -52,7 +53,7 @@ namespace Missio.LogInTests
         }
 
         [Test]
-        [TestCaseSource(typeof(UserTestUtils), nameof(UserTestUtils.GetValidUsers))]
+        [TestCaseSource(typeof(UserTestUtils), nameof(UserTestUtils.GetValidUsersAsObjects))]
         public void LogIn_ValidUserNameAndPassword_DisplaysNewsFeed(string userName, string password)
         {
             _app.EnterText(c => c.Marked("UserNameEntry"), userName);

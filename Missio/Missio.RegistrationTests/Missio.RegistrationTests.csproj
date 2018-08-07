@@ -68,7 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistrationInfoTests.cs" />
     <Compile Include="RegistrationUserInterfaceTests.cs" />
     <Compile Include="RegistrationViewModelTests.cs" />
   </ItemGroup>
@@ -76,6 +75,10 @@
     <ProjectReference Include="..\Missio.LocalDatabaseTests\Missio.LocalDatabaseTests.csproj">
       <Project>{DF8F5075-C631-4044-80C9-D6F7FE301421}</Project>
       <Name>Missio.LocalDatabaseTests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Missio.LocalDatabase\Missio.LocalDatabase.csproj">
+      <Project>{86ED73DC-F6DA-4BAF-90AA-C230C6741E02}</Project>
+      <Name>Missio.LocalDatabase</Name>
     </ProjectReference>
     <ProjectReference Include="..\Missio.Navigation\Missio.Navigation.csproj">
       <Project>{1EF28F5B-A94A-483E-A621-C79BDD191BD2}</Project>
@@ -88,6 +91,10 @@
     <ProjectReference Include="..\Missio.Tests\Missio.Tests.csproj">
       <Project>{8C25431E-66AF-4B55-8169-D76461975667}</Project>
       <Name>Missio.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Missio.UsersTests\Missio.UsersTests.csproj">
+      <Project>{0987CEAA-DFEC-4F26-BD75-F42E602165E2}</Project>
+      <Name>Missio.UsersTests</Name>
     </ProjectReference>
     <ProjectReference Include="..\Missio.Users\Missio.Users.csproj">
       <Project>{5FF0747B-B2A7-4FEC-BA86-E14E3E6F39EF}</Project>

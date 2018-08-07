@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Missio.Posts;
+using Missio.UserTests;
 
 namespace Missio.NewsFeedTests
 {
@@ -7,8 +8,8 @@ namespace Missio.NewsFeedTests
     {
         public static readonly object[] ExtraPosts =
         {
-            new List<IPost> {new TextOnlyPost("Francisco Greco", "Hello there")},
-            new List<IPost> {new TextOnlyPost("Jorge Romero", "<3")},
+            new List<IPost> {new TextOnlyPost(UserTestUtils.FranciscoUser.UserName, "Hello there")},
+            new List<IPost> {new TextOnlyPost(UserTestUtils.FranciscoUser.Password, "<3")},
         };
     }
 }

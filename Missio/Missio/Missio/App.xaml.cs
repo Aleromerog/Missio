@@ -6,7 +6,6 @@ using Missio.Navigation;
 using Missio.NewsFeed;
 using Missio.PostPublication;
 using Missio.Registration;
-using Missio.Users;
 using Ninject;
 using Xamarin.Forms;
 using Ninject.Modules;
@@ -103,7 +102,6 @@ namespace Missio
 		/// <inheritdoc />
 		public override void Load()
 		{
-			Bind<IDisplayAlertOnCurrentPage>().To<DisplayAlertOnCurrentPage>().InSingletonScope();
 			Bind<IGetLoggedInUser, ISetLoggedInUser, GlobalUser>().To<GlobalUser>().InSingletonScope();
         }
 	}
@@ -141,7 +139,7 @@ namespace Missio
         {
 #if USE_FAKE_DATA
             Bind<IPostRepository>().To<LocalNewsFeedPostRepository>().InSingletonScope();
-            Bind<IValidateUser, IDoesUserExist, IRegisterUser>().To<LocalUserDatabase>().InSingletonScope();
+            Bind<IUserRepository>().To<LocalUserDatabase>().InSingletonScope();
 #else
             
 #endif

@@ -1,26 +1,34 @@
 ﻿using System.Collections.Generic;
-using Missio.LocalDatabase;
+using System.Linq;
 using Missio.Users;
 
 namespace Missio.UserTests
 {
     public static class UserTestUtils
     {
+        public static readonly User FranciscoUser = new User("Francisco Greco", "ElPass");
+        public static readonly User JorgeUser = new User("Jorge Romero", "Yolo");
+        public static readonly object[] NamesAlreadyInUse = {JorgeUser.UserName, FranciscoUser.UserName};
+
         public static object[] GetInvalidUsers()
         {
-            var invalidUsers = new List<User> { LocalUserDatabase.InvalidUsers[0] };
-            return LocalUserDatabase.GetListOfUsersInTestForm(invalidUsers);
+            return new object[] { new User("Non existing user", ""), new User("Non existing user2", "") };
         }
 
-        public static object[] GetValidUsers()
+        public static List<User> GetValidUsers()
         {
-            var validUsers = new List<User> { LocalUserDatabase.ValidUsers[0] };
-            return LocalUserDatabase.GetListOfUsersInTestForm(validUsers);
+            var validUsers = new List<User> {FranciscoUser, JorgeUser};
+            return validUsers;
         }
 
-        public static object[] GetLogIncorrectPasswordTestsCases()
+        public static object[] GetValidUsersAsObjects()
         {
-            return new object[] { new object[] { LocalUserDatabase.ValidUsers[0].UserName, "" } };
+            return GetValidUsers().Cast<object>().ToArray();
+        }
+
+        public static object[] GetUsersWithIncorrectPasswords()
+        {
+            return new object[] { new User(FranciscoUser.UserName, "Incorrect")};
         }
     }
 }

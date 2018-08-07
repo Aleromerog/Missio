@@ -20,7 +20,7 @@ namespace Missio.LocalDatabase
             new Dictionary<User, List<IPost>>
             {
                 {
-                    LocalUserDatabase.ValidUsers[0],
+                    new User("Jorge Romero", "Yolo"),
                     new List<IPost>
                     {
                         new StickyPost("Super important news", "A sticky message for user zero"),
@@ -29,7 +29,7 @@ namespace Missio.LocalDatabase
                     }
                 },
                 {
-                    LocalUserDatabase.ValidUsers[1],
+                    new User("Francisco Greco", "ElPass"),
                     new List<IPost>
                     {
                         new StickyPost("Super important news", "A sticky message for user one"),

@@ -1,6 +1,6 @@
-﻿using Missio.LogIn;
+﻿using Missio.LocalDatabase;
+using Missio.LogIn;
 using Missio.LogInRes;
-using Missio.Navigation;
 using Missio.Users;
 using NSubstitute;
 using NUnit.Framework;
@@ -14,18 +14,15 @@ namespace Missio.LogInTests
         private LogInViewModel _logInViewModel;
         private INavigation _fakeNavigation;
         private ISetLoggedInUser _fakeSetLoggedInUser;
-        private IDisplayAlertOnCurrentPage _fakeDisplayAlertOnCurrentPage;
-        private IValidateUser _fakeUserValidator;
+        private IUserRepository _fakeUserRepository;
 
         [SetUp]
         public void SetUp()
         {
             _fakeNavigation = Substitute.For<INavigation>();
             _fakeSetLoggedInUser = Substitute.For<ISetLoggedInUser>();
-            _fakeDisplayAlertOnCurrentPage = Substitute.For<IDisplayAlertOnCurrentPage>();
-            _fakeUserValidator = Substitute.For<IValidateUser>();
-            _logInViewModel = new LogInViewModel(_fakeNavigation, _fakeUserValidator, _fakeDisplayAlertOnCurrentPage,
-                _fakeSetLoggedInUser);
+            _fakeUserRepository = Substitute.For<IUserRepository>();
+            _logInViewModel = new LogInViewModel(_fakeNavigation, _fakeUserRepository, _fakeSetLoggedInUser);
         }
 
         [Test]
@@ -63,11 +60,11 @@ namespace Missio.LogInTests
         public void LogInCommand_ValidUser_SetsLoggedInUserAndGoesToNextPage()
         {
             var user = new User("Someone", "");
-            _logInViewModel.User = user;
+            _logInViewModel.UserName = user.UserName;
 
             _logInViewModel.LogInCommand.Execute(null);
 
-            _fakeUserValidator.Received(1).ValidateUser(user);
+            _fakeUserRepository.Received(1).ValidateUser(user);
             _fakeSetLoggedInUser.Received(1).LoggedInUser = user;
             _fakeNavigation.Received(1).GoToPage<MainTabbedPage>();
         }
@@ -76,24 +73,24 @@ namespace Missio.LogInTests
         public void AttemptToLogin_InvalidPassword_DisplaysAlert()
         {
             var user = new User("Someone", "");
-            _logInViewModel.User = user;
-            _fakeUserValidator.When(x => x.ValidateUser(user)).Throw<InvalidPasswordException>();
+            _logInViewModel.UserName = user.UserName;
+            _fakeUserRepository.When(x => x.ValidateUser(user)).Throw<InvalidPasswordException>();
 
             _logInViewModel.LogInCommand.Execute(null);
 
-            _fakeDisplayAlertOnCurrentPage.Received(1).DisplayAlert(new InvalidPasswordException().AlertTextMessage);
+            _fakeNavigation.Received(1).DisplayAlert(new InvalidPasswordException().AlertTextMessage);
         }
 
         [Test]
         public void AttemptToLogin_InvalidUserName_DisplaysAlert()
         {
             var user = new User("Someone", "");
-            _logInViewModel.User = user;
-            _fakeUserValidator.When(x => x.ValidateUser(user)).Throw<InvalidUserNameException>();
+            _logInViewModel.UserName = user.UserName;
+            _fakeUserRepository.When(x => x.ValidateUser(user)).Throw<InvalidUserNameException>();
 
             _logInViewModel.LogInCommand.Execute(null);
 
-            _fakeDisplayAlertOnCurrentPage.Received(1).DisplayAlert(new InvalidUserNameException().AlertTextMessage);
+            _fakeNavigation.Received(1).DisplayAlert(new InvalidUserNameException().AlertTextMessage);
         }
     }
 }

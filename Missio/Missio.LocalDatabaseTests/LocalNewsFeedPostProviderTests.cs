@@ -4,6 +4,7 @@ using Missio.LogIn;
 using Missio.NewsFeedTests;
 using Missio.Posts;
 using Missio.Users;
+using Missio.UserTests;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -20,7 +21,7 @@ namespace Missio.LocalDatabaseTests
         {
             _fakeGetLoggedInUser = Substitute.For<IGetLoggedInUser>();
             _localNewsFeedPostRepository = new LocalNewsFeedPostRepository(_fakeGetLoggedInUser);
-            _fakeGetLoggedInUser.LoggedInUser.Returns(LocalUserDatabase.ValidUsers[0]);
+            _fakeGetLoggedInUser.LoggedInUser.Returns(UserTestUtils.GetValidUsers()[0]);
         }
 
         [Test]
@@ -45,8 +46,6 @@ namespace Missio.LocalDatabaseTests
         [Test]
         public void GetMostRecentPostsInOrder_ValidUser_ReturnsPostsInOrder()
         {
-            _fakeGetLoggedInUser.LoggedInUser.Returns(LocalUserDatabase.ValidUsers[0]);
-
             var posts = _localNewsFeedPostRepository.GetMostRecentPostsInOrder();
 
             Assert.AreEqual(3, posts.Count);

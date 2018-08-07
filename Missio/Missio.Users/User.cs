@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
+using Missio.Navigation;
+using StringResources;
 
 namespace Missio.Users
 {
@@ -7,11 +10,43 @@ namespace Missio.Users
     {
         public string UserName { get; }
         public string Password { get; }
+        public string Email { get; }
 
-        public User([NotNull] string userName, [NotNull] string password)
+        public User([NotNull] string userName, [NotNull] string password, [NotNull] string email = "")
         {
             UserName = userName ?? throw new ArgumentNullException(nameof(userName));
             Password = password ?? throw new ArgumentNullException(nameof(password));
+            Email = email ?? throw new ArgumentNullException(nameof(email));
+        }
+
+        public List<AlertTextMessage> GetOfflineErrors()
+        {
+            var errorMessages = new List<AlertTextMessage>();
+            if (IsUserNameTooShort())
+                errorMessages.Add(new AlertTextMessage(AppResources.UserNameTooShortTitle, AppResources.UserNameTooShortMessage, AppResources.Ok));
+            if (IsPasswordTooShort())
+                errorMessages.Add(new AlertTextMessage(AppResources.PasswordTooShortTitle, AppResources.PasswordTooShortMessage, AppResources.Ok));
+            return errorMessages;
+        }
+
+        private bool IsPasswordTooShort()
+        {
+            return Password.Length < 5;
+        }
+
+        private bool IsUserNameTooShort()
+        {
+            return UserName.Length < 3;
+        }
+
+        public bool DoesUserNameHaveErrors()
+        {
+            return IsUserNameTooShort();
+        }
+
+        public bool DoesPasswordHaveErrors()
+        {
+            return IsPasswordTooShort();
         }
 
         /// <inheritdoc />

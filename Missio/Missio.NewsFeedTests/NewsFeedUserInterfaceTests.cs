@@ -2,6 +2,7 @@
 using Missio.LocalDatabase;
 using Missio.Tests;
 using Missio.Users;
+using Missio.UserTests;
 using NUnit.Framework;
 using Xamarin.UITest;
 
@@ -28,11 +29,11 @@ namespace Missio.NewsFeedTests
 
         private static object[] GetOnAppearTestData()
         {
-            var testData = new object[LocalUserDatabase.ValidUsers.Count];
-            for (var i = 0; i < LocalUserDatabase.ValidUsers.Count; i++)
+            var validUsers = UserTestUtils.GetValidUsers();
+            var testData = new object[validUsers.Count];
+            for (var i = 0; i < testData.Length; i++)
             {
-                var user = LocalUserDatabase.ValidUsers[i];
-                testData[i] = new object[] {user, LocalNewsFeedPostRepository.GetMostRecentPostsAsStrings(user)};
+                testData[i] = new object[] { validUsers[i], LocalNewsFeedPostRepository.GetMostRecentPostsAsStrings(validUsers[i]) };
             }
             return testData;
         }

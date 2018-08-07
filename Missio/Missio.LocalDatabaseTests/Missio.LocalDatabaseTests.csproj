@@ -68,9 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LocalNewsFeedPostProviderTests.cs" />
-    <Compile Include="LocalUserDatabaseTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserNamesAlreadyInUse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -100,6 +98,10 @@
     <ProjectReference Include="..\Missio.Registration\Missio.Registration.csproj">
       <Project>{FE4F486E-DEF1-48EA-AFE6-573CB1437ECC}</Project>
       <Name>Missio.Registration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Missio.UsersTests\Missio.UsersTests.csproj">
+      <Project>{0987CEAA-DFEC-4F26-BD75-F42E602165E2}</Project>
+      <Name>Missio.UsersTests</Name>
     </ProjectReference>
     <ProjectReference Include="..\Missio.Users\Missio.Users.csproj">
       <Project>{5FF0747B-B2A7-4FEC-BA86-E14E3E6F39EF}</Project>
