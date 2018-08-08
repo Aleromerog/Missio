@@ -56,5 +56,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Missio.Users\Missio.Users.csproj">
+      <Project>{5FF0747B-B2A7-4FEC-BA86-E14E3E6F39EF}</Project>
+      <Name>Missio.Users</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

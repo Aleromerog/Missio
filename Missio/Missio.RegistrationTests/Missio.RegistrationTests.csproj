@@ -72,10 +72,6 @@
     <Compile Include="RegistrationViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Missio.LocalDatabaseTests\Missio.LocalDatabaseTests.csproj">
-      <Project>{DF8F5075-C631-4044-80C9-D6F7FE301421}</Project>
-      <Name>Missio.LocalDatabaseTests</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Missio.LocalDatabase\Missio.LocalDatabase.csproj">
       <Project>{86ED73DC-F6DA-4BAF-90AA-C230C6741E02}</Project>
       <Name>Missio.LocalDatabase</Name>

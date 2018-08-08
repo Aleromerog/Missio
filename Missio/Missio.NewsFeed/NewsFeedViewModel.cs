@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
 using Missio.LocalDatabase;
+using Missio.LogIn;
 using Missio.Posts;
 using Mission.ViewModel;
 using Xamarin.Forms;
@@ -31,12 +32,15 @@ namespace Missio.NewsFeed
 
         private readonly IPostRepository _postRepository;
         private readonly INavigation _navigation;
+        private readonly ILoggedInUser _loggedInUser;
         private bool _isRefreshing;
 
-        public NewsFeedViewModel([NotNull] IPostRepository getMostRecentPosts, [NotNull] INavigation navigation)
+        public NewsFeedViewModel([NotNull] IPostRepository getMostRecentPosts, [NotNull] INavigation navigation,
+            [NotNull] ILoggedInUser loggedInUser)
         {
             _postRepository = getMostRecentPosts ?? throw new ArgumentNullException(nameof(getMostRecentPosts));
             _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
+            _loggedInUser = loggedInUser ?? throw new ArgumentNullException(nameof(loggedInUser));
             UpdatePostsCommand = new Command(UpdatePosts);
             GoToPublicationPageCommand = new Command(async() => await GoToPublicationPage());
             UpdatePosts();
@@ -45,7 +49,7 @@ namespace Missio.NewsFeed
         public void UpdatePosts()
         {
             Posts.Clear();
-            foreach (var post in _postRepository.GetMostRecentPostsInOrder())
+            foreach (var post in _postRepository.GetMostRecentPostsInOrder(_loggedInUser.LoggedInUser))
                 Posts.Add(post);
             IsRefreshing = false;
         }

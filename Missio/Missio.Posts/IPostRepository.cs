@@ -1,16 +1,13 @@
 ﻿using System.Collections.Generic;
 using Missio.Posts;
+using Missio.Users;
 
 namespace Missio.LocalDatabase
 {
     public interface IPostRepository
     {
-        /// <summary>
-        /// Gets the most recent posts to display on the News Feed page
-        /// </summary>
-        /// <returns> A list containing the news feed posts </returns>
-        List<IPost> GetMostRecentPostsInOrder();
+        void PublishPost(User user, IPost post);
+        List<IPost> GetMostRecentPostsInOrder(User user);
 
-        void PublishPost(IPost post);
     }
 }

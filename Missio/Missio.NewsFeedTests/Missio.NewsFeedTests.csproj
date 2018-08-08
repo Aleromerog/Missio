@@ -67,7 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtraNewsFeedPosts.cs" />
     <Compile Include="NewsFeedUserInterfaceTests.cs" />
     <Compile Include="NewsFeedViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

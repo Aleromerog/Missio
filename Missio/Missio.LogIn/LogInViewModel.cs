@@ -37,13 +37,13 @@ namespace Missio.LogIn
 
         private readonly IUserRepository _userRepository;
         private readonly INavigation _navigation;
-        private readonly ISetLoggedInUser _setLoggedInUser;
+        private readonly ILoggedInUser _loggedInUser;
 
-        public LogInViewModel([NotNull] INavigation navigation, [NotNull] IUserRepository userRepository, [NotNull] ISetLoggedInUser setLoggedInUser)
+        public LogInViewModel([NotNull] INavigation navigation, [NotNull] IUserRepository userRepository, [NotNull] ILoggedInUser loggedInUser)
         {
             _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
-            _setLoggedInUser = setLoggedInUser ?? throw new ArgumentNullException(nameof(setLoggedInUser));
+            _loggedInUser = loggedInUser ?? throw new ArgumentNullException(nameof(loggedInUser));
             GoToRegistrationPageCommand = new Command(() => navigation.GoToPage<RegistrationPage>());
             LogInCommand = new Command(async() => await LogIn());
         }
@@ -57,7 +57,7 @@ namespace Missio.LogIn
             {
                 var user = new User(UserName, Password);
                 _userRepository.ValidateUser(user);
-                _setLoggedInUser.LoggedInUser = user;
+                _loggedInUser.LoggedInUser = user;
                 await _navigation.GoToPage<MainTabbedPage>();
             }
             catch (LogInException e)

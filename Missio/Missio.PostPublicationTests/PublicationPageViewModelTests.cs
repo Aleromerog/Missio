@@ -1,10 +1,11 @@
-﻿using Missio.LocalDatabase;
+﻿using System.Threading.Tasks;
+using Missio.LocalDatabase;
 using Missio.LogIn;
 using Missio.Navigation;
 using Missio.NewsFeed;
 using Missio.PostPublication;
 using Missio.Posts;
-using Missio.Users;
+using Missio.UserTests;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -14,52 +15,57 @@ namespace Missio.PostPublicationTests
     public class PublicationPageViewModelTests
     {
         private PublicationPageViewModel _publicationPageViewModel;
-        private IPostRepository _fakePostRepository;
-        private IGetLoggedInUser _fakeGetLoggedInUser;
+        private IPostRepository _postRepository;
+        private ILoggedInUser _fakeLoggedInUser;
         private INavigation _fakeNavigation;
         private IUpdateViewPosts _fakeUpdatePostsView;
 
         [SetUp]
         public void SetUp()
         {
-            _fakePostRepository = Substitute.For<IPostRepository>();
-            _fakeGetLoggedInUser = Substitute.For<IGetLoggedInUser>();
+            _postRepository = new LocalNewsFeedPostRepository();
+            _fakeLoggedInUser = Substitute.For<ILoggedInUser>();
             _fakeNavigation = Substitute.For<INavigation>();
             _fakeUpdatePostsView = Substitute.For<IUpdateViewPosts>();
-            _publicationPageViewModel = new PublicationPageViewModel(_fakePostRepository, _fakeGetLoggedInUser, _fakeUpdatePostsView, _fakeNavigation);
+            _publicationPageViewModel = new PublicationPageViewModel(_postRepository, _fakeLoggedInUser, _fakeUpdatePostsView, _fakeNavigation);
         }
 
         [Test]
-        public void PublishPost_TextOnly_UpdatesPostsView()
+        public async Task PublishPost_TextOnly_UpdatesPostsView()
         {
-            _fakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
+            _fakeLoggedInUser.LoggedInUser.Returns(UserTestUtils.FranciscoUser);
 
-            _publicationPageViewModel.PublishPostCommand.Execute(null);
+            await _publicationPageViewModel.PublishPost();
 
             _fakeUpdatePostsView.Received(1).UpdatePosts();
         }
 
         [Test]
-        public void PublishPost_TextOnly_ReturnsToNewsFeed()
+        public async Task PublishPost_TextOnly_ReturnsToNewsFeed()
         {
-            _fakeGetLoggedInUser.LoggedInUser.Returns(new User("", ""));
+            _fakeLoggedInUser.LoggedInUser.Returns(UserTestUtils.FranciscoUser);
 
-            _publicationPageViewModel.PublishPostCommand.Execute(null);
+            await _publicationPageViewModel.PublishPost();
 
-            _fakeNavigation.Received(1).ReturnToPreviousPage();
+            await _fakeNavigation.Received(1).ReturnToPreviousPage();
         }
         
         [Test]
-        public void PublishPostCommand_TextOnly_PublishesPost()
+        public async Task PublishPostCommand_TextOnly_PublishesPost()
         {
-            var authorName = "Name of the author";
+            var user = UserTestUtils.FranciscoUser;
+            _fakeLoggedInUser.LoggedInUser.Returns(user);
             var newPostText = "The content of the new post";
-            _fakeGetLoggedInUser.LoggedInUser.Returns(new User(authorName, ""));
             _publicationPageViewModel.PostText = newPostText;
 
-            _publicationPageViewModel.PublishPostCommand.Execute(null);
+            await _publicationPageViewModel.PublishPost();
 
-            _fakePostRepository.Received(1).PublishPost(Arg.Is<TextOnlyPost>(x => x.Message == newPostText && x.AuthorName == authorName));
+            Assert.IsTrue(_postRepository.GetMostRecentPostsInOrder(user).Exists(x =>
+            {
+                if (x is TextOnlyPost post)
+                    return post.Message == newPostText && post.AuthorName == user.UserName;
+                return false;
+            }));
         }
     }
 }

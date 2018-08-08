@@ -30,5 +30,14 @@ namespace Missio.UserTests
         {
             return new object[] { new User(FranciscoUser.UserName, "Incorrect")};
         }
+
+        public static List<string> GetUserPostsContents(User user)
+        {
+            if (user == JorgeUser)
+                return new List<string> {"A sticky message for user zero", "Hello Jorge Romero", "Hello me"};
+            if(user == FranciscoUser)
+                return new List<string> { "A sticky message for user one", "Hello Greco", "Hello me" };
+            return new List<string>();
+        }
     }
 }

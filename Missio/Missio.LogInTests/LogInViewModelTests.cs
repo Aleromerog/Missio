@@ -13,16 +13,16 @@ namespace Missio.LogInTests
     {
         private LogInViewModel _logInViewModel;
         private INavigation _fakeNavigation;
-        private ISetLoggedInUser _fakeSetLoggedInUser;
+        private ILoggedInUser _fakeLoggedInUser;
         private IUserRepository _fakeUserRepository;
 
         [SetUp]
         public void SetUp()
         {
             _fakeNavigation = Substitute.For<INavigation>();
-            _fakeSetLoggedInUser = Substitute.For<ISetLoggedInUser>();
+            _fakeLoggedInUser = Substitute.For<ILoggedInUser>();
             _fakeUserRepository = Substitute.For<IUserRepository>();
-            _logInViewModel = new LogInViewModel(_fakeNavigation, _fakeUserRepository, _fakeSetLoggedInUser);
+            _logInViewModel = new LogInViewModel(_fakeNavigation, _fakeUserRepository, _fakeLoggedInUser);
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace Missio.LogInTests
             _logInViewModel.LogInCommand.Execute(null);
 
             _fakeUserRepository.Received(1).ValidateUser(user);
-            _fakeSetLoggedInUser.Received(1).LoggedInUser = user;
+            _fakeLoggedInUser.Received(1).LoggedInUser = user;
             _fakeNavigation.Received(1).GoToPage<MainTabbedPage>();
         }
 

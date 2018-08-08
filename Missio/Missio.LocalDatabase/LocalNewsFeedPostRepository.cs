@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Missio.LogIn;
 using Missio.Posts;
 using Missio.Users;
 
@@ -11,12 +10,10 @@ namespace Missio.LocalDatabase
     /// </summary>
     public class LocalNewsFeedPostRepository : IPostRepository
     {
-        private readonly IGetLoggedInUser _getLoggedInUser;
-
         /// <summary>
         /// Maps users to collections of news feed posts that should be displayed to them (different users see different posts)
         /// </summary>
-        private static readonly Dictionary<User, List<IPost>> UsersNewsFeedPosts =
+        private readonly Dictionary<User, List<IPost>> _usersNewsFeedPosts =
             new Dictionary<User, List<IPost>>
             {
                 {
@@ -39,50 +36,21 @@ namespace Missio.LocalDatabase
                 },
             };
 
-        public LocalNewsFeedPostRepository(IGetLoggedInUser getLoggedInUser)
-        {
-            _getLoggedInUser = getLoggedInUser;
-        }
-
-        /// <summary>
-        /// Gets the contents of the most recent posts as strings, useful for testing 
-        /// </summary>
-        /// <param name="user"> The user logged in </param>
-        /// <returns> A list of strings containing the contents of the posts </returns>
-        public static List<string> GetMostRecentPostsAsStrings(User user)
-        {
-            var posts = UsersNewsFeedPosts[user].Where(x => x is IMessage).Cast<IMessage>();
-            var contents = new List<string>();
-            foreach (var post in posts)
-            {
-                contents.Add(post.Message);
-            }
-            return contents;
-        }
-
         /// <summary>
         /// Gets a list of manually hardcoded news feed posts
         /// </summary>
         /// <returns> A list containing news feed posts</returns>
-        public List<IPost> GetMostRecentPostsInOrder()
+        public List<IPost> GetMostRecentPostsInOrder(User user)
         {
-            if (UsersNewsFeedPosts.TryGetValue(_getLoggedInUser.LoggedInUser, out var posts))
-            {
+            if (_usersNewsFeedPosts.TryGetValue(user, out var posts))
                 return posts.OrderByDescending(x => x.GetPostPriority()).ToList();
-            }
-
             return new List<IPost>();
         }
 
-        public void SetMostRecentPosts(List<IPost> newPosts)
+        /// <inheritdoc/>
+        public void PublishPost(User user, IPost post)
         {
-            UsersNewsFeedPosts[_getLoggedInUser.LoggedInUser] = newPosts;
-        }
-
-        /// <inheritdoc />
-        public void PublishPost(IPost post)
-        {
-            UsersNewsFeedPosts[_getLoggedInUser.LoggedInUser].Insert(0, post);
+            _usersNewsFeedPosts[user].Insert(0, post);
         }
     }
 }

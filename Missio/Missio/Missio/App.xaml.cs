@@ -102,7 +102,7 @@ namespace Missio
 		/// <inheritdoc />
 		public override void Load()
 		{
-			Bind<IGetLoggedInUser, ISetLoggedInUser, GlobalUser>().To<GlobalUser>().InSingletonScope();
+			Bind<ILoggedInUser, GlobalUser>().To<GlobalUser>().InSingletonScope();
         }
 	}
 

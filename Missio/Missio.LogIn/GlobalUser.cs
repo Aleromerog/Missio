@@ -6,7 +6,7 @@ namespace Missio.LogIn
     /// <summary>
     /// Class for getting the user that is logged in
     /// </summary>
-    public class GlobalUser : IGetLoggedInUser, ISetLoggedInUser
+    public class GlobalUser : ILoggedInUser
     {
         private User _loggedInUser;
 

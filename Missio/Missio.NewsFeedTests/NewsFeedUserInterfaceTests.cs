@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Missio.LocalDatabase;
 using Missio.Tests;
 using Missio.Users;
 using Missio.UserTests;
@@ -33,7 +32,7 @@ namespace Missio.NewsFeedTests
             var testData = new object[validUsers.Count];
             for (var i = 0; i < testData.Length; i++)
             {
-                testData[i] = new object[] { validUsers[i], LocalNewsFeedPostRepository.GetMostRecentPostsAsStrings(validUsers[i]) };
+                testData[i] = new object[] { validUsers[i], UserTestUtils.GetUserPostsContents(validUsers[i]) };
             }
             return testData;
         }

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Missio.LocalDatabase;
+﻿using Missio.LocalDatabase;
+using Missio.LogIn;
 using Missio.NewsFeed;
-using Missio.Posts;
+using Missio.UserTests;
 using NSubstitute;
 using NUnit.Framework;
 using INavigation = Missio.Navigation.INavigation;
@@ -11,23 +11,27 @@ namespace Missio.NewsFeedTests
     [TestFixture]
     public class NewsFeedViewModelTests
     {
-        private static NewsFeedViewModel MakeNewsFeedViewModel(IPostRepository postRepository, INavigation navigation)
+        private static NewsFeedViewModel MakeNewsFeedViewModel(INavigation navigation, ILoggedInUser loggedInUser)
         {
-            return new NewsFeedViewModel(postRepository, navigation);
+            return new NewsFeedViewModel(new LocalNewsFeedPostRepository(), navigation, loggedInUser);
         }
 
-        private static IPostRepository MakeFakePostRepository(List<IPost> posts)
+        private static NewsFeedViewModel MakeNewsFeedViewModel(IPostRepository postsRepository, INavigation navigation, ILoggedInUser loggedInUser)
         {
-            var fakePostRepository = Substitute.For<IPostRepository>();
-            fakePostRepository.GetMostRecentPostsInOrder().Returns(posts);
-            return fakePostRepository;
+            return new NewsFeedViewModel(postsRepository, navigation, loggedInUser);
+        }
+
+        private static ILoggedInUser MakeLoggedInUser()
+        {
+            var loggedInUser = Substitute.For<ILoggedInUser>();
+            loggedInUser.LoggedInUser.Returns(UserTestUtils.FranciscoUser);
+            return loggedInUser;
         }
 
         [Test]
         public void UpdatePosts_IsRefreshingSetToTrue_SetsIsRefreshingToFalse()
         {
-            var fakePostRepository = MakeFakePostRepository(new List<IPost>());
-            var newsFeedViewModel = MakeNewsFeedViewModel(fakePostRepository, Substitute.For<INavigation>());
+            var newsFeedViewModel = MakeNewsFeedViewModel(Substitute.For<INavigation>(), MakeLoggedInUser());
             newsFeedViewModel.IsRefreshing = true;
 
             newsFeedViewModel.UpdatePosts();
@@ -38,9 +42,8 @@ namespace Missio.NewsFeedTests
         [Test]
         public void GoToPublicationPageCommand_NormalCall_GoesToPublicationPage()
         {
-            var fakePostRepository = MakeFakePostRepository(new List<IPost>());
             var fakeNavigation = Substitute.For<INavigation>();
-            var newsFeedViewModel = MakeNewsFeedViewModel(fakePostRepository, fakeNavigation);
+            var newsFeedViewModel = MakeNewsFeedViewModel(fakeNavigation, MakeLoggedInUser());
 
             newsFeedViewModel.GoToPublicationPageCommand.Execute(null);
 
@@ -48,14 +51,15 @@ namespace Missio.NewsFeedTests
         }
 
         [Test]
-        [TestCaseSource(typeof(ExtraNewsFeedPosts), nameof(ExtraNewsFeedPosts.ExtraPosts))]
-        public void Constructor_NormalConstructor_UpdatesPosts(List<IPost> postsToAdd)
+        public void Constructor_NormalConstructor_UpdatesPosts()
         {
-            var fakePostRepository = MakeFakePostRepository(postsToAdd);
+            var loggedInUser = MakeLoggedInUser();
+            var postsRepository = new LocalNewsFeedPostRepository();
+            var expectedPosts = postsRepository.GetMostRecentPostsInOrder(loggedInUser.LoggedInUser);
 
-            var newsFeedViewModel = MakeNewsFeedViewModel(fakePostRepository, Substitute.For<INavigation>());
+            var newsFeedViewModel = MakeNewsFeedViewModel(postsRepository, Substitute.For<INavigation>(), loggedInUser);
 
-            Assert.That(newsFeedViewModel.Posts, Is.EquivalentTo(postsToAdd));
+            Assert.That(newsFeedViewModel.Posts, Is.EquivalentTo(expectedPosts));
         }
     }
 }
