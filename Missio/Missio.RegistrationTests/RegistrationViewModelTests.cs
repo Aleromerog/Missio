@@ -79,7 +79,7 @@ namespace Missio.RegistrationTests
 
             await _registrationViewModel.TryToRegister();
 
-            var user = _fakeUserRepository.GetUserByName(userName);
+            var user = await _fakeUserRepository.GetUserByName(userName);
             Assert.AreEqual(userName, user.UserName);
             Assert.AreEqual(password, user.Password);
             Assert.AreEqual(email, user.Email);

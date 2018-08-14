@@ -1,4 +1,5 @@
-﻿using Missio.Users;
+﻿using System.Threading.Tasks;
+using Missio.Users;
 
 namespace Missio.LocalDatabase
 {
@@ -13,8 +14,6 @@ namespace Missio.LocalDatabase
         /// <returns></returns>
         void ValidateUser(User user);
 
-        bool DoesUserExist(string userName);
-
-        User GetUserByName(string userName);
+        Task<User> GetUserByName(string userName);
     }
 }

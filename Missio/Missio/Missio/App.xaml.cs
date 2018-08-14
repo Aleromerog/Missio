@@ -29,7 +29,7 @@ namespace Missio
 	        var kernel = new StandardKernel(new ModelModule(), new ToolsPageModule(), new ViewModelModule(),
 	            new NewsFeedModule(), new PublicationPageModule(), new LogInModule(), new MainViewModule(),
 	            new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new ApplicationNavigationModule());
-            return kernel.Get<ApplicationNavigation>();
+	        return kernel.Get<ApplicationNavigation>();
 	    }
 
 	    public static void AssertIsPreviewing()
@@ -141,7 +141,9 @@ namespace Missio
             Bind<IPostRepository>().To<LocalNewsFeedPostRepository>().InSingletonScope();
             Bind<IUserRepository>().To<LocalUserDatabase>().InSingletonScope();
 #else
-            
+            Bind<IPostRepository>().To<LocalNewsFeedPostRepository>().InSingletonScope();
+            Bind<IMobileServiceClient>().ToConstant(new MobileServiceClient("https://missioservice.azurewebsites.net"));
+            Bind<IUserRepository>().To<UserExternalDatabase>().InSingletonScope();
 #endif
         }
     }

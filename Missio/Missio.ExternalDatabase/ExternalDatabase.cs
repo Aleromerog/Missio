@@ -1,59 +1,68 @@
-﻿namespace Missio.ExternalDatabase
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.WindowsAzure.MobileServices;
+using Missio.LocalDatabase;
+using Missio.Users;
+
+namespace Missio.ExternalDatabase
 {
-    //public class UserExternalDatabase : IDoesUserExist, IRegisterUser, IValidateUser
+    public class UserExternalDatabase : IUserRepository
+    {
+        private readonly IMobileServiceClient _service;
+
+        public UserExternalDatabase(IMobileServiceClient service)
+        {
+            _service = service;
+        }
+
+        public async Task<List<User>> GetAllUsers()
+        {
+            return await _service.GetTable<User>().ToListAsync();
+        }
+
+        /// <inheritdoc />
+        public async Task<User> GetUserByName(string userName)
+        {
+            var users = await _service.GetTable<User>().Where(x => x.UserName == userName).ToListAsync();
+            return users[0];
+        }
+
+        /// <inheritdoc />
+        public void AttemptToRegisterUser(User user)
+        {
+            _service.GetTable<User>().InsertAsync(user);
+        }
+
+        /// <inheritdoc />
+        public void ValidateUser(User user)
+        {
+        }
+    }
+
+    //public class PostAzureDatabase : IPostRepository 
     //{
-    //    private readonly MobileServiceClient _service;
+    //    private IMobileServiceClient _mobileServiceClient;
 
-    //    public UserExternalDatabase(MobileServiceClient service)
+    //    public PostAzureDatabase(IMobileServiceClient mobileServiceClient)
     //    {
-    //        _service = service;
-    //    }
-
-    //    /// <inheritdoc />
-    //    public bool DoesUserExist(string userName)
-    //    {
-    //    }
-
-    //    /// <inheritdoc />
-    //    public void RegisterUser(RegistrationInfo registrationInfo)
-    //    {
-    //    }
-
-    //    /// <inheritdoc />
-    //    public void ValidateUser(User user)
-    //    {
-    //    }
-    //}
-
-    //public class GenericPostAzureDatabase<T>
-    //{
-    //    private readonly IMobileServiceClient _service;
-
-    //    public GenericPostAzureDatabase(IMobileServiceClient service)
-    //    {
-    //        _service = service;
-    //    }
-
-    //    public Task<List<IPost>> GetPosts()
-    //    {
-    //        return _service.GetTable<T>().ToListAsync());
-    //    }
-    //}
-
-    //public class PostAzureDatabase : IGetMostRecentPosts, IPublishPost
-    //{
-    //    public PostAzureDatabase(List<GenericPostAzureDatabase>)
-    //    {
-    //    }
-
-    //    /// <inheritdoc />
-    //    public List<IPost> GetMostRecentPostsInOrder()
-    //    {
+    //        _mobileServiceClient = mobileServiceClient;
     //    }
 
     //    /// <inheritdoc />
     //    public void PublishPost(IPost post)
     //    {
+    //    }
+
+    //    /// <inheritdoc />
+    //    public void PublishPost(User user, IPost post)
+    //    {
+    //        throw new System.NotImplementedException();
+    //    }
+
+    //    /// <inheritdoc />
+    //    public List<IPost> GetMostRecentPostsInOrder(User user)
+    //    {
+    //        throw new System.NotImplementedException();
     //    }
     //}
 }

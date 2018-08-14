@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Missio.LogIn;
 using Missio.Navigation;
 using Missio.Users;
@@ -31,19 +32,18 @@ namespace Missio.LocalDatabase
             }
         }
 
-        /// <inheritdoc />
-        public bool DoesUserExist(string userName)
+        private bool DoesUserExist(string userName)
         {
             return _validUsers.Exists(x => x.UserName == userName);
         }
 
         /// <inheritdoc />
-        public User GetUserByName(string userName)
+        public Task<User> GetUserByName(string userName)
         {
             var user = _validUsers.FirstOrDefault(x => x.UserName == userName);
             if (user == null)
                 throw new ArgumentException("User with username " + nameof(userName) + " does not exist");
-            return user;
+            return Task.FromResult(user);
         }
 
         /// <inheritdoc />
