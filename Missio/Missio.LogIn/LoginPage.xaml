@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
              xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources"
              NavigationPage.HasNavigationBar="False"
+             
              x:Class="Missio.LogInRes.LogInPage"
              AutomationId="LogInPage">
     <ContentPage.Resources>
@@ -56,7 +57,7 @@
                     JustifyContent="SpaceBetween"
                     BackgroundColor="Transparent">
             <Label Text="Missionero"
-                   FontFamily="{StaticResource MissioRegular}"
+                   FontFamily="{StaticResource MissioBold}"
                    TextColor="{StaticResource PrimaryColor}"/>
             <Entry HorizontalTextAlignment="Center"
                    FontFamily="{StaticResource MissioRegular}"
@@ -64,7 +65,7 @@
                    AutomationId="UserNameEntry"
                    Placeholder="E-mail o usuario"/>
             <Label Text="Contrasena"
-                   FontFamily="{StaticResource MissioRegular}"
+                   FontFamily="{StaticResource MissioBold}"
                    TextColor="{StaticResource PrimaryColor}"/>
             <Entry HorizontalTextAlignment="Center"
                    FontFamily="{StaticResource MissioRegular}"
@@ -82,7 +83,7 @@
             
             <Button Text="Recuperar contrasena"
                 TextColor="{StaticResource PrimaryColor}"
-                FontFamily="{StaticResource MissioLight}"
+                FontFamily="{StaticResource MissioRegular}"
                 FontSize="12"
                 BackgroundColor="Transparent"/>
         </StackLayout>

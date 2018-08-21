@@ -51,7 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations">
-      <Version>11.1.0</Version>
+      <Version>2018.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Bcl.Build">
+      <Version>1.0.21</Version>
     </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Extensions">
       <Version>4.5.1</Version>
@@ -65,13 +68,15 @@
     <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Forms">
-      <Version>3.1.0.583944</Version>
+      <Version>3.1.0.697729</Version>
     </PackageReference>
     <PackageReference Include="Plugins.Forms.ButtonCircle">
-      <Version>2.0.2.1</Version>
+      <Version>2.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndroidHelpers.cs" />
+    <Compile Include="BottomNavTabPageRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,6 +121,10 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Missio.CustomRenderers\Missio.CustomRenderers.csproj">
+      <Project>{A49CDB37-CAB1-4246-8F79-0CC30356FC2C}</Project>
+      <Name>Missio.CustomRenderers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Missio\Missio.csproj">
       <Project>{6F9D2CEB-144A-40C2-AEC3-117CB8700BB3}</Project>
       <Name>Missio</Name>

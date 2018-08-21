@@ -83,6 +83,7 @@ namespace Missio
         {
             Bind<Page>().To<NewsFeedPage>().WhenInjectedExactlyInto<MainTabbedPage>();
             Bind<Page>().To<CalendarPage>().WhenInjectedExactlyInto<MainTabbedPage>();
+            Bind<Page>().To<ToolsPage>().WhenInjectedExactlyInto<MainTabbedPage>();
             Bind<Page>().To<ProfilePage>().WhenInjectedExactlyInto<MainTabbedPage>();
         }
     } 

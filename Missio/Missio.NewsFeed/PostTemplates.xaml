@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:newsFeed="clr-namespace:Missio.NewsFeed;assembly=Missio.NewsFeed"
+                    xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources"
+                    x:Class="Missio.NewsFeed.PostTemplates">
+    <ResourceDictionary.MergedDictionaries>
+        <applicationResources:AppResources />
+    </ResourceDictionary.MergedDictionaries>
+    <DataTemplate x:Key="TextOnlyPost">
+        <ViewCell>
+            <StackLayout Spacing="0" Margin="{StaticResource NewsFeedPostMargin}">
+                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                <Label Text="{Binding AuthorName}" FontAttributes="Bold" BackgroundColor="White" />
+                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                <Label Text="{Binding Message}" BackgroundColor="White" />
+            </StackLayout>
+        </ViewCell>
+    </DataTemplate>
+    <DataTemplate x:Key="StickyPost">
+        <ViewCell>
+            <StackLayout Margin="{StaticResource NewsFeedPostMargin}" BackgroundColor="YellowGreen">
+                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="Large"
+                       HorizontalTextAlignment="Center" />
+                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                <Label Text="{Binding Message}" />
+            </StackLayout>
+        </ViewCell>
+    </DataTemplate>
+    <newsFeed:NewsFeedPostDataTemplateSelector x:Key="PersonDataTemplateSelector"
+                                               StickyPostTemplate="{StaticResource StickyPost}"
+                                               TextOnlyPostTemplate="{StaticResource TextOnlyPost}" />
+</ResourceDictionary>
