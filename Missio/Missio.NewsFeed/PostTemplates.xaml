@@ -14,9 +14,26 @@
                 <Label Text="{Binding AuthorName}" FontAttributes="Bold" BackgroundColor="White" />
                 <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                 <Label Text="{Binding Message}" BackgroundColor="White" />
+                
             </StackLayout>
         </ViewCell>
     </DataTemplate>
+    
+    <DataTemplate x:Key="TextAndImagePost">
+        <ViewCell>
+            <StackLayout Spacing="0" Margin="{StaticResource NewsFeedPostMargin}">
+                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                <Label Text="{Binding AuthorName}" FontAttributes="Bold" BackgroundColor="White" />
+                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                <Label Text="{Binding Message}" BackgroundColor="White" />
+                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                <Image Source="{Binding Image}"/>
+                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                <Image Source="{Binding UserPicture}"/>
+            </StackLayout>
+        </ViewCell>
+    </DataTemplate>
+
     <DataTemplate x:Key="StickyPost">
         <ViewCell>
             <StackLayout Margin="{StaticResource NewsFeedPostMargin}" BackgroundColor="YellowGreen">
@@ -30,5 +47,6 @@
     </DataTemplate>
     <newsFeed:NewsFeedPostDataTemplateSelector x:Key="PersonDataTemplateSelector"
                                                StickyPostTemplate="{StaticResource StickyPost}"
-                                               TextOnlyPostTemplate="{StaticResource TextOnlyPost}" />
+                                               TextOnlyPostTemplate="{StaticResource TextOnlyPost}"
+                                               TextAndImagePost="{StaticResource TextAndImagePost}"/>
 </ResourceDictionary>

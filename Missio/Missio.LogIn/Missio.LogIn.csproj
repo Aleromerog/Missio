@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Missio.ApplicationResources\Missio.ApplicationResources.csproj" />
+    <ProjectReference Include="..\Missio.CustomRenderers\Missio.CustomRenderers.csproj" />
     <ProjectReference Include="..\Missio.MainView\Missio.MainView.csproj" />
     <ProjectReference Include="..\Missio.Navigation\Missio.Navigation.csproj" />
     <ProjectReference Include="..\Missio.Registration\Missio.Registration.csproj" />

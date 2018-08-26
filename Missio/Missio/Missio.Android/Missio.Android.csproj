@@ -125,6 +125,10 @@
       <Project>{A49CDB37-CAB1-4246-8F79-0CC30356FC2C}</Project>
       <Name>Missio.CustomRenderers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\PostPublication\Missio.PostPublication.csproj">
+      <Project>{763a6d7f-8590-4f3e-9d1a-2454c989dc69}</Project>
+      <Name>Missio.PostPublication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Missio\Missio.csproj">
       <Project>{6F9D2CEB-144A-40C2-AEC3-117CB8700BB3}</Project>
       <Name>Missio</Name>

@@ -18,7 +18,9 @@ namespace Missio.LocalDatabase
         /// A list of users that are guaranteed to exist, useful for testing purposes
         /// </summary>
         private readonly List<User> _validUsers =
-            new List<User> {new User("Jorge Romero", "Yolo"), new User("Francisco Greco", "ElPass") };
+            new List<User> {
+                new User("Jorge Romero", "Yolo", "https://scontent.felp1-1.fna.fbcdn.net/v/t1.0-9/26168930_10208309305130065_9014358028033259242_n.jpg?_nc_cat=0&oh=a6dc6203053aa3c830edffd107f346e4&oe=5BF1FC2B"), 
+                new User("Francisco Greco", "ElPass", "https://scontent.felp1-1.fna.fbcdn.net/v/t1.0-9/18342049_1371435649562155_317149840395279012_n.jpg?_nc_cat=0&oh=74b6c0226537899a74f499c25b3ddb07&oe=5C00CF82") };
 
         /// <inheritdoc />
         public void ValidateUser(User user)

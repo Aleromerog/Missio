@@ -6,17 +6,19 @@ using StringResources;
 
 namespace Missio.Users
 {
-    public class User : IUserName, IPassword, IEquatable<User>
+    public class User : IUserName, IPassword, IEquatable<User>, IPicture
     {
         public string UserName { get; }
         public string Password { get; }
         public string Email { get; }
+        public string Picture { get; }
 
-        public User([NotNull] string userName, [NotNull] string password, [NotNull] string email = "")
+        public User([NotNull] string userName, [NotNull] string password, [NotNull] string picture = "",[NotNull] string email = "")
         {
             UserName = userName ?? throw new ArgumentNullException(nameof(userName));
             Password = password ?? throw new ArgumentNullException(nameof(password));
             Email = email ?? throw new ArgumentNullException(nameof(email));
+            Picture = picture ?? throw new ArgumentNullException(nameof(picture));
         }
 
         public List<AlertTextMessage> GetOfflineErrors()
