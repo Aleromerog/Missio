@@ -61,6 +61,15 @@ namespace StringResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string Home {
+            get {
+                return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The password was incorrect.
         /// </summary>
         public static string IncorrectPasswordMessage {

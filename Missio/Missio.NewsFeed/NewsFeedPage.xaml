@@ -8,6 +8,7 @@
              Title="Home"
              x:Class="Missio.NewsFeedPage"
              AutomationId="NewsFeedPage">
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -18,6 +19,7 @@
             
         </ResourceDictionary>
     </ContentPage.Resources>
+
     <ContentPage.Content>
         <RelativeLayout BackgroundColor="{StaticResource LoginBackground}">
             <ListView
