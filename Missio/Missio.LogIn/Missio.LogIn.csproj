@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21" />
     <PackageReference Include="Plugins.Forms.ButtonCircle" Version="2.0.3" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.1" />
     <PackageReference Include="ThriveGmbH.BottomNavigationBar.XF" Version="1.0.2" />
@@ -33,6 +32,7 @@
     <ProjectReference Include="..\Missio.Registration\Missio.Registration.csproj" />
     <ProjectReference Include="..\Missio.Users\Missio.Users.csproj" />
     <ProjectReference Include="..\StringResources\StringResources.csproj" />
+    <ProjectReference Include="..\Missio.CustomRenderers\Missio.CustomRenderers.csproj" />
   </ItemGroup>
 
   <ItemGroup>
