@@ -27,7 +27,9 @@
                 ItemsSource="{Binding Posts}" ItemTemplate="{StaticResource PersonDataTemplateSelector}"
                 HasUnevenRows="True" RefreshCommand="{Binding UpdatePostsCommand}"
                 IsRefreshing="{Binding IsRefreshing}"
-                IsPullToRefreshEnabled="True" />
+                IsPullToRefreshEnabled="True"
+                SeparatorVisibility="None"
+                BackgroundColor="{StaticResource SecondaryDarkColor}"/>
             <Button
                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.85}"

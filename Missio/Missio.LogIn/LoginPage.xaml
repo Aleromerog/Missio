@@ -61,7 +61,7 @@
                    TextColor="{StaticResource PrimaryColor}"/>
             <Entry HorizontalTextAlignment="Center"
                    FontFamily="{StaticResource MissioRegular}"
-                   Text="{Binding UserName}"
+                   Text="{Binding UserName}"  
                    AutomationId="UserNameEntry"
                    Placeholder="E-mail o usuario"/>
             <Label Text="Contrasena"

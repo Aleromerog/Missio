@@ -13,16 +13,22 @@ namespace Missio.Posts
         public string Message { [UsedImplicitly] get; }
         public string Image { [UsedImplicitly] get; }
         public User UserPost { [UsedImplicitly] get; }
-        public string AuthorName {[UsedImplicitly] get; }
-        public string UserPicture {[UsedImplicitly] get; }
+        public string AuthorName
+        {
+            [UsedImplicitly] get { return UserPost.UserName; }
+        }
+
+        public string UserPicture
+        {
+            [UsedImplicitly]
+            get { return UserPost.Picture; }
+        }
 
         public TextAndImagePost([NotNull] User user, [NotNull] string message, [NotNull] string image)
         {
             Image = image ?? throw new ArgumentNullException(nameof(image));
             Message = message ?? throw new ArgumentNullException(nameof(message));
             UserPost = user ?? throw new ArgumentNullException(nameof(user));
-            AuthorName = UserPost.UserName ?? throw new ArgumentNullException(nameof(user.UserName));
-            UserPicture = UserPost.Picture ?? throw new ArgumentNullException(nameof(user.Picture));
         }
 
 

@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 using ButtonCircle.FormsPlugin.Droid;
+using ImageCircle.Forms.Plugin.Droid;
 
 namespace Missio.Droid
 {
@@ -16,6 +17,7 @@ namespace Missio.Droid
             base.OnCreate(bundle);
             Xamarin.Forms.Forms.Init(this, bundle);
             ButtonCircleRenderer.Init();
+            ImageCircleRenderer.Init();
             LoadApplication(new App());
         }
     }
