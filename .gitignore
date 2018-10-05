@@ -47,6 +47,7 @@ artifacts/
 
 *_i.c
 *_p.c
+*.DS_Store
 *_i.h
 *.ilk
 *.meta
