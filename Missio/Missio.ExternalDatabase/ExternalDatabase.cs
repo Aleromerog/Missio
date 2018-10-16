@@ -1,68 +1,58 @@
 ﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.MobileServices;
 using Missio.LocalDatabase;
+using Missio.LogIn;
+using Missio.Navigation;
 using Missio.Users;
+using StringResources;
 
 namespace Missio.ExternalDatabase
 {
-    public class UserExternalDatabase : IUserRepository
+    public class WebUserRespository : IUserRepository
     {
-        private readonly IMobileServiceClient _service;
+        private readonly HttpClient _httpClient;
 
-        public UserExternalDatabase(IMobileServiceClient service)
+        public WebUserRespository(HttpClient httpClient)
         {
-            _service = service;
-        }
-
-        public async Task<List<User>> GetAllUsers()
-        {
-            return await _service.GetTable<User>().ToListAsync();
+            _httpClient = httpClient;
         }
 
         /// <inheritdoc />
         public async Task<User> GetUserByName(string userName)
         {
-            var users = await _service.GetTable<User>().Where(x => x.UserName == userName).ToListAsync();
-            return users[0];
+            var response = await _httpClient.GetAsync($"api/users/{userName}");
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<User>();
         }
 
         /// <inheritdoc />
-        public void AttemptToRegisterUser(User user)
+        public async Task AttemptToRegisterUser(User user)
         {
-            _service.GetTable<User>().InsertAsync(user);
+            var response = await _httpClient.PostAsJsonAsync("api/users", user);
+            response.EnsureSuccessStatusCode();
+            var status = await response.Content.ReadAsAsync<RegistrationStatus>();
+            if (status == RegistrationStatus.UserNameAlreadyInUse)
+                throw new UserRegistrationException(new List<AlertTextMessage>
+                {
+                    new AlertTextMessage(AppResources.UserNameAlreadyInUseTitle,
+                        AppResources.UserNameAlreadyInUseMessage, AppResources.Ok)
+                });
         }
 
         /// <inheritdoc />
-        public void ValidateUser(User user)
+        public async Task ValidateUser(User user)
         {
+            var response = await _httpClient.GetAsync($"api/users/name={user.UserName}&password={user.Password}");
+            response.EnsureSuccessStatusCode();
+            var status = await response.Content.ReadAsAsync<LogInStatus>();
+            switch (status)
+            {
+                case LogInStatus.InvalidPassword:
+                    throw new InvalidPasswordException();
+                case LogInStatus.InvalidUserName:
+                    throw new InvalidUserNameException();
+            }
         }
     }
-
-    //public class PostAzureDatabase : IPostRepository 
-    //{
-    //    private IMobileServiceClient _mobileServiceClient;
-
-    //    public PostAzureDatabase(IMobileServiceClient mobileServiceClient)
-    //    {
-    //        _mobileServiceClient = mobileServiceClient;
-    //    }
-
-    //    /// <inheritdoc />
-    //    public void PublishPost(IPost post)
-    //    {
-    //    }
-
-    //    /// <inheritdoc />
-    //    public void PublishPost(User user, IPost post)
-    //    {
-    //        throw new System.NotImplementedException();
-    //    }
-
-    //    /// <inheritdoc />
-    //    public List<IPost> GetMostRecentPostsInOrder(User user)
-    //    {
-    //        throw new System.NotImplementedException();
-    //    }
-    //}
 }

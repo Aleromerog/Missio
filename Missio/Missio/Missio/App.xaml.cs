@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Missio.ExternalDatabase;
 using Missio.LocalDatabase;
 using Missio.LogIn;
 using Missio.LogInRes;
@@ -139,11 +143,16 @@ namespace Missio
         {
 #if USE_FAKE_DATA
             Bind<IPostRepository>().To<LocalNewsFeedPostRepository>().InSingletonScope();
-            Bind<IUserRepository>().To<LocalUserDatabase>().InSingletonScope();
+            Bind<IUserRepository>().To<LocalUserRepository>().InSingletonScope();
 #else
+            //TODO: Remove this when we have a valid SSL certificate
+            ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+            var httpClient = new HttpClient {BaseAddress = new Uri("https://10.0.2.2:44333/")};
+            httpClient.DefaultRequestHeaders.Accept.Clear();
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            Bind<HttpClient>().ToConstant(httpClient);
             Bind<IPostRepository>().To<LocalNewsFeedPostRepository>().InSingletonScope();
-            Bind<IMobileServiceClient>().ToConstant(new MobileServiceClient("https://missioservice.azurewebsites.net"));
-            Bind<IUserRepository>().To<UserExternalDatabase>().InSingletonScope();
+            Bind<IUserRepository>().To<WebUserRespository>().InSingletonScope();
 #endif
         }
     }

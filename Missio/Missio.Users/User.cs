@@ -8,11 +8,17 @@ namespace Missio.Users
 {
     public class User : IUserName, IPassword, IEquatable<User>
     {
+        public int Id { get; set; }
         public string UserName { get; }
         public string Password { get; }
         public string Email { get; }
 
-        public User([NotNull] string userName, [NotNull] string password, [NotNull] string email = "")
+        [UsedImplicitly]
+        public User()
+        {
+        }
+
+        public User([NotNull] string userName, [NotNull] string password, [NotNull] string email)
         {
             UserName = userName ?? throw new ArgumentNullException(nameof(userName));
             Password = password ?? throw new ArgumentNullException(nameof(password));
@@ -37,16 +43,6 @@ namespace Missio.Users
         private bool IsUserNameTooShort()
         {
             return UserName.Length < 3;
-        }
-
-        public bool DoesUserNameHaveErrors()
-        {
-            return IsUserNameTooShort();
-        }
-
-        public bool DoesPasswordHaveErrors()
-        {
-            return IsPasswordTooShort();
         }
 
         /// <inheritdoc />

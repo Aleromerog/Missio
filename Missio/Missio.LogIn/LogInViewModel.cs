@@ -55,8 +55,8 @@ namespace Missio.LogIn
         {
             try
             {
-                var user = new User(UserName, Password);
-                _userRepository.ValidateUser(user);
+                var user = new User(UserName, Password, "");
+                await _userRepository.ValidateUser(user);
                 _loggedInUser.LoggedInUser = user;
                 await _navigation.GoToPage<MainTabbedPage>();
             }

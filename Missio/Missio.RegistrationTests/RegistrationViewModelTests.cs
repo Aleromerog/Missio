@@ -19,20 +19,20 @@ namespace Missio.RegistrationTests
         [SetUp]
         public void SetUp()
         {
-            _fakeUserRepository = new LocalUserDatabase();
+            _fakeUserRepository = new LocalUserRepository();
             _fakeNavigation = Substitute.For<INavigation>();
             _registrationViewModel = new RegistrationViewModel(_fakeUserRepository, _fakeNavigation);
         }
 
         [Test]
-        public async void TryToRegister_FieldsLeftEmpty_DoesNotThrowNullReferenceException()
+        public async Task TryToRegister_FieldsLeftEmpty_DoesNotThrowNullReferenceException()
         {
             await _registrationViewModel.TryToRegister();
         }
 
         [Test]
         [TestCaseSource(typeof(UserTestUtils), nameof(UserTestUtils.NamesAlreadyInUse))]
-        public async void TryToRegister_UserNameAlreadyInUse_DisplaysAlert(string userName)
+        public async Task TryToRegister_UserNameAlreadyInUse_DisplaysAlert(string userName)
         {
             var userNameMessage = new AlertTextMessage(AppResources.UserNameAlreadyInUseTitle, AppResources.UserNameAlreadyInUseMessage, AppResources.Ok);
             _registrationViewModel.UserName = userName;
@@ -71,7 +71,7 @@ namespace Missio.RegistrationTests
         [Test]
         [TestCase("Ana Gaxiola", "TeQuieroJorge", "ana@gmail.com")]
         [TestCase("ElAmorDeTuVida", "NoTeAmo", "elamordetuvida@gmail.com")]
-        public async void TryToRegister_EverythingIsOk_RegistersUser(string userName, string password, string email)
+        public async Task TryToRegister_EverythingIsOk_RegistersUser(string userName, string password, string email)
         {
             _registrationViewModel.UserName = userName;
             _registrationViewModel.Password = password;
@@ -88,7 +88,7 @@ namespace Missio.RegistrationTests
         [Test]
         [TestCase("Ana Gaxiola", "TeQuieroJorge", "ana@gmail.com")]
         [TestCase("ElAmorDeTuVida", "NoTeAmo", "elamordetuvida@gmail.com")]
-        public async void TryToRegister_EverythingIsOk_DisplaysEmailWasSent(string userName, string password, string email)
+        public async Task TryToRegister_EverythingIsOk_DisplaysEmailWasSent(string userName, string password, string email)
         {
             _registrationViewModel.UserName = userName;
             _registrationViewModel.Password = password;

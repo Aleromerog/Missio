@@ -86,7 +86,7 @@ namespace Missio.RegistrationTests
             _app.Tap(c => c.Text(AppResources.Ok));
             _app.WaitForElement(c => c.Marked("LogInPage"));
 
-            _app.LogInWithUser(new User("Some username", "Some password"));
+            _app.LogInWithUser(new User("Some username", "Some password", ""));
 
             _app.WaitForElement(c => c.Marked("NewsFeedPage"));
         }

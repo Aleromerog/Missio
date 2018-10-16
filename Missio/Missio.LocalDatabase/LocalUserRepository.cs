@@ -12,16 +12,16 @@ namespace Missio.LocalDatabase
     /// <summary>
     /// A fake user and password validator that checks the given parameters against the hardcoded data
     /// </summary>
-    public class LocalUserDatabase : IUserRepository
+    public class LocalUserRepository : IUserRepository
     {
         /// <summary>
         /// A list of users that are guaranteed to exist, useful for testing purposes
         /// </summary>
         private readonly List<User> _validUsers =
-            new List<User> {new User("Jorge Romero", "Yolo"), new User("Francisco Greco", "ElPass") };
+            new List<User> {new User("Jorge Romero", "Yolo", ""), new User("Francisco Greco", "ElPass", "") };
 
         /// <inheritdoc />
-        public void ValidateUser(User user)
+        public async Task ValidateUser(User user)
         {
             if (!_validUsers.Exists(x => x.UserName == user.UserName))
                 throw new InvalidUserNameException();
@@ -30,6 +30,7 @@ namespace Missio.LocalDatabase
                 if (validUser.UserName == user.UserName && validUser.Password != user.Password)
                     throw new InvalidPasswordException();
             }
+            await Task.CompletedTask; // Fix lack of awaits warning
         }
 
         private bool DoesUserExist(string userName)
@@ -47,7 +48,7 @@ namespace Missio.LocalDatabase
         }
 
         /// <inheritdoc />
-        public void AttemptToRegisterUser(User user)
+        public async Task AttemptToRegisterUser(User user)
         {
             var errors = user.GetOfflineErrors();
             if (errors.Count > 0)
@@ -58,6 +59,7 @@ namespace Missio.LocalDatabase
                     new AlertTextMessage(AppResources.UserNameAlreadyInUseTitle, AppResources.UserNameAlreadyInUseMessage, AppResources.Ok)
                 });
             _validUsers.Add(user);
+            await Task.CompletedTask; // Fix lack of awaits warning
         }
     }
 }
