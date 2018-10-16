@@ -18,7 +18,7 @@ namespace Missio.PostPublication
         private readonly IUpdateViewPosts _updateViewPosts;
         private readonly INavigation _navigation;
         private string _postText;
-
+        
         [UsedImplicitly]
         public ICommand PublishPostCommand { get; }
 
@@ -41,6 +41,7 @@ namespace Missio.PostPublication
 
         public async Task PublishPost()
         {
+            
             _postRepository.PublishPost(_loggedInUser.LoggedInUser, new TextOnlyPost(_loggedInUser.LoggedInUser.UserName, PostText));
             _updateViewPosts.UpdatePosts();
             await _navigation.ReturnToPreviousPage();

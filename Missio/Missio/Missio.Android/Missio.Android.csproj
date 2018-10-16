@@ -33,7 +33,6 @@
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <BundleAssemblies>false</BundleAssemblies>
-    <AndroidHttpClientHandlerType>System.Net.Http.HttpClientHandler</AndroidHttpClientHandlerType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,13 +51,16 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations">
-      <Version>11.1.0</Version>
+      <Version>2018.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Bcl.Build">
+      <Version>1.0.21</Version>
     </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Extensions">
       <Version>4.5.1</Version>
     </PackageReference>
-    <PackageReference Include="ThriveGmbH.BottomNavigationBar.XF">
-      <Version>1.0.2</Version>
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle">
+      <Version>3.0.0.5</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2.1" />
@@ -66,13 +68,15 @@
     <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Forms">
-      <Version>3.1.0.583944</Version>
+      <Version>3.1.0.697729</Version>
     </PackageReference>
     <PackageReference Include="Plugins.Forms.ButtonCircle">
-      <Version>2.0.2.1</Version>
+      <Version>2.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndroidHelpers.cs" />
+    <Compile Include="BottomNavTabPageRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -117,9 +121,9 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Missio.NewsFeed\Missio.NewsFeed.csproj">
-      <Project>{9dfca398-6844-4ce5-a5fe-a9128f5a160d}</Project>
-      <Name>Missio.NewsFeed</Name>
+    <ProjectReference Include="..\..\Missio.CustomRenderers\Missio.CustomRenderers.csproj">
+      <Project>{A49CDB37-CAB1-4246-8F79-0CC30356FC2C}</Project>
+      <Name>Missio.CustomRenderers</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\PostPublication\Missio.PostPublication.csproj">
       <Project>{763a6d7f-8590-4f3e-9d1a-2454c989dc69}</Project>

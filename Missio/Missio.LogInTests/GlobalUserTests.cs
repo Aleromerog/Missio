@@ -25,7 +25,7 @@ namespace Missio.LogInTests
         [Test]
         public void SetUser_GivenUser_SetsUser()
         {
-            var user = new User("Some user ", "Pass", "");
+            var user = new User("Some user ", "Pass");
 
             _globalUser.LoggedInUser = user;
 

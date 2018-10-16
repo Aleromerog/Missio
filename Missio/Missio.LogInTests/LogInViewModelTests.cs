@@ -59,7 +59,7 @@ namespace Missio.LogInTests
         [Test]
         public void LogInCommand_ValidUser_SetsLoggedInUserAndGoesToNextPage()
         {
-            var user = new User("Someone", "", "");
+            var user = new User("Someone", "");
             _logInViewModel.UserName = user.UserName;
 
             _logInViewModel.LogInCommand.Execute(null);
@@ -72,7 +72,7 @@ namespace Missio.LogInTests
         [Test]
         public void AttemptToLogin_InvalidPassword_DisplaysAlert()
         {
-            var user = new User("Someone", "", "");
+            var user = new User("Someone", "");
             _logInViewModel.UserName = user.UserName;
             _fakeUserRepository.When(x => x.ValidateUser(user)).Throw<InvalidPasswordException>();
 
@@ -84,7 +84,7 @@ namespace Missio.LogInTests
         [Test]
         public void AttemptToLogin_InvalidUserName_DisplaysAlert()
         {
-            var user = new User("Someone", "", "");
+            var user = new User("Someone", "");
             _logInViewModel.UserName = user.UserName;
             _fakeUserRepository.When(x => x.ValidateUser(user)).Throw<InvalidUserNameException>();
 

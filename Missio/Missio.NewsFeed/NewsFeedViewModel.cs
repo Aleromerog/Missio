@@ -35,10 +35,10 @@ namespace Missio.NewsFeed
         private readonly ILoggedInUser _loggedInUser;
         private bool _isRefreshing;
 
-        public NewsFeedViewModel([NotNull] IPostRepository getMostRecentPosts, [NotNull] INavigation navigation,
+        public NewsFeedViewModel([NotNull] IPostRepository postRepository, [NotNull] INavigation navigation,
             [NotNull] ILoggedInUser loggedInUser)
         {
-            _postRepository = getMostRecentPosts ?? throw new ArgumentNullException(nameof(getMostRecentPosts));
+            _postRepository = postRepository ?? throw new ArgumentNullException(nameof(postRepository));
             _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
             _loggedInUser = loggedInUser ?? throw new ArgumentNullException(nameof(loggedInUser));
             UpdatePostsCommand = new Command(UpdatePosts);

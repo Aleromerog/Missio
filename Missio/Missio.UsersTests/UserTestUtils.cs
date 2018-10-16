@@ -6,13 +6,13 @@ namespace Missio.UserTests
 {
     public static class UserTestUtils
     {
-        public static readonly User FranciscoUser = new User("Francisco Greco", "ElPass", "");
-        public static readonly User JorgeUser = new User("Jorge Romero", "Yolo", "");
+        public static readonly User FranciscoUser = new User("Francisco Greco", "ElPass");
+        public static readonly User JorgeUser = new User("Jorge Romero", "Yolo");
         public static readonly object[] NamesAlreadyInUse = {JorgeUser.UserName, FranciscoUser.UserName};
 
         public static object[] GetInvalidUsers()
         {
-            return new object[] { new User("Non existing user", "", ""), new User("Non existing user2", "", "") };
+            return new object[] { new User("Non existing user", ""), new User("Non existing user2", "") };
         }
 
         public static List<User> GetValidUsers()
@@ -28,7 +28,7 @@ namespace Missio.UserTests
 
         public static object[] GetUsersWithIncorrectPasswords()
         {
-            return new object[] { new User(FranciscoUser.UserName, "Incorrect", "")};
+            return new object[] { new User(FranciscoUser.UserName, "Incorrect")};
         }
 
         public static List<string> GetUserPostsContents(User user)

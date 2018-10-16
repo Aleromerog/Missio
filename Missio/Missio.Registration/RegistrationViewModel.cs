@@ -61,7 +61,7 @@ namespace Missio.Registration
 
         private async Task SendRegistrationAndResetView()
         {
-            await _userRepository.AttemptToRegisterUser(new User(UserName, Password, Email));
+            await _userRepository.AttemptToRegisterUser(new User(UserName, Password, "", Email));
             var alertTask = _navigation.DisplayAlert(AppResources.RegistrationSuccessfulTitle, AppResources.RegistrationSuccessfulMessage, AppResources.Ok);
             await _navigation.ReturnToPreviousPage();
             await alertTask;

@@ -165,4 +165,7 @@
   <data name="ShouldNotHaveSpacesOrSpecialCharacters" xml:space="preserve">
     <value>No debe contener espacios ni caracteres especiales.</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
 </root>
