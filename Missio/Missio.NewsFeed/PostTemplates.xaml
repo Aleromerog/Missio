@@ -13,16 +13,16 @@
         <ViewCell >
             <FlexLayout Direction="Column" JustifyContent="SpaceBetween" Margin="{StaticResource NewsFeedPostMargin}" BackgroundColor="{StaticResource SecondaryColor}">
                 <StackLayout Orientation="Horizontal" Spacing="5">
-                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                     <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
+                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                     <controls:CircleImage Source="{Binding Author.Picture, Converter={StaticResource ByteToImage}}" Aspect="AspectFill" WidthRequest="55" HeightRequest="55" />
                     <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                     <Label Text="{Binding Author.UserName}" FontAttributes="Bold"  />
                 </StackLayout>
                 <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                 <Label Text="{Binding Message}" BackgroundColor="White" />
-                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                 <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
+                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                 <Image Source="{Binding Image, Converter={StaticResource ByteToImage}}"/>
             </FlexLayout>
         </ViewCell>

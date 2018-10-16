@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Missio.LogIn\Missio.LogIn.csproj" />
-    <ProjectReference Include="..\Missio.Posts\Missio.Posts.csproj" />
     <ProjectReference Include="..\Missio.LogIn\Missio.LogIn.csproj" />
   </ItemGroup>
 

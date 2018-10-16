@@ -15,7 +15,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Missio.ApplicationResources\Missio.ApplicationResources.csproj" />
     <ProjectReference Include="..\Missio.Navigation\Missio.Navigation.csproj" />
-    <ProjectReference Include="..\Missio.Posts\Missio.Posts.csproj" />
     <ProjectReference Include="..\Missio.Users\Missio.Users.csproj" />
     <ProjectReference Include="..\StringResources\StringResources.csproj" />
   </ItemGroup>

@@ -2,7 +2,6 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Missio.ExternalDatabase;
 using Missio.LocalDatabase;
 using Missio.LogIn;
 using Missio.LogInRes;

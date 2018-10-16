@@ -7,7 +7,6 @@
                                   xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
                                   xmlns:customRenderers="clr-namespace:Missio.CustomRenderers;assembly=Missio.CustomRenderers"
                                   android:TabbedPage.ToolbarPlacement="Bottom"
-                                  
                                   x:Name="BottomBar">
                             
 </customRenderers:BottomNavTabPage>

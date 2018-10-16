@@ -96,7 +96,7 @@
       <Name>Missio.NewsFeed</Name>
     </ProjectReference>
     <ProjectReference Include="..\Missio.Posts\Missio.Posts.csproj">
-      <Project>{0C601A53-D72F-49F7-93D5-30A109E7D513}</Project>
+      <Project>{8669D001-55EC-4E6E-A42C-FE2B70F1694D}</Project>
       <Name>Missio.Posts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Missio.Tests\Missio.Tests.csproj">
