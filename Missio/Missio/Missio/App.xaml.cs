@@ -153,7 +153,7 @@ namespace Missio
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             Bind<HttpClient>().ToConstant(httpClient);
             Bind<IPostRepository>().To<LocalNewsFeedPostRepository>().InSingletonScope();
-            Bind<IUserRepository>().To<WebUserRespository>().InSingletonScope();
+            Bind<IUserRepository>().To<LocalUserRepository>().InSingletonScope();
 #endif
         }
     }

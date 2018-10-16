@@ -15,8 +15,6 @@
                 <applicationResources:AppResources />
                 <newsFeed:PostTemplates/>
             </ResourceDictionary.MergedDictionaries>
-
-            
         </ResourceDictionary>
     </ContentPage.Resources>
 

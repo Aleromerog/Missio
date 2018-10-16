@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Missio.LogIn;
 using Missio.Navigation;
@@ -17,10 +18,18 @@ namespace Missio.LocalDatabase
         /// <summary>
         /// A list of users that are guaranteed to exist, useful for testing purposes
         /// </summary>
-        private readonly List<User> _validUsers =
-            new List<User> {
-                new User("Jorge Romero", "Yolo", "https://scontent.felp1-1.fna.fbcdn.net/v/t1.0-9/26168930_10208309305130065_9014358028033259242_n.jpg?_nc_cat=0&oh=a6dc6203053aa3c830edffd107f346e4&oe=5BF1FC2B"), 
-                new User("Francisco Greco", "ElPass", "https://scontent.felp1-1.fna.fbcdn.net/v/t1.0-9/18342049_1371435649562155_317149840395279012_n.jpg?_nc_cat=0&oh=74b6c0226537899a74f499c25b3ddb07&oe=5C00CF82") };
+        private readonly List<User> _validUsers = new List<User>();
+
+        public LocalUserRepository()
+        {
+            using(var webClient = new WebClient())
+            {
+                var jorge = new User("Jorge Romero", "Yolo", webClient.DownloadData("https://scontent.felp1-1.fna.fbcdn.net/v/t1.0-9/26168930_10208309305130065_9014358028033259242_n.jpg?_nc_cat=0&oh=a6dc6203053aa3c830edffd107f346e4&oe=5BF1FC2B"));
+                var greco = new User("Francisco Greco", "ElPass", webClient.DownloadData("https://scontent.felp1-1.fna.fbcdn.net/v/t1.0-9/18342049_1371435649562155_317149840395279012_n.jpg?_nc_cat=0&oh=74b6c0226537899a74f499c25b3ddb07&oe=5C00CF82"));
+                _validUsers.Add(jorge);
+                _validUsers.Add(greco);
+            }
+        }
 
         /// <inheritdoc />
         public async Task ValidateUser(User user)
@@ -32,7 +41,7 @@ namespace Missio.LocalDatabase
                 if (validUser.UserName == user.UserName && validUser.Password != user.Password)
                     throw new InvalidPasswordException();
             }
-            await Task.CompletedTask; // Fix lack of awaits warning
+            await Task.CompletedTask;
         }
 
         private bool DoesUserExist(string userName)
@@ -61,7 +70,7 @@ namespace Missio.LocalDatabase
                     new AlertTextMessage(AppResources.UserNameAlreadyInUseTitle, AppResources.UserNameAlreadyInUseMessage, AppResources.Ok)
                 });
             _validUsers.Add(user);
-            await Task.CompletedTask; // Fix lack of awaits warning
+            await Task.CompletedTask;
         }
     }
 }

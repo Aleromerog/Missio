@@ -38,7 +38,7 @@ namespace MissioServer.Tests
         public async Task IsUserValid_InvalidPassword_ReturnsIncorrectPassword()
         {
             var missioContext = MakeMissioContext();
-            missioContext.Users.Add(new User("ValidName", "Password", ""));
+            missioContext.Users.Add(new User("ValidName", "Password"));
             missioContext.SaveChanges();
             var usersController = MakeUsersController(missioContext);
 
@@ -51,7 +51,7 @@ namespace MissioServer.Tests
         public async Task IsUserValid_DataIsValid_ReturnsSuccessfulLogin()
         {
             var missioContext = MakeMissioContext();
-            missioContext.Users.Add(new User("ValidName", "Password", ""));
+            missioContext.Users.Add(new User("ValidName", "Password"));
             missioContext.SaveChanges();
             var usersController = MakeUsersController(missioContext);
 
