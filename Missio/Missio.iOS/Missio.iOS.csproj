@@ -74,9 +74,9 @@
     <BundleResource Include="Resources\person.png" />
     <BundleResource Include="Resources\person%402x.png" />
     <BundleResource Include="Resources\person%403x.png" />
-    <BundleResource Include="Resources\roasry.png" />
-    <BundleResource Include="Resources\roasry%402x.png" />
-    <BundleResource Include="Resources\roasry%403x.png" />
+    <BundleResource Include="Resources\rosary.png" />
+    <BundleResource Include="Resources\rosary%402x.png" />
+    <BundleResource Include="Resources\rosary%403x.png" />
     <BundleResource Include="Resources\bell.png" />
     <None Include="GettingStarted.Xamarin" />
     <None Include="Info.plist" />
@@ -117,11 +117,30 @@
       <HintPath>..\packages\Xamarin.Forms.3.1.0.697729\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Portable.Ninject.3.3.1\lib\Xamarin.iOS\Ninject.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Missio\Missio\Missio.csproj">
       <Project>{6f9d2ceb-144a-40c2-aec3-117cb8700bb3}</Project>
       <Name>Missio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Missio.NewsFeed\Missio.NewsFeed.csproj">
+      <Project>{9DFCA398-6844-4CE5-A5FE-A9128F5A160D}</Project>
+      <Name>Missio.NewsFeed</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Missio.LogIn\Missio.LogIn.csproj">
+      <Project>{4DD1EF16-36F3-443C-9116-6B980584BE04}</Project>
+      <Name>Missio.LogIn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PostPublication\Missio.PostPublication.csproj">
+      <Project>{763A6D7F-8590-4F3E-9D1A-2454C989DC69}</Project>
+      <Name>Missio.PostPublication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Missio.Registration\Missio.Registration.csproj">
+      <Project>{FE4F486E-DEF1-48EA-AFE6-573CB1437ECC}</Project>
+      <Name>Missio.Registration</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

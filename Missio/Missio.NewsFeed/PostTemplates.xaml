@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:newsFeed="clr-namespace:Missio.NewsFeed;assembly=Missio.NewsFeed"
@@ -12,16 +12,13 @@
     <DataTemplate x:Key="TextAndImagePost">
         <ViewCell >
             <FlexLayout Direction="Column" JustifyContent="SpaceBetween" Margin="{StaticResource NewsFeedPostMargin}" BackgroundColor="{StaticResource SecondaryColor}">
-                <StackLayout Orientation="Horizontal" Spacing="5">
-                    <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
-                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
-                    <controls:CircleImage Source="{Binding Author.Picture, Converter={StaticResource ByteToImage}}" Aspect="AspectFill" WidthRequest="55" HeightRequest="55" />
-                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
-                    <Label Text="{Binding Author.UserName}" FontAttributes="Bold"  />
+                <StackLayout Orientation="Horizontal" Spacing="5" Padding="10,10,10,0">
+                    <controls:CircleImage Source="{Binding UserPicture}" Aspect="AspectFill" WidthRequest="55" HeightRequest="55" />
+                    <Label Text="{Binding AuthorName}" FontFamily="{StaticResource MissioBold}"  />
                 </StackLayout>
                 <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
-                <Label Text="{Binding Message}" BackgroundColor="White" />
-                <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
+                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                <Label Text="{Binding Message}"  Margin="10" FontFamily="{StaticResource MissioRegular}"/>
                 <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                 <Image Source="{Binding Image, Converter={StaticResource ByteToImage}}"/>
             </FlexLayout>
