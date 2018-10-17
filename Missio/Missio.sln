@@ -5,29 +5,29 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.Android", "Missio\Missio.Android\Missio.Android.csproj", "{F8802880-468A-4CC1-BE77-3F666123639A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Missio", "Missio\Missio\Missio.csproj", "{6F9D2CEB-144A-40C2-AEC3-117CB8700BB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio", "Missio\Missio\Missio.csproj", "{6F9D2CEB-144A-40C2-AEC3-117CB8700BB3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mission.ViewModel", "ViewModel\Mission.ViewModel.csproj", "{AC0051E6-880A-4717-B613-55390A3E76B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mission.ViewModel", "ViewModel\Mission.ViewModel.csproj", "{AC0051E6-880A-4717-B613-55390A3E76B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.Tests", "Missio.Tests\Missio.Tests.csproj", "{8C25431E-66AF-4B55-8169-D76461975667}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringResources", "StringResources\StringResources.csproj", "{BA270304-C3F4-42CB-9462-D1A961C38F18}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringResources", "StringResources\StringResources.csproj", "{BA270304-C3F4-42CB-9462-D1A961C38F18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.iOS", "Missio.iOS\Missio.iOS.csproj", "{8BE173F7-BFA1-4D0F-8C0E-DE4416352709}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Missio.Navigation", "Missio.Navigation\Missio.Navigation.csproj", "{1EF28F5B-A94A-483E-A621-C79BDD191BD2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.Navigation", "Missio.Navigation\Missio.Navigation.csproj", "{1EF28F5B-A94A-483E-A621-C79BDD191BD2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Missio.LogIn", "Missio.LogIn\Missio.LogIn.csproj", "{4DD1EF16-36F3-443C-9116-6B980584BE04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.LogIn", "Missio.LogIn\Missio.LogIn.csproj", "{4DD1EF16-36F3-443C-9116-6B980584BE04}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Missio.Registration", "Missio.Registration\Missio.Registration.csproj", "{FE4F486E-DEF1-48EA-AFE6-573CB1437ECC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.Registration", "Missio.Registration\Missio.Registration.csproj", "{FE4F486E-DEF1-48EA-AFE6-573CB1437ECC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Missio.LocalDatabase", "Missio.LocalDatabase\Missio.LocalDatabase.csproj", "{86ED73DC-F6DA-4BAF-90AA-C230C6741E02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.LocalDatabase", "Missio.LocalDatabase\Missio.LocalDatabase.csproj", "{86ED73DC-F6DA-4BAF-90AA-C230C6741E02}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Missio.ExternalDatabase", "Missio.ExternalDatabase\Missio.ExternalDatabase.csproj", "{24468A3E-8D60-4524-81DB-6371705A117F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.ExternalDatabase", "Missio.ExternalDatabase\Missio.ExternalDatabase.csproj", "{24468A3E-8D60-4524-81DB-6371705A117F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Missio.NewsFeed", "Missio.NewsFeed\Missio.NewsFeed.csproj", "{9DFCA398-6844-4CE5-A5FE-A9128F5A160D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.NewsFeed", "Missio.NewsFeed\Missio.NewsFeed.csproj", "{9DFCA398-6844-4CE5-A5FE-A9128F5A160D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Missio.PostPublication", "PostPublication\Missio.PostPublication.csproj", "{763A6D7F-8590-4F3E-9D1A-2454C989DC69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.PostPublication", "PostPublication\Missio.PostPublication.csproj", "{763A6D7F-8590-4F3E-9D1A-2454C989DC69}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.ExternalDatabaseTests", "Missio.ExternalDatabaseTests\Missio.ExternalDatabaseTests.csproj", "{460933FD-D7F1-4017-A0A0-FB3B6277B8A5}"
 EndProject
@@ -41,7 +41,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.RegistrationTests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.UsersTests", "Missio.UsersTests\Missio.UsersTests.csproj", "{0987CEAA-DFEC-4F26-BD75-F42E602165E2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Missio.Users", "Missio.Users\Missio.Users.csproj", "{5FF0747B-B2A7-4FEC-BA86-E14E3E6F39EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.Users", "Missio.Users\Missio.Users.csproj", "{5FF0747B-B2A7-4FEC-BA86-E14E3E6F39EF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.MainView", "Missio.MainView\Missio.MainView.csproj", "{D1413247-11F5-423B-AEE8-A6167A498C2C}"
 EndProject
@@ -49,7 +49,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.Posts", "Missio.Post
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.MainViewTests", "Missio.MainViewTests\Missio.MainViewTests.csproj", "{A2B4EE0C-8928-4F29-A42D-4BCA75A1B0EE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Missio.ApplicationResources", "Missio.ApplicationResources\Missio.ApplicationResources.csproj", "{E10E47D5-60A0-4083-98A6-B6F58B1DDF28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.ApplicationResources", "Missio.ApplicationResources\Missio.ApplicationResources.csproj", "{E10E47D5-60A0-4083-98A6-B6F58B1DDF28}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Missio.CustomRenderers", "Missio.CustomRenderers\Missio.CustomRenderers.csproj", "{A49CDB37-CAB1-4246-8F79-0CC30356FC2C}"
 EndProject
@@ -223,6 +223,7 @@ Global
 		{8BE173F7-BFA1-4D0F-8C0E-DE4416352709}.Release|iPhone.Build.0 = Release|iPhone
 		{8BE173F7-BFA1-4D0F-8C0E-DE4416352709}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{8BE173F7-BFA1-4D0F-8C0E-DE4416352709}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{8BE173F7-BFA1-4D0F-8C0E-DE4416352709}.Debug|Any CPU.Build.0 = Debug|iPhone
 		{1EF28F5B-A94A-483E-A621-C79BDD191BD2}.Ad-Hoc|Any CPU.ActiveCfg = Debug|Any CPU
 		{1EF28F5B-A94A-483E-A621-C79BDD191BD2}.Ad-Hoc|Any CPU.Build.0 = Debug|Any CPU
 		{1EF28F5B-A94A-483E-A621-C79BDD191BD2}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU

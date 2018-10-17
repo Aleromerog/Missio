@@ -17,6 +17,9 @@ namespace Missio.iOS
 
             ButtonCircleRenderer.Init();
             ImageCircleRenderer.Init();
+
+            UITabBar.Appearance.SelectedImageTintColor = UIColor.FromRGB(88, 3, 1);
+            //UITabBar.Appearance.BarTintColor = UIColor.FromRGB(88, 3, 1);
             return base.FinishedLaunching(app, options);
         }
     }

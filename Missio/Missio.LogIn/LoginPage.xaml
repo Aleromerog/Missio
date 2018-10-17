@@ -95,6 +95,7 @@
                             WidthRequest="80"
                             Command="{Binding LogInCommand}"
                             AutomationId="LogInButton"
+                            
                             Image="check.png"/>
         <FlexLayout Direction="Row"
                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.8, Property=Width}"
