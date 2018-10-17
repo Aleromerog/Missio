@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Missio.LocalDatabase;
 using Missio.Navigation;
 using Missio.Registration;
+using Missio.Users;
 using Missio.UserTests;
 using NSubstitute;
 using NUnit.Framework;
@@ -19,7 +21,7 @@ namespace Missio.RegistrationTests
         [SetUp]
         public void SetUp()
         {
-            _fakeUserRepository = new LocalUserRepository();
+            _fakeUserRepository = Substitute.For<IUserRepository>();
             _fakeNavigation = Substitute.For<INavigation>();
             _registrationViewModel = new RegistrationViewModel(_fakeUserRepository, _fakeNavigation);
         }
@@ -38,6 +40,9 @@ namespace Missio.RegistrationTests
             _registrationViewModel.UserName = userName;
             _registrationViewModel.Password = "Valid password";
 
+            _fakeUserRepository.When(x => x.AttemptToRegisterUser(Arg.Any<User>()))
+                .Do(x => throw new UserRegistrationException(new List<AlertTextMessage> { userNameMessage }));
+
             await _registrationViewModel.TryToRegister();
 
             await _fakeNavigation.Received().DisplayAlert(userNameMessage);
@@ -49,6 +54,8 @@ namespace Missio.RegistrationTests
             var passwordMessage = new AlertTextMessage(AppResources.PasswordTooShortTitle, AppResources.PasswordTooShortMessage, AppResources.Ok);
             _registrationViewModel.UserName = "Some username";
             _registrationViewModel.Password = "ABC";
+            _fakeUserRepository.When(x => x.AttemptToRegisterUser(Arg.Any<User>()))
+                .Do(x => throw new UserRegistrationException(new List<AlertTextMessage> { passwordMessage}));
 
             await _registrationViewModel.TryToRegister();
 
@@ -59,9 +66,12 @@ namespace Missio.RegistrationTests
         public async Task TryToRegister_UserNameIsTooShort_DisplaysAlert()
         {
             var userNameTooShortMessage = new AlertTextMessage(AppResources.UserNameTooShortTitle, AppResources.UserNameTooShortMessage, AppResources.Ok);
-
             _registrationViewModel.UserName = "AB";
             _registrationViewModel.Password = "Some password";
+
+            _fakeUserRepository.When(x => x.AttemptToRegisterUser(Arg.Any<User>()))
+                .Do(x => throw new UserRegistrationException(new List<AlertTextMessage> { userNameTooShortMessage}));
+
 
             await _registrationViewModel.TryToRegister();
 
@@ -79,10 +89,7 @@ namespace Missio.RegistrationTests
 
             await _registrationViewModel.TryToRegister();
 
-            var user = await _fakeUserRepository.GetUserByName(userName);
-            Assert.AreEqual(userName, user.UserName);
-            Assert.AreEqual(password, user.Password);
-            Assert.AreEqual(email, user.Email);
+            await _fakeUserRepository.Received(1).AttemptToRegisterUser(Arg.Is<User>(x => x.UserName == userName && x.Password == password && x.Email == email));
         }
 
         [Test]

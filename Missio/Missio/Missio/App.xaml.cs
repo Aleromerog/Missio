@@ -18,8 +18,6 @@ namespace Missio
 {
 	public partial class App
 	{
-        private static bool _isPreviewing = true;
-
 	    public App()
 	    {
 	        InitializeComponent();
@@ -34,17 +32,6 @@ namespace Missio
 	            new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new ApplicationNavigationModule());
 	        return kernel.Get<ApplicationNavigation>();
 	    }
-
-	    public static void AssertIsPreviewing()
-        {
-            if (!_isPreviewing)
-                throw new InvalidOperationException("Application is not in preview mode, make sure you used the right constructor");
-        }
-
-        protected override void OnStart ()
-		{
-		    _isPreviewing = false;
-        }
 	}
 
     public class ToolsPageModule : NinjectModule
