@@ -9,7 +9,7 @@ namespace Missio.Users
     public class User : IEquatable<User>
     {
         [UsedImplicitly]
-        public int Id { get; set; }
+        public int Id { get; private set; }
         public string UserName { get; }
         public string Password { get; }
         public string Email { get; }

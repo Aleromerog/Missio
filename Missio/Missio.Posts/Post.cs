@@ -10,6 +10,10 @@ namespace Missio.Posts
         [UsedImplicitly] public byte[] Image { get; }
         [UsedImplicitly] public User Author { get; }
 
+        public Post()
+        {
+        }
+
         public Post([NotNull] User author, [NotNull] string message, byte[] image = null)
         {
             Author = author ?? throw new ArgumentNullException(nameof(author));

@@ -9,11 +9,12 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />
+    <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21" />
     <PackageReference Include="Portable.Ninject" Version="3.3.1" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.2" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.1" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+    <PackageReference Include="Xamarin.Forms" Version="3.2.0.871581" />
     <PackageReference Include="Plugins.Forms.ButtonCircle" Version="2.0.3" />
   </ItemGroup>
   <ItemGroup>
@@ -22,13 +23,23 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Missio.ExternalDatabase\Missio.ExternalDatabase.csproj" />
-    <ProjectReference Include="..\..\Missio.LocalDatabase\Missio.LocalDatabase.csproj" />
-    <ProjectReference Include="..\..\ViewModel\Mission.ViewModel.csproj" />
     <ProjectReference Include="..\..\Missio.NewsFeed\Missio.NewsFeed.csproj" />
+    <ProjectReference Include="..\..\PostPublication\Missio.PostPublication.csproj" />
+    <ProjectReference Include="..\..\ViewModel\Mission.ViewModel.csproj" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ViewModel\Mission.ViewModel.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="CalendarPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ToolsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

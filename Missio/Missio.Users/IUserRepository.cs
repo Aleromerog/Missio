@@ -13,7 +13,5 @@ namespace Missio.LocalDatabase
         /// <param name="user"> The user info to validate </param>
         /// <returns></returns>
         Task ValidateUser(User user);
-
-        Task<User> GetUserByName(string userName);
     }
 }
