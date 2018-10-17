@@ -12,11 +12,15 @@ namespace Missio.NewsFeed
         /// <inheritdoc />
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            if (item is Post)
-                return TextAndImagePost;
-            if (item is StickyPost)
-                return StickyPostTemplate;
-            throw new ArgumentException(nameof(item));
+            switch (item)
+            {
+                case Post _:
+                    return TextAndImagePost;
+                case StickyPost _:
+                    return StickyPostTemplate;
+                default:
+                    throw new ArgumentException(nameof(item));
+            }
         }
     }
 }

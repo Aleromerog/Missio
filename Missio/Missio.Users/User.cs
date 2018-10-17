@@ -6,8 +6,9 @@ using StringResources;
 
 namespace Missio.Users
 {
-    public class User : IUserName, IPassword, IEquatable<User>
+    public class User : IEquatable<User>
     {
+        [UsedImplicitly]
         public int Id { get; set; }
         public string UserName { get; }
         public string Password { get; }
