@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 
 namespace Missio.Posts
 {
-    public class StickyPost : IPost, ITitle, IMessage
+    public class StickyPost : IPost
     {
         public string Title { [UsedImplicitly] get; }
         public string Message { [UsedImplicitly] get; }

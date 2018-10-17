@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Missio.LocalDatabase;
 using Missio.Navigation;
 using Missio.Registration;
+using Missio.Users;
 using Missio.UserTests;
 using NSubstitute;
 using NUnit.Framework;
@@ -19,24 +21,27 @@ namespace Missio.RegistrationTests
         [SetUp]
         public void SetUp()
         {
-            _fakeUserRepository = new LocalUserDatabase();
+            _fakeUserRepository = Substitute.For<IUserRepository>();
             _fakeNavigation = Substitute.For<INavigation>();
             _registrationViewModel = new RegistrationViewModel(_fakeUserRepository, _fakeNavigation);
         }
 
         [Test]
-        public async void TryToRegister_FieldsLeftEmpty_DoesNotThrowNullReferenceException()
+        public async Task TryToRegister_FieldsLeftEmpty_DoesNotThrowNullReferenceException()
         {
             await _registrationViewModel.TryToRegister();
         }
 
         [Test]
         [TestCaseSource(typeof(UserTestUtils), nameof(UserTestUtils.NamesAlreadyInUse))]
-        public async void TryToRegister_UserNameAlreadyInUse_DisplaysAlert(string userName)
+        public async Task TryToRegister_UserNameAlreadyInUse_DisplaysAlert(string userName)
         {
             var userNameMessage = new AlertTextMessage(AppResources.UserNameAlreadyInUseTitle, AppResources.UserNameAlreadyInUseMessage, AppResources.Ok);
             _registrationViewModel.UserName = userName;
             _registrationViewModel.Password = "Valid password";
+
+            _fakeUserRepository.When(x => x.AttemptToRegisterUser(Arg.Any<User>()))
+                .Do(x => throw new UserRegistrationException(new List<AlertTextMessage> { userNameMessage }));
 
             await _registrationViewModel.TryToRegister();
 
@@ -49,6 +54,8 @@ namespace Missio.RegistrationTests
             var passwordMessage = new AlertTextMessage(AppResources.PasswordTooShortTitle, AppResources.PasswordTooShortMessage, AppResources.Ok);
             _registrationViewModel.UserName = "Some username";
             _registrationViewModel.Password = "ABC";
+            _fakeUserRepository.When(x => x.AttemptToRegisterUser(Arg.Any<User>()))
+                .Do(x => throw new UserRegistrationException(new List<AlertTextMessage> { passwordMessage}));
 
             await _registrationViewModel.TryToRegister();
 
@@ -59,9 +66,12 @@ namespace Missio.RegistrationTests
         public async Task TryToRegister_UserNameIsTooShort_DisplaysAlert()
         {
             var userNameTooShortMessage = new AlertTextMessage(AppResources.UserNameTooShortTitle, AppResources.UserNameTooShortMessage, AppResources.Ok);
-
             _registrationViewModel.UserName = "AB";
             _registrationViewModel.Password = "Some password";
+
+            _fakeUserRepository.When(x => x.AttemptToRegisterUser(Arg.Any<User>()))
+                .Do(x => throw new UserRegistrationException(new List<AlertTextMessage> { userNameTooShortMessage}));
+
 
             await _registrationViewModel.TryToRegister();
 
@@ -71,7 +81,7 @@ namespace Missio.RegistrationTests
         [Test]
         [TestCase("Ana Gaxiola", "TeQuieroJorge", "ana@gmail.com")]
         [TestCase("ElAmorDeTuVida", "NoTeAmo", "elamordetuvida@gmail.com")]
-        public async void TryToRegister_EverythingIsOk_RegistersUser(string userName, string password, string email)
+        public async Task TryToRegister_EverythingIsOk_RegistersUser(string userName, string password, string email)
         {
             _registrationViewModel.UserName = userName;
             _registrationViewModel.Password = password;
@@ -79,16 +89,13 @@ namespace Missio.RegistrationTests
 
             await _registrationViewModel.TryToRegister();
 
-            var user = await _fakeUserRepository.GetUserByName(userName);
-            Assert.AreEqual(userName, user.UserName);
-            Assert.AreEqual(password, user.Password);
-            Assert.AreEqual(email, user.Email);
+            await _fakeUserRepository.Received(1).AttemptToRegisterUser(Arg.Is<User>(x => x.UserName == userName && x.Password == password && x.Email == email));
         }
 
         [Test]
         [TestCase("Ana Gaxiola", "TeQuieroJorge", "ana@gmail.com")]
         [TestCase("ElAmorDeTuVida", "NoTeAmo", "elamordetuvida@gmail.com")]
-        public async void TryToRegister_EverythingIsOk_DisplaysEmailWasSent(string userName, string password, string email)
+        public async Task TryToRegister_EverythingIsOk_DisplaysEmailWasSent(string userName, string password, string email)
         {
             _registrationViewModel.UserName = userName;
             _registrationViewModel.Password = password;

@@ -12,7 +12,7 @@ namespace Missio.UserTests
 
         public static object[] GetInvalidUsers()
         {
-            return new object[] { new User("Non existing user", ""), new User("Non existing user2", "") };
+            return new object[] { new User("Non existing user"), new User("Non existing user2") };
         }
 
         public static List<User> GetValidUsers()

@@ -1,6 +1,9 @@
-﻿using Missio.LocalDatabase;
+﻿using System.Collections.Generic;
+using Missio.LocalDatabase;
 using Missio.LogIn;
 using Missio.NewsFeed;
+using Missio.Posts;
+using Missio.Users;
 using Missio.UserTests;
 using NSubstitute;
 using NUnit.Framework;
@@ -13,7 +16,9 @@ namespace Missio.NewsFeedTests
     {
         private static NewsFeedViewModel MakeNewsFeedViewModel(INavigation navigation, ILoggedInUser loggedInUser)
         {
-            return new NewsFeedViewModel(new LocalNewsFeedPostRepository(), navigation, loggedInUser);
+            var fakeRepository = Substitute.For<IPostRepository>();
+            fakeRepository.GetMostRecentPostsInOrder(Arg.Any<User>()).Returns(new List<IPost>());
+            return new NewsFeedViewModel(fakeRepository, navigation, loggedInUser);
         }
 
         private static NewsFeedViewModel MakeNewsFeedViewModel(IPostRepository postsRepository, INavigation navigation, ILoggedInUser loggedInUser)

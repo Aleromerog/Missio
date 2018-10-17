@@ -6,8 +6,7 @@ namespace Missio.LocalDatabase
 {
     public interface IPostRepository
     {
-        void PublishPost(User user, IPost post);
+        void PublishPost(IPost post);
         List<IPost> GetMostRecentPostsInOrder(User user);
-
     }
 }

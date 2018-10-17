@@ -3,36 +3,9 @@
   <Import Project="..\packages\Xamarin.Forms.3.2.0.871581\build\netstandard2.0\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.3.2.0.871581\build\netstandard2.0\Xamarin.Forms.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D1413247-11F5-423B-AEE8-A6167A498C2C}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Missio.MainView</RootNamespace>
-    <AssemblyName>Missio.MainView</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
     <Reference Include="BottomBar.XamarinForms">
       <HintPath>C:\Users\Jorge\.nuget\packages\thrivegmbh.bottomnavigationbar.xf\1.0.2\lib\MonoAndroid10\BottomBar.XamarinForms.dll</HintPath>
@@ -70,28 +43,24 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <EmbeddedResource Include="MainTabbedPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <ProjectReference Include="..\Missio.CustomRenderers\Missio.CustomRenderers.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\Missio.ApplicationResources\Missio.ApplicationResources.csproj">
-      <Project>{e10e47d5-60a0-4083-98a6-b6f58b1ddf28}</Project>
-      <Name>Missio.ApplicationResources</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Missio.CustomRenderers\Missio.CustomRenderers.csproj">
-      <Project>{A49CDB37-CAB1-4246-8F79-0CC30356FC2C}</Project>
-      <Name>Missio.CustomRenderers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ViewModel\Mission.ViewModel.csproj">
-      <Project>{AC0051E6-880A-4717-B613-55390A3E76B7}</Project>
-      <Name>Mission.ViewModel</Name>
-    </ProjectReference>
+    <Reference Include="JetBrains.Annotations">
+      <HintPath>..\packages\JetBrains.Annotations.2018.2.1\lib\netstandard2.0\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\packages\Xamarin.Forms.3.1.0.697729\lib\netstandard2.0\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Update="MainTabbedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.3.2.0.871581\build\netstandard2.0\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.3.2.0.871581\build\netstandard2.0\Xamarin.Forms.targets')" />

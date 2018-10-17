@@ -6,7 +6,9 @@
 
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />
+    <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21" />
     <PackageReference Include="Plugins.Forms.ButtonCircle" Version="2.0.3" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.2" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.1" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
@@ -16,7 +18,6 @@
     <ProjectReference Include="..\Missio.LocalDatabase\Missio.LocalDatabase.csproj" />
     <ProjectReference Include="..\Missio.LogIn\Missio.LogIn.csproj" />
     <ProjectReference Include="..\Missio.Navigation\Missio.Navigation.csproj" />
-    <ProjectReference Include="..\Missio.Posts\Missio.Posts.csproj" />
     <ProjectReference Include="..\ViewModel\Mission.ViewModel.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using Missio.LocalDatabase;
 using Missio.LogIn;
 using Missio.LogInRes;
@@ -15,8 +18,6 @@ namespace Missio
 {
 	public partial class App
 	{
-        private static bool _isPreviewing = true;
-
 	    public App()
 	    {
 	        InitializeComponent();
@@ -31,17 +32,6 @@ namespace Missio
 	            new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new ApplicationNavigationModule());
 	        return kernel.Get<ApplicationNavigation>();
 	    }
-
-	    public static void AssertIsPreviewing()
-        {
-            if (!_isPreviewing)
-                throw new InvalidOperationException("Application is not in preview mode, make sure you used the right constructor");
-        }
-
-        protected override void OnStart ()
-		{
-		    _isPreviewing = false;
-        }
 	}
 
     public class ToolsPageModule : NinjectModule
@@ -140,11 +130,16 @@ namespace Missio
         {
 #if USE_FAKE_DATA
             Bind<IPostRepository>().To<LocalNewsFeedPostRepository>().InSingletonScope();
-            Bind<IUserRepository>().To<LocalUserDatabase>().InSingletonScope();
+            Bind<IUserRepository>().To<LocalUserRepository>().InSingletonScope();
 #else
+            //TODO: Remove this when we have a valid SSL certificate
+            ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+            var httpClient = new HttpClient {BaseAddress = new Uri("https://10.0.2.2:44333/")};
+            httpClient.DefaultRequestHeaders.Accept.Clear();
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            Bind<HttpClient>().ToConstant(httpClient);
             Bind<IPostRepository>().To<LocalNewsFeedPostRepository>().InSingletonScope();
-            Bind<IMobileServiceClient>().ToConstant(new MobileServiceClient("https://missioservice.azurewebsites.net"));
-            Bind<IUserRepository>().To<UserExternalDatabase>().InSingletonScope();
+            Bind<IUserRepository>().To<LocalUserRepository>().InSingletonScope();
 #endif
         }
     }

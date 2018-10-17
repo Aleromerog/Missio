@@ -23,7 +23,7 @@ namespace Missio.PostPublicationTests
         [SetUp]
         public void SetUp()
         {
-            _postRepository = new LocalNewsFeedPostRepository();
+            _postRepository = Substitute.For<IPostRepository>();
             _fakeLoggedInUser = Substitute.For<ILoggedInUser>();
             _fakeNavigation = Substitute.For<INavigation>();
             _fakeUpdatePostsView = Substitute.For<IUpdateViewPosts>();
@@ -60,12 +60,7 @@ namespace Missio.PostPublicationTests
 
             await _publicationPageViewModel.PublishPost();
 
-            Assert.IsTrue(_postRepository.GetMostRecentPostsInOrder(user).Exists(x =>
-            {
-                if (x is TextOnlyPost post)
-                    return post.Message == newPostText && post.AuthorName == user.UserName;
-                return false;
-            }));
+            _postRepository.Received().PublishPost(Arg.Is<Post>(x => x.Message == newPostText && x.Author == user));
         }
     }
 }
