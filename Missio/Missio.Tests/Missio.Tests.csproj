@@ -44,10 +44,6 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Missio.LocalDatabase\Missio.LocalDatabase.csproj">
-      <Project>{86ED73DC-F6DA-4BAF-90AA-C230C6741E02}</Project>
-      <Name>Missio.LocalDatabase</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Missio.Navigation\Missio.Navigation.csproj">
       <Project>{1EF28F5B-A94A-483E-A621-C79BDD191BD2}</Project>
       <Name>Missio.Navigation</Name>

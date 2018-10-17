@@ -13,9 +13,6 @@ namespace Missio.LocalDatabase
     /// </summary>
     public class LocalUserRepository : IUserRepository
     {
-        /// <summary>
-        /// A list of users that are guaranteed to exist, useful for testing purposes
-        /// </summary>
         private readonly List<User> _validUsers = new List<User>();
 
         public LocalUserRepository()

@@ -15,9 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Missio.LocalDatabase\Missio.LocalDatabase.csproj" />
     <ProjectReference Include="..\Missio.LogIn\Missio.LogIn.csproj" />
     <ProjectReference Include="..\Missio.Navigation\Missio.Navigation.csproj" />
+    <ProjectReference Include="..\Missio.Posts\Missio.Posts.csproj" />
+    <ProjectReference Include="..\PostPublication\Missio.PostPublication.csproj" />
     <ProjectReference Include="..\ViewModel\Mission.ViewModel.csproj" />
   </ItemGroup>
 

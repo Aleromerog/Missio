@@ -19,14 +19,6 @@ namespace Missio.ExternalDatabase
         }
 
         /// <inheritdoc />
-        public async Task<User> GetUserByName(string userName)
-        {
-            var response = await _httpClient.GetAsync($"api/users/{userName}");
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsAsync<User>();
-        }
-
-        /// <inheritdoc />
         public async Task AttemptToRegisterUser(User user)
         {
             var response = await _httpClient.PostAsJsonAsync("api/users", user);

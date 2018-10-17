@@ -59,12 +59,13 @@ namespace Missio.NewsFeedTests
         public void Constructor_NormalConstructor_UpdatesPosts()
         {
             var loggedInUser = MakeLoggedInUser();
-            var postsRepository = new LocalNewsFeedPostRepository();
-            var expectedPosts = postsRepository.GetMostRecentPostsInOrder(loggedInUser.LoggedInUser);
+            var postsRepository = Substitute.For<IPostRepository>();
+            var expectedPosts = new List<IPost> { new Post() };
+            postsRepository.GetMostRecentPostsInOrder(loggedInUser.LoggedInUser).Returns(expectedPosts);
 
             var newsFeedViewModel = MakeNewsFeedViewModel(postsRepository, Substitute.For<INavigation>(), loggedInUser);
 
-            Assert.That(newsFeedViewModel.Posts, Is.EquivalentTo(expectedPosts));
+            CollectionAssert.AreEqual(newsFeedViewModel.Posts, expectedPosts);
         }
     }
 }

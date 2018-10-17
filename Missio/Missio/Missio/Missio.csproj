@@ -23,9 +23,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Missio.ExternalDatabase\Missio.ExternalDatabase.csproj" />
-    <ProjectReference Include="..\..\Missio.LocalDatabase\Missio.LocalDatabase.csproj" />
     <ProjectReference Include="..\..\Missio.NewsFeed\Missio.NewsFeed.csproj" />
+    <ProjectReference Include="..\..\PostPublication\Missio.PostPublication.csproj" />
     <ProjectReference Include="..\..\ViewModel\Mission.ViewModel.csproj" />
   </ItemGroup>
   <ItemGroup>
