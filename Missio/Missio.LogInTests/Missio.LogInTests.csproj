@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Commandlineparameters></Commandlineparameters>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -87,7 +88,7 @@
       <Name>Missio.LogIn</Name>
     </ProjectReference>
     <ProjectReference Include="..\Missio.MainView\Missio.MainView.csproj">
-      <Project>{D1413247-11F5-423B-AEE8-A6167A498C2C}</Project>
+      <Project>{7179CDBF-353A-49CA-A502-D0A6A16A12BC}</Project>
       <Name>Missio.MainView</Name>
     </ProjectReference>
     <ProjectReference Include="..\Missio.Navigation\Missio.Navigation.csproj">

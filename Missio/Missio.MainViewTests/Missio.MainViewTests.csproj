@@ -10,11 +10,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Missio.MainViewTests</RootNamespace>
     <AssemblyName>Missio.MainViewTests</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoStdLib>false</NoStdLib>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework, Version=2.6.7.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
@@ -71,7 +72,7 @@
       <Name>Missio.CustomRenderers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Missio.MainView\Missio.MainView.csproj">
-      <Project>{D1413247-11F5-423B-AEE8-A6167A498C2C}</Project>
+      <Project>{7179CDBF-353A-49CA-A502-D0A6A16A12BC}</Project>
       <Name>Missio.MainView</Name>
     </ProjectReference>
   </ItemGroup>
