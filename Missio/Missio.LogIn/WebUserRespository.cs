@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Missio.LocalDatabase;
@@ -32,19 +33,20 @@ namespace Missio.ExternalDatabase
                 });
         }
 
-        /// <inheritdoc />
-        public async Task ValidateUser(User user)
+        public Task<User> GetUserIfValid(string userName, string password)
         {
-            var response = await _httpClient.GetAsync($"api/users/name={user.UserName}&password={user.Password}");
-            response.EnsureSuccessStatusCode();
-            var status = await response.Content.ReadAsAsync<LogInStatus>();
-            switch (status)
-            {
-                case LogInStatus.InvalidPassword:
-                    throw new InvalidPasswordException();
-                case LogInStatus.InvalidUserName:
-                    throw new InvalidUserNameException();
-            }
+            //var response = await _httpClient.GetAsync($"api/users/name={user.UserName}&password={user.Password}");
+            //response.EnsureSuccessStatusCode();
+            //var status = await response.Content.ReadAsAsync<LogInStatus>();
+            //switch (status)
+            //{
+            //    case LogInStatus.InvalidPassword:
+            //        throw new InvalidPasswordException();
+            //    case LogInStatus.InvalidUserName:
+            //        throw new InvalidUserNameException();
+            //}
+            throw new NotImplementedException();
         }
+
     }
 }

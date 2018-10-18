@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Missio.LogIn;
@@ -26,18 +27,8 @@ namespace Missio.LocalDatabase
             }
         }
 
-        /// <inheritdoc />
-        public async Task ValidateUser(User user)
-        {
-            if (!_validUsers.Exists(x => x.UserName == user.UserName))
-                throw new InvalidUserNameException();
-            foreach (var validUser in _validUsers)
-            {
-                if (validUser.UserName == user.UserName && validUser.Password != user.Password)
-                    throw new InvalidPasswordException();
-            }
-            await Task.CompletedTask;
-        }
+    
+       
 
         private bool DoesUserExist(string userName)
         {
@@ -57,6 +48,17 @@ namespace Missio.LocalDatabase
                 });
             _validUsers.Add(user);
             await Task.CompletedTask;
+        }
+
+        public Task<User> GetUserIfValid(string userName, string password)
+        {
+
+            var userWithMatchingName = _validUsers.FirstOrDefault(x => x.UserName == userName);
+            if (userWithMatchingName == null)
+                throw new InvalidUserNameException();
+            if (userWithMatchingName.Password != password)
+                throw new InvalidPasswordException();
+            return Task.FromResult(userWithMatchingName);
         }
     }
 }

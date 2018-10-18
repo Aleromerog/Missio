@@ -2,92 +2,25 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <ProjectGuid>{7179CDBF-353A-49CA-A502-D0A6A16A12BC}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <PackageVersion>1.0.0.0</PackageVersion>
-    <Authors>Jorge Romero</Authors>
-    <Owners>Jorge</Owners>
-    <Title>Missio.MainView</Title>
-    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>.</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>.</OutputPath>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BottomBar.XamarinForms">
-      <HintPath>C:\Users\Jorge\.nuget\packages\thrivegmbh.bottomnavigationbar.xf\1.0.2\lib\MonoAndroid10\BottomBar.XamarinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="BottomNavigationBar">
-      <HintPath>C:\Users\Jorge\.nuget\packages\bottomnavigationbar\1.1.2\lib\MonoAndroid403\BottomNavigationBar.dll</HintPath>
-    </Reference>
-    <Reference Include="JetBrains.Annotations, Version=2018.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.2018.2.1\lib\net20\JetBrains.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Xamarin.Android.Support.Design">
-      <HintPath>C:\Users\Jorge\.nuget\packages\xamarin.android.support.design\27.0.2.1\lib\MonoAndroid81\Xamarin.Android.Support.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Core">
-      <HintPath>..\packages\Xamarin.Forms.3.2.0.871581\lib\netstandard2.0\Xamarin.Forms.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Platform">
-      <HintPath>..\packages\Xamarin.Forms.3.2.0.871581\lib\netstandard2.0\Xamarin.Forms.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Xaml">
-      <HintPath>..\packages\Xamarin.Forms.3.2.0.871581\lib\netstandard2.0\Xamarin.Forms.Xaml.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.iOS">
-      <HintPath>..\..\..\..\..\..\Library\Frameworks\Xamarin.iOS.framework\Versions\Current\lib\mono\Xamarin.iOS\Xamarin.iOS.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Xamarin.Forms" Version="3.2.0.871581" />
+    <PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainTabbedPage.xaml.cs">
+    <EmbeddedResource Remove="MainTabbedPagep.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="MainTabbedPagepp.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="MainTabbedPage.xaml.cs">
       <DependentUpon>MainTabbedPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\EmptyClass.cs" />
-    <Compile Include="Properties\EmptyEnumeration.cs" />
   </ItemGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\Missio.CustomRenderers\Missio.CustomRenderers.csproj">
-      <Project>{A49CDB37-CAB1-4246-8F79-0CC30356FC2C}</Project>
-      <Name>Missio.CustomRenderers</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Missio.CustomRenderers\Missio.CustomRenderers.csproj" />
+    <ProjectReference Include="..\Missio.ApplicationResources\Missio.ApplicationResources.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="JetBrains.Annotations">
-      <HintPath>..\packages\JetBrains.Annotations.2018.2.1\lib\netstandard2.0\JetBrains.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Xaml">
-      <HintPath>..\packages\Xamarin.Forms.3.1.0.697729\lib\netstandard2.0\Xamarin.Forms.Xaml.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="MainTabbedPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Xamarin.Forms.3.2.0.871581\build\netstandard2.0\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.3.2.0.871581\build\netstandard2.0\Xamarin.Forms.targets')" />
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties>
-        <Policies>
-          <DotNetNamingPolicy ResourceNamePolicy="FileFormatDefault" DirectoryNamespaceAssociation="PrefixedHierarchical" />
-        </Policies>
-      </Properties>
-    </MonoDevelop>
-  </ProjectExtensions>
 </Project>

@@ -4,9 +4,9 @@ using Xamarin.Forms.Xaml;
 
 namespace Missio
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	// ReSharper disable once MismatchedFileName
-	public partial class MainTabbedPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    // ReSharper disable once MismatchedFileName
+    public partial class MainTabbedPage
     {
         public MainTabbedPage()
         {
@@ -14,10 +14,10 @@ namespace Missio
         }
 
         [UsedImplicitly]
-	    public MainTabbedPage(Page[] childPages)
-	    {
-	        foreach (var page in childPages)
-	            Children.Add(page);
+        public MainTabbedPage(Page[] childPages)
+        {
+            foreach (var page in childPages)
+                Children.Add(page);
             InitializeComponent();
         }
 
