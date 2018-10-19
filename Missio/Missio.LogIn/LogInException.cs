@@ -1,5 +1,6 @@
 ﻿using System;
 using Missio.Navigation;
+using StringResources;
 
 namespace Missio.LogIn
 {
@@ -7,9 +8,9 @@ namespace Missio.LogIn
     {
         public readonly AlertTextMessage AlertTextMessage;
 
-        protected LogInException(AlertTextMessage alertTextMessage)
+        public LogInException(string message)
         {
-            AlertTextMessage = alertTextMessage;
+            AlertTextMessage = new AlertTextMessage(AppResources.TheLogInWasUnsuccessful, message, AppResources.Ok);
         }
     }
 }

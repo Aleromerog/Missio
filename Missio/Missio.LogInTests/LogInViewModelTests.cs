@@ -2,9 +2,11 @@
 using Missio.LocalDatabase;
 using Missio.LogIn;
 using Missio.LogInRes;
+using Missio.Navigation;
 using Missio.Users;
 using NSubstitute;
 using NUnit.Framework;
+using StringResources;
 using INavigation = Missio.Navigation.INavigation;
 
 namespace Missio.LogInTests
@@ -72,25 +74,14 @@ namespace Missio.LogInTests
         }
 
         [Test]
-        public async Task AttemptToLogin_InvalidPassword_DisplaysAlert()
+        public async Task AttemptToLogin_LogInFailed_DisplaysAlert()
         {
             _logInViewModel.UserName = "Someone";
-            _fakeUserRepository.When(x => x.GetUserIfValid("Someone", "")).Throw<InvalidPasswordException>();
+            _fakeUserRepository.When(x => x.GetUserIfValid("Someone", "")).Throw(new LogInException(AppResources.InvalidUserName));
 
             await _logInViewModel.LogIn();
 
-            await _fakeNavigation.Received(1).DisplayAlert(new InvalidPasswordException().AlertTextMessage);
-        }
-
-        [Test]
-        public async Task AttemptToLogin_InvalidUserName_DisplaysAlert()
-        {
-            _logInViewModel.UserName = "Someone";
-            _fakeUserRepository.When(x => x.GetUserIfValid("Someone", "")).Throw<InvalidUserNameException>();
-
-            await _logInViewModel.LogIn();
-
-            await _fakeNavigation.Received(1).DisplayAlert(new InvalidUserNameException().AlertTextMessage);
+            await _fakeNavigation.Received(1).DisplayAlert(Arg.Is<AlertTextMessage>(x => x.Message == AppResources.InvalidUserName));
         }
     }
 }

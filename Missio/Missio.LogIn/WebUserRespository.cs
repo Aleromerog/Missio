@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Missio.LocalDatabase;
@@ -33,20 +33,14 @@ namespace Missio.ExternalDatabase
                 });
         }
 
-        public Task<User> GetUserIfValid(string userName, string password)
+        public async Task<User> GetUserIfValid(string userName, string password)
         {
-            //var response = await _httpClient.GetAsync($"api/users/name={user.UserName}&password={user.Password}");
-            //response.EnsureSuccessStatusCode();
-            //var status = await response.Content.ReadAsAsync<LogInStatus>();
-            //switch (status)
-            //{
-            //    case LogInStatus.InvalidPassword:
-            //        throw new InvalidPasswordException();
-            //    case LogInStatus.InvalidUserName:
-            //        throw new InvalidUserNameException();
-            //}
-            throw new NotImplementedException();
+            var response = await _httpClient.GetAsync($"api/users/name={userName}&password={password}");
+            if(response.StatusCode == HttpStatusCode.OK)
+                return await response.Content.ReadAsAsync<User>();
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+                throw new LogInException(response.ReasonPhrase);
+            throw new HttpRequestException(response.StatusCode + " " + response.ReasonPhrase);
         }
-
     }
 }

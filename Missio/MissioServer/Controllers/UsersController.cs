@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Missio.LogIn;
+using Missio.Users;
+using StringResources;
 
 namespace MissioServer.Controllers
 {
@@ -17,14 +18,14 @@ namespace MissioServer.Controllers
         }
 
         [HttpGet("{name}&{password}")]
-        public async Task<LogInStatus> IsUserValid(string name, string password)
+        public async Task<ActionResult<User>> IsUserValid(string name, string password)
         {
             var user = await _missioContext.Users.FirstOrDefaultAsync(x => x.UserName == name);
             if (user == null)
-                return LogInStatus.InvalidUserName;
+                return StatusCode(401, AppResources.InvalidUserName);
             if (user.Password != password)
-                return LogInStatus.InvalidPassword;
-            return LogInStatus.Successful;
+                return StatusCode(401, AppResources.InvalidPassword);
+            return user;
         }
 
         [HttpPut("{id}")]
