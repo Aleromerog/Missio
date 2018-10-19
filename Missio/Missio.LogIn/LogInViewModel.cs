@@ -4,8 +4,6 @@ using System.Windows.Input;
 using JetBrains.Annotations;
 using Missio.LocalDatabase;
 using Missio.LogInRes;
-using Missio.Users;
-using Missio;
 using Xamarin.Forms;
 using INavigation = Missio.Navigation.INavigation;
 
@@ -52,7 +50,7 @@ namespace Missio.LogIn
         /// <summary>
         /// Attempts to login the user with the given username and password
         /// </summary>
-        private async Task LogIn()
+        public async Task LogIn()
         {
             try
             {

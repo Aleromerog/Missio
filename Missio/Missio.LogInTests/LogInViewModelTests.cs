@@ -1,4 +1,5 @@
-﻿using Missio.LocalDatabase;
+﻿using System.Threading.Tasks;
+using Missio.LocalDatabase;
 using Missio.LogIn;
 using Missio.LogInRes;
 using Missio.Users;
@@ -57,40 +58,39 @@ namespace Missio.LogInTests
         }
 
         [Test]
-        public void LogInCommand_ValidUser_SetsLoggedInUserAndGoesToNextPage()
+        public async Task LogInCommand_ValidUser_SetsLoggedInUserAndGoesToNextPage()
         {
-            var user = new User("Someone");
-            _logInViewModel.UserName = user.UserName;
+            var user = new User("Someone", "Password");
+            _fakeUserRepository.GetUserIfValid("Someone", "Password").Returns(user);
+            _logInViewModel.UserName = "Someone";
+            _logInViewModel.Password = "Password";
 
-            _logInViewModel.LogInCommand.Execute(null);
+            await _logInViewModel.LogIn();
 
-            _fakeUserRepository.Received(1).ValidateUser(user);
             _fakeLoggedInUser.Received(1).LoggedInUser = user;
-            _fakeNavigation.Received(1).GoToPage<MainTabbedPage>();
+            await _fakeNavigation.Received(1).GoToPage<MainTabbedPage>();
         }
 
         [Test]
-        public void AttemptToLogin_InvalidPassword_DisplaysAlert()
+        public async Task AttemptToLogin_InvalidPassword_DisplaysAlert()
         {
-            var user = new User("Someone");
-            _logInViewModel.UserName = user.UserName;
-            _fakeUserRepository.When(x => x.ValidateUser(user)).Throw<InvalidPasswordException>();
+            _logInViewModel.UserName = "Someone";
+            _fakeUserRepository.When(x => x.GetUserIfValid("Someone", "")).Throw<InvalidPasswordException>();
 
-            _logInViewModel.LogInCommand.Execute(null);
+            await _logInViewModel.LogIn();
 
-            _fakeNavigation.Received(1).DisplayAlert(new InvalidPasswordException().AlertTextMessage);
+            await _fakeNavigation.Received(1).DisplayAlert(new InvalidPasswordException().AlertTextMessage);
         }
 
         [Test]
-        public void AttemptToLogin_InvalidUserName_DisplaysAlert()
+        public async Task AttemptToLogin_InvalidUserName_DisplaysAlert()
         {
-            var user = new User("Someone");
-            _logInViewModel.UserName = user.UserName;
-            _fakeUserRepository.When(x => x.ValidateUser(user)).Throw<InvalidUserNameException>();
+            _logInViewModel.UserName = "Someone";
+            _fakeUserRepository.When(x => x.GetUserIfValid("Someone", "")).Throw<InvalidUserNameException>();
 
-            _logInViewModel.LogInCommand.Execute(null);
+            await _logInViewModel.LogIn();
 
-            _fakeNavigation.Received(1).DisplayAlert(new InvalidUserNameException().AlertTextMessage);
+            await _fakeNavigation.Received(1).DisplayAlert(new InvalidUserNameException().AlertTextMessage);
         }
     }
 }
