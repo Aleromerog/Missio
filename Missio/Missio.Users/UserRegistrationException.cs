@@ -6,7 +6,7 @@ namespace Missio.LocalDatabase
 {
     public class UserRegistrationException : Exception
     {
-        public List<AlertTextMessage> ErrorMessages;
+        public readonly List<AlertTextMessage> ErrorMessages;
 
         public UserRegistrationException(List<AlertTextMessage> errorMessages)
         {

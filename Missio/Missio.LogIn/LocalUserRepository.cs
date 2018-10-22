@@ -55,9 +55,9 @@ namespace Missio.LocalDatabase
 
             var userWithMatchingName = _validUsers.FirstOrDefault(x => x.UserName == userName);
             if (userWithMatchingName == null)
-                throw new InvalidUserNameException();
+                throw new LogInException(AppResources.InvalidUserName);
             if (userWithMatchingName.Password != password)
-                throw new InvalidPasswordException();
+                throw new LogInException(AppResources.InvalidPassword);
             return Task.FromResult(userWithMatchingName);
         }
     }

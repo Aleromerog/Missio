@@ -123,12 +123,6 @@
   <data name="IncorrectUserNameMessage" xml:space="preserve">
     <value>There does not exist a user with the given name</value>
   </data>
-  <data name="IncorrectUserNameTitle" xml:space="preserve">
-    <value>Incorrect username</value>
-  </data>
-  <data name="IncorrectPasswordTitle" xml:space="preserve">
-    <value>Incorrect password</value>
-  </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
@@ -167,5 +161,14 @@
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="TheLogInWasUnsuccessful" xml:space="preserve">
+    <value>Fallo al iniciar sesión</value>
+  </data>
+  <data name="InvalidUserName" xml:space="preserve">
+    <value>Invalid username</value>
+  </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>Invalid password</value>
   </data>
 </root>

@@ -79,15 +79,6 @@ namespace StringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incorrect password.
-        /// </summary>
-        public static string IncorrectPasswordTitle {
-            get {
-                return ResourceManager.GetString("IncorrectPasswordTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to There does not exist a user with the given name.
         /// </summary>
         public static string IncorrectUserNameMessage {
@@ -97,11 +88,20 @@ namespace StringResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incorrect username.
+        ///   Looks up a localized string similar to Invalid password.
         /// </summary>
-        public static string IncorrectUserNameTitle {
+        public static string InvalidPassword {
             get {
-                return ResourceManager.GetString("IncorrectUserNameTitle", resourceCulture);
+                return ResourceManager.GetString("InvalidPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid username.
+        /// </summary>
+        public static string InvalidUserName {
+            get {
+                return ResourceManager.GetString("InvalidUserName", resourceCulture);
             }
         }
         
@@ -174,6 +174,15 @@ namespace StringResources {
         public static string ShouldNotHaveSpacesOrSpecialCharacters {
             get {
                 return ResourceManager.GetString("ShouldNotHaveSpacesOrSpecialCharacters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fallo al iniciar sesión.
+        /// </summary>
+        public static string TheLogInWasUnsuccessful {
+            get {
+                return ResourceManager.GetString("TheLogInWasUnsuccessful", resourceCulture);
             }
         }
         
