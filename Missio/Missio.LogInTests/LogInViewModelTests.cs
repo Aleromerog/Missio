@@ -59,8 +59,8 @@ namespace Missio.LogInTests
         [Test]
         public void LogInCommand_ValidUser_SetsLoggedInUserAndGoesToNextPage()
         {
-            var user = new User("Someone");
-            _logInViewModel.UserName = user.UserName;
+            _logInViewModel.UserName = "Manuel";
+            _fakeUserRepository.GetUserIfValid.Returns(new User("Manuel", "123"));
 
             _logInViewModel.LogInCommand.Execute(null);
 
