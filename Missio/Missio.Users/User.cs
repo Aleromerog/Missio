@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
-using Missio.Navigation;
-using StringResources;
 
 namespace Missio.Users
 {
@@ -10,43 +8,32 @@ namespace Missio.Users
     {
         [UsedImplicitly]
         public int Id { get; private set; }
-        public string UserName { get; }
-        public string Password { get; }
-        public string Email { get; }
-        public byte[] Picture { get; }
-        public ICollection<User> Friends { get; }
+
+        [UsedImplicitly]
+        public string UserName { get; private set; }
+
+        [UsedImplicitly]
+        public string Email { get; private set; }
+
+        [UsedImplicitly]
+        public string HashedPassword { get; private set; }
+
+        [UsedImplicitly]
+        public byte[] Picture { get; private set; }
+        //public ICollection<User> Friends { get; private set; }
 
         [UsedImplicitly]
         public User()
         {
         }
 
-        public User([NotNull] string userName, [NotNull] string password = "",  byte[] picture = null, [NotNull] string email = "")
+        public User([NotNull] string userName, string hashedPassword = null, byte[] picture = null, [NotNull] string email = "", int id = 0)
         {
             UserName = userName ?? throw new ArgumentNullException(nameof(userName));
-            Password = password ?? throw new ArgumentNullException(nameof(password));
-            Picture = picture;
             Email = email ?? throw new ArgumentNullException(nameof(email));
-        }
-
-        public List<AlertTextMessage> GetOfflineErrors()
-        {
-            var errorMessages = new List<AlertTextMessage>();
-            if (IsUserNameTooShort())
-                errorMessages.Add(new AlertTextMessage(AppResources.UserNameTooShortTitle, AppResources.UserNameTooShortMessage, AppResources.Ok));
-            if (IsPasswordTooShort())
-                errorMessages.Add(new AlertTextMessage(AppResources.PasswordTooShortTitle, AppResources.PasswordTooShortMessage, AppResources.Ok));
-            return errorMessages;
-        }
-
-        private bool IsPasswordTooShort()
-        {
-            return Password.Length < 5;
-        }
-
-        private bool IsUserNameTooShort()
-        {
-            return UserName.Length < 3;
+            HashedPassword = hashedPassword;
+            Picture = picture;
+            Id = id;
         }
 
         /// <inheritdoc />
@@ -56,7 +43,7 @@ namespace Missio.Users
                 return false;
             if (ReferenceEquals(this, other))
                 return true;
-            return string.Equals(UserName, other.UserName) && string.Equals(Password, other.Password);
+            return Id == other.Id;
         }
 
         /// <inheritdoc />
@@ -74,10 +61,8 @@ namespace Missio.Users
         /// <inheritdoc />
         public override int GetHashCode()
         {
-            unchecked
-            {
-                return (UserName.GetHashCode() * 397) ^ Password.GetHashCode();
-            }
+            // ReSharper disable once NonReadonlyMemberInGetHashCode
+            return Id.GetHashCode();
         }
 
         public static bool operator ==(User left, User right)

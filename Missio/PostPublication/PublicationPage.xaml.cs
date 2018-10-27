@@ -1,9 +1,8 @@
 ﻿using System;
 using JetBrains.Annotations;
-using Missio.PostPublication;
 using Xamarin.Forms.Xaml;
 
-namespace Missio
+namespace Missio.PostPublication
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	// ReSharper disable once MismatchedFileName

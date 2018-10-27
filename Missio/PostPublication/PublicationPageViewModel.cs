@@ -2,10 +2,8 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
-using Missio.LocalDatabase;
-using Missio.LogIn;
-using Missio.NewsFeed;
 using Missio.Posts;
+using Missio.Users;
 using Xamarin.Forms;
 using INavigation = Missio.Navigation.INavigation;
 

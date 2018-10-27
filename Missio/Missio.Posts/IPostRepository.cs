@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Missio.Posts;
 using Missio.Users;
 
-namespace Missio.LocalDatabase
+namespace Missio.Posts
 {
     public interface IPostRepository
     {

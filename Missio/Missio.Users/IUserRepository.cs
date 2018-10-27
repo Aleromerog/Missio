@@ -1,11 +1,10 @@
 ﻿using System.Threading.Tasks;
-using Missio.Users;
 
-namespace Missio.LocalDatabase
+namespace Missio.Users
 {
     public interface IUserRepository
     {
-        Task AttemptToRegisterUser(User user);
+        Task AttemptToRegisterUser(RegistrationDTO registrationDto);
 
         /// <summary>
         /// Validates that the user given user information is correct

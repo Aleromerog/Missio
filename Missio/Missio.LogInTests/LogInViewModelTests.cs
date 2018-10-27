@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Missio.LocalDatabase;
 using Missio.LogIn;
-using Missio.LogInRes;
+using Missio.MainView;
 using Missio.Navigation;
+using Missio.Registration;
 using Missio.Users;
 using NSubstitute;
 using NUnit.Framework;
@@ -62,7 +62,7 @@ namespace Missio.LogInTests
         [Test]
         public async Task LogInCommand_ValidUser_SetsLoggedInUserAndGoesToNextPage()
         {
-            var user = new User("Someone", "Password");
+            var user = new User("Someone");
             _fakeUserRepository.GetUserIfValid("Someone", "Password").Returns(user);
             _logInViewModel.UserName = "Someone";
             _logInViewModel.Password = "Password";

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="Missio.LogInRes.RegistrationPage"
+             x:Class="Missio.Registration.RegistrationPage"
              BackgroundColor="{StaticResource SecondaryColor}"
              Title="Crear nueva cuenta"
              xmlns:local="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"

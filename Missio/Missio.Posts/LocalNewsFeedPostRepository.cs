@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Net;
-using Missio.Posts;
 using Missio.Users;
 
-namespace Missio.LocalDatabase
+namespace Missio.Posts
 {
     /// <summary>
     /// A news feed provider that returns hard coded data
@@ -27,7 +26,7 @@ namespace Missio.LocalDatabase
         {
             using(var webClient = new WebClient())
             {
-                var anaGaxiola = new User("Ana Gaxiola", "", webClient.DownloadData("https://scontent.fntr6-1.fna.fbcdn.net/v/t1.0-9/36355412_2372799529413493_5210179261469556736_n.jpg?_nc_cat=0&oh=43acb1611fbedb33963ced1540d79c94&oe=5BFC87A5"));
+                var anaGaxiola = new User("Ana Gaxiola", "HashedPassword", webClient.DownloadData("https://scontent.fntr6-1.fna.fbcdn.net/v/t1.0-9/36355412_2372799529413493_5210179261469556736_n.jpg?_nc_cat=0&oh=43acb1611fbedb33963ced1540d79c94&oe=5BFC87A5"));
                 var postDeAna = new Post(anaGaxiola, "Hola amigos", webClient.DownloadData("https://scontent.fntr6-1.fna.fbcdn.net/v/t1.0-9/36355412_2372799529413493_5210179261469556736_n.jpg?_nc_cat=0&oh=43acb1611fbedb33963ced1540d79c94&oe=5BFC87A5"));
                 _newsFeedPosts.Add(postDeAna);
             }

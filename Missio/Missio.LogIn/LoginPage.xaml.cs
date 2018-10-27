@@ -1,9 +1,8 @@
 ﻿using JetBrains.Annotations;
-using Missio.LogIn;
-using Xamarin.Forms.Xaml;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace Missio.LogInRes
+namespace Missio.LogIn
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     // ReSharper disable once MismatchedFileName

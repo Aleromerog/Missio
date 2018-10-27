@@ -1,7 +1,6 @@
 ﻿using System;
-using Missio.Users;
 
-namespace Missio.LogIn
+namespace Missio.Users
 {
     /// <summary>
     /// Class for getting the user that is logged in

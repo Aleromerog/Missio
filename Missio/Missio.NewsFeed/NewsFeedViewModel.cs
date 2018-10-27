@@ -3,9 +3,9 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
-using Missio.LocalDatabase;
-using Missio.LogIn;
+using Missio.PostPublication;
 using Missio.Posts;
+using Missio.Users;
 using Mission.ViewModel;
 using Xamarin.Forms;
 using INavigation = Missio.Navigation.INavigation;
@@ -15,14 +15,14 @@ namespace Missio.NewsFeed
     public class NewsFeedViewModel : ViewModel, IUpdateViewPosts
     {
         [UsedImplicitly]
-        public ICommand UpdatePostsCommand { get; }
-
-        [UsedImplicitly]
         public bool IsRefreshing
         {
             get => _isRefreshing;
             set => SetField(ref _isRefreshing, value);
         }
+
+        [UsedImplicitly]
+        public ICommand UpdatePostsCommand { get; }
 
         [UsedImplicitly]
         public ICommand GoToPublicationPageCommand { get; }

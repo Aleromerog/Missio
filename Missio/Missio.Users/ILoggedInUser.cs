@@ -1,6 +1,4 @@
-﻿using Missio.Users;
-
-namespace Missio.LogIn
+﻿namespace Missio.Users
 {
     public interface ILoggedInUser
     {

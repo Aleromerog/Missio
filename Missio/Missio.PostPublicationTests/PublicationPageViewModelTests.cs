@@ -1,10 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Missio.LocalDatabase;
-using Missio.LogIn;
 using Missio.Navigation;
-using Missio.NewsFeed;
 using Missio.PostPublication;
 using Missio.Posts;
+using Missio.Users;
 using Missio.UserTests;
 using NSubstitute;
 using NUnit.Framework;

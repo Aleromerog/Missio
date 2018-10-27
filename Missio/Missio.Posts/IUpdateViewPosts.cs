@@ -1,4 +1,4 @@
-﻿namespace Missio.NewsFeed
+﻿namespace Missio.Posts
 {
     public interface IUpdateViewPosts
     {

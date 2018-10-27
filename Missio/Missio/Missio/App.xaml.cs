@@ -2,13 +2,14 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Missio.LocalDatabase;
 using Missio.LogIn;
-using Missio.LogInRes;
+using Missio.MainView;
 using Missio.Navigation;
 using Missio.NewsFeed;
 using Missio.PostPublication;
+using Missio.Posts;
 using Missio.Registration;
+using Missio.Users;
 using Ninject;
 using Xamarin.Forms;
 using Ninject.Modules;
@@ -134,12 +135,12 @@ namespace Missio
 #else
             //TODO: Remove this when we have a valid SSL certificate
             ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
-            var httpClient = new HttpClient {BaseAddress = new Uri("https://10.0.2.2:44333/")};
+            var httpClient = new HttpClient {BaseAddress = new Uri("https://10.0.2.2:44304/")};
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             Bind<HttpClient>().ToConstant(httpClient);
             Bind<IPostRepository>().To<LocalNewsFeedPostRepository>().InSingletonScope();
-            Bind<IUserRepository>().To<LocalUserRepository>().InSingletonScope();
+            Bind<IUserRepository>().To<WebUserRepository>().InSingletonScope();
 #endif
         }
     }

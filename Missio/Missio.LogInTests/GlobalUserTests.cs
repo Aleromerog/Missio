@@ -1,5 +1,4 @@
 ﻿using System;
-using Missio.LogIn;
 using Missio.Users;
 using NUnit.Framework;
 
@@ -25,7 +24,7 @@ namespace Missio.LogInTests
         [Test]
         public void SetUser_GivenUser_SetsUser()
         {
-            var user = new User("Some user ", "Pass");
+            var user = new User("Some user");
 
             _globalUser.LoggedInUser = user;
 

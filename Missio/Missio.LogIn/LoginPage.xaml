@@ -5,7 +5,7 @@
              xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources"
              NavigationPage.HasNavigationBar="False"
              
-             x:Class="Missio.LogInRes.LogInPage"
+             x:Class="Missio.LogIn.LogInPage"
              AutomationId="LogInPage">
     <ContentPage.Resources>
         <ResourceDictionary>
