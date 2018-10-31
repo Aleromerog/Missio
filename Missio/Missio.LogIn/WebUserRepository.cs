@@ -21,13 +21,12 @@ namespace Missio.LogIn
         {
             var response = await _httpClient.PostAsJsonAsync("api/users", createUserDTO);
             if (response.StatusCode == HttpStatusCode.BadRequest)
-                throw new UserRegistrationException(new List<string> { response.ReasonPhrase });
+                throw new UserRegistrationException(await response.Content.ReadAsAsync<List<string>>());
         }
 
         public async Task ValidateUser(string userName, string password)
         {
-            var requestUri = $@"api/users/{userName}/{password}";
-            var response = await _httpClient.GetAsync(requestUri);
+            var response = await _httpClient.GetAsync($@"api/users/{userName}/{password}");
             if (response.StatusCode == HttpStatusCode.OK)
                 return;
             if (response.StatusCode == HttpStatusCode.Unauthorized)

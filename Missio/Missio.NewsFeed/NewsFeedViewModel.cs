@@ -41,15 +41,15 @@ namespace Missio.NewsFeed
             _postRepository = postRepository ?? throw new ArgumentNullException(nameof(postRepository));
             _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
             _loggedInUser = loggedInUser ?? throw new ArgumentNullException(nameof(loggedInUser));
-            UpdatePostsCommand = new Command(UpdatePosts);
+            UpdatePostsCommand = new Command(async () => await UpdatePosts());
             GoToPublicationPageCommand = new Command(async() => await GoToPublicationPage());
-            UpdatePosts();
+            UpdatePosts(); 
         }
 
-        public void UpdatePosts()
+        public async Task UpdatePosts()
         {
             Posts.Clear();
-            foreach (var post in _postRepository.GetMostRecentPostsInOrder(_loggedInUser.UserName, _loggedInUser.Password))
+            foreach (var post in await _postRepository.GetMostRecentPostsInOrder(_loggedInUser.UserName, _loggedInUser.Password))
                 Posts.Add(post);
             IsRefreshing = false;
         }

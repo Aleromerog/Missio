@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Missio.Navigation;
 using Missio.Registration;
@@ -33,14 +34,12 @@ namespace Missio.RegistrationTests
         [Test]
         public async Task TryToRegister_ExceptionWasThrown_DisplaysAlert()
         {
-            var exceptionMessage = "The message";
-
             _fakeUserRepository.When(x => x.AttemptToRegisterUser(Arg.Any<CreateUserDTO>()))
-                .Do(x => throw new UserRegistrationException(new List<string> { exceptionMessage }));
+                .Do(x => throw new UserRegistrationException(new List<string> { "Some message", "Another message" }));
 
             await _registrationViewModel.TryToRegister();
 
-            await _fakeNavigation.Received().DisplayAlert(AppResources.TheRegistrationFailed, exceptionMessage, AppResources.Ok);
+            await _fakeNavigation.Received().DisplayAlert(AppResources.TheRegistrationFailed, "Some message" + Environment.NewLine + "Another message", AppResources.Ok);
         }
 
         [Test]
@@ -54,7 +53,7 @@ namespace Missio.RegistrationTests
 
             await _registrationViewModel.TryToRegister();
 
-            await _fakeUserRepository.Received(1).AttemptToRegisterUser(new CreateUserDTO(userName, password, email));
+            await _fakeUserRepository.Received(1).AttemptToRegisterUser(Arg.Is<CreateUserDTO>(x => x.UserName == userName && x.Password == password && x.Email == email));
         }
 
         [Test]

@@ -25,6 +25,7 @@ namespace MissioServer
         {
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddScoped<IUserService, UsersService>();
+            services.AddScoped<IPostsService, PostsService>();
             services.AddScoped<IWebClientService, WebClientService>();
             services.AddDbContext<MissioContext>(opt => opt.UseInMemoryDatabase("UsersList"));
             services.AddScoped<IRegisterUserService, RegisterUserService>();

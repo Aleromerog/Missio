@@ -17,10 +17,15 @@ namespace MissioServer.Services.Services
         }
 
         /// <inheritdoc />
-        public async Task<IQueryable<IPost>> GetPosts(User user)
+        public async Task<IQueryable<Post>> GetPosts(User user)
         {
-            var userFriends = await _userService.GetFriends(user, user);
-            return _missioContext.Posts.Where(post => userFriends.Friends.Contains(post.Author));
+            var userFriends = await _userService.GetFriends(user);
+            return _missioContext.Posts.Where(post => userFriends.Friends.Contains(post.Author) || post.Author == user);
+        }
+
+        public IQueryable<StickyPost> GetStickyPosts()
+        {
+            return _missioContext.StickyPosts;
         }
 
         /// <inheritdoc />

@@ -53,7 +53,7 @@ namespace Missio.Registration
             }
             catch(UserRegistrationException registrationException)
             {
-                await _navigation.DisplayAlert(AppResources.TheRegistrationFailed, registrationException.ErrorMessages[0], AppResources.Ok);
+                await _navigation.DisplayAlert(AppResources.TheRegistrationFailed, String.Join(Environment.NewLine,  registrationException.ErrorMessages), AppResources.Ok);
             }
         }
 

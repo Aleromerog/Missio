@@ -7,6 +7,7 @@ using MissioServer.Services.Services;
 namespace MissioServer.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class UsersController : ControllerBase
     {
         private readonly IRegisterUserService _registerUserService;
@@ -18,6 +19,7 @@ namespace MissioServer.Controllers
             _registerUserService = registerUserService;
         }
 
+        [HttpGet("{userName}/{password}")]
         public async Task<ActionResult> ValidateUser(string userName, string password)
         {
             await _userService.GetUserIfValid(userName, password);

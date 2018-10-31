@@ -1,7 +1,9 @@
-﻿namespace Missio.Posts
+﻿using System.Threading.Tasks;
+
+namespace Missio.Posts
 {
     public interface IUpdateViewPosts
     {
-        void UpdatePosts();
+        Task UpdatePosts();
     }
 }

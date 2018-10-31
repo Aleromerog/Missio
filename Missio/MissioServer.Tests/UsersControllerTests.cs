@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Missio.Registration;
 using Missio.Users;
 using NUnit.Framework;
 using MissioServer.Controllers;
 using MissioServer.Services;
 using MissioServer.Services.Services;
 using StringResources;
+using static System.Linq.Enumerable;
 
 namespace MissioServer.Tests
 {
@@ -66,25 +66,25 @@ namespace MissioServer.Tests
         }
 
         [Test]
-        public void RegisterUser_UserNameAlreadyInUse_ThrowsException()
+        public async Task RegisterUser_UserNameAlreadyInUse_ThrowsException()
         {
             var usersController = MakeUsersController();
             var registration = new CreateUserDTO("Francisco Greco", "Password", "someEmail@gmail.com");
 
-            var exception = Assert.ThrowsAsync<UserRegistrationException>(() => usersController.RegisterUser(registration));
+            var result = (ObjectResult)await usersController.RegisterUser(registration);
 
-            Assert.Contains(AppResources.UserNameAlreadyInUseMessage, exception.ErrorMessages);
+            Assert.Contains(AppResources.UserNameAlreadyInUseMessage, (List<string>) result.Value);
         }
 
         [Test]
-        public void RegisterUser_PasswordIsTooShort_ThrowsException()
+        public async Task RegisterUser_PasswordIsTooShort_ThrowsExceptionAsync()
         {
             var usersController = MakeUsersController();
             var registration = new CreateUserDTO("ABCD", "ABC", "someEmail@gmail.com");
 
-            var exception = Assert.ThrowsAsync<UserRegistrationException>(() => usersController.RegisterUser(registration));
+            var result = (ObjectResult) await usersController.RegisterUser(registration);
 
-            Assert.Contains(AppResources.PasswordTooShortMessage, exception.ErrorMessages);
+            Assert.Contains(AppResources.PasswordTooShortMessage, (List<string>) result.Value);
         }
 
         [Test]

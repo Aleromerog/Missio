@@ -4,6 +4,8 @@ using Missio.Users;
 
 namespace Missio.Posts
 {
+    // TODO: Make user posts class 
+    // TODO: Make all empty constructors private 
     public class Post : IPost
     {
         [UsedImplicitly]
@@ -18,7 +20,7 @@ namespace Missio.Posts
         [UsedImplicitly]
         public User Author { get; private set; }
 
-        public Post()
+        private Post()
         {
         }
 

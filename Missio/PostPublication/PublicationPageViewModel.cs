@@ -39,8 +39,8 @@ namespace Missio.PostPublication
 
         public async Task PublishPost()
         {
-            _postRepository.PublishPost(new CreatePostDTO(_loggedInUser.UserName, _loggedInUser.Password, PostText, null));
-            _updateViewPosts.UpdatePosts();
+            await _postRepository.PublishPost(new CreatePostDTO(_loggedInUser.UserName, _loggedInUser.Password, PostText, null));
+            await _updateViewPosts.UpdatePosts();
             await _navigation.ReturnToPreviousPage();
         }
     }

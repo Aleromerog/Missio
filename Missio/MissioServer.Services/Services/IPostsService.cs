@@ -7,7 +7,8 @@ namespace MissioServer.Services.Services
 {
     public interface IPostsService
     {
-        Task<IQueryable<IPost>> GetPosts(User user);
+        Task<IQueryable<Post>> GetPosts(User user);
+        IQueryable<StickyPost> GetStickyPosts();
         Task PublishPost(CreatePostDTO createPostDTO);
     }
 }

@@ -15,11 +15,12 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout Padding="20,10,20,0">
-        <local:CircleButton WidthRequest="120"
+      <!-- TODO Uncomment this-->
+        <!--<local:CircleButton WidthRequest="120"
                               HeightRequest="120"
                               HorizontalOptions="Center"                         
                               BackgroundColor="{StaticResource SecondaryDarkColor}"
-                              Image="camera.png"/>
+                              Image="camera.png"/>-->
         <Label Text="Foto de perfil"
                HorizontalOptions="Center"
                FontFamily="{StaticResource MissioBold}"

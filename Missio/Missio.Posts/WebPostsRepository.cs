@@ -1,19 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Missio.Posts
 {
     public class WebPostsRepository : IPostRepository
     {
-        /// <inheritdoc />
-        public void PublishPost(CreatePostDTO post)
+        private readonly HttpClient _httpClient;
+
+        public WebPostsRepository(HttpClient httpClient)
         {
+            _httpClient = httpClient;
         }
 
         /// <inheritdoc />
-        public List<IPost> GetMostRecentPostsInOrder(string userName, string password)
+        public async Task PublishPost(CreatePostDTO post)
         {
-            throw new NotImplementedException();
+            await _httpClient.PostAsJsonAsync("api/posts", post);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<IPost>> GetMostRecentPostsInOrder(string userName, string password)
+        {
+            var allPosts = new List<IPost>();
+            var response = await _httpClient.GetAsync($@"api/posts/getFriendsPosts/{userName}/{password}");
+            if (response.StatusCode == HttpStatusCode.OK)
+                allPosts.AddRange(await response.Content.ReadAsAsync<List<Post>>());
+            response = await _httpClient.GetAsync($@"api/posts/getStickyPosts");
+            if (response.StatusCode == HttpStatusCode.OK)
+                allPosts.AddRange(await response.Content.ReadAsAsync<List<StickyPost>>());
+            return allPosts;
         }
     }
 }

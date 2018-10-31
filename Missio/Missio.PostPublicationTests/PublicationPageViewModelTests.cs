@@ -32,7 +32,7 @@ namespace Missio.PostPublicationTests
         {
             await _publicationPageViewModel.PublishPost();
 
-            _fakeUpdatePostsView.Received(1).UpdatePosts();
+            await _fakeUpdatePostsView.Received(1).UpdatePosts();
         }
 
         [Test]
@@ -55,7 +55,7 @@ namespace Missio.PostPublicationTests
 
             await _publicationPageViewModel.PublishPost();
 
-            _postRepository.Received().PublishPost(Arg.Is<CreatePostDTO>(x => x.Message == newPostText && x.UserName == userName && x.Password == password));
+            await _postRepository.Received().PublishPost(Arg.Is<CreatePostDTO>(x => x.Message == newPostText && x.UserName == userName && x.Password == password));
         }
     }
 }

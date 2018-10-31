@@ -4,10 +4,17 @@ namespace Missio.Posts
 {
     public class CreatePostDTO
     {
-        public string UserName { get; }
-        public string Password { get; }
-        public string Message { get; }
-        public byte[] Picture { get; }
+        [UsedImplicitly]
+        public string UserName { get; set; }
+
+        [UsedImplicitly]
+        public string Password { get; set; }
+
+        [UsedImplicitly]
+        public string Message { get; set; }
+
+        [UsedImplicitly]
+        public byte[] Picture { get; set; }
 
         [UsedImplicitly]
         public CreatePostDTO()

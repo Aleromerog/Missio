@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Missio.Posts;
 using MissioServer.Controllers;
+using MissioServer.Services;
 using MissioServer.Services.Services;
 using NUnit.Framework;
 
@@ -10,21 +11,32 @@ namespace MissioServer.Tests
     [TestFixture]
     public class PostsControllerTests
     {
-        private static PostsController MakePostsController()
+        private static PostsController MakePostsController(MissioContext missioContext = null)
         {
-            var missioContext = Utils.MakeMissioContext();
+            if(missioContext == null)
+                missioContext = Utils.MakeMissioContext();
             var usersService = new UsersService(missioContext, new MockPasswordService());
             return new PostsController(usersService, new PostsService(missioContext, usersService));
         }
 
         [Test]
-        public async Task GetPosts_GivenUser_ReturnsPosts()
+        public async Task GetFriendsNewsFeedPosts_GivenUser_ReturnsPosts()
         {
             var postsController = MakePostsController();
 
-            var posts = (await postsController.GetNewsFeedPosts("Francisco Greco", "ElPass")).Value;
+            var posts = (await postsController.GetFriendsNewsFeedPosts("Francisco Greco", "ElPass")).Value;
 
-            Assert.AreEqual(2, posts.Count);
+            Assert.AreEqual(3, posts.Count);
+        }
+
+        [Test]
+        public void GetStickyPosts_GivenUser_ReturnsPosts()
+        {
+            var postsController = MakePostsController();
+
+            var posts = postsController.GetStickyPosts().Value;
+
+            Assert.AreEqual(1, posts.Count);
         }
 
         [Test]
@@ -33,7 +45,7 @@ namespace MissioServer.Tests
             var missioContext = Utils.MakeMissioContext();
             var grecoUser = missioContext.Users.First(x => x.UserName == "Francisco Greco");
             var createPostDTO = new CreatePostDTO("Francisco Greco", "ElPass", "A new message", null);
-            var postsController = MakePostsController();
+            var postsController = MakePostsController(missioContext);
 
             await postsController.PublishPost(createPostDTO);
 

@@ -8,6 +8,7 @@ using MissioServer.Services.Services;
 namespace MissioServer.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class PostsController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -19,15 +20,23 @@ namespace MissioServer.Controllers
             _postsService = postsService;
         }
 
-        public async Task<ActionResult<List<IPost>>> GetNewsFeedPosts(string userName, string password)
+        [HttpGet("getFriendsPosts/{userName}/{password}")]
+        public async Task<ActionResult<List<Post>>> GetFriendsNewsFeedPosts(string userName, string password)
         {
             var user = await _userService.GetUserIfValid(userName, password);
             return (await _postsService.GetPosts(user)).ToList();
         }
 
+        [HttpGet("getStickyPosts")]
+        public ActionResult<List<StickyPost>> GetStickyPosts()
+        {
+            return _postsService.GetStickyPosts().ToList();
+        }
+
         [HttpPost]
         public async Task<ActionResult> PublishPost(CreatePostDTO createPostDTO)
         {
+            await _postsService.PublishPost(createPostDTO);
             return Ok();
         }
     }

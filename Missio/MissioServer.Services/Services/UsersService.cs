@@ -27,7 +27,7 @@ namespace MissioServer.Services.Services
         }
 
         /// <inheritdoc />
-        public Task<UserFriends> GetFriends(User user, User requester)
+        public Task<UserFriends> GetFriends(User user)
         {
             return _missioContext.UsersFriends.Include(x => x.Friends).FirstAsync(x => x.User == user);
         }

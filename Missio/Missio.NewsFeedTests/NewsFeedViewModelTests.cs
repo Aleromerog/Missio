@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Missio.NewsFeed;
 using Missio.PostPublication;
 using Missio.Posts;
@@ -17,7 +18,7 @@ namespace Missio.NewsFeedTests
             if(navigation == null)
                 navigation = Substitute.For<INavigation>();
             var fakeRepository = Substitute.For<IPostRepository>();
-            fakeRepository.GetMostRecentPostsInOrder("Francisco Greco", "ElPass").Returns(new List<IPost> { new Post() });
+            fakeRepository.GetMostRecentPostsInOrder("Francisco Greco", "ElPass").Returns(new List<IPost> { Utils.MakeDummyPost() });
             return new NewsFeedViewModel(fakeRepository, navigation, MakeLoggedInUser());
         }
 
@@ -30,12 +31,12 @@ namespace Missio.NewsFeedTests
         }
 
         [Test]
-        public void UpdatePosts_IsRefreshingSetToTrue_SetsIsRefreshingToFalse()
+        public async Task UpdatePosts_IsRefreshingSetToTrue_SetsIsRefreshingToFalse()
         {
             var newsFeedViewModel = MakeNewsFeedViewModel();
             newsFeedViewModel.IsRefreshing = true;
 
-            newsFeedViewModel.UpdatePosts();
+            await newsFeedViewModel.UpdatePosts();
 
             Assert.IsFalse(newsFeedViewModel.IsRefreshing);
         }
