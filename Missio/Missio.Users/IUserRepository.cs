@@ -4,12 +4,11 @@ namespace Missio.Users
 {
     public interface IUserRepository
     {
-        Task AttemptToRegisterUser(RegistrationDTO registrationDto);
+        Task AttemptToRegisterUser(CreateUserDTO createUserDTO);
 
         /// <summary>
         /// Validates that the user given user information is correct
         /// </summary>
-        /// <returns></returns>
-        Task<User> GetUserIfValid(string userName, string password);
+        Task ValidateUser(string userName, string password);
     }
 }

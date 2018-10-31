@@ -1,5 +1,4 @@
 ﻿using Missio.Posts;
-using Missio.UserTests;
 using NUnit.Framework;
 
 namespace Missio.NewsFeedTests
@@ -12,7 +11,7 @@ namespace Missio.NewsFeedTests
         [SetUp]
         public void SetUp()
         {
-            _post = new Post(UserTestUtils.FranciscoUser, "A message");
+            _post = new Post();
         }
 
         [Test]

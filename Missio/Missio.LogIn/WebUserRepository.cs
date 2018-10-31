@@ -17,19 +17,19 @@ namespace Missio.LogIn
         }
 
         /// <inheritdoc />
-        public async Task AttemptToRegisterUser(RegistrationDTO registrationDto)
+        public async Task AttemptToRegisterUser(CreateUserDTO createUserDTO)
         {
-            var response = await _httpClient.PostAsJsonAsync("api/users", registrationDto);
+            var response = await _httpClient.PostAsJsonAsync("api/users", createUserDTO);
             if (response.StatusCode == HttpStatusCode.BadRequest)
                 throw new UserRegistrationException(new List<string> { response.ReasonPhrase });
         }
 
-        public async Task<User> GetUserIfValid(string userName, string password)
+        public async Task ValidateUser(string userName, string password)
         {
             var requestUri = $@"api/users/{userName}/{password}";
             var response = await _httpClient.GetAsync(requestUri);
-            if(response.StatusCode == HttpStatusCode.OK)
-                return await response.Content.ReadAsAsync<User>();
+            if (response.StatusCode == HttpStatusCode.OK)
+                return;
             if (response.StatusCode == HttpStatusCode.Unauthorized)
                 throw new LogInException(await response.Content.ReadAsAsync<string>());
             throw new HttpRequestException(response.StatusCode + " " + response.ReasonPhrase);

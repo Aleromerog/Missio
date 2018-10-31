@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Missio.Posts\Missio.Posts.csproj" />
     <ProjectReference Include="..\Missio.Registration\Missio.Registration.csproj" />
     <ProjectReference Include="..\Missio.Users\Missio.Users.csproj" />
     <ProjectReference Include="..\StringResources\StringResources.csproj" />

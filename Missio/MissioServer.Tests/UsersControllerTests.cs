@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Missio.Registration;
 using Missio.Users;
 using NUnit.Framework;
 using MissioServer.Controllers;
 using MissioServer.Services;
 using MissioServer.Services.Services;
-using NSubstitute;
 using StringResources;
 
 namespace MissioServer.Tests
@@ -18,88 +14,90 @@ namespace MissioServer.Tests
     [TestFixture] 
     public class UsersControllerTests
     {
-        private static MissioContext MakeMissioContext()
+        private static UsersController MakeUsersController(MissioContext missioContext = null)
         {
-            var databaseOptions = new DbContextOptionsBuilder<MissioContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var passwordHasher = Substitute.For<IPasswordHasher<User>>();
-            passwordHasher.HashPassword("ElPass").Returns("GrecoHashedPassword");
-            var missioContext = new MissioContext(databaseOptions, passwordHasher, Substitute.For<IWebClientService>());
-            missioContext.Database.EnsureCreated();
-            return missioContext;
-        }
-
-        private static IPasswordHasher<User> MakePasswordServiceGivenPassword(string hashedPassword, string correctPassword)
-        {
-            var passwordService = Substitute.For<IPasswordHasher<User>>();
-            passwordService.VerifyHashedPassword(hashedPassword, correctPassword).Returns(PasswordVerificationResult.Success);
-            return passwordService;
-        }
-
-        private static UsersController MakeUsersController(MissioContext missioContext, IPasswordHasher<User> passwordService, IRegisterUserService registerUserService = null)
-        {
-            if(registerUserService == null)
-                registerUserService = Substitute.For<IRegisterUserService>();
-            return new UsersController(missioContext, passwordService, registerUserService);
+            if(missioContext == null)
+                missioContext = Utils.MakeMissioContext();
+            var passwordService = new MockPasswordService();
+            var userService = new UsersService(missioContext, passwordService);
+            var registerUserService = new RegisterUserService(missioContext, passwordService);
+            return new UsersController(userService, registerUserService);
         }
 
         [Test]
-        public async Task GetUserIfValid_InvalidUserName_ReturnsUserNameDoesNotExist()
+        public async Task ValidateUser_InvalidUserName_ReturnsErrorMessage()
         {
-            var usersController = MakeUsersController(MakeMissioContext(), Substitute.For<IPasswordHasher<User>>());
+            var usersController = MakeUsersController();
 
-            var result = (ObjectResult)(await usersController.GetUserIfUserValid("NonExistingUsername", "")).Result;
+            var result = (ObjectResult) await usersController.ValidateUser("Not valid name", "");
 
             Assert.AreEqual(401, result.StatusCode);
             Assert.AreEqual(AppResources.InvalidUserName, result.Value);
         }
 
         [Test]
-        public async Task IsUserValid_InvalidPassword_ReturnsIncorrectPassword()
+        public async Task ValidateUser_InvalidPassword_ReturnsErrorMessage()
         {
-            var usersController = MakeUsersController(MakeMissioContext(), Substitute.For<IPasswordHasher<User>>());
+            var usersController = MakeUsersController();
 
-            var result = (ObjectResult) (await usersController.GetUserIfUserValid("Francisco Greco", "")).Result;
+            var result = (ObjectResult)await usersController.ValidateUser("Francisco Greco", "");
 
             Assert.AreEqual(401, result.StatusCode);
             Assert.AreEqual(AppResources.InvalidPassword, result.Value);
         }
 
         [Test]
-        public async Task IsUserValid_DataIsValid_ReturnsSuccessfulLogin()
+        public async Task ValidateUser_UserIsValid_ReturnsOk()
         {
-            var correctPassword = "El Pass";
-            var passwordService = MakePasswordServiceGivenPassword("GrecoHashedPassword", correctPassword);
-            var usersController = MakeUsersController(MakeMissioContext(), passwordService);
+            var usersController = MakeUsersController();
 
-            var result = await usersController.GetUserIfUserValid("Francisco Greco", correctPassword);
-
-            Assert.AreEqual("Francisco Greco", result.Value.UserName);
+            Assert.IsInstanceOf<OkResult>(await usersController.ValidateUser("Francisco Greco", "ElPass"));
         }
 
         [Test]
-        public async Task RegisterUser_GivenInfo_CallsRegisterService()
+        public async Task RegisterUser_UserNameIsTooShort_ThrowsException()
         {
-            var registration = new RegistrationDTO();
-            var fakeRegistrationService = Substitute.For<IRegisterUserService>();
-            var usersController = MakeUsersController(MakeMissioContext(), Substitute.For<IPasswordHasher<User>>(), fakeRegistrationService);
-
-            await usersController.RegisterUser(registration);
-
-            await fakeRegistrationService.Received().RegisterUser(registration);
-        }
-
-        [Test]
-        public async Task RegisterUser_ExceptionThrown_ReturnsBadRequest()
-        {
-            var registration = new RegistrationDTO();
-            var fakeRegistrationService = Substitute.For<IRegisterUserService>();
-            var errors = new List<string> { "An error message " };
-            fakeRegistrationService.When(x => x.RegisterUser(registration)).Do(x => throw new UserRegistrationException(errors));
-            var usersController = MakeUsersController(MakeMissioContext(), Substitute.For<IPasswordHasher<User>>(), fakeRegistrationService);
+            var usersController = MakeUsersController();
+            var registration = new CreateUserDTO("ABC", "Password", "someEmail@gmail.com");
 
             var result = (ObjectResult) await usersController.RegisterUser(registration);
 
-            Assert.AreEqual(errors, result.Value);
+            Assert.Contains(AppResources.UserNameTooShortMessage, (List<string>) result.Value);
+        }
+
+        [Test]
+        public void RegisterUser_UserNameAlreadyInUse_ThrowsException()
+        {
+            var usersController = MakeUsersController();
+            var registration = new CreateUserDTO("Francisco Greco", "Password", "someEmail@gmail.com");
+
+            var exception = Assert.ThrowsAsync<UserRegistrationException>(() => usersController.RegisterUser(registration));
+
+            Assert.Contains(AppResources.UserNameAlreadyInUseMessage, exception.ErrorMessages);
+        }
+
+        [Test]
+        public void RegisterUser_PasswordIsTooShort_ThrowsException()
+        {
+            var usersController = MakeUsersController();
+            var registration = new CreateUserDTO("ABCD", "ABC", "someEmail@gmail.com");
+
+            var exception = Assert.ThrowsAsync<UserRegistrationException>(() => usersController.RegisterUser(registration));
+
+            Assert.Contains(AppResources.PasswordTooShortMessage, exception.ErrorMessages);
+        }
+
+        [Test]
+        [TestCase("ValidName", "Password", "someEmail@gmail.com")]
+        public async Task RegisterUser_EverythingOk_RegistersUser(string name, string password, string email)
+        {
+            var missioContext = Utils.MakeMissioContext();
+            var usersController = MakeUsersController(missioContext);
+            var registration = new CreateUserDTO(name, password, email);
+
+            await usersController.RegisterUser(registration);
+
+            Assert.IsTrue(missioContext.Users.Any(x => x.UserName == name && x.HashedPassword == "Hashed" + password && x.Email == email));
         }
     }
 }

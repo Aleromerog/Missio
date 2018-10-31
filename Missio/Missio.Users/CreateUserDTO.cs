@@ -3,18 +3,18 @@ using JetBrains.Annotations;
 
 namespace Missio.Users
 {
-    public class RegistrationDTO : IEquatable<RegistrationDTO>
+    public class CreateUserDTO : IEquatable<CreateUserDTO>
     {
         public string UserName { get; }
         public string Password { get; }
         public string Email { get; }
 
         [UsedImplicitly]
-        public RegistrationDTO()
+        public CreateUserDTO()
         {
         }
 
-        public RegistrationDTO(string userName, string password, string email)
+        public CreateUserDTO(string userName, string password, string email)
         {
             UserName = userName;
             Password = password;
@@ -22,7 +22,7 @@ namespace Missio.Users
         }
 
         /// <inheritdoc />
-        public bool Equals(RegistrationDTO other)
+        public bool Equals(CreateUserDTO other)
         {
             if (ReferenceEquals(null, other))
                 return false;
@@ -40,7 +40,7 @@ namespace Missio.Users
                 return true;
             if (obj.GetType() != this.GetType())
                 return false;
-            return Equals((RegistrationDTO) obj);
+            return Equals((CreateUserDTO) obj);
         }
 
         /// <inheritdoc />
@@ -55,12 +55,12 @@ namespace Missio.Users
             }
         }
 
-        public static bool operator ==(RegistrationDTO left, RegistrationDTO right)
+        public static bool operator ==(CreateUserDTO left, CreateUserDTO right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(RegistrationDTO left, RegistrationDTO right)
+        public static bool operator !=(CreateUserDTO left, CreateUserDTO right)
         {
             return !Equals(left, right);
         }

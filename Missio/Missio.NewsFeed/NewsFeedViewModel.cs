@@ -49,7 +49,7 @@ namespace Missio.NewsFeed
         public void UpdatePosts()
         {
             Posts.Clear();
-            foreach (var post in _postRepository.GetMostRecentPostsInOrder(_loggedInUser.LoggedInUser))
+            foreach (var post in _postRepository.GetMostRecentPostsInOrder(_loggedInUser.UserName, _loggedInUser.Password))
                 Posts.Add(post);
             IsRefreshing = false;
         }

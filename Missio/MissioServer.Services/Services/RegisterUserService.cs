@@ -20,12 +20,12 @@ namespace MissioServer.Services.Services
         }
 
         /// <inheritdoc />
-        public async Task RegisterUser(RegistrationDTO registration)
+        public async Task RegisterUser(CreateUserDTO createUserDTO)
         {
             var errors = new List<string>();
-            var userName = registration.UserName;
-            var password = registration.Password;
-            var email = registration.Email;
+            var userName = createUserDTO.UserName;
+            var password = createUserDTO.Password;
+            var email = createUserDTO.Email;
             if(userName.Length < 5)
                 errors.Add(AppResources.UserNameTooShortMessage);
             if(password.Length < 4)

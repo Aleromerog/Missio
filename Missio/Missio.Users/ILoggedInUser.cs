@@ -2,6 +2,7 @@
 {
     public interface ILoggedInUser
     {
-        User LoggedInUser { get; set; }
+        string UserName { get; set; }
+        string Password { get; set; }
     }
 }

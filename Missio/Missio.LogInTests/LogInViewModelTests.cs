@@ -62,14 +62,13 @@ namespace Missio.LogInTests
         [Test]
         public async Task LogInCommand_ValidUser_SetsLoggedInUserAndGoesToNextPage()
         {
-            var user = new User("Someone");
-            _fakeUserRepository.GetUserIfValid("Someone", "Password").Returns(user);
             _logInViewModel.UserName = "Someone";
             _logInViewModel.Password = "Password";
 
             await _logInViewModel.LogIn();
 
-            _fakeLoggedInUser.Received(1).LoggedInUser = user;
+            _fakeLoggedInUser.Received(1).UserName = "Someone";
+            _fakeLoggedInUser.Received(1).Password = "Password";
             await _fakeNavigation.Received(1).GoToPage<MainTabbedPage>();
         }
 
@@ -77,7 +76,7 @@ namespace Missio.LogInTests
         public async Task AttemptToLogin_LogInFailed_DisplaysAlert()
         {
             _logInViewModel.UserName = "Someone";
-            _fakeUserRepository.When(x => x.GetUserIfValid("Someone", "")).Throw(new LogInException(AppResources.InvalidUserName));
+            _fakeUserRepository.When(x => x.ValidateUser("Someone", "")).Throw(new LogInException(AppResources.InvalidUserName));
 
             await _logInViewModel.LogIn();
 

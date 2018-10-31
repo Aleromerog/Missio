@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using JetBrains.Annotations;
 
 namespace Missio.Users
@@ -15,25 +14,20 @@ namespace Missio.Users
         [UsedImplicitly]
         public string Email { get; private set; }
 
+        // TODO: Move this to a separate class
         [UsedImplicitly]
         public string HashedPassword { get; private set; }
 
         [UsedImplicitly]
         public byte[] Picture { get; private set; }
-        //public ICollection<User> Friends { get; private set; }
 
-        [UsedImplicitly]
-        public User()
-        {
-        }
-
-        public User([NotNull] string userName, string hashedPassword = null, byte[] picture = null, [NotNull] string email = "", int id = 0)
+        //TODO: Make picture mandatory (We can have a default picture)
+        public User([NotNull] string userName, [NotNull] string hashedPassword, byte[] picture, [NotNull] string email)
         {
             UserName = userName ?? throw new ArgumentNullException(nameof(userName));
             Email = email ?? throw new ArgumentNullException(nameof(email));
-            HashedPassword = hashedPassword;
+            HashedPassword = hashedPassword ?? throw new ArgumentNullException(nameof(hashedPassword));
             Picture = picture;
-            Id = id;
         }
 
         /// <inheritdoc />

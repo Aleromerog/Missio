@@ -6,9 +6,17 @@ namespace Missio.Posts
 {
     public class Post : IPost
     {
-        [UsedImplicitly] public string Message { get; }
-        [UsedImplicitly] public byte[] Image { get; }
-        [UsedImplicitly] public User Author { get; }
+        [UsedImplicitly]
+        public int Id { get; private set; }
+
+        [UsedImplicitly]
+        public string Message { get; private set; }
+
+        [UsedImplicitly]
+        public byte[] Image { get; private set; }
+
+        [UsedImplicitly]
+        public User Author { get; private set; }
 
         public Post()
         {

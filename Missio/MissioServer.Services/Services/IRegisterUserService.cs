@@ -5,6 +5,6 @@ namespace MissioServer.Services.Services
 {
     public interface IRegisterUserService
     {
-        Task RegisterUser(RegistrationDTO registration);
+        Task RegisterUser(CreateUserDTO createUserDTO);
     }
 }

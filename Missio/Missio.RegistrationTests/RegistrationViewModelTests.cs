@@ -35,7 +35,7 @@ namespace Missio.RegistrationTests
         {
             var exceptionMessage = "The message";
 
-            _fakeUserRepository.When(x => x.AttemptToRegisterUser(Arg.Any<RegistrationDTO>()))
+            _fakeUserRepository.When(x => x.AttemptToRegisterUser(Arg.Any<CreateUserDTO>()))
                 .Do(x => throw new UserRegistrationException(new List<string> { exceptionMessage }));
 
             await _registrationViewModel.TryToRegister();
@@ -54,7 +54,7 @@ namespace Missio.RegistrationTests
 
             await _registrationViewModel.TryToRegister();
 
-            await _fakeUserRepository.Received(1).AttemptToRegisterUser(new RegistrationDTO(userName, password, email));
+            await _fakeUserRepository.Received(1).AttemptToRegisterUser(new CreateUserDTO(userName, password, email));
         }
 
         [Test]
