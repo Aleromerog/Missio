@@ -3,6 +3,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:newsFeed="clr-namespace:Missio.NewsFeed;assembly=Missio.NewsFeed"
+             xmlns:local="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
              xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources"
              Icon="home.png"
              Title="Home"
@@ -16,24 +17,27 @@
     </ResourceDictionary>
   </ContentPage.Resources>
 
-  <ContentPage.Content>
-    <RelativeLayout BackgroundColor="{StaticResource LoginBackground}">
-      <ListView
-          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
-          ItemsSource="{Binding Posts}" ItemTemplate="{StaticResource PersonDataTemplateSelector}"
-          HasUnevenRows="True" RefreshCommand="{Binding UpdatePostsCommand}"
-          IsRefreshing="{Binding IsRefreshing}"
-          IsPullToRefreshEnabled="True"
-          SeparatorVisibility="None"
-          BackgroundColor="{StaticResource SecondaryDarkColor}"/>
+    <ContentPage.Content>
+        <RelativeLayout BackgroundColor="{StaticResource LoginBackground}">
+            <ListView
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                ItemsSource="{Binding Posts}" ItemTemplate="{StaticResource PersonDataTemplateSelector}"
+                HasUnevenRows="True" RefreshCommand="{Binding UpdatePostsCommand}"
+                IsRefreshing="{Binding IsRefreshing}"
+                IsPullToRefreshEnabled="True"
+                SeparatorVisibility="None"
+                BackgroundColor="{StaticResource SecondaryDarkColor}"/>
 
-      <Button
-          RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"
-          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.85}"
-          BackgroundColor="Red"
-          CornerRadius="10"
-          Image="AddPostSign.png"
-          Command="{Binding GoToPublicationPageCommand}"/>
-    </RelativeLayout>
-  </ContentPage.Content>
+            <local:CircleButton
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.85}"
+                HeightRequest="66"
+                WidthRequest="65"
+                Command="{Binding GoToPublicationPageCommand}"
+                AutomationId="AddPostButton"
+                BackgroundColor="{StaticResource PrimaryColor}"/>
+
+
+        </RelativeLayout>
+    </ContentPage.Content>
 </ContentPage>
