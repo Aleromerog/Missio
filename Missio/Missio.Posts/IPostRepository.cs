@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using System.Threading.Tasks;
 
 namespace Missio.Posts
@@ -6,6 +6,6 @@ namespace Missio.Posts
     public interface IPostRepository
     {
         Task PublishPost(CreatePostDTO post);
-        Task<List<IPost>> GetMostRecentPostsInOrder(string userName, string password);
+        Task<IOrderedEnumerable<IPost>> GetMostRecentPostsInOrder(string userName, string password);
     }
 }

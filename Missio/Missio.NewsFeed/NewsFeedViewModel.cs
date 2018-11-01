@@ -42,8 +42,8 @@ namespace Missio.NewsFeed
             _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
             _loggedInUser = loggedInUser ?? throw new ArgumentNullException(nameof(loggedInUser));
             UpdatePostsCommand = new Command(async () => await UpdatePosts());
+            UpdatePostsCommand.Execute(null);
             GoToPublicationPageCommand = new Command(async() => await GoToPublicationPage());
-            UpdatePosts(); 
         }
 
         public async Task UpdatePosts()

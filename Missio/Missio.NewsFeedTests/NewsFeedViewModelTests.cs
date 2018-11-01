@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Missio.NewsFeed;
 using Missio.PostPublication;
@@ -18,7 +19,8 @@ namespace Missio.NewsFeedTests
             if(navigation == null)
                 navigation = Substitute.For<INavigation>();
             var fakeRepository = Substitute.For<IPostRepository>();
-            fakeRepository.GetMostRecentPostsInOrder("Francisco Greco", "ElPass").Returns(new List<IPost> { Utils.MakeDummyPost() });
+            var orderedPosts = new List<IPost> { Utils.MakeDummyPost() }.OrderByDescending(x => x.GetPostPriority());
+            fakeRepository.GetMostRecentPostsInOrder("Francisco Greco", "ElPass").Returns(orderedPosts);
             return new NewsFeedViewModel(fakeRepository, navigation, MakeLoggedInUser());
         }
 
