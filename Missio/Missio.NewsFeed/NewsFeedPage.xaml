@@ -34,10 +34,7 @@
                 HeightRequest="66"
                 WidthRequest="65"
                 Command="{Binding GoToPublicationPageCommand}"
-                AutomationId="AddPostButton"
                 BackgroundColor="{StaticResource PrimaryColor}"/>
-
-
         </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>
