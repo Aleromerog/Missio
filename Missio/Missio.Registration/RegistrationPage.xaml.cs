@@ -1,6 +1,4 @@
-﻿using Missio.Registration;
-
-namespace Missio.LogInRes
+﻿namespace Missio.Registration
 {
     // ReSharper disable once MismatchedFileName
     public partial class RegistrationPage 

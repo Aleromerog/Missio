@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using Missio.Posts;
-using Missio.Users;
+﻿using System.Linq;
+using System.Threading.Tasks;
 
-namespace Missio.LocalDatabase
+namespace Missio.Posts
 {
     public interface IPostRepository
     {
-        void PublishPost(IPost post);
-        List<IPost> GetMostRecentPostsInOrder(User user);
+        Task PublishPost(CreatePostDTO post);
+        Task<IOrderedEnumerable<IPost>> GetMostRecentPostsInOrder(string userName, string password);
     }
 }

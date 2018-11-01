@@ -69,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistrationUserInterfaceTests.cs" />
     <Compile Include="RegistrationViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +91,10 @@
     <ProjectReference Include="..\Missio.Users\Missio.Users.csproj">
       <Project>{5FF0747B-B2A7-4FEC-BA86-E14E3E6F39EF}</Project>
       <Name>Missio.Users</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MissioServer.Services\MissioServer.Services.csproj">
+      <Project>{3E80D03B-E68A-4580-8BAB-2C69A3BAE03D}</Project>
+      <Name>MissioServer.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\StringResources\StringResources.csproj">
       <Project>{BA270304-C3F4-42CB-9462-D1A961C38F18}</Project>

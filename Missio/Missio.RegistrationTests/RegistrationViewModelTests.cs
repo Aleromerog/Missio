@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Missio.LocalDatabase;
 using Missio.Navigation;
 using Missio.Registration;
 using Missio.Users;
-using Missio.UserTests;
 using NSubstitute;
 using NUnit.Framework;
 using StringResources;
@@ -33,49 +32,14 @@ namespace Missio.RegistrationTests
         }
 
         [Test]
-        [TestCaseSource(typeof(UserTestUtils), nameof(UserTestUtils.NamesAlreadyInUse))]
-        public async Task TryToRegister_UserNameAlreadyInUse_DisplaysAlert(string userName)
+        public async Task TryToRegister_ExceptionWasThrown_DisplaysAlert()
         {
-            var userNameMessage = new AlertTextMessage(AppResources.UserNameAlreadyInUseTitle, AppResources.UserNameAlreadyInUseMessage, AppResources.Ok);
-            _registrationViewModel.UserName = userName;
-            _registrationViewModel.Password = "Valid password";
-
-            _fakeUserRepository.When(x => x.AttemptToRegisterUser(Arg.Any<User>()))
-                .Do(x => throw new UserRegistrationException(new List<AlertTextMessage> { userNameMessage }));
+            _fakeUserRepository.When(x => x.AttemptToRegisterUser(Arg.Any<CreateUserDTO>()))
+                .Do(x => throw new UserRegistrationException(new List<string> { "Some message", "Another message" }));
 
             await _registrationViewModel.TryToRegister();
 
-            await _fakeNavigation.Received().DisplayAlert(userNameMessage);
-        }
-
-        [Test]
-        public async Task TryToRegister_PasswordIsTooShort_DisplaysAlert()
-        {
-            var passwordMessage = new AlertTextMessage(AppResources.PasswordTooShortTitle, AppResources.PasswordTooShortMessage, AppResources.Ok);
-            _registrationViewModel.UserName = "Some username";
-            _registrationViewModel.Password = "ABC";
-            _fakeUserRepository.When(x => x.AttemptToRegisterUser(Arg.Any<User>()))
-                .Do(x => throw new UserRegistrationException(new List<AlertTextMessage> { passwordMessage}));
-
-            await _registrationViewModel.TryToRegister();
-
-            await _fakeNavigation.Received().DisplayAlert(passwordMessage);
-        }
-
-        [Test]
-        public async Task TryToRegister_UserNameIsTooShort_DisplaysAlert()
-        {
-            var userNameTooShortMessage = new AlertTextMessage(AppResources.UserNameTooShortTitle, AppResources.UserNameTooShortMessage, AppResources.Ok);
-            _registrationViewModel.UserName = "AB";
-            _registrationViewModel.Password = "Some password";
-
-            _fakeUserRepository.When(x => x.AttemptToRegisterUser(Arg.Any<User>()))
-                .Do(x => throw new UserRegistrationException(new List<AlertTextMessage> { userNameTooShortMessage}));
-
-
-            await _registrationViewModel.TryToRegister();
-
-            await _fakeNavigation.Received().DisplayAlert(userNameTooShortMessage);
+            await _fakeNavigation.Received().DisplayAlert(AppResources.TheRegistrationFailed, "Some message" + Environment.NewLine + "Another message", AppResources.Ok);
         }
 
         [Test]
@@ -89,7 +53,7 @@ namespace Missio.RegistrationTests
 
             await _registrationViewModel.TryToRegister();
 
-            await _fakeUserRepository.Received(1).AttemptToRegisterUser(Arg.Is<User>(x => x.UserName == userName && x.Password == password && x.Email == email));
+            await _fakeUserRepository.Received(1).AttemptToRegisterUser(Arg.Is<CreateUserDTO>(x => x.UserName == userName && x.Password == password && x.Email == email));
         }
 
         [Test]

@@ -32,7 +32,6 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AppInterfaceExtensionMethods.cs" />
     <Compile Include="AppInitializer.cs" />
     <Compile Include="AppTests.cs" />
   </ItemGroup>

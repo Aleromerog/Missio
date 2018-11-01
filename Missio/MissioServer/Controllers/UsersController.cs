@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Missio.Registration;
 using Missio.Users;
-using StringResources;
+using MissioServer.Services.Services;
 
 namespace MissioServer.Controllers
 {
@@ -10,32 +10,34 @@ namespace MissioServer.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly MissioContext _missioContext;
+        private readonly IRegisterUserService _registerUserService;
+        private readonly IUserService _userService;
 
-        public UsersController(MissioContext missioContext)
+        public UsersController(IUserService userService, IRegisterUserService registerUserService)
         {
-            _missioContext = missioContext;
+            _userService = userService;
+            _registerUserService = registerUserService;
         }
 
-        [HttpGet("{name}&{password}")]
-        public async Task<ActionResult<User>> IsUserValid(string name, string password)
+        [HttpGet("{userName}/{password}")]
+        public async Task<ActionResult> ValidateUser(string userName, string password)
         {
-            var user = await _missioContext.Users.FirstOrDefaultAsync(x => x.UserName == name);
-            if (user == null)
-                return StatusCode(401, AppResources.InvalidUserName);
-            if (user.Password != password)
-                return StatusCode(401, AppResources.InvalidPassword);
-            return user;
+            await _userService.GetUserIfValid(userName, password);
+            return Ok();
         }
 
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPost]
+        public async Task<ActionResult> RegisterUser(CreateUserDTO createUserDTO)
         {
-        }
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            try
+            {
+                await _registerUserService.RegisterUser(createUserDTO);
+            }
+            catch (UserRegistrationException registrationException)
+            {
+                return StatusCode(400, registrationException.ErrorMessages);
+            }
+            return Ok();
         }
     }
 }

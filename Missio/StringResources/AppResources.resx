@@ -129,23 +129,8 @@
   <data name="UserNameTooShortMessage" xml:space="preserve">
     <value>El nombre tener al menos tres caracteres</value>
   </data>
-  <data name="UserNameTooShortTitle" xml:space="preserve">
-    <value>Nombre demasiado corto</value>
-  </data>
-  <data name="PasswordsDontMatchMessage" xml:space="preserve">
-    <value>Asegurate de que las contraseñas sean iguales</value>
-  </data>
-  <data name="PasswordsDontMatchTitle" xml:space="preserve">
-    <value>Las contraseñas no son iguales</value>
-  </data>
   <data name="PasswordTooShortMessage" xml:space="preserve">
     <value>La contraseña debe tener por lo menos cinco caracteres</value>
-  </data>
-  <data name="PasswordTooShortTitle" xml:space="preserve">
-    <value>Contraseña muy corta</value>
-  </data>
-  <data name="UserNameAlreadyInUseTitle" xml:space="preserve">
-    <value>Nombre de usuario ya esta en uso</value>
   </data>
   <data name="UserNameAlreadyInUseMessage" xml:space="preserve">
     <value>El nombre ya esta uso, intenta con otro :(</value>
@@ -170,5 +155,8 @@
   </data>
   <data name="InvalidPassword" xml:space="preserve">
     <value>Invalid password</value>
+  </data>
+  <data name="TheRegistrationFailed" xml:space="preserve">
+    <value>TheRegistrationFailed</value>
   </data>
 </root>

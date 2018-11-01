@@ -1,11 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Missio.LocalDatabase;
-using Missio.LogIn;
 using Missio.Navigation;
-using Missio.NewsFeed;
 using Missio.PostPublication;
 using Missio.Posts;
-using Missio.UserTests;
+using Missio.Users;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -33,18 +30,14 @@ namespace Missio.PostPublicationTests
         [Test]
         public async Task PublishPost_TextOnly_UpdatesPostsView()
         {
-            _fakeLoggedInUser.LoggedInUser.Returns(UserTestUtils.FranciscoUser);
-
             await _publicationPageViewModel.PublishPost();
 
-            _fakeUpdatePostsView.Received(1).UpdatePosts();
+            await _fakeUpdatePostsView.Received(1).UpdatePosts();
         }
 
         [Test]
         public async Task PublishPost_TextOnly_ReturnsToNewsFeed()
         {
-            _fakeLoggedInUser.LoggedInUser.Returns(UserTestUtils.FranciscoUser);
-
             await _publicationPageViewModel.PublishPost();
 
             await _fakeNavigation.Received(1).ReturnToPreviousPage();
@@ -53,14 +46,16 @@ namespace Missio.PostPublicationTests
         [Test]
         public async Task PublishPostCommand_TextOnly_PublishesPost()
         {
-            var user = UserTestUtils.FranciscoUser;
-            _fakeLoggedInUser.LoggedInUser.Returns(user);
+            var userName = "Francisco Greco";
+            var password = "ElPass";
+            _fakeLoggedInUser.UserName.Returns(userName);
+            _fakeLoggedInUser.Password.Returns(password);
             var newPostText = "The content of the new post";
             _publicationPageViewModel.PostText = newPostText;
 
             await _publicationPageViewModel.PublishPost();
 
-            _postRepository.Received().PublishPost(Arg.Is<Post>(x => x.Message == newPostText && x.Author == user));
+            await _postRepository.Received().PublishPost(Arg.Is<CreatePostDTO>(x => x.Message == newPostText && x.UserName == userName && x.Password == password));
         }
     }
 }

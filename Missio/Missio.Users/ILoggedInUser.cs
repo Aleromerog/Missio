@@ -1,9 +1,8 @@
-﻿using Missio.Users;
-
-namespace Missio.LogIn
+﻿namespace Missio.Users
 {
     public interface ILoggedInUser
     {
-        User LoggedInUser { get; set; }
+        string UserName { get; set; }
+        string Password { get; set; }
     }
 }

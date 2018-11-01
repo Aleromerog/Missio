@@ -10,12 +10,10 @@ namespace Missio.ApplicationResources
         /// <inheritdoc />
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(value == null)
+            if (value == null)
                 return null;
             var array = (byte[]) value;
-            var memoryStream = new MemoryStream(array);
-            var imageSource = ImageSource.FromStream(() => memoryStream);
-
+            var imageSource = ImageSource.FromStream(() => new MemoryStream(array));
             return imageSource;
         }
 

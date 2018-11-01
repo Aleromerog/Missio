@@ -2,10 +2,8 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
-using Missio.LocalDatabase;
-using Missio.LogIn;
-using Missio.NewsFeed;
 using Missio.Posts;
+using Missio.Users;
 using Xamarin.Forms;
 using INavigation = Missio.Navigation.INavigation;
 
@@ -41,8 +39,8 @@ namespace Missio.PostPublication
 
         public async Task PublishPost()
         {
-            _postRepository.PublishPost(new Post(_loggedInUser.LoggedInUser, PostText));
-            _updateViewPosts.UpdatePosts();
+            await _postRepository.PublishPost(new CreatePostDTO(_loggedInUser.UserName, _loggedInUser.Password, PostText, null));
+            await _updateViewPosts.UpdatePosts();
             await _navigation.ReturnToPreviousPage();
         }
     }

@@ -2,8 +2,9 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
-using Missio.LocalDatabase;
-using Missio.LogInRes;
+using Missio.MainView;
+using Missio.Registration;
+using Missio.Users;
 using Xamarin.Forms;
 using INavigation = Missio.Navigation.INavigation;
 
@@ -54,8 +55,9 @@ namespace Missio.LogIn
         {
             try
             {
-                var user = await _userRepository.GetUserIfValid(UserName, Password);
-                _loggedInUser.LoggedInUser = user;
+                await _userRepository.ValidateUser(UserName, Password);
+                _loggedInUser.UserName = UserName;
+                _loggedInUser.Password = Password;
                 await _navigation.GoToPage<MainTabbedPage>();
             }
             catch (LogInException e)

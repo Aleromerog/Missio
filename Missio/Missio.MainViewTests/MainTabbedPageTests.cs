@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Missio.MainView;
+using NUnit.Framework;
 
 namespace Missio.MainViewTests
 {

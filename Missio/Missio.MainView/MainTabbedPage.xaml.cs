@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Missio
+namespace Missio.MainView
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     // ReSharper disable once MismatchedFileName

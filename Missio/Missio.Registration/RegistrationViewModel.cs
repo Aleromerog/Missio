@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using JetBrains.Annotations;
-using Missio.LocalDatabase;
 using Missio.Users;
 using StringResources;
 using Xamarin.Forms;
@@ -39,9 +38,9 @@ namespace Missio.Registration
         [UsedImplicitly]
         public ICommand RegisterCommand { get; set; }
 
-        public RegistrationViewModel([NotNull] IUserRepository registerUser, [NotNull] INavigation navigation)
+        public RegistrationViewModel([NotNull] IUserRepository userRepository, [NotNull] INavigation navigation)
         {
-            _userRepository = registerUser ?? throw new ArgumentNullException(nameof(registerUser));
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
             RegisterCommand = new Command(async() => await TryToRegister());
         }
@@ -54,14 +53,14 @@ namespace Missio.Registration
             }
             catch(UserRegistrationException registrationException)
             {
-                Console.WriteLine(registrationException.ErrorMessages[0].Message);
-                await _navigation.DisplayAlert(registrationException.ErrorMessages[0]);
+                await _navigation.DisplayAlert(AppResources.TheRegistrationFailed, String.Join(Environment.NewLine,  registrationException.ErrorMessages), AppResources.Ok);
             }
         }
 
         private async Task SendRegistrationAndResetView()
         {
-            await _userRepository.AttemptToRegisterUser(new User(UserName, Password, null, Email));
+            var registration = new CreateUserDTO(UserName, Password, Email);
+            await _userRepository.AttemptToRegisterUser(registration);
             var alertTask = _navigation.DisplayAlert(AppResources.RegistrationSuccessfulTitle, AppResources.RegistrationSuccessfulMessage, AppResources.Ok);
             await _navigation.ReturnToPreviousPage();
             await alertTask;

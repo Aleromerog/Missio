@@ -4,9 +4,7 @@
              xmlns:local="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
              xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources"
              NavigationPage.HasNavigationBar="False"
-             
-             x:Class="Missio.LogInRes.LogInPage"
-             AutomationId="LogInPage">
+             x:Class="Missio.LogIn.LogInPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -62,7 +60,6 @@
             <Entry HorizontalTextAlignment="Center"
                    FontFamily="{StaticResource MissioRegular}"
                    Text="{Binding UserName}"  
-                   AutomationId="UserNameEntry"
                    Placeholder="E-mail o usuario"/>
             <Label Text="Contrasena"
                    FontFamily="{StaticResource MissioBold}"
@@ -71,7 +68,6 @@
                    FontFamily="{StaticResource MissioRegular}"
                    Placeholder="Introudzca contrasena"
                    Text="{Binding Password}"
-                   AutomationId="PasswordEntry"
                    IsPassword="true"/>
         </FlexLayout>
 
@@ -94,8 +90,6 @@
                             HeightRequest="80"
                             WidthRequest="80"
                             Command="{Binding LogInCommand}"
-                            AutomationId="LogInButton"
-                            
                             Image="check.png"/>
         <FlexLayout Direction="Row"
                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.8, Property=Width}"
@@ -149,8 +143,7 @@
                     BackgroundColor="Transparent"
                     TextColor="{StaticResource SecondaryColor}"
                     FontFamily="{StaticResource MissioRegular}"
-                    Command="{Binding GoToRegistrationPageCommand}"
-                    AutomationId="RegisterButton"/>
+                    Command="{Binding GoToRegistrationPageCommand}" />
         </StackLayout>
 
         
