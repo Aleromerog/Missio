@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Missio.Posts;
 using MissioServer.Controllers;
@@ -16,7 +17,7 @@ namespace MissioServer.Tests
             if(missioContext == null)
                 missioContext = Utils.MakeMissioContext();
             var usersService = new UsersService(missioContext, new MockPasswordService());
-            return new PostsController(usersService, new PostsService(missioContext, usersService));
+            return new PostsController(usersService, new PostsService(missioContext, usersService, new FakeTimeService()));
         }
 
         [Test]
@@ -49,7 +50,7 @@ namespace MissioServer.Tests
 
             await postsController.PublishPost(createPostDTO);
 
-            Assert.IsTrue(missioContext.Posts.Any(x => x.Author == grecoUser && x.Message == "A new message"));
+            Assert.IsTrue(missioContext.Posts.Any(x => x.Author == grecoUser && x.Message == "A new message" && x.PublishedDate == new DateTime(2018, 9, 2)));
         }
     }
 }

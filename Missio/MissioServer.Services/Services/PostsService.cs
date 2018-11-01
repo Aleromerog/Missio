@@ -9,10 +9,12 @@ namespace MissioServer.Services.Services
     {
         private readonly MissioContext _missioContext;
         private readonly IUserService _userService;
+        private readonly ITimeService _timeService;
 
-        public PostsService(MissioContext missioContext, IUserService userService)
+        public PostsService(MissioContext missioContext, IUserService userService, ITimeService timeService)
         {
             _userService = userService;
+            _timeService = timeService;
             _missioContext = missioContext;
         }
 
@@ -32,7 +34,7 @@ namespace MissioServer.Services.Services
         public async Task PublishPost(CreatePostDTO createPostDTO)
         {
             var user = await _userService.GetUserIfValid(createPostDTO.UserName, createPostDTO.Password);
-            _missioContext.Posts.Add(new Post(user, createPostDTO.Message, createPostDTO.Picture));
+            _missioContext.Posts.Add(new Post(user, createPostDTO.Message, _timeService.GetCurrentTime(), createPostDTO.Picture));
             _missioContext.SaveChanges();
         }
     }

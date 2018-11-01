@@ -16,7 +16,9 @@
                     <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                     <controls:CircleImage Source="{Binding Author.Picture, Converter={StaticResource ByteToImage}}" Aspect="AspectFill" WidthRequest="55" HeightRequest="55" />
                     <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
-                    <Label Text="{Binding Author.UserName}" FontFamily="{StaticResource MissioBold}"  />
+                    <Label Text="{Binding Author.UserName}" FontFamily="{StaticResource MissioBold}" />
+                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                    <Label Text="{Binding PublishedDate, StringFormat='{0:MMMM d, yyyy HH:mm}'}" />
                 </StackLayout>
                 <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                 <Label Text="{Binding Message}"  Margin="10" FontFamily="{StaticResource MissioRegular}"/>

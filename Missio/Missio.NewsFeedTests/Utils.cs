@@ -1,4 +1,5 @@
-﻿using Missio.Posts;
+﻿using System;
+using Missio.Posts;
 using Missio.Users;
 
 namespace Missio.NewsFeedTests
@@ -7,7 +8,7 @@ namespace Missio.NewsFeedTests
     {
         public static Post MakeDummyPost()
         {
-            return new Post(new User("Francisco Greco", new byte[4], "email@gmail.com"), "A message");
+            return new Post(new User("Francisco Greco", new byte[4], "email@gmail.com"), "A message", new DateTime(2018, 1, 1));
         }
     }
 }

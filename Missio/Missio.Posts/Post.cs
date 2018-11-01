@@ -20,14 +20,18 @@ namespace Missio.Posts
         [UsedImplicitly]
         public User Author { get; private set; }
 
+        [UsedImplicitly]
+        public DateTime PublishedDate { get; private set; }
+
         private Post()
         {
         }
 
-        public Post([NotNull] User author, [NotNull] string message, byte[] image = null)
+        public Post([NotNull] User author, [NotNull] string message, DateTime publishedDate, byte[] image = null)
         {
             Author = author ?? throw new ArgumentNullException(nameof(author));
             Message = message ?? throw new ArgumentNullException(nameof(message));
+            PublishedDate = publishedDate;
             Image = image;
         }
         

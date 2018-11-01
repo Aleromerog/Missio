@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Missio.Posts;
 using Missio.Users;
@@ -60,9 +61,9 @@ namespace MissioServer.Services
             void SeedPosts()
             {
                 modelBuilder.Entity<Post>().HasData(
-                    new {AuthorId = -1, Id = -1, Message = "First message written by Greco", Image = _webClientService.DownloadData("https://images2.alphacoders.com/602/thumb-1920-602223.jpg") },
-                    new {AuthorId = -1, Id = -2, Message = "Second message written by Greco", Image = _webClientService.DownloadData("https://scontent.fntr6-1.fna.fbcdn.net/v/t1.0-9/36355412_2372799529413493_5210179261469556736_n.jpg?_nc_cat=0&oh=43acb1611fbedb33963ced1540d79c94&oe=5BFC87A5") },
-                    new {AuthorId = -2, Id = -3, Message = "First message written by Jorge" });
+                    new {AuthorId = -1, PublishedDate = new DateTime(2018, 1, 1), Id = -1, Message = "First message written by Greco", Image = _webClientService.DownloadData("https://images2.alphacoders.com/602/thumb-1920-602223.jpg") },
+                    new {AuthorId = -1, PublishedDate = new DateTime(2018, 1, 2), Id = -2, Message = "Second message written by Greco", Image = _webClientService.DownloadData("https://scontent.fntr6-1.fna.fbcdn.net/v/t1.0-9/36355412_2372799529413493_5210179261469556736_n.jpg?_nc_cat=0&oh=43acb1611fbedb33963ced1540d79c94&oe=5BFC87A5") },
+                    new {AuthorId = -2, PublishedDate = new DateTime(2018, 2, 3), Id = -3, Message = "First message written by Jorge" });
             }
 
             void SeedStickyPosts()
