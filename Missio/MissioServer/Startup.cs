@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System.Net;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -46,7 +47,7 @@ namespace MissioServer
             {
                 app.UseHsts();
             }
-
+            app.UseMiddleware<HandleUserCredentialsExceptions>();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

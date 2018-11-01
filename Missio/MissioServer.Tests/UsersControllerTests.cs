@@ -32,21 +32,15 @@ namespace MissioServer.Tests
         {
             var usersController = MakeUsersController();
 
-            var result = (ObjectResult) await usersController.ValidateUser("Not valid name", "");
-
-            Assert.AreEqual(401, result.StatusCode);
-            Assert.AreEqual(AppResources.InvalidUserName, result.Value);
+            Assert.ThrowsAsync<InvalidUserNameException>(() => usersController.ValidateUser("Not valid name", ""));
         }
 
         [Test]
-        public async Task ValidateUser_InvalidPassword_ReturnsErrorMessage()
+        public void ValidateUser_InvalidPassword_ThrowsException()
         {
             var usersController = MakeUsersController();
 
-            var result = (ObjectResult)await usersController.ValidateUser("Francisco Greco", "");
-
-            Assert.AreEqual(401, result.StatusCode);
-            Assert.AreEqual(AppResources.InvalidPassword, result.Value);
+            Assert.ThrowsAsync<InvalidPasswordException>(() => usersController.ValidateUser("Francisco Greco", ""));
         }
 
         [Test]

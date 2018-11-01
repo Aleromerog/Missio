@@ -7,7 +7,6 @@
              Icon="home.png"
              Title="Home"
              x:Class="Missio.NewsFeed.NewsFeedPage">
-
   <ContentPage.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
