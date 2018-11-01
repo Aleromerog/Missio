@@ -4,8 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:abstractions="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
              xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources"
-             x:Class="Missio.PostPublication.PublicationPage"
-             AutomationId="PublicationPage">
+             x:Class="Missio.PostPublication.PublicationPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -26,15 +25,17 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0"
-                Text="Nuevo post"
-                TextColor="{StaticResource PrimaryColor}"
-                FontSize="20"
-                FontAttributes="Bold"
-                HorizontalTextAlignment="Center" />
+                   Text="Nuevo post"
+                   TextColor="{StaticResource PrimaryColor}"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center" />
             <Entry Grid.Row="1" Placeholder="Escribe aqui el contenido de tu post"
-                   PlaceholderColor="{StaticResource PlaceholderTextColor}" AutomationId="PostTextEntry" Text="{Binding PostText, Mode=OneWayToSource}"/>
-            <abstractions:CircleButton Grid.Row="2" Text="Publicar" TextColor="{StaticResource MainTextColor}" BackgroundColor="{StaticResource PrimaryDarkColor}"
-                                  AutomationId="PublishPostButton" Command="{Binding PublishPostCommand}"/>
+                   PlaceholderColor="{StaticResource PlaceholderTextColor}"
+                   Text="{Binding PostText, Mode=OneWayToSource}" />
+            <abstractions:CircleButton Grid.Row="2" Text="Publicar" TextColor="{StaticResource MainTextColor}"
+                                       BackgroundColor="{StaticResource PrimaryDarkColor}"
+                                       Command="{Binding PublishPostCommand}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

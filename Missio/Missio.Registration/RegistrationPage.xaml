@@ -5,8 +5,7 @@
              BackgroundColor="{StaticResource SecondaryColor}"
              Title="Crear nueva cuenta"
              xmlns:local="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
-             xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources"
-             AutomationId="RegistrationPage">
+             xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -47,7 +46,6 @@
                Grid.Row="2" Grid.Column="0"/>
         <Entry Placeholder="Usuario"
                Text="{Binding UserName}"
-               AutomationId="UserNameEntry" 
                Grid.Row="3" Grid.Column="0"/>
         <Label Text="No debe contener espacios ni caracteres especiales."
                FontSize="11"
@@ -59,7 +57,6 @@
                Grid.Row="5" Grid.Column="0" />
         <Entry Placeholder="Ingrese correo valido"
                Text="{Binding Email}"
-               AutomationId="EmailEntry" 
                Grid.Row="6" Grid.Column="0"/>
         <Label Text="Contrasena"
                FontFamily="{StaticResource MissioRegular}"
@@ -67,7 +64,6 @@
                Grid.Row="7" Grid.Column="0"/>
         <Entry Placeholder="Minimo 8 caracteres"
                Text="{Binding Password}"
-               AutomationId="PasswordEntry"
                IsPassword="true" 
                Grid.Row="8" Grid.Column="0"/>
         <Button Text="Registrate"
@@ -75,7 +71,6 @@
                 BackgroundColor="{StaticResource PrimaryColor}"
                 TextColor="{StaticResource SecondaryColor}"
                 Command="{Binding RegisterCommand}"
-                AutomationId="RegisterButton"
                 Grid.Row="9" Grid.Column="0"/>
     </Grid>
 </ContentPage>

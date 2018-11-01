@@ -6,38 +6,35 @@
              xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources"
              Icon="home.png"
              Title="Home"
-             x:Class="Missio.NewsFeed.NewsFeedPage"
-             AutomationId="NewsFeedPage">
+             x:Class="Missio.NewsFeed.NewsFeedPage">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <applicationResources:AppResources />
-                <newsFeed:PostTemplates/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <applicationResources:AppResources />
+        <newsFeed:PostTemplates/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </ContentPage.Resources>
 
-    <ContentPage.Content>
-        <RelativeLayout BackgroundColor="{StaticResource LoginBackground}">
-            <ListView
-                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
-                ItemsSource="{Binding Posts}" ItemTemplate="{StaticResource PersonDataTemplateSelector}"
-                HasUnevenRows="True" RefreshCommand="{Binding UpdatePostsCommand}"
-                IsRefreshing="{Binding IsRefreshing}"
-                IsPullToRefreshEnabled="True"
-                SeparatorVisibility="None"
-                BackgroundColor="{StaticResource SecondaryDarkColor}"/>
-           
-            <Button
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.85}"
-                BackgroundColor="Red"
-                CornerRadius="10"
-                Image="AddPostSign.png"
-                Command="{Binding GoToPublicationPageCommand}"
-                AutomationId="AddPostButton"
-            />
-        </RelativeLayout>
-    </ContentPage.Content>
+  <ContentPage.Content>
+    <RelativeLayout BackgroundColor="{StaticResource LoginBackground}">
+      <ListView
+          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+          ItemsSource="{Binding Posts}" ItemTemplate="{StaticResource PersonDataTemplateSelector}"
+          HasUnevenRows="True" RefreshCommand="{Binding UpdatePostsCommand}"
+          IsRefreshing="{Binding IsRefreshing}"
+          IsPullToRefreshEnabled="True"
+          SeparatorVisibility="None"
+          BackgroundColor="{StaticResource SecondaryDarkColor}"/>
+
+      <Button
+          RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"
+          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.85}"
+          BackgroundColor="Red"
+          CornerRadius="10"
+          Image="AddPostSign.png"
+          Command="{Binding GoToPublicationPageCommand}"/>
+    </RelativeLayout>
+  </ContentPage.Content>
 </ContentPage>
