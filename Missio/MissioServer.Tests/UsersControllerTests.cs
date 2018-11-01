@@ -28,7 +28,7 @@ namespace MissioServer.Tests
         }
 
         [Test]
-        public async Task ValidateUser_InvalidUserName_ReturnsErrorMessage()
+        public void ValidateUser_InvalidUserName_ReturnsErrorMessage()
         {
             var usersController = MakeUsersController();
 
