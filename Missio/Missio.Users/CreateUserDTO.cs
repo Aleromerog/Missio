@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
 
 namespace Missio.Users
 {
@@ -14,15 +15,19 @@ namespace Missio.Users
         public string Email { get; set; }
 
         [UsedImplicitly]
+        public byte[] Picture { get; set; }
+
+        [UsedImplicitly]
         public CreateUserDTO()
         {
         }
 
-        public CreateUserDTO(string userName, string password, string email)
+        public CreateUserDTO([NotNull] string userName, [NotNull] string password, [NotNull] string email, byte[] picture = null)
         {
-            UserName = userName;
-            Password = password;
-            Email = email;
+            UserName = userName ?? throw new ArgumentNullException(nameof(userName));
+            Password = password ?? throw new ArgumentNullException(nameof(password));
+            Email = email ?? throw new ArgumentNullException(nameof(email));
+            Picture = picture;
         }
     }
 }

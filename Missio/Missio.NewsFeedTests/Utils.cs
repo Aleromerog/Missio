@@ -7,7 +7,7 @@ namespace Missio.NewsFeedTests
     {
         public static Post MakeDummyPost()
         {
-            return new Post(new User("Francisco Greco", "HashedElPass", null, "email@gmail.com"), "A message");
+            return new Post(new User("Francisco Greco", new byte[4], "email@gmail.com"), "A message");
         }
     }
 }

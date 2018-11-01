@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
 
 namespace Missio.Posts
 {
@@ -21,11 +22,11 @@ namespace Missio.Posts
         {
         }
 
-        public CreatePostDTO(string userName, string password, string message, byte[] picture)
+        public CreatePostDTO([NotNull] string userName, [NotNull] string password, [NotNull] string message, byte[] picture)
         {
-            UserName = userName;
-            Password = password;
-            Message = message;
+            UserName = userName ?? throw new ArgumentNullException(nameof(userName));
+            Password = password ?? throw new ArgumentNullException(nameof(password));
+            Message = message ?? throw new ArgumentNullException(nameof(message));
             Picture = picture;
         }
     }

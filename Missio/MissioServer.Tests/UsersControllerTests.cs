@@ -6,6 +6,7 @@ using NUnit.Framework;
 using MissioServer.Controllers;
 using MissioServer.Services;
 using MissioServer.Services.Services;
+using NSubstitute;
 using StringResources;
 using static System.Linq.Enumerable;
 
@@ -14,13 +15,15 @@ namespace MissioServer.Tests
     [TestFixture] 
     public class UsersControllerTests
     {
-        private static UsersController MakeUsersController(MissioContext missioContext = null)
+        private static UsersController MakeUsersController(MissioContext missioContext = null, IWebClientService webClientService = null)
         {
             if(missioContext == null)
                 missioContext = Utils.MakeMissioContext();
+            if(webClientService == null)
+                webClientService = Substitute.For<IWebClientService>();
             var passwordService = new MockPasswordService();
             var userService = new UsersService(missioContext, passwordService);
-            var registerUserService = new RegisterUserService(missioContext, passwordService);
+            var registerUserService = new RegisterUserService(missioContext, passwordService, webClientService);
             return new UsersController(userService, registerUserService);
         }
 
@@ -89,15 +92,34 @@ namespace MissioServer.Tests
 
         [Test]
         [TestCase("ValidName", "Password", "someEmail@gmail.com")]
-        public async Task RegisterUser_EverythingOk_RegistersUser(string name, string password, string email)
+        public async Task RegisterUser_EverythingOkButPictureIsNull_SetsDefaultPicture(string name, string password, string email)
         {
+            var webClientService = Substitute.For<IWebClientService>();
+            var defaultPicture = new byte[1];
+            webClientService.DownloadData(Arg.Any<string>()).Returns(defaultPicture);
             var missioContext = Utils.MakeMissioContext();
-            var usersController = MakeUsersController(missioContext);
+            var usersController = MakeUsersController(missioContext, webClientService);
             var registration = new CreateUserDTO(name, password, email);
 
             await usersController.RegisterUser(registration);
 
-            Assert.IsTrue(missioContext.Users.Any(x => x.UserName == name && x.HashedPassword == "Hashed" + password && x.Email == email));
+            Assert.IsTrue(missioContext.Users.Any(x => x.UserName == name && x.Email == email && x.Picture == defaultPicture));
+            Assert.IsTrue(missioContext.UsersCredentials.Any(x => x.User.UserName == name && x.HashedPassword == "Hashed" + password));
+        }
+
+        [Test]
+        [TestCase("ValidName", "Password", "someEmail@gmail.com")]
+        public async Task RegisterUser_EverythingOk_RegistersUser(string name, string password, string email)
+        {
+            var missioContext = Utils.MakeMissioContext();
+            var usersController = MakeUsersController(missioContext);
+            var picture = new byte[1];
+            var registration = new CreateUserDTO(name, password, email, picture);
+
+            await usersController.RegisterUser(registration);
+
+            Assert.IsTrue(missioContext.Users.Any(x => x.UserName == name && x.Email == email && x.Picture == picture));
+            Assert.IsTrue(missioContext.UsersCredentials.Any(x => x.User.UserName == name && x.HashedPassword == "Hashed" + password));
         }
     }
 }

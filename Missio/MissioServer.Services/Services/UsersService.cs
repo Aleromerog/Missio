@@ -21,7 +21,8 @@ namespace MissioServer.Services.Services
             var user = await _missioContext.Users.FirstOrDefaultAsync(x => x.UserName == userName);
             if (user == null)
                 throw new InvalidUserNameException();
-            if (_passwordService.VerifyHashedPassword(user.HashedPassword, password) == PasswordVerificationResult.Failed)
+            var credentials = await _missioContext.UsersCredentials.FirstAsync(x => x.User == user);
+            if (_passwordService.VerifyHashedPassword(credentials.HashedPassword, password) == PasswordVerificationResult.Failed)
                 throw new InvalidPasswordException();
             return user;
         }
