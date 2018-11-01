@@ -14,8 +14,7 @@ namespace Missio.Users
         [UsedImplicitly]
         public ICollection<User> Friends { get; private set; } = new List<User>();
 
-        [UsedImplicitly]
-        public UserFriends()
+        private UserFriends()
         {
         }
 

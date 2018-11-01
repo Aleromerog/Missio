@@ -4,8 +4,8 @@ using Missio.Users;
 
 namespace Missio.Posts
 {
-    // TODO: Make user posts class 
-    // TODO: Make all empty constructors private 
+    // TODO: Make user posts class
+    // TODO: Add time of creation
     public class Post : IPost
     {
         [UsedImplicitly]

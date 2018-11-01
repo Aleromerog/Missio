@@ -13,7 +13,8 @@ namespace Missio.Posts
         {
             _httpClient = httpClient;
         }
-
+        
+        //TODO: Display message if post fails
         /// <inheritdoc />
         public async Task PublishPost(CreatePostDTO post)
         {

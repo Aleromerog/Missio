@@ -13,8 +13,7 @@ namespace Missio.Users
         [UsedImplicitly]
         public string HashedPassword { get; private set; }
 
-        [UsedImplicitly]
-        public UserCredentials()
+        private UserCredentials()
         {
         }
 
