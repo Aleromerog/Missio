@@ -1,4 +1,7 @@
-﻿using JetBrains.Annotations;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using JetBrains.Annotations;
+using Missio.Posts;
 using Xamarin.Forms.Xaml;
 
 namespace Missio.NewsFeed
@@ -9,6 +12,8 @@ namespace Missio.NewsFeed
 	{
         public NewsFeedPage()
 	    {
+            BindingContext = new ListModel();
+
             InitializeComponent();
 	    }
 
@@ -18,5 +23,13 @@ namespace Missio.NewsFeed
             BindingContext = newsFeedViewModel;
 			InitializeComponent ();
 		}
+
+        public class ListModel{
+            static System.DateTime time = System.DateTime.Now;
+
+            public List<IPost> Posts { get; set; } = new List<IPost>{
+                new Post(new Users.User("Jorge", null, "Som@mail.com"), "El mensaje inspirador", time, null)
+            };
+        }
 	}
 }
