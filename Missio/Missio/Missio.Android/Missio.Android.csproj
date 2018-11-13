@@ -119,6 +119,10 @@
       <Project>{A49CDB37-CAB1-4246-8F79-0CC30356FC2C}</Project>
       <Name>Missio.CustomRenderers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Missio.NewsFeed\Missio.NewsFeed.csproj">
+      <Project>{9dfca398-6844-4ce5-a5fe-a9128f5a160d}</Project>
+      <Name>Missio.NewsFeed</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Missio.Registration\Missio.Registration.csproj">
       <Project>{fe4f486e-def1-48ea-afe6-573cb1437ecc}</Project>
       <Name>Missio.Registration</Name>
@@ -163,10 +167,18 @@
     <AndroidResource Include="Resources\drawable\square.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Raleway-ExtraLight.ttf" />
-    <AndroidAsset Include="Assets\Raleway-Thin.ttf" />
-    <AndroidAsset Include="Assets\Raleway-Bold.ttf" />
-    <AndroidAsset Include="Assets\Raleway-Regular.ttf" />
+    <AndroidAsset Include="Assets\Raleway-ExtraLight.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidAsset>
+    <AndroidAsset Include="Assets\Raleway-Thin.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidAsset>
+    <AndroidAsset Include="Assets\Raleway-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidAsset>
+    <AndroidAsset Include="Assets\Raleway-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidAsset>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\bell.png" />
