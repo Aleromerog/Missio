@@ -119,6 +119,10 @@
       <Project>{A49CDB37-CAB1-4246-8F79-0CC30356FC2C}</Project>
       <Name>Missio.CustomRenderers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Missio.LogIn\Missio.LogIn.csproj">
+      <Project>{4dd1ef16-36f3-443c-9116-6b980584be04}</Project>
+      <Name>Missio.LogIn</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Missio.NewsFeed\Missio.NewsFeed.csproj">
       <Project>{9dfca398-6844-4ce5-a5fe-a9128f5a160d}</Project>
       <Name>Missio.NewsFeed</Name>
