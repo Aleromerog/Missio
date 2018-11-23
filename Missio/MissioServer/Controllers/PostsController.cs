@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Missio.Posts;
+using Missio.Users;
 using MissioServer.Services.Services;
 
 namespace MissioServer.Controllers
@@ -23,7 +24,7 @@ namespace MissioServer.Controllers
         [HttpGet("getFriendsPosts/{userName}/{password}")]
         public async Task<ActionResult<List<Post>>> GetFriendsNewsFeedPosts(string userName, string password)
         {
-            var user = await _userService.GetUserIfValid(userName, password);
+            var user = await _userService.GetUserIfValid(new NameAndPassword(userName, password));
             return (await _postsService.GetPosts(user)).ToList();
         }
 

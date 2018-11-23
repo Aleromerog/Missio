@@ -21,15 +21,7 @@ namespace Missio.NewsFeedTests
             var fakeRepository = Substitute.For<IPostRepository>();
             var orderedPosts = new List<IPost> { Utils.MakeDummyPost() }.OrderByDescending(x => x.GetPostPriority());
             fakeRepository.GetMostRecentPostsInOrder("Francisco Greco", "ElPass").Returns(orderedPosts);
-            return new NewsFeedViewModel(fakeRepository, navigation, MakeLoggedInUser());
-        }
-
-        private static ILoggedInUser MakeLoggedInUser()
-        {
-            var loggedInUser = Substitute.For<ILoggedInUser>();
-            loggedInUser.UserName.Returns("Francisco Greco");
-            loggedInUser.Password.Returns("ElPass");
-            return loggedInUser;
+            return new NewsFeedViewModel(fakeRepository, navigation, new NameAndPassword("Francisco Greco", "ElPass"));
         }
 
         [Test]

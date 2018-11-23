@@ -38,7 +38,7 @@ namespace MissioServer.Services
             void SeedUsers()
             {
                 var grecoImage = _webClientService.DownloadData("https://scontent.felp1-1.fna.fbcdn.net/v/t1.0-9/18342049_1371435649562155_317149840395279012_n.jpg?_nc_cat=0&oh=74b6c0226537899a74f499c25b3ddb07&oe=5C00CF82");
-                var jorgeImage = _webClientService.DownloadData("https://scontent.felp1-1.fna.fbcdn.net/v/t1.0-9/26168930_10208309305130065_9014358028033259242_n.jpg?_nc_cat=0&oh=a6dc6203053aa3c830edffd107f346e4&oe=5BF1FC2B");
+                var jorgeImage = _webClientService.DownloadData("https://scontent.felp1-1.fna.fbcdn.net/v/t1.0-9/18342049_1371435649562155_317149840395279012_n.jpg?_nc_cat=0&oh=74b6c0226537899a74f499c25b3ddb07&oe=5C00CF82");
                 var greco = new {UserName = "Francisco Greco", Picture = grecoImage, Email = "myEmail@gmail.com", Id = -1, UserFriendsId = -2 };
                 var jorge = new {UserName = "Jorge Romero", Picture = jorgeImage, Email = "anotherEmail@gmail.com", Id = -2, UserFriendsId = -1 };
                 modelBuilder.Entity<User>().HasData(greco, jorge);

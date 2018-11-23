@@ -9,6 +9,6 @@ namespace Missio.Users
         /// <summary>
         /// Validates that the user given user information is correct
         /// </summary>
-        Task ValidateUser(string userName, string password);
+        Task ValidateUser(NameAndPassword nameAndPassword);
     }
 }

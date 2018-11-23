@@ -27,7 +27,7 @@ namespace Missio.Posts
         {
             var allPosts = new List<IPost>();
             var response = await _httpClient.GetAsync($@"api/posts/getFriendsPosts/{userName}/{password}");
-            if (response.StatusCode == HttpStatusCode.OK)
+            if (response.StatusCode == HttpStatusCode.OK) //TODO: Display error when status is not ok!
             {
                 var posts = await response.Content.ReadAsAsync<List<Post>>();
                 allPosts.AddRange(posts.OrderByDescending(x => x.PublishedDate));

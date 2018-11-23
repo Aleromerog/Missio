@@ -3,7 +3,6 @@
 namespace Missio
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	// ReSharper disable once MismatchedFileName
 	public partial class ToolsPage
 	{
 		public ToolsPage ()

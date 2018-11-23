@@ -5,7 +5,7 @@
              Title="Notification"
              x:Class="Missio.CalendarPage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="Black">
             <Label Text="Calendar pages"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />

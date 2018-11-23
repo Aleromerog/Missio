@@ -17,8 +17,7 @@ namespace Missio.Users
         [UsedImplicitly]
         public byte[] Picture { get; set; }
 
-        [UsedImplicitly]
-        public CreateUserDTO()
+        private CreateUserDTO()
         {
         }
 

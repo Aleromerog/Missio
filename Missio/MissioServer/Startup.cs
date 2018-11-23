@@ -28,7 +28,7 @@ namespace MissioServer
             services.AddScoped<IPostsService, PostsService>();
             services.AddScoped<ITimeService, TimeService>();
             services.AddScoped<IWebClientService, WebClientService>();
-            services.AddDbContext<MissioContext>(opt => opt.UseInMemoryDatabase("UsersList"));
+            services.AddDbContext<MissioContext>(opt => opt.UseInMemoryDatabase("MissioDatabase"));
             services.AddScoped<IRegisterUserService, RegisterUserService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

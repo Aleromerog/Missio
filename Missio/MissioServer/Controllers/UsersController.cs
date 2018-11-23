@@ -22,7 +22,7 @@ namespace MissioServer.Controllers
         [HttpGet("{userName}/{password}")]
         public async Task<ActionResult> ValidateUser(string userName, string password)
         {
-            await _userService.GetUserIfValid(userName, password);
+            await _userService.GetUserIfValid(new NameAndPassword(userName, password));
             return Ok();
         }
 

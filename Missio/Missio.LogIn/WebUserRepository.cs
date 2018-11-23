@@ -24,9 +24,9 @@ namespace Missio.LogIn
                 throw new UserRegistrationException(await response.Content.ReadAsAsync<List<string>>());
         }
 
-        public async Task ValidateUser(string userName, string password)
+        public async Task ValidateUser(NameAndPassword nameAndPassword)
         {
-            var response = await _httpClient.GetAsync($@"api/users/{userName}/{password}");
+            var response = await _httpClient.GetAsync($@"api/users/{nameAndPassword.UserName}/{nameAndPassword.Password}");
             if (response.StatusCode == HttpStatusCode.OK)
                 return;
             if (response.StatusCode == HttpStatusCode.Unauthorized)

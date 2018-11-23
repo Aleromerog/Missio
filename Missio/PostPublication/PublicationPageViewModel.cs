@@ -11,8 +11,8 @@ namespace Missio.PostPublication
 {
     public class PublicationPageViewModel
     {
+        private readonly NameAndPassword _nameAndPassword;
         private readonly IPostRepository _postRepository;
-        private readonly ILoggedInUser _loggedInUser;
         private readonly IUpdateViewPosts _updateViewPosts;
         private readonly INavigation _navigation;
         private string _postText;
@@ -27,11 +27,11 @@ namespace Missio.PostPublication
             set => _postText = value;
         }
 
-        public PublicationPageViewModel([NotNull] IPostRepository postRepository, [NotNull] ILoggedInUser loggedInUser,
+        public PublicationPageViewModel([NotNull] IPostRepository postRepository, [NotNull] NameAndPassword nameAndPassword,
             [NotNull] IUpdateViewPosts updateViewPosts, [NotNull] INavigation navigation)
         {
             _postRepository = postRepository ?? throw new ArgumentNullException(nameof(postRepository));
-            _loggedInUser = loggedInUser ?? throw new ArgumentNullException(nameof(loggedInUser));
+            _nameAndPassword = nameAndPassword ?? throw new ArgumentNullException(nameof(nameAndPassword));
             _updateViewPosts = updateViewPosts ?? throw new ArgumentNullException(nameof(updateViewPosts));
             _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
             PublishPostCommand = new Command(async() => await PublishPost());
@@ -39,7 +39,7 @@ namespace Missio.PostPublication
 
         public async Task PublishPost()
         {
-            await _postRepository.PublishPost(new CreatePostDTO(_loggedInUser.UserName, _loggedInUser.Password, PostText, null));
+            await _postRepository.PublishPost(new CreatePostDTO(_nameAndPassword, PostText, null));
             await _updateViewPosts.UpdatePosts();
             await _navigation.ReturnToPreviousPage();
         }

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Missio.Users;
 using Xamarin.Forms;
 
 namespace Missio.Navigation
@@ -16,6 +17,12 @@ namespace Missio.Navigation
         public Task GoToPage<T>() where T : Page
         {
             return GoToPage(_pageFactory.MakePage<T>());
+        }
+
+        /// <inheritdoc />
+        public Task GoToPage<T>(NameAndPassword parameter) where T : Page
+        {
+            return GoToPage(_pageFactory.MakePage<T>(parameter));
         }
 
         /// <inheritdoc />

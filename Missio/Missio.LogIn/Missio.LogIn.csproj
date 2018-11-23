@@ -2,26 +2,23 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Configurations>Debug;Release;Gorilla</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Images\LogInBackground.png" />
-    <None Remove="Images\LogInBackground2.png" />
     <None Remove="Images\logo.png" />
-    <None Remove="Images\square.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Images\LogInBackground.png" />
-    <EmbeddedResource Include="Images\LogInBackground2.png" />
     <EmbeddedResource Include="Images\logo.png" />
-    <EmbeddedResource Include="Images\square.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Plugins.Forms.ButtonCircle" Version="2.0.3" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.2" />
-    <PackageReference Include="Xamarin.Forms" Version="3.2.0.871581" />
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +34,9 @@
   <ItemGroup>
     <Reference Include="ButtonCircle.FormsPlugin.Abstractions">
       <HintPath>C:\Users\Jorge\.nuget\packages\plugins.forms.buttoncircle\2.0.2.1\lib\MonoAndroid10\ButtonCircle.FormsPlugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>C:\Users\GrecoFlores\.nuget\packages\xamarin.forms\3.4.0.1008975\lib\netstandard2.0\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
 

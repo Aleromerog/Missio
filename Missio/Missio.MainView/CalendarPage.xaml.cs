@@ -3,10 +3,9 @@
 namespace Missio
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	// ReSharper disable once MismatchedFileName
-	public partial class ProfilePage
+	public partial class CalendarPage
 	{
-		public ProfilePage ()
+		public CalendarPage ()
 		{
 			InitializeComponent ();
 		}

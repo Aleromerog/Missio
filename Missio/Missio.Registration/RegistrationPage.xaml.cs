@@ -1,6 +1,7 @@
-﻿namespace Missio.Registration
+﻿using JetBrains.Annotations;
+
+namespace Missio.Registration
 {
-    // ReSharper disable once MismatchedFileName
     public partial class RegistrationPage 
     {
         public RegistrationPage()
@@ -8,6 +9,7 @@
             InitializeComponent();
         }
 
+        [UsedImplicitly]
         public RegistrationPage(RegistrationViewModel registrationViewModel) : this()
         {
             BindingContext = registrationViewModel;

@@ -16,13 +16,13 @@ namespace MissioServer.Services.Services
             _missioContext = missioContext;
         }
         /// <inheritdoc />
-        public async Task<User> GetUserIfValid(string userName, string password)
+        public async Task<User> GetUserIfValid(NameAndPassword nameAndPassword)
         {
-            var user = await _missioContext.Users.FirstOrDefaultAsync(x => x.UserName == userName);
+            var user = await _missioContext.Users.FirstOrDefaultAsync(x => x.UserName == nameAndPassword.UserName);
             if (user == null)
                 throw new InvalidUserNameException();
             var credentials = await _missioContext.UsersCredentials.FirstAsync(x => x.User == user);
-            if (_passwordService.VerifyHashedPassword(credentials.HashedPassword, password) == PasswordVerificationResult.Failed)
+            if (_passwordService.VerifyHashedPassword(credentials.HashedPassword, nameAndPassword.Password) == PasswordVerificationResult.Failed)
                 throw new InvalidPasswordException();
             return user;
         }

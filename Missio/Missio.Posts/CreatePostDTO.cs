@@ -1,15 +1,13 @@
 ﻿using System;
 using JetBrains.Annotations;
+using Missio.Users;
 
 namespace Missio.Posts
 {
     public class CreatePostDTO
     {
         [UsedImplicitly]
-        public string UserName { get; set; }
-
-        [UsedImplicitly]
-        public string Password { get; set; }
+        public NameAndPassword NameAndPassword { get; set; }
 
         [UsedImplicitly]
         public string Message { get; set; }
@@ -18,14 +16,13 @@ namespace Missio.Posts
         public byte[] Picture { get; set; }
 
         [UsedImplicitly]
-        public CreatePostDTO()
+        private CreatePostDTO()
         {
         }
 
-        public CreatePostDTO([NotNull] string userName, [NotNull] string password, [NotNull] string message, byte[] picture)
+        public CreatePostDTO([NotNull] NameAndPassword nameAndPassword, [NotNull] string message, byte[] picture)
         {
-            UserName = userName ?? throw new ArgumentNullException(nameof(userName));
-            Password = password ?? throw new ArgumentNullException(nameof(password));
+            NameAndPassword = nameAndPassword;
             Message = message ?? throw new ArgumentNullException(nameof(message));
             Picture = picture;
         }

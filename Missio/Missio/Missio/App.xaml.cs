@@ -28,7 +28,7 @@ namespace Missio
 
 	    public static ApplicationNavigation ResolveApplicationNavigation()
 	    {
-	        var kernel = new StandardKernel(new ModelModule(), new ToolsPageModule(), new ViewModelModule(),
+	        var kernel = new StandardKernel(new ModelModule(), new ToolsPageModule(),
 	            new NewsFeedModule(), new PublicationPageModule(), new LogInModule(), new MainViewModule(),
 	            new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new ApplicationNavigationModule());
 	        return kernel.Get<ApplicationNavigation>();
@@ -88,15 +88,6 @@ namespace Missio
             Bind<INavigation, ApplicationNavigation>().To<ApplicationNavigation>().InSingletonScope();
         }
     }
-
-	public class ViewModelModule : NinjectModule
-	{
-		/// <inheritdoc />
-		public override void Load()
-		{
-			Bind<ILoggedInUser, LoggedInUser>().To<LoggedInUser>().InSingletonScope();
-        }
-	}
 
     public class PublicationPageModule : NinjectModule
     {

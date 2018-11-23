@@ -5,7 +5,7 @@ namespace MissioServer.Services.Services
 {
     public interface IUserService
     {
-        Task<User> GetUserIfValid(string userName, string password);
+        Task<User> GetUserIfValid(NameAndPassword nameAndPassword);
         Task<UserFriends> GetFriends(User user);
     }
 }
