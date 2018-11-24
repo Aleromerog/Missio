@@ -3,7 +3,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:newsFeed="clr-namespace:Missio.NewsFeed;assembly=Missio.NewsFeed"
-             xmlns:local="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
              xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources"
              Icon="home.png"
              Title="Home"
@@ -21,7 +20,6 @@
         <AbsoluteLayout BackgroundColor="{StaticResource LoginBackground}">
             <ListView
                 AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"
-                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
                 ItemsSource="{Binding Posts}" ItemTemplate="{StaticResource PersonDataTemplateSelector}"
                 HasUnevenRows="True" RefreshCommand="{Binding UpdatePostsCommand}"
                 IsRefreshing="{Binding IsRefreshing}"
@@ -31,8 +29,6 @@
 
             <ImageButton
                 AbsoluteLayout.LayoutBounds="0.95, 0.95, 60, 60" AbsoluteLayout.LayoutFlags="PositionProportional"
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.85}"
                 Source="AddPostSign.png"
                 CornerRadius="100"
                 Command="{Binding GoToPublicationPageCommand}"
