@@ -18,23 +18,25 @@
   </ContentPage.Resources>
 
     <ContentPage.Content>
-        <RelativeLayout BackgroundColor="{StaticResource LoginBackground}">
+        <AbsoluteLayout BackgroundColor="{StaticResource LoginBackground}">
             <ListView
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
                 ItemsSource="{Binding Posts}" ItemTemplate="{StaticResource PersonDataTemplateSelector}"
                 HasUnevenRows="True" RefreshCommand="{Binding UpdatePostsCommand}"
                 IsRefreshing="{Binding IsRefreshing}"
                 IsPullToRefreshEnabled="True"
                 SeparatorVisibility="None"
-                BackgroundColor="{StaticResource SecondaryDarkColor}"/>
+                BackgroundColor="{StaticResource SecondaryDarkColor}" />
 
-            <local:CircleButton
+            <ImageButton
+                AbsoluteLayout.LayoutBounds="0.95, 0.95, 60, 60" AbsoluteLayout.LayoutFlags="PositionProportional"
                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.75}"
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.85}"
-                HeightRequest="66"
-                WidthRequest="65"
+                Source="AddPostSign.png"
+                CornerRadius="100"
                 Command="{Binding GoToPublicationPageCommand}"
-                BackgroundColor="{StaticResource PrimaryColor}"/>
-        </RelativeLayout>
+                BackgroundColor="{StaticResource PrimaryColor}" />
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
