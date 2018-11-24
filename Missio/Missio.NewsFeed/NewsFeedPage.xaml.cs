@@ -1,6 +1,4 @@
-﻿using System;
-using JetBrains.Annotations;
-using Xamarin.Forms;
+﻿using JetBrains.Annotations;
 using Xamarin.Forms.Xaml;
 
 namespace Missio.NewsFeed
@@ -10,9 +8,6 @@ namespace Missio.NewsFeed
 	{
         public NewsFeedPage()
 	    {
-            if(!DesignMode.IsDesignModeEnabled)
-                throw new InvalidOperationException();
-            BindingContext = new DummyPostsViewModel();
             InitializeComponent();
 	    }
 

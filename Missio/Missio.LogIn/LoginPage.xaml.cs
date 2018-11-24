@@ -1,5 +1,4 @@
 ﻿using JetBrains.Annotations;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Missio.LogIn

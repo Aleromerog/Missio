@@ -19,7 +19,7 @@ namespace Missio.NewsFeed
                 case StickyPost _:
                     return StickyPostTemplate;
                 default:
-                    throw new ArgumentException(nameof(item));
+                    return TextAndImagePost; // TODO: Find a smarter way to check when a json object is passed
             }
         }
     }

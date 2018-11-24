@@ -125,6 +125,10 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Missio.ApplicationResources\Missio.ApplicationResources.csproj">
+      <Project>{E10E47D5-60A0-4083-98A6-B6F58B1DDF28}</Project>
+      <Name>Missio.ApplicationResources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Missio.CustomRenderers\Missio.CustomRenderers.csproj">
       <Project>{A49CDB37-CAB1-4246-8F79-0CC30356FC2C}</Project>
       <Name>Missio.CustomRenderers</Name>
