@@ -67,8 +67,8 @@
                             BackgroundColor="Transparent" />
                 </StackLayout>
                 <ImageButton BackgroundColor="{StaticResource PrimaryColor}"
-                             AbsoluteLayout.LayoutBounds="0.5, 1.1, 0.2, 0.2"
-                             AbsoluteLayout.LayoutFlags="All"
+                             AbsoluteLayout.LayoutBounds="0.5, 1.15, 50, 50"
+                             AbsoluteLayout.LayoutFlags="PositionProportional"
                              CornerRadius="100"
                              Command="{Binding LogInCommand}"
                              Source="check.png" />
