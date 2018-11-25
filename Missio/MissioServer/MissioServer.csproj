@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <SignAssembly>false</SignAssembly>
+    <Configurations>Debug;Release;Gorilla</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Gorrilla|iPhoneSimulator' ">

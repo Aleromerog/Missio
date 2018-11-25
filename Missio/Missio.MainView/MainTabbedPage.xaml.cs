@@ -1,11 +1,12 @@
 ﻿using JetBrains.Annotations;
-using Xamarin.Forms;
+using Missio.Navigation;
+using Missio.NewsFeed;
+using Missio.Users;
 using Xamarin.Forms.Xaml;
 
 namespace Missio.MainView
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    // ReSharper disable once MismatchedFileName
     public partial class MainTabbedPage
     {
         public MainTabbedPage()
@@ -14,10 +15,12 @@ namespace Missio.MainView
         }
 
         [UsedImplicitly]
-        public MainTabbedPage(Page[] childPages)
+        public MainTabbedPage(IPageFactory pageFactory, NameAndPassword nameAndPassword)
         {
-            foreach (var page in childPages)
-                Children.Add(page);
+            Children.Add(pageFactory.MakePage<NewsFeedPage>(nameAndPassword));
+            Children.Add(pageFactory.MakePage<CalendarPage>());
+            Children.Add(pageFactory.MakePage<ToolsPage>());
+            Children.Add(pageFactory.MakePage<ProfilePage>());
             InitializeComponent();
         }
 

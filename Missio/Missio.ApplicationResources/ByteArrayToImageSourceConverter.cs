@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace Missio.ApplicationResources
@@ -12,7 +13,18 @@ namespace Missio.ApplicationResources
         {
             if (value == null)
                 return null;
-            var array = (byte[]) value;
+            byte[] array = null;
+            switch (value)
+            {
+                case byte[] bytes:
+                    array = bytes;
+                    break;
+                case string bytesAsString:
+                    array = System.Convert.FromBase64String(bytesAsString);
+                    break;
+                default:
+                    throw new ArgumentException(nameof(value));
+            }
             var imageSource = ImageSource.FromStream(() => new MemoryStream(array));
             return imageSource;
         }

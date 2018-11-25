@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
              xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources"
              NavigationPage.HasNavigationBar="False"
+             BackgroundImage="LogInBackground2.png"
              x:Class="Missio.LogIn.LogInPage">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -13,145 +13,88 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <RelativeLayout>
-        <Image x:Name="Background"
-               Aspect="AspectFill"
-               RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Height}"
-               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}"
-               Source="LogInBackground.png"
-               />
-        <BoxView BackgroundColor="Black"
-                 Opacity=".65"
-                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Height}"
-                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}"/>
-        
- 
-        
-        <Image x:Name="Lenguas"
-               RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.2, Property=Height}"
-               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.05, Property=Height}"
-               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}" 
-               Source="logo.png"/>
+    <AbsoluteLayout BackgroundColor="Black">
+        <Image Aspect="AspectFill"
+               Opacity="0.65"
+               Source="LogInBackground2.png"
+               AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+               AbsoluteLayout.LayoutFlags="All" />
+        <Grid AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="10, 10, 10, 10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Image Source="Lenguas2.png" Grid.Column="0" Grid.Row="0" />
 
-        <StackLayout HorizontalOptions="Center"
-                     Spacing="3"
-                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}"
-                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Square, Factor=.8, Property=Y}">
-            <Label FontFamily="{StaticResource MissioBold}" 
-                   Text="Iniciar sesión"
-                   FontSize="Large"
-                   TextColor="{StaticResource SecondaryColor}"/>
-            <BoxView Color="{StaticResource SecondaryColor}"
-                     HeightRequest="1"
-                     />
-        </StackLayout>
-     
-        <BoxView x:Name="Square"
-                 Color="White" 
-                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.3, Property=Height}"
-                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.35, Property=Height}"
-                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.05, Property=Width}"
-                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.9, Property=Width}"/>
-        
-        <FlexLayout RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.1, Property=Width}"
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Square, Factor=1.05, Property=Y}"
-                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Square, Factor=.9, Property=Width}"
-                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Square, Factor=.7, Property=Height}"
-                    Direction="Column"
-                    JustifyContent="SpaceBetween"
-                    BackgroundColor="Transparent">
-            <Label Text="Missionero"
-                   FontFamily="{StaticResource MissioBold}"
-                   TextColor="{StaticResource PrimaryColor}"/>
-            <Entry HorizontalTextAlignment="Center"
-                   FontFamily="{StaticResource MissioRegular}"
-                   Text="{Binding UserName}"  
-                   Placeholder="E-mail o usuario"/>
-            <Label Text="Contrasena"
-                   FontFamily="{StaticResource MissioBold}"
-                   TextColor="{StaticResource PrimaryColor}"/>
-            <Entry HorizontalTextAlignment="Center"
-                   FontFamily="{StaticResource MissioRegular}"
-                   Placeholder="Introudzca contrasena"
-                   Text="{Binding Password}"
-                   IsPassword="true"/>
-        </FlexLayout>
-
-        <StackLayout RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.1, Property=Width}"
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Square, Factor=1.61, Property=Y}"
-                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Square, Factor=.9, Property=Width}"
-                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Square, Factor=.1, Property=Height}"
-                     BackgroundColor="Transparent" HorizontalOptions="End">
-            
-            <Button Text="Recuperar contrasena"
-                TextColor="{StaticResource PrimaryColor}"
-                FontFamily="{StaticResource MissioRegular}"
-                FontSize="12"
-                BackgroundColor="Transparent"/>
-        </StackLayout>
-
-        <local:CircleButton BackgroundColor="{StaticResource PrimaryColor}"
-                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Square, Factor=8, Property=X}"
-                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Square, Factor=1.78, Property=Y}"
-                            HeightRequest="80"
-                            WidthRequest="80"
-                            Command="{Binding LogInCommand}"
-                            Image="check.png"/>
-        <FlexLayout Direction="Row"
-                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.8, Property=Width}"
-                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.05,Property=Height}"
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Square, Factor=2.23, Property=Y}"
-                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.1, Property=Width}"
-                    JustifyContent="Center">
-            <StackLayout Orientation="Vertical"
-                         FlexLayout.Grow=".1"
-                         HeightRequest="50" >
-                <BoxView Color="Transparent"
-                         HeightRequest="1"/>
+            <StackLayout Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" Spacing="3">
+                <Label FontFamily="{StaticResource MissioBold}"
+                       Text="Iniciar sesión"
+                       FontSize="Large"
+                       TextColor="{StaticResource SecondaryColor}" />
                 <BoxView Color="{StaticResource SecondaryColor}"
-                         HeightRequest="2"/>
+                         HeightRequest="1" />
             </StackLayout>
 
-            <Label Text=" O inicia sesion con   "
-                   FontFamily="{StaticResource MissioBold}"
-                   TextColor="{StaticResource SecondaryColor}"
-                   HorizontalTextAlignment="Center"
-                   />
-             <StackLayout Orientation="Vertical"
-                         FlexLayout.Grow=".1"
-                         HeightRequest="50" >
-                <BoxView Color="Transparent"
-                         HeightRequest="1"/>
-                <BoxView Color="{StaticResource SecondaryColor}"
-                     HeightRequest="2"/>
-            </StackLayout>
-            
-        </FlexLayout>
-        <FlexLayout Direction="Row"
-                    JustifyContent="SpaceEvenly"
-                    x:Name="Media"
-                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}"
-                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.05,Property=Height}"
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Square, Factor=2.4, Property=Y}">
-            <Button Image="facebook.png"
-                    BackgroundColor="Transparent"/>
-            <Button Image="twitter.png"
-                    BackgroundColor="Transparent"/>
-            <Button Image="google.png"
-                    BackgroundColor="Transparent"/>
-        </FlexLayout>
+            <AbsoluteLayout Grid.Column="0" Grid.Row="2">
+                <BoxView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" CornerRadius="20" Color="{StaticResource SecondaryColor}"/>
+                <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="10, 10, 10, 10">
+                    <Label Text="Missionero"
+                           FontFamily="{StaticResource MissioBold}"
+                           TextColor="{StaticResource PrimaryColor}" />
+                    <Entry HorizontalTextAlignment="Center"
+                           FontFamily="{StaticResource MissioRegular}"
+                           Placeholder="E-mail o usuario"
+                           Text="{Binding UserName}"/>
+                    <Label Text="Contrasena"
+                           FontFamily="{StaticResource MissioBold}"
+                           TextColor="{StaticResource PrimaryColor}" />
+                    <Entry HorizontalTextAlignment="Center"
+                           FontFamily="{StaticResource MissioRegular}"
+                           Placeholder="Introduzca contrasena"
+                           Text="{Binding Password}"
+                           IsPassword="true" />
+                    <Button Text="Recuperar contrasena"
+                            TextColor="{StaticResource PrimaryColor}"
+                            FontFamily="{StaticResource MissioRegular}"
+                            FontSize="12"
+                            HorizontalOptions="End"
+                            BackgroundColor="Transparent" />
+                </StackLayout>
+                <ImageButton BackgroundColor="{StaticResource PrimaryColor}"
+                             AbsoluteLayout.LayoutBounds="0.5, 1.15, 50, 50"
+                             AbsoluteLayout.LayoutFlags="PositionProportional"
+                             CornerRadius="100"
+                             Command="{Binding LogInCommand}"
+                             Source="check.png" />
+            </AbsoluteLayout>
 
-        <StackLayout
-            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}"
-            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Media, Factor=1.08, Property=Y}">
+            <FlexLayout Direction="Row" AlignItems="Center" JustifyContent="Center" Grid.Column="0" Grid.Row="3">
+                <BoxView  Color="{StaticResource SecondaryColor}" HeightRequest="2" FlexLayout.Grow="1" />
+                <Label Text=" O inicia sesion con "
+                       FontFamily="{StaticResource MissioBold}"
+                       TextColor="{StaticResource SecondaryColor}"
+                       HorizontalTextAlignment="Center" />
+                <BoxView Color="{StaticResource SecondaryColor}" HeightRequest="2" FlexLayout.Grow="1" />
+            </FlexLayout>
+            <FlexLayout Direction="Row" JustifyContent="SpaceEvenly" Grid.Column="0" Grid.Row="4">
+                <ImageButton Source="facebook.png" BackgroundColor="Transparent"/>
+                <ImageButton Source="twitter.png" BackgroundColor="Transparent" />
+                <ImageButton Source="google.png" BackgroundColor="Transparent" />
+            </FlexLayout>
 
-            <Button Text="Registrate"
+            <Button Grid.Column="0" Grid.Row="5"
+                    Text="Registrate"
                     BackgroundColor="Transparent"
+                    Command="{Binding GoToRegistrationPageCommand}"
                     TextColor="{StaticResource SecondaryColor}"
-                    FontFamily="{StaticResource MissioRegular}"
-                    Command="{Binding GoToRegistrationPageCommand}" />
-        </StackLayout>
-
-        
-    </RelativeLayout>
-</ContentPage>
+                    FontFamily="{StaticResource MissioRegular}" />
+        </Grid>
+    </AbsoluteLayout>
+  </ContentPage>

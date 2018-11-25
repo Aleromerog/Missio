@@ -9,20 +9,16 @@
         <applicationResources:AppResources />
     </ResourceDictionary.MergedDictionaries>
     <applicationResources:ByteArrayToImageSourceConverter x:Key="ByteToImage" />
+  <!-- Resharper disable Xaml.BindingWithContextNotResolved-->
     <DataTemplate x:Key="TextAndImagePost">
         <ViewCell >
             <FlexLayout Direction="Column" JustifyContent="SpaceBetween" Margin="{StaticResource NewsFeedPostMargin}" BackgroundColor="{StaticResource SecondaryColor}">
                 <StackLayout Orientation="Horizontal" Spacing="5" Padding="10,10,10,0">
-                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                     <controls:CircleImage Source="{Binding Author.Picture, Converter={StaticResource ByteToImage}}" Aspect="AspectFill" WidthRequest="55" HeightRequest="55" />
-                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                     <Label Text="{Binding Author.UserName}" TextColor="Black" />
-                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                     <Label Text="{Binding PublishedDate, StringFormat='{0:MMMM d, yyyy HH:mm}'}" />
                 </StackLayout>
-                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                 <Label Text="{Binding Message}"  Margin="10" TextColor="Black"/>
-                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                 <Image Source="{Binding Image, Converter={StaticResource ByteToImage}}"/>
             </FlexLayout>
         </ViewCell>
@@ -31,10 +27,7 @@
     <DataTemplate x:Key="StickyPost">
         <ViewCell>
             <StackLayout Margin="{StaticResource NewsFeedPostMargin}" BackgroundColor="YellowGreen">
-                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
-                <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="Large"
-                       HorizontalTextAlignment="Center" />
-                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="Large" HorizontalTextAlignment="Center" />
                 <Label Text="{Binding Message}" />
             </StackLayout>
         </ViewCell>

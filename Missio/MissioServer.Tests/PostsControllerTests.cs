@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Missio.Posts;
+using Missio.Users;
 using MissioServer.Controllers;
 using MissioServer.Services;
 using MissioServer.Services.Services;
@@ -45,7 +46,7 @@ namespace MissioServer.Tests
         {
             var missioContext = Utils.MakeMissioContext();
             var grecoUser = missioContext.Users.First(x => x.UserName == "Francisco Greco");
-            var createPostDTO = new CreatePostDTO("Francisco Greco", "ElPass", "A new message", null);
+            var createPostDTO = new CreatePostDTO(new NameAndPassword("Francisco Greco", "ElPass"), "A new message", null);
             var postsController = MakePostsController(missioContext);
 
             await postsController.PublishPost(createPostDTO);

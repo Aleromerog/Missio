@@ -32,15 +32,14 @@ namespace Missio.NewsFeed
 
         private readonly IPostRepository _postRepository;
         private readonly INavigation _navigation;
-        private readonly ILoggedInUser _loggedInUser;
+        private readonly NameAndPassword _nameAndPassword;
         private bool _isRefreshing;
 
-        public NewsFeedViewModel([NotNull] IPostRepository postRepository, [NotNull] INavigation navigation,
-            [NotNull] ILoggedInUser loggedInUser)
+        public NewsFeedViewModel([NotNull] IPostRepository postRepository, [NotNull] INavigation navigation, [NotNull] NameAndPassword nameAndPassword)
         {
             _postRepository = postRepository ?? throw new ArgumentNullException(nameof(postRepository));
             _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
-            _loggedInUser = loggedInUser ?? throw new ArgumentNullException(nameof(loggedInUser));
+            _nameAndPassword = nameAndPassword ?? throw new ArgumentNullException(nameof(nameAndPassword));
             UpdatePostsCommand = new Command(async () => await UpdatePosts());
             UpdatePostsCommand.Execute(null);
             GoToPublicationPageCommand = new Command(async() => await GoToPublicationPage());
@@ -49,14 +48,14 @@ namespace Missio.NewsFeed
         public async Task UpdatePosts()
         {
             Posts.Clear();
-            foreach (var post in await _postRepository.GetMostRecentPostsInOrder(_loggedInUser.UserName, _loggedInUser.Password))
+            foreach (var post in await _postRepository.GetMostRecentPostsInOrder(_nameAndPassword.UserName, _nameAndPassword.Password))
                 Posts.Add(post);
             IsRefreshing = false;
         }
 
         private async Task GoToPublicationPage()
         {
-            await _navigation.GoToPage<PublicationPage>();
+            await _navigation.GoToPage<PublicationPage>(_nameAndPassword);
         }
     }
 }

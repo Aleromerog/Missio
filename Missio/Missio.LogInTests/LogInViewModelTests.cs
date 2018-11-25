@@ -16,16 +16,14 @@ namespace Missio.LogInTests
     {
         private LogInViewModel _logInViewModel;
         private INavigation _fakeNavigation;
-        private ILoggedInUser _fakeLoggedInUser;
         private IUserRepository _fakeUserRepository;
 
         [SetUp]
         public void SetUp()
         {
             _fakeNavigation = Substitute.For<INavigation>();
-            _fakeLoggedInUser = Substitute.For<ILoggedInUser>();
             _fakeUserRepository = Substitute.For<IUserRepository>();
-            _logInViewModel = new LogInViewModel(_fakeNavigation, _fakeUserRepository, _fakeLoggedInUser);
+            _logInViewModel = new LogInViewModel(_fakeNavigation, _fakeUserRepository);
         }
 
         [Test]
@@ -60,23 +58,21 @@ namespace Missio.LogInTests
         }
 
         [Test]
-        public async Task LogInCommand_ValidUser_SetsLoggedInUserAndGoesToNextPage()
+        public async Task LogInCommand_ValidUser_GoesToNextPage()
         {
             _logInViewModel.UserName = "Someone";
             _logInViewModel.Password = "Password";
 
             await _logInViewModel.LogIn();
 
-            _fakeLoggedInUser.Received(1).UserName = "Someone";
-            _fakeLoggedInUser.Received(1).Password = "Password";
-            await _fakeNavigation.Received(1).GoToPage<MainTabbedPage>();
+            await _fakeNavigation.Received(1).GoToPage<MainTabbedPage>(Arg.Is<NameAndPassword>(x => x.UserName == "Someone" && x.Password == "Password"));
         }
 
         [Test]
         public async Task AttemptToLogin_LogInFailed_DisplaysAlert()
         {
             _logInViewModel.UserName = "Someone";
-            _fakeUserRepository.When(x => x.ValidateUser("Someone", "")).Throw(new LogInException(AppResources.InvalidUserName));
+            _fakeUserRepository.When(x => x.ValidateUser(Arg.Is<NameAndPassword>(y => y.UserName == "Someone"))).Throw(new LogInException(AppResources.InvalidUserName));
 
             await _logInViewModel.LogIn();
 

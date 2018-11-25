@@ -1,27 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Configurations>Debug;Release;Gorilla</Configurations>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0;NETSTANDARD2_0;NETSTANDARD2_0</DefineConstants>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Gorrilla|iPhoneSimulator' ">
-    <IntermediateOutputPath>obj\iPhoneSimulator\Gorrilla</IntermediateOutputPath>
-    <DebugType></DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\iPhoneSimulator\Gorrilla</OutputPath>
-    <DefineConstants></DefineConstants>
-    <NoWarn></NoWarn>
-    <NoStdLib>false</NoStdLib>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Gorilla|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0;NETSTANDARD2_0;NETSTANDARD2_0</DefineConstants>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />
     <PackageReference Include="Portable.Ninject" Version="3.3.1" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.2" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
-    <PackageReference Include="Xamarin.Forms" Version="3.2.0.871581" />
     <PackageReference Include="Plugins.Forms.ButtonCircle" Version="2.0.3" />
   </ItemGroup>
   <ItemGroup>
@@ -30,6 +26,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Missio.LogIn\Missio.LogIn.csproj" />
     <ProjectReference Include="..\..\Missio.NewsFeed\Missio.NewsFeed.csproj" />
     <ProjectReference Include="..\..\PostPublication\Missio.PostPublication.csproj" />
     <ProjectReference Include="..\..\ViewModel\Mission.ViewModel.csproj" />
@@ -38,13 +35,7 @@
     <ProjectReference Include="..\..\ViewModel\Mission.ViewModel.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="CalendarPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="ProfilePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="ToolsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
