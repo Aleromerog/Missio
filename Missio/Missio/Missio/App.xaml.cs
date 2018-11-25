@@ -131,7 +131,7 @@ namespace Missio
         {
             //TODO: Remove this when we have a valid SSL certificate
             ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
-            var httpClient = new HttpClient {BaseAddress = new Uri("https://10.0.2.2:44304/")};
+            var httpClient = new HttpClient {BaseAddress = new Uri("https://localhost:44333/")};
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             Bind<HttpClient>().ToConstant(httpClient);

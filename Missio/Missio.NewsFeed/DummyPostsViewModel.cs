@@ -9,7 +9,7 @@ namespace Missio.NewsFeed
     {
         public List<IPost> Posts { get; set; } = new List<IPost>
         {
-            new Post(new User("Jorge", new byte[0], "Som@mail.com"), "El mensaje inspirador", new DateTime(2011, 2, 3, 4, 4, 5))
+            new Post(new User("Jorge", new byte[0], "Som@mail.com"), "El mensaje cambiooos inspirador", new DateTime(2011, 2, 3, 4, 4, 5))
         };
     }
 }

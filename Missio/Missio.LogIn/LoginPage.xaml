@@ -9,6 +9,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <applicationResources:AppResources />
+                <applicationResources:AppResources />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -16,16 +17,21 @@
         <Image x:Name="Background"
                Aspect="AspectFill"
                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Height}"
-               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}"/>
+               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}"
+               Source="LogInBackground.png"
+               />
         <BoxView BackgroundColor="Black"
                  Opacity=".65"
                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Height}"
                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}"/>
         
+ 
+        
         <Image x:Name="Lenguas"
                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.2, Property=Height}"
                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.05, Property=Height}"
-               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}" />
+               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1, Property=Width}" 
+               Source="logo.png"/>
 
         <StackLayout HorizontalOptions="Center"
                      Spacing="3"
@@ -39,13 +45,13 @@
                      HeightRequest="1"
                      />
         </StackLayout>
-        <Image x:Name="Square"
-               Aspect="Fill"
-               BackgroundColor="Transparent"
-               RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.3, Property=Height}"
-               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.35, Property=Height}"
-               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.05, Property=Width}"
-               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.9, Property=Width}"/>
+     
+        <BoxView x:Name="Square"
+                 Color="White" 
+                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.3, Property=Height}"
+                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.35, Property=Height}"
+                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.05, Property=Width}"
+                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.9, Property=Width}"/>
         
         <FlexLayout RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Factor=.1, Property=Width}"
                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Square, Factor=1.05, Property=Y}"
