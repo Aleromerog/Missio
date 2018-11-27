@@ -24,7 +24,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;GORILLA</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
@@ -77,6 +77,9 @@
     <PackageReference Include="Plugins.Forms.ButtonCircle">
       <Version>2.0.3</Version>
     </PackageReference>
+    <PackageReference Include="UXDivers.GorillaPlayer.SDK.AutoConfig">
+      <Version>1.5.0-Beta4</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndroidHelpers.cs" />
@@ -113,6 +116,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\camera.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\camera.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\camera.png" />
+    <AndroidResource Include="Resources\drawable\LogInBackground.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

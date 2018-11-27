@@ -3,6 +3,15 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Configurations>Debug;Release;Gorilla</Configurations>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Gorrilla|iPhoneSimulator' ">
+    <IntermediateOutputPath>obj\iPhoneSimulator\Gorrilla</IntermediateOutputPath>
+    <DebugType></DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Gorrilla</OutputPath>
+    <DefineConstants></DefineConstants>
+    <NoWarn></NoWarn>
+    <NoStdLib>false</NoStdLib>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />
     <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21" />

@@ -48,6 +48,7 @@ namespace MissioServer
             }
             app.UseMiddleware<HandleUserCredentialsExceptions>();
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

@@ -5,6 +5,15 @@
     <Configurations>Debug;Release;Gorilla</Configurations>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Gorrilla|iPhoneSimulator' ">
+    <IntermediateOutputPath>obj\iPhoneSimulator\Gorrilla</IntermediateOutputPath>
+    <DebugType></DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Gorrilla</OutputPath>
+    <DefineConstants></DefineConstants>
+    <NoWarn></NoWarn>
+    <NoStdLib>false</NoStdLib>
+  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Missio.Users\Missio.Users.csproj" />
   </ItemGroup>

@@ -1,4 +1,4 @@
-﻿using ButtonCircle.FormsPlugin.iOS;
+using ButtonCircle.FormsPlugin.iOS;
 using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
 using UIKit;
@@ -8,7 +8,7 @@ using Xamarin.Forms.Platform.iOS;
 namespace Missio.iOS
 {
     [Register("AppDelegate")]
-    public class AppDelegate : FormsApplicationDelegate
+    public partial/*GORILLA*/class AppDelegate : FormsApplicationDelegate
     {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
@@ -17,6 +17,10 @@ namespace Missio.iOS
 
             ButtonCircleRenderer.Init();
             ImageCircleRenderer.Init();
+
+            var forceXamlOnlyTypeLoading = new[]{
+                typeof(ButtonCircleRenderer)
+            };
 
             UITabBar.Appearance.SelectedImageTintColor = UIColor.FromRGB(88, 3, 1);
             UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(88, 3, 1);

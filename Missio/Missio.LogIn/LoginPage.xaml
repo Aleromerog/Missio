@@ -9,6 +9,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <applicationResources:AppResources />
+                <applicationResources:AppResources />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -49,7 +50,7 @@
                            TextColor="{StaticResource PrimaryColor}" />
                     <Entry HorizontalTextAlignment="Center"
                            FontFamily="{StaticResource MissioRegular}"
-                           Placeholder="E-mail o usuario" 
+                           Placeholder="E-mail o usuario"
                            Text="{Binding UserName}"/>
                     <Label Text="Contrasena"
                            FontFamily="{StaticResource MissioBold}"
