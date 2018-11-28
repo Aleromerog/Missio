@@ -13,7 +13,7 @@ namespace Missio.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             Forms.Init();
-            LoadApplication(new App());
+            LoadApplication(new App("https://localhost:44333/"));
 
             ButtonCircleRenderer.Init();
             ImageCircleRenderer.Init();

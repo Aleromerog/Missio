@@ -29,7 +29,7 @@ namespace Missio.Droid
             #if GORILLA
             LoadApplication(Player.CreateApplication(this, new UXDivers.Gorilla.Config("Gorilla on Greco").RegisterAssembliesFromTypes<CircleButton, ByteArrayToImageSourceConverter, NewsFeedPostDataTemplateSelector>()));
             #else
-            LoadApplication(new App());
+            LoadApplication(new App("https://10.0.2.2:44304/"));
             #endif
         }
     }
