@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Missio.Users;
 
 namespace Missio.Posts
 {
@@ -23,10 +24,10 @@ namespace Missio.Posts
         }
 
         /// <inheritdoc />
-        public async Task<IOrderedEnumerable<IPost>> GetMostRecentPostsInOrder(string userName, string password)
+        public async Task<IOrderedEnumerable<IPost>> GetMostRecentPostsInOrder(NameAndPassword nameAndPassword)
         {
             var allPosts = new List<IPost>();
-            var response = await _httpClient.GetAsync($@"api/posts/getFriendsPosts/{userName}/{password}");
+            var response = await _httpClient.GetAsync($@"api/posts/getFriendsPosts/{nameAndPassword.UserName}/{nameAndPassword.Password}");
             if (response.StatusCode == HttpStatusCode.OK) //TODO: Display error when status is not ok!
             {
                 var posts = await response.Content.ReadAsAsync<List<Post>>();

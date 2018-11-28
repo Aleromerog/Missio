@@ -1,5 +1,4 @@
-﻿using System;
-using Missio.Posts;
+﻿using Missio.Posts;
 using Xamarin.Forms;
 
 namespace Missio.NewsFeed

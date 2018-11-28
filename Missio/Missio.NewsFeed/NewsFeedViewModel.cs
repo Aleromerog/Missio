@@ -48,7 +48,7 @@ namespace Missio.NewsFeed
         public async Task UpdatePosts()
         {
             Posts.Clear();
-            foreach (var post in await _postRepository.GetMostRecentPostsInOrder(_nameAndPassword.UserName, _nameAndPassword.Password))
+            foreach (var post in await _postRepository.GetMostRecentPostsInOrder(_nameAndPassword))
                 Posts.Add(post);
             IsRefreshing = false;
         }

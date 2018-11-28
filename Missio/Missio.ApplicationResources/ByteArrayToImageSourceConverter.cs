@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace Missio.ApplicationResources
@@ -13,7 +12,7 @@ namespace Missio.ApplicationResources
         {
             if (value == null)
                 return null;
-            byte[] array = null;
+            byte[] array;
             switch (value)
             {
                 case byte[] bytes:

@@ -14,14 +14,16 @@ namespace Missio.NewsFeedTests
     [TestFixture]
     public class NewsFeedViewModelTests
     {
-        private static NewsFeedViewModel MakeNewsFeedViewModel(INavigation navigation = null)
+        private static NewsFeedViewModel MakeNewsFeedViewModel(INavigation navigation = null, NameAndPassword nameAndPassword = null)
         {
             if(navigation == null)
                 navigation = Substitute.For<INavigation>();
+            if(nameAndPassword == null)
+                nameAndPassword = new NameAndPassword("Francisco Greco", "ElPass");
             var fakeRepository = Substitute.For<IPostRepository>();
-            var orderedPosts = new List<IPost> { Utils.MakeDummyPost() }.OrderByDescending(x => x.GetPostPriority());
-            fakeRepository.GetMostRecentPostsInOrder("Francisco Greco", "ElPass").Returns(orderedPosts);
-            return new NewsFeedViewModel(fakeRepository, navigation, new NameAndPassword("Francisco Greco", "ElPass"));
+            var orderedPosts = Utils.MakeSortedDummyPost();
+            fakeRepository.GetMostRecentPostsInOrder(nameAndPassword).Returns(orderedPosts);
+            return new NewsFeedViewModel(fakeRepository, navigation, nameAndPassword);
         }
 
         [Test]
@@ -39,11 +41,12 @@ namespace Missio.NewsFeedTests
         public void GoToPublicationPageCommand_NormalCall_GoesToPublicationPage()
         {
             var fakeNavigation = Substitute.For<INavigation>();
-            var newsFeedViewModel = MakeNewsFeedViewModel(fakeNavigation);
+            var nameAndPassword = new NameAndPassword("", "");
+            var newsFeedViewModel = MakeNewsFeedViewModel(fakeNavigation, nameAndPassword);
 
             newsFeedViewModel.GoToPublicationPageCommand.Execute(null);
 
-            fakeNavigation.Received(1).GoToPage<PublicationPage>();
+            fakeNavigation.Received(1).GoToPage<PublicationPage>(nameAndPassword);
         }
 
         [Test]
