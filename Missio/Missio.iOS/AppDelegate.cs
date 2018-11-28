@@ -1,31 +1,38 @@
-using ButtonCircle.FormsPlugin.iOS;
 using Foundation;
-using ImageCircle.Forms.Plugin.iOS;
+using Missio.ApplicationResources;
+using Missio.NewsFeed;
 using UIKit;
+#if GORILLA
+using UXDivers.Gorilla.iOS;
+#endif
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 namespace Missio.iOS
 {
     [Register("AppDelegate")]
-    public partial/*GORILLA*/class AppDelegate : FormsApplicationDelegate
+    public partial class AppDelegate : FormsApplicationDelegate
     {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             Forms.Init();
+            #if GORILLA
+            LoadApplication(Player.CreateApplication(new UXDivers.Gorilla.Config("Gorilla on Jorges-MacBook-Air.local").RegisterAssembliesFromTypes<ByteArrayToImageSourceConverter, NewsFeedPostDataTemplateSelector>()));
+            #else
             LoadApplication(new App());
-
-            ButtonCircleRenderer.Init();
-            ImageCircleRenderer.Init();
-
-            var forceXamlOnlyTypeLoading = new[]{
-                typeof(ButtonCircleRenderer)
-            };
+            #endif
+    
 
             UITabBar.Appearance.SelectedImageTintColor = UIColor.FromRGB(88, 3, 1);
             UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(88, 3, 1);
             //UITabBar.Appearance.BarTintColor = UIColor.FromRGB(88, 3, 1);
+
+
+
             return base.FinishedLaunching(app, options);
+
+
+
         }
     }
 }

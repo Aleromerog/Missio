@@ -1,8 +1,6 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using ButtonCircle.FormsPlugin.Abstractions;
-using ButtonCircle.FormsPlugin.Droid;
 using ImageCircle.Forms.Plugin.Droid;
 using Missio.ApplicationResources;
 using Missio.NewsFeed;
@@ -24,10 +22,9 @@ namespace Missio.Droid
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(bundle);
             Forms.Init(this, bundle);
-            ButtonCircleRenderer.Init();
             ImageCircleRenderer.Init();
             #if GORILLA
-            LoadApplication(Player.CreateApplication(this, new UXDivers.Gorilla.Config("Gorilla on Greco").RegisterAssembliesFromTypes<CircleButton, ByteArrayToImageSourceConverter, NewsFeedPostDataTemplateSelector>()));
+            LoadApplication(Player.CreateApplication(this, new UXDivers.Gorilla.Config("Gorilla on Greco").RegisterAssembliesFromTypes<ByteArrayToImageSourceConverter, NewsFeedPostDataTemplateSelector>()));
             #else
             LoadApplication(new App());
             #endif
