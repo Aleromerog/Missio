@@ -18,9 +18,8 @@ namespace Missio.ApplicationResources
                 case byte[] bytes:
                     array = bytes;
                     break;
-                case string bytesAsString:
-                    array = System.Convert.FromBase64String(bytesAsString);
-                    break;
+                case string imageURL:
+                    return ImageSource.FromUri(new Uri(imageURL));
                 default:
                     throw new ArgumentException(nameof(value));
             }
