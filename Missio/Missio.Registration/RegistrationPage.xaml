@@ -1,10 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="Missio.Registration.RegistrationPage"
              BackgroundColor="{StaticResource SecondaryColor}"
              Title="Crear nueva cuenta"
-             xmlns:local="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
              xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -29,11 +28,12 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <local:CircleButton WidthRequest="120"
+        <ImageButton        WidthRequest="120"
                             HeightRequest="120"
+                            CornerRadius="100"
                             HorizontalOptions="Center"
                             BackgroundColor="{StaticResource SecondaryDarkColor}"
-                            Image="camera.png" 
+                            Source="camera.png" 
                             Grid.Row="0" Grid.Column="0"/>
         <Label Text="Foto de perfil"
                HorizontalOptions="Center"

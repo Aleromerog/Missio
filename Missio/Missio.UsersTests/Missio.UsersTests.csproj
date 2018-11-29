@@ -43,6 +43,12 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Gorilla|iPhoneSimulator' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Gorilla</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <AssemblyName>Missio.UsersTests</AssemblyName>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.CodeCoverage.Shim, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeCoverage.15.9.0\lib\net45\Microsoft.VisualStudio.CodeCoverage.Shim.dll</HintPath>

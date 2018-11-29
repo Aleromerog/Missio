@@ -6,12 +6,14 @@
     <Configurations>Debug;Release;Gorilla</Configurations>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Gorrilla|iPhoneSimulator' ">
-    <IntermediateOutputPath>obj\iPhoneSimulator\Gorrilla</IntermediateOutputPath>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Gorilla|iPhoneSimulator' ">
+    <IntermediateOutputPath>obj\iPhoneSimulator\Gorilla</IntermediateOutputPath>
     <DebugSymbols>false</DebugSymbols>
     <DebugType></DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\iPhoneSimulator\Gorrilla</OutputPath>
+    <OutputPath>bin\iPhoneSimulator\Gorilla</OutputPath>
     <DefineConstants></DefineConstants>
     <NoWarn></NoWarn>
     <NoStdLib>false</NoStdLib>
