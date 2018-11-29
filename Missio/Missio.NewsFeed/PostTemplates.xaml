@@ -12,15 +12,27 @@
   <!-- Resharper disable Xaml.BindingWithContextNotResolved-->
     <DataTemplate x:Key="TextAndImagePost">
         <ViewCell >
-            <FlexLayout Direction="Column" JustifyContent="SpaceBetween" Margin="{StaticResource NewsFeedPostMargin}" BackgroundColor="{StaticResource SecondaryColor}">
-                <StackLayout Orientation="Horizontal" Spacing="5" Padding="10,10,10,0">
-                    <controls:CircleImage Source="{Binding Author.Picture, Converter={StaticResource ByteToImage}}" Aspect="AspectFill" WidthRequest="55" HeightRequest="55" />
-                    <Label Text="{Binding Author.UserName}" TextColor="Black" />
-                    <Label Text="{Binding PublishedDate, StringFormat='{0:MMMM d, yyyy HH:mm}'}" />
+            <StackLayout BackgroundColor="{StaticResource SecondaryColor}" Padding="10" Spacing="0">
+                <StackLayout Orientation="Horizontal">
+                    <controls:CircleImage Source="{Binding Author.Picture, Converter={StaticResource ByteToImage}}" Aspect="AspectFill" HeightRequest="50" WidthRequest="50" />
+                    <StackLayout Spacing="0">
+                        <Label Text="{Binding Author.UserName}" TextColor="Black" />
+                        <Label Text="{Binding PublishedDate, StringFormat='{0:MMMM d, yyyy HH:mm}'}" />
+                    </StackLayout>
                 </StackLayout>
-                <Label Text="{Binding Message}"  Margin="10" TextColor="Black"/>
-                <Image Source="{Binding Image, Converter={StaticResource ByteToImage}}"/>
-            </FlexLayout>
+                <Label Text="{Binding Message}" TextColor="Black" />
+                <Image Source="{Binding Image, Converter={StaticResource ByteToImage}}" Margin="0, 10"/>
+                <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+                    <Label Text="{Binding LikeCount, StringFormat='{0} Likes'}" />
+                    <Label Text="{Binding CommentCount, StringFormat='{0} Comentarios'}" />
+                </FlexLayout>
+                <BoxView HeightRequest="1" Color="Gray" />
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Like" BackgroundColor="{StaticResource SecondaryColor}" HeightRequest="25" Padding="0" HorizontalOptions="FillAndExpand" />
+                    <Button Text="Comment" BackgroundColor="{StaticResource SecondaryColor}" HeightRequest="25" Padding="0" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+                <BoxView HeightRequest="1" Color="Gray" />
+            </StackLayout>
         </ViewCell>
     </DataTemplate>
 

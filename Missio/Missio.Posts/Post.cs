@@ -4,11 +4,16 @@ using Missio.Users;
 
 namespace Missio.Posts
 {
-    // TODO: Make user posts class
     public class Post : IPost
     {
         [UsedImplicitly]
         public int Id { get; private set; }
+
+        [UsedImplicitly]
+        public int LikeCount { get; private set; }
+        
+        [UsedImplicitly]
+        public int CommentCount { get; private set; }
 
         [UsedImplicitly]
         public string Message { get; private set; }
@@ -26,10 +31,12 @@ namespace Missio.Posts
         {
         }
 
-        public Post([NotNull] User author, [NotNull] string message, DateTime publishedDate, byte[] image = null)
+        public Post([NotNull] User author, [NotNull] string message, DateTime publishedDate, int likeCount, int commentCount, byte[] image = null)
         {
             Author = author ?? throw new ArgumentNullException(nameof(author));
             Message = message ?? throw new ArgumentNullException(nameof(message));
+            LikeCount = likeCount;
+            CommentCount = commentCount;
             PublishedDate = publishedDate;
             Image = image;
         }

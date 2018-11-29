@@ -34,7 +34,7 @@ namespace MissioServer.Services.Services
         public async Task PublishPost(CreatePostDTO createPostDTO)
         {
             var user = await _userService.GetUserIfValid(createPostDTO.NameAndPassword);
-            _missioContext.Posts.Add(new Post(user, createPostDTO.Message, _timeService.GetCurrentTime(), createPostDTO.Picture));
+            _missioContext.Posts.Add(new Post(user, createPostDTO.Message, _timeService.GetCurrentTime(), 0, 0, createPostDTO.Picture));
             _missioContext.SaveChanges();
         }
     }
