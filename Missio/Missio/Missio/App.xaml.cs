@@ -2,17 +2,13 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Missio.LogIn;
-using Missio.MainView;
+using Domain.Repositories;
 using Missio.Navigation;
-using Missio.NewsFeed;
-using Missio.PostPublication;
-using Missio.Posts;
-using Missio.Registration;
-using Missio.Users;
 using Ninject;
 using Xamarin.Forms;
 using Ninject.Modules;
+using ViewModels;
+using ViewModels.Views;
 using INavigation = Missio.Navigation.INavigation;
 
 namespace Missio

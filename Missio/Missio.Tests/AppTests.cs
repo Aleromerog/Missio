@@ -8,7 +8,7 @@ namespace Missio.Tests
         [Test]
         public void Constructor_NormalConstructor_DoesNotThrowExceptions()
         {
-            Assert.IsNotNull(App.ResolveApplicationNavigation(""));
+            Assert.IsNotNull(App.ResolveApplicationNavigation("https://www.google.com.mx"));
         }
     }
 }

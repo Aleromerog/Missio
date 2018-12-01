@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Missio.Posts;
-using Missio.Users;
+using Domain;
+using Domain.DataTransferObjects;
 using MissioServer.Controllers;
 using MissioServer.Services;
-using MissioServer.Services.Services;
 using NUnit.Framework;
 
 namespace MissioServer.Tests

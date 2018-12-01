@@ -1,4 +1,4 @@
-﻿using Missio.Users;
+﻿using Domain;
 
 namespace Missio.Navigation
 {

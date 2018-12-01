@@ -1,5 +1,5 @@
 ﻿using System;
-using MissioServer.Services.Services;
+using MissioServer.Services;
 
 namespace MissioServer.Tests
 {

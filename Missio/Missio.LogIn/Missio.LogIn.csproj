@@ -15,15 +15,6 @@
     <NoWarn></NoWarn>
     <NoStdLib>false</NoStdLib>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="Images\LogInBackground.png" />
-    <None Remove="Images\logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Images\LogInBackground.png" />
-    <EmbeddedResource Include="Images\logo.png" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Plugins.Forms.ButtonCircle" Version="2.0.3" />
@@ -38,7 +29,6 @@
     <ProjectReference Include="..\Missio.Registration\Missio.Registration.csproj" />
     <ProjectReference Include="..\StringResources\StringResources.csproj" />
     <ProjectReference Include="..\Missio.CustomRenderers\Missio.CustomRenderers.csproj" />
-    <ProjectReference Include="..\Missio.MainView\Missio.MainView.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,12 +38,6 @@
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>C:\Users\GrecoFlores\.nuget\packages\xamarin.forms\3.4.0.1008975\lib\netstandard2.0\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="LoginPage.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
   </ItemGroup>
 
 </Project>

@@ -5,7 +5,6 @@ using ImageCircle.Forms.Plugin.Droid;
 #if GORILLA
 using UXDivers.Gorilla.Droid;
 using Missio.ApplicationResources;
-using Missio.NewsFeed;
 #endif
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;

@@ -36,20 +36,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Missio.LogIn\Missio.LogIn.csproj" />
-    <ProjectReference Include="..\..\Missio.NewsFeed\Missio.NewsFeed.csproj" />
-    <ProjectReference Include="..\..\PostPublication\Missio.PostPublication.csproj" />
-    <ProjectReference Include="..\..\ViewModel\Mission.ViewModel.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ViewModel\Mission.ViewModel.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Update="ProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Missio.Navigation\Missio.Navigation.csproj" />
+    <ProjectReference Include="..\..\ViewModels\ViewModels.csproj" />
   </ItemGroup>
 </Project>

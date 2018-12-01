@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
+using Domain.Exceptions;
 using Microsoft.AspNetCore.Http;
-using MissioServer.Services.Services;
 using Newtonsoft.Json;
-using StringResources;
 
 namespace MissioServer
 {
@@ -21,20 +20,12 @@ namespace MissioServer
             {
                 await _next(httpContext);
             }
-            catch (InvalidPasswordException)
+            catch (LogInException e)
             {
                 httpContext.Response.ContentType = "application/json";
                 httpContext.Response.StatusCode = 401;
 
-                var error = JsonConvert.SerializeObject(AppResources.InvalidPassword);
-                await httpContext.Response.WriteAsync(error);
-            }
-            catch (InvalidUserNameException)
-            {
-                httpContext.Response.ContentType = "application/json";
-                httpContext.Response.StatusCode = 401;
-
-                var error = JsonConvert.SerializeObject(AppResources.InvalidUserName);
+                var error = JsonConvert.SerializeObject(e.ErrorMessage);
                 await httpContext.Response.WriteAsync(error);
             }
         }

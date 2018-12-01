@@ -219,16 +219,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistrationViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Missio.Navigation\Missio.Navigation.csproj">
       <Project>{1EF28F5B-A94A-483E-A621-C79BDD191BD2}</Project>
       <Name>Missio.Navigation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Missio.Registration\Missio.Registration.csproj">
-      <Project>{FE4F486E-DEF1-48EA-AFE6-573CB1437ECC}</Project>
-      <Name>Missio.Registration</Name>
     </ProjectReference>
     <ProjectReference Include="..\Missio.Tests\Missio.Tests.csproj">
       <Project>{8C25431E-66AF-4B55-8169-D76461975667}</Project>

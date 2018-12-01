@@ -29,10 +29,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Missio.LogIn\Missio.LogIn.csproj" />
-    <ProjectReference Include="..\Missio.Posts\Missio.Posts.csproj" />
-    <ProjectReference Include="..\Missio.Users\Missio.Users.csproj" />
-    <ProjectReference Include="..\MissioServer.Services\MissioServer.Services.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Missio.ApplicationResources\Missio.ApplicationResources.csproj" />
   </ItemGroup>
 
 </Project>

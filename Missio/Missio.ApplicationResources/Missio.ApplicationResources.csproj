@@ -18,7 +18,6 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="AppResources.xaml" />
-    <None Remove="LogInBackground2.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,28 +27,29 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StringResources\StringResources.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>C:\Users\GrecoFlores\.nuget\packages\xamarin.forms\3.1.0.583944\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.3.1.0.583944\lib\netstandard2.0\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="Missio.LogIn">
-      <HintPath>..\Missio.LogIn\bin\Debug\netstandard2.0\Missio.LogIn.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="AppResources.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="LogInBackground2.png" />
+    <EmbeddedResource Update="Strings.resx">
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

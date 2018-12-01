@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain;
+using Domain.DataTransferObjects;
 using Microsoft.AspNetCore.Mvc;
-using Missio.Posts;
-using Missio.Users;
-using MissioServer.Services.Services;
+using MissioServer.Services;
 
 namespace MissioServer.Controllers
 {

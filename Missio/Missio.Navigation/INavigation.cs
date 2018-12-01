@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Missio.Users;
+using Domain;
 using Xamarin.Forms;
 
 namespace Missio.Navigation
@@ -11,6 +11,5 @@ namespace Missio.Navigation
         Task GoToPage(Page page);
         Task ReturnToPreviousPage();
         Task DisplayAlert(string title, string message, string acceptMessage);
-        Task DisplayAlert(AlertTextMessage alertContents);
     }
 }
