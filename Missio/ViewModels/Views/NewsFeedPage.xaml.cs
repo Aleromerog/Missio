@@ -6,7 +6,7 @@ namespace ViewModels.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class NewsFeedPage
 	{
-        public NewsFeedPage()
+	    public NewsFeedPage()
 	    {
             InitializeComponent();
 	    }
@@ -14,7 +14,7 @@ namespace ViewModels.Views
         [UsedImplicitly]
 	    public NewsFeedPage (NewsFeedViewModel newsFeedViewModel)
 		{
-            BindingContext = newsFeedViewModel;
+		    BindingContext = newsFeedViewModel;
 			InitializeComponent ();
 		}
 	}

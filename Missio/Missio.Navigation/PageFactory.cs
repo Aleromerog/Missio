@@ -1,7 +1,5 @@
-﻿using Domain;
-using Ninject;
+﻿using Ninject;
 using Ninject.Syntax;
-using Ninject.Parameters;
 
 namespace Missio.Navigation
 {
@@ -18,13 +16,6 @@ namespace Missio.Navigation
         public T MakePage<T>()
         {
             return _resolutionRoot.Get<T>();    
-        }
-
-        /// <inheritdoc />
-        public T MakePage<T>(NameAndPassword nameAndPassword)
-        {
-            var constructorArgument = new ConstructorArgument(nameof(nameAndPassword), nameAndPassword, true);
-            return _resolutionRoot.Get<T>(constructorArgument);
         }
     }
 }

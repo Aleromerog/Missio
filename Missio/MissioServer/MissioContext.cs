@@ -33,6 +33,7 @@ namespace MissioServer
             SeedPosts();
             SeedFriends();
             SeedStickyPosts();
+            SeedComments();
 
             void SeedUsers()
             {
@@ -63,6 +64,11 @@ namespace MissioServer
                     new {AuthorId = -1, PublishedDate = new DateTime(2018, 1, 1), Id = -1, Message = "First message written by Greco", Image = _webClientService.DownloadData("https://images2.alphacoders.com/602/thumb-1920-602223.jpg") },
                     new {AuthorId = -1, PublishedDate = new DateTime(2018, 1, 2), Id = -2, Message = "Second message written by Greco", Image = _webClientService.DownloadData("https://images-eds-ssl.xboxlive.com/image?url=8Oaj9Ryq1G1_p3lLnXlsaZgGzAie6Mnu24_PawYuDYIoH77pJ.X5Z.MqQPibUVTc88m2VEnuTLB8d0DOf71kf9zLge.JQeY40W.K7bxV5oSXFxdH1MZYfvu4.uaO8xIU1V9nbqmD60ax7aG8dgfPHi6nMT.dV6kUzMwNKv4SE0tH_gKhP.hCZYTNLqn36oQndGI_jLJwNDu2j1ZkHhtoFxf2VZU2eXHud5ZP7VXxn4M-&h=1080&w=1920&format=jpg") },
                     new {AuthorId = -2, PublishedDate = new DateTime(2018, 2, 3), Id = -3, Message = "First message written by Jorge" });
+            }
+
+            void SeedComments()
+            {
+                modelBuilder.Entity<Comment>().HasData(new { PostId=-1, Id=-1, Text="Un comment", AuthorId=-1 });
             }
 
             void SeedStickyPosts()

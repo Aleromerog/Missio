@@ -6,6 +6,7 @@ using Domain.Exceptions;
 using Domain.Repositories;
 using JetBrains.Annotations;
 using Missio.ApplicationResources;
+using ViewModels.Factories;
 using ViewModels.Views;
 using Xamarin.Forms;
 using INavigation = Missio.Navigation.INavigation;
@@ -38,12 +39,14 @@ namespace ViewModels
         public ICommand GoToRegistrationPageCommand { get; }
 
         private readonly IUserRepository _userRepository;
+        private readonly IMainTabbedPageFactory _mainTabbedPageFactory;
         private readonly INavigation _navigation;
 
-        public LogInViewModel([NotNull] INavigation navigation, [NotNull] IUserRepository userRepository)
+        public LogInViewModel([NotNull] INavigation navigation, [NotNull] IUserRepository userRepository, [NotNull] IMainTabbedPageFactory mainTabbedPageFactory)
         {
             _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+            _mainTabbedPageFactory = mainTabbedPageFactory ?? throw new ArgumentNullException(nameof(mainTabbedPageFactory));
             GoToRegistrationPageCommand = new Command(() => navigation.GoToPage<RegistrationPage>());
             LogInCommand = new Command(async() => await LogIn());
         }
@@ -57,7 +60,7 @@ namespace ViewModels
             {
                 var nameAndPassword = new NameAndPassword(UserName, Password);
                 await _userRepository.ValidateUser(nameAndPassword);
-                await _navigation.GoToPage<MainTabbedPage>(nameAndPassword);
+                await _mainTabbedPageFactory.CreateAndNavigateToPage(nameAndPassword);
             }
             catch (LogInException e)
             {

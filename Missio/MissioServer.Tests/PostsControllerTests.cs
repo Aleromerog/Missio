@@ -28,6 +28,7 @@ namespace MissioServer.Tests
             var posts = (await postsController.GetFriendsNewsFeedPosts("Francisco Greco", "ElPass")).Value;
 
             Assert.AreEqual(3, posts.Count);
+            Assert.IsTrue(posts.First(x => x.Id == -1).Comments.Count > 0);
         }
 
         [Test]

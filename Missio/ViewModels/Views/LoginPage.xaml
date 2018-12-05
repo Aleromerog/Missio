@@ -20,12 +20,12 @@
                AbsoluteLayout.LayoutFlags="All" />
         <Grid AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="30*" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="40*" />
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="5*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -40,8 +40,6 @@
                 <BoxView Color="{StaticResource SecondaryColor}"
                          HeightRequest="1" />
             </StackLayout>
-            
-            
             
             <AbsoluteLayout Grid.Column="0" Grid.Row="2">
                 <BoxView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" CornerRadius="20" Color="{StaticResource SecondaryColor}"/>
@@ -92,6 +90,7 @@
 
             <Button Grid.Column="0" Grid.Row="5"
                     Text="Registrate"
+                    Padding="0"
                     BackgroundColor="Transparent"
                     Command="{Binding GoToRegistrationPageCommand}"
                     TextColor="{StaticResource SecondaryColor}"

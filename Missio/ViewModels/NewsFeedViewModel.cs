@@ -5,13 +5,12 @@ using System.Windows.Input;
 using Domain;
 using Domain.Repositories;
 using JetBrains.Annotations;
-using ViewModels.Views;
+using ViewModels.Factories;
 using Xamarin.Forms;
-using INavigation = Missio.Navigation.INavigation;
 
 namespace ViewModels
 {
-    public class NewsFeedViewModel : ViewModel, IUpdateViewPosts
+    public class NewsFeedViewModel : ViewModel
     {
         private bool _isRefreshing;
 
@@ -29,17 +28,21 @@ namespace ViewModels
         public ICommand GoToPublicationPageCommand { get; }
 
         [UsedImplicitly]
+        public ICommand GoToCommentsCommand { get; }
+
+        [UsedImplicitly]
         public ObservableCollection<IPost> Posts { get; } = new ObservableCollection<IPost>();
 
         private readonly IPostRepository _postRepository;
-        private readonly INavigation _navigation;
+        private readonly IPublicationPageFactory _publicationPageFactory;
         private readonly NameAndPassword _nameAndPassword;
 
-        public NewsFeedViewModel([NotNull] IPostRepository postRepository, [NotNull] INavigation navigation, [NotNull] NameAndPassword nameAndPassword)
+        public NewsFeedViewModel([NotNull] IPostRepository postRepository, [NotNull] IPublicationPageFactory publicationPageFactory, ICommentsPageFactory commentsPageFactory, [NotNull] NameAndPassword nameAndPassword)
         {
             _postRepository = postRepository ?? throw new ArgumentNullException(nameof(postRepository));
-            _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
             _nameAndPassword = nameAndPassword ?? throw new ArgumentNullException(nameof(nameAndPassword));
+            _publicationPageFactory = publicationPageFactory ?? throw new ArgumentNullException(nameof(publicationPageFactory));
+            GoToCommentsCommand = new Command<Post>(post => commentsPageFactory.CreateAndNavigateToPage(post));
             UpdatePostsCommand = new Command(async () => await UpdatePosts());
             UpdatePostsCommand.Execute(null);
             GoToPublicationPageCommand = new Command(async() => await GoToPublicationPage());
@@ -55,7 +58,7 @@ namespace ViewModels
 
         private async Task GoToPublicationPage()
         {
-            await _navigation.GoToPage<PublicationPage>(_nameAndPassword);
+            await _publicationPageFactory.CreateAndNavigateToPage(_nameAndPassword, async() => await UpdatePosts());
         }
     }
 }

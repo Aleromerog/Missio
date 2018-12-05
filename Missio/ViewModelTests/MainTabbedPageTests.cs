@@ -7,7 +7,7 @@ namespace ViewModelTests
     public class MainTabbedPageTests : MainTabbedPage
     {
         [Test]
-        public void OnBackButtonPressed_NormalCall_ReturnsFalse()
+        public void OnBackButtonPressed_Should_ReturnsFalse()
         {
             Assert.IsTrue(OnBackButtonPressed());
         }
