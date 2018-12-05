@@ -19,6 +19,7 @@
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.2" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+    <PackageReference Include="Microsoft.NET.Sdk" Version="1.0.0-alpha-20161104-2" />
   </ItemGroup>
 
 </Project>
