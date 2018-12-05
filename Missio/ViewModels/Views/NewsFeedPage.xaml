@@ -3,15 +3,62 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources"
-             xmlns:views="clr-namespace:ViewModels.Views;assembly=ViewModels"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:viewModels="clr-namespace:ViewModels;assembly=ViewModels"
              Icon="home.png"
              Title="Home"
+             x:Name="NewsFeedContentPage"
              x:Class="ViewModels.Views.NewsFeedPage">
-  <ContentPage.Resources>
+  <!-- Resharper disable Xaml.BindingWithContextNotResolved -->
+    <ContentPage.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <applicationResources:AppResources />
-        <views:PostTemplates/>
+          <ResourceDictionary>
+              <DataTemplate x:Key="TextAndImagePost">
+                  <ViewCell>
+                      <StackLayout BackgroundColor="{StaticResource SecondaryColor}" Padding="10" Spacing="0">
+                          <Grid>
+                              <Grid.ColumnDefinitions>
+                                  <ColumnDefinition Width="Auto" />
+                                  <ColumnDefinition Width="Auto" />
+                              </Grid.ColumnDefinitions>
+                              <Grid.RowDefinitions>
+                                  <RowDefinition Height="Auto" />
+                                  <RowDefinition Height="Auto" />
+                              </Grid.RowDefinitions>
+                              <abstractions:CircleImage Source="{Binding Author.Picture, Converter={StaticResource ByteToImage}}" Aspect="AspectFill" HeightRequest="50" WidthRequest="50" Grid.Column="0" Grid.RowSpan="2" />
+                              <Label Text="{Binding Author.UserName}" TextColor="Black" Grid.Column="1" Grid.Row="0" />
+                              <Label Text="{Binding PublishedDate, StringFormat='{0:MMMM d, yyyy HH:mm}'}" Grid.Column="1" Grid.Row="1" />
+                          </Grid>
+                          <Label Text="{Binding Message}" TextColor="Black" />
+                          <Image Source="{Binding Image, Converter={StaticResource ByteToImage}}" Margin="0, 10" />
+                          <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+                              <Label Text="{Binding Likes.Count, StringFormat='{0} Likes'}" />
+                              <Label Text="{Binding Comments.Count, StringFormat='{0} Comentarios'}" />
+                          </FlexLayout>
+                          <BoxView HeightRequest="1" Color="Gray" />
+                          <StackLayout Orientation="Horizontal">
+                              <Button Text="Like" BackgroundColor="{StaticResource SecondaryColor}" HeightRequest="25" Padding="0" HorizontalOptions="FillAndExpand" />
+                              <Button Command="{Binding BindingContext.GoToCommentsCommand, Source={x:Reference NewsFeedContentPage}}" CommandParameter="{Binding .}" Text="Comment" BackgroundColor="{StaticResource SecondaryColor}" HeightRequest="25" Padding="0" HorizontalOptions="FillAndExpand" />
+                          </StackLayout>
+                          <BoxView HeightRequest="1" Color="Gray" />
+                      </StackLayout>
+                  </ViewCell>
+              </DataTemplate>
+
+              <DataTemplate x:Key="StickyPost">
+                  <ViewCell>
+                      <StackLayout Margin="{StaticResource NewsFeedPostMargin}" BackgroundColor="YellowGreen">
+                          <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="Large" HorizontalTextAlignment="Center" />
+                          <Label Text="{Binding Message}" />
+                      </StackLayout>
+                  </ViewCell>
+              </DataTemplate>
+              <viewModels:NewsFeedPostDataTemplateSelector x:Key="PersonDataTemplateSelector"
+                                                           StickyPostTemplate="{StaticResource StickyPost}"
+                                                           TextAndImagePost="{StaticResource TextAndImagePost}" />
+          </ResourceDictionary>
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </ContentPage.Resources>

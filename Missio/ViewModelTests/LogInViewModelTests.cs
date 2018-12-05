@@ -6,6 +6,7 @@ using Missio.ApplicationResources;
 using NSubstitute;
 using NUnit.Framework;
 using ViewModels;
+using ViewModels.Factories;
 using ViewModels.Views;
 using INavigation = Missio.Navigation.INavigation;
 
@@ -16,6 +17,7 @@ namespace ViewModelTests
     {
         private LogInViewModel _logInViewModel;
         private INavigation _fakeNavigation;
+        private IMainTabbedPageFactory _mainTabbedPageFactory;
         private IUserRepository _fakeUserRepository;
 
         [SetUp]
@@ -23,7 +25,8 @@ namespace ViewModelTests
         {
             _fakeNavigation = Substitute.For<INavigation>();
             _fakeUserRepository = Substitute.For<IUserRepository>();
-            _logInViewModel = new LogInViewModel(_fakeNavigation, _fakeUserRepository);
+            _mainTabbedPageFactory = Substitute.For<IMainTabbedPageFactory>();
+            _logInViewModel = new LogInViewModel(_fakeNavigation, _fakeUserRepository, _mainTabbedPageFactory);
         }
 
         [Test]
@@ -65,7 +68,7 @@ namespace ViewModelTests
 
             await _logInViewModel.LogIn();
 
-            await _fakeNavigation.Received(1).GoToPage<MainTabbedPage>(Arg.Is<NameAndPassword>(x => x.UserName == "Someone" && x.Password == "Password"));
+            await _mainTabbedPageFactory.Received(1).CreateAndNavigateToPage(Arg.Is<NameAndPassword>(x => x.UserName == "Someone" && x.Password == "Password"));
         }
 
         [Test]

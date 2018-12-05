@@ -13,8 +13,8 @@ namespace ViewModels
     public class PublicationPageViewModel
     {
         private readonly NameAndPassword _nameAndPassword;
+        private readonly Action _postPublishedCallBack;
         private readonly IPostRepository _postRepository;
-        private readonly IUpdateViewPosts _updateViewPosts;
         private readonly INavigation _navigation;
         private string _postText;
         
@@ -29,11 +29,11 @@ namespace ViewModels
         }
 
         public PublicationPageViewModel([NotNull] IPostRepository postRepository, [NotNull] NameAndPassword nameAndPassword,
-            [NotNull] IUpdateViewPosts updateViewPosts, [NotNull] INavigation navigation)
+            [NotNull] Action postPublishedCallBack, [NotNull] INavigation navigation)
         {
             _postRepository = postRepository ?? throw new ArgumentNullException(nameof(postRepository));
             _nameAndPassword = nameAndPassword ?? throw new ArgumentNullException(nameof(nameAndPassword));
-            _updateViewPosts = updateViewPosts ?? throw new ArgumentNullException(nameof(updateViewPosts));
+            _postPublishedCallBack = postPublishedCallBack ?? throw new ArgumentNullException(nameof(postPublishedCallBack));
             _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
             PublishPostCommand = new Command(async() => await PublishPost());
         }
@@ -41,7 +41,7 @@ namespace ViewModels
         public async Task PublishPost()
         {
             await _postRepository.PublishPost(new CreatePostDTO(_nameAndPassword, PostText, null));
-            await _updateViewPosts.UpdatePosts();
+            _postPublishedCallBack();
             await _navigation.ReturnToPreviousPage();
         }
     }

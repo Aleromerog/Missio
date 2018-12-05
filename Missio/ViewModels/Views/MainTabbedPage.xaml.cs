@@ -1,12 +1,13 @@
 ﻿using Domain;
 using JetBrains.Annotations;
 using Missio.Navigation;
+using ViewModels.Factories;
 using Xamarin.Forms.Xaml;
 
 namespace ViewModels.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainTabbedPage
+    public partial class MainTabbedPage 
     {
         public MainTabbedPage()
         {
@@ -14,9 +15,9 @@ namespace ViewModels.Views
         }
 
         [UsedImplicitly]
-        public MainTabbedPage(IPageFactory pageFactory, NameAndPassword nameAndPassword)
+        public MainTabbedPage(IPageFactory pageFactory, INewsFeedPageFactory newsFeedPageFactory, NameAndPassword nameAndPassword)
         {
-            Children.Add(pageFactory.MakePage<NewsFeedPage>(nameAndPassword));
+            Children.Add(newsFeedPageFactory.CreatePage(nameAndPassword));
             Children.Add(pageFactory.MakePage<CalendarPage>());
             Children.Add(pageFactory.MakePage<ToolsPage>());
             Children.Add(pageFactory.MakePage<ProfilePage>());

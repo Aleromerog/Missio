@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources"
+             x:Class="ViewModels.Views.CommentsPage">
+    <!-- Resharper disable Xaml.BindingWithContextNotResolved-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <applicationResources:AppResources />
+            </ResourceDictionary.MergedDictionaries>
+          <DataTemplate x:Key="CommentTemplate">
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <abstractions:CircleImage Source="{Binding Author.Picture, Converter={StaticResource ByteToImage}}" Grid.Column="0" Grid.RowSpan="2"  />
+                        <Label Text="{Binding Author.UserName}" TextColor="{StaticResource PrimaryColor}" Grid.Column="1" Grid.Row="0"/>
+                        <Label Text="{Binding Text}" Grid.Column="1" Grid.Row="1"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding Post.Comments}" ItemTemplate="{StaticResource CommentTemplate}" />
+    </ContentPage.Content>
+</ContentPage>

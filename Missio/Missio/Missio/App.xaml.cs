@@ -5,9 +5,9 @@ using System.Net.Http.Headers;
 using Domain.Repositories;
 using Missio.Navigation;
 using Ninject;
-using Xamarin.Forms;
 using Ninject.Modules;
 using ViewModels;
+using ViewModels.Factories;
 using ViewModels.Views;
 using INavigation = Missio.Navigation.INavigation;
 
@@ -24,56 +24,15 @@ namespace Missio
 
 	    public static ApplicationNavigation ResolveApplicationNavigation(string webServerBaseAddress)
 	    {
-	        var kernel = new StandardKernel(new ModelModule(webServerBaseAddress), new ToolsPageModule(),
-	            new NewsFeedModule(), new PublicationPageModule(), new LogInModule(), new MainViewModule(),
-	            new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new ApplicationNavigationModule());
+	        var kernel = GetResolutionRoot(webServerBaseAddress);
 	        return kernel.Get<ApplicationNavigation>();
 	    }
+
+	    public static StandardKernel GetResolutionRoot(string webServerBaseAddress)
+	    {
+	        return new StandardKernel(new ModelModule(webServerBaseAddress), new ViewModelModule(), new ApplicationNavigationModule());
+	    }
 	}
-
-    public class ToolsPageModule : NinjectModule
-    {
-        public override void Load()
-        {
-        }
-    }
-
-    public class ProfilePageModule : NinjectModule
-    {
-        /// <inheritdoc />
-        public override void Load()
-        {
-        }
-    }
-
-    public class CalendarPageModule : NinjectModule
-    {
-        /// <inheritdoc />
-        public override void Load()
-        {
-        }
-    }
-
-    public class RegistrationPageModule : NinjectModule
-    {
-        /// <inheritdoc />
-        public override void Load()
-        {
-            Bind<RegistrationViewModel>().ToSelf().InSingletonScope();
-        }
-    }
-
-    public class MainViewModule : NinjectModule
-    {
-        /// <inheritdoc />
-        public override void Load()
-        {
-            Bind<Page>().To<NewsFeedPage>().WhenInjectedExactlyInto<MainTabbedPage>();
-            Bind<Page>().To<CalendarPage>().WhenInjectedExactlyInto<MainTabbedPage>();
-            Bind<Page>().To<ToolsPage>().WhenInjectedExactlyInto<MainTabbedPage>();
-            Bind<Page>().To<ProfilePage>().WhenInjectedExactlyInto<MainTabbedPage>();
-        }
-    } 
 
     public class ApplicationNavigationModule : NinjectModule
     {
@@ -85,31 +44,22 @@ namespace Missio
         }
     }
 
-    public class PublicationPageModule : NinjectModule
-    {
-        public override void Load()
-        {
-            Bind<PublicationPageViewModel>().ToSelf().InSingletonScope();
-        }
-    }
-
-    public class NewsFeedModule : NinjectModule
+    public class ViewModelModule : NinjectModule
     {
         /// <inheritdoc />
         public override void Load()
         {
-            Bind<IUpdateViewPosts, NewsFeedViewModel>().To<NewsFeedViewModel>().InSingletonScope();
+            Bind<IMainTabbedPageFactory>().To<MainTabbedPageFactory>().InSingletonScope();
+            Bind<ICommentsPageFactory>().To<CommentsPageFactory>().InSingletonScope();
+            Bind<INewsFeedPageFactory>().To<NewsFeedPageFactory>().InSingletonScope();
+            Bind<IPublicationPageFactory>().To<PublicationPageFactory>().InSingletonScope();
+            Bind<LogInViewModel>().ToSelf();
+            Bind<NewsFeedViewModel>().ToSelf();
+            Bind<CommentsViewModel>().ToSelf();
+            Bind<RegistrationViewModel>().ToSelf();
+            Bind<PublicationPageViewModel>().ToSelf();
         }
     }
-
-	public class LogInModule : NinjectModule
-	{
-		/// <inheritdoc />
-		public override void Load()
-		{
-            Bind<LogInViewModel>().ToSelf().InSingletonScope();
-		}
-	}
 
     public class ModelModule : NinjectModule
     {

@@ -1,28 +1,30 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Domain;
 using Domain.Repositories;
 using DomainTests;
 using NSubstitute;
 using NUnit.Framework;
 using ViewModels;
-using ViewModels.Views;
-using INavigation = Missio.Navigation.INavigation;
+using ViewModels.Factories;
 
 namespace ViewModelTests
 {
     [TestFixture]
     public class NewsFeedViewModelTests
     {
-        private static NewsFeedViewModel MakeNewsFeedViewModel(INavigation navigation = null, NameAndPassword nameAndPassword = null)
+        private static NewsFeedViewModel MakeNewsFeedViewModel(IPublicationPageFactory publicationPageFactory = null, NameAndPassword nameAndPassword = null, ICommentsPageFactory commentsPageFactory = null)
         {
-            if(navigation == null)
-                navigation = Substitute.For<INavigation>();
+            if(publicationPageFactory == null)
+                publicationPageFactory = Substitute.For<IPublicationPageFactory>();
             if(nameAndPassword == null)
                 nameAndPassword = new NameAndPassword("Francisco Greco", "ElPass");
+            if(commentsPageFactory == null) 
+                commentsPageFactory = Substitute.For<ICommentsPageFactory>();
             var fakeRepository = Substitute.For<IPostRepository>();
             var orderedPosts = Utils.MakeSortedDummyPost();
             fakeRepository.GetMostRecentPostsInOrder(nameAndPassword).Returns(orderedPosts);
-            return new NewsFeedViewModel(fakeRepository, navigation, nameAndPassword);
+            return new NewsFeedViewModel(fakeRepository, publicationPageFactory, commentsPageFactory, nameAndPassword);
         }
 
         [Test]
@@ -37,15 +39,41 @@ namespace ViewModelTests
         }
 
         [Test]
-        public void GoToPublicationPageCommand_NormalCall_GoesToPublicationPage()
+        public void GoToPublicationPageCommand_Should_GoToPublicationPage()
         {
-            var fakeNavigation = Substitute.For<INavigation>();
+            var publicationPageFactory = Substitute.For<IPublicationPageFactory>();
             var nameAndPassword = new NameAndPassword("", "");
-            var newsFeedViewModel = MakeNewsFeedViewModel(fakeNavigation, nameAndPassword);
+            var newsFeedViewModel = MakeNewsFeedViewModel(publicationPageFactory, nameAndPassword);
 
             newsFeedViewModel.GoToPublicationPageCommand.Execute(null);
 
-            fakeNavigation.Received(1).GoToPage<PublicationPage>(nameAndPassword);
+            publicationPageFactory.Received(1).CreateAndNavigateToPage(nameAndPassword, Arg.Any<Action>());
+        }
+
+        [Test]
+        public void GoToPublicationPageCommand_Should_RefreshPostsOnCallback()
+        {
+            var publicationPageFactory = Substitute.For<IPublicationPageFactory>();
+            publicationPageFactory.CreateAndNavigateToPage(Arg.Any<NameAndPassword>(), Arg.Do<Action>(x => x()));
+            var nameAndPassword = new NameAndPassword("", "");
+            var newsFeedViewModel = MakeNewsFeedViewModel(publicationPageFactory, nameAndPassword);
+            newsFeedViewModel.Posts.Clear();
+
+            newsFeedViewModel.GoToPublicationPageCommand.Execute(null);
+
+            Assert.AreEqual(1, newsFeedViewModel.Posts.Count);
+        }
+
+        [Test]
+        public void GoToCommentsCommand_GivenPost_GoesToCommentsPage()
+        {
+            var commentsPageFactory = Substitute.For<ICommentsPageFactory>();
+            var post = Utils.MakeDummyPost();
+            var newsFeedViewModel = MakeNewsFeedViewModel(Substitute.For<IPublicationPageFactory>(), new NameAndPassword("", ""), commentsPageFactory);
+
+            newsFeedViewModel.GoToCommentsCommand.Execute(post);
+
+            commentsPageFactory.Received().CreateAndNavigateToPage(post);
         }
 
         [Test]
