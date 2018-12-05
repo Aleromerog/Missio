@@ -10,10 +10,10 @@ namespace Domain
         public int Id { get; private set; }
 
         [UsedImplicitly]
-        public List<Like> Likes { get; private set; } = new List<Like>();
+        public ICollection<Like> Likes { get; private set; } = new List<Like>();
 
         [UsedImplicitly]
-        public List<Comment> Comments { get; private set; } = new List<Comment>();
+        public ICollection<Comment> Comments { get; private set; } = new List<Comment>();
 
         [UsedImplicitly]
         public string Message { get; private set; }
