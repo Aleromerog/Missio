@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="ViewModels.Views.RegistrationPage"
+             BackgroundColor="{StaticResource SecondaryColor}"
+             Title="Crear nueva cuenta"
+             xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <applicationResources:AppResources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />          
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ImageButton        WidthRequest="120"
+                            HeightRequest="120"
+                            CornerRadius="100"
+                            HorizontalOptions="Center"
+                            BackgroundColor="{StaticResource SecondaryDarkColor}"
+                            Source="camera.png" 
+                            Grid.Row="0" Grid.Column="0"/>
+        <Label Text="Foto de perfil"
+               HorizontalOptions="Center"
+               FontFamily="{StaticResource MissioBold}"
+               TextColor="{StaticResource PrimaryColor}"
+               Grid.Row="1" Grid.Column="0"/>
+        <Label Text="Missionero:"
+               FontFamily="{StaticResource MissioRegular}"
+               TextColor="{StaticResource PrimaryDarkColor}"
+               Grid.Row="2" Grid.Column="0"/>
+        <Entry Placeholder="Usuario"
+               Text="{Binding UserName}"
+               Grid.Row="3" Grid.Column="0"/>
+        <Label Text="No debe contener espacios ni caracteres especiales."
+               FontSize="11"
+               TextColor="Gray" 
+               Grid.Row="4" Grid.Column="0"/>
+        <Label Text="E-mail:"
+               FontFamily="{StaticResource MissioRegular}"
+               TextColor="{StaticResource PrimaryDarkColor}"
+               Grid.Row="5" Grid.Column="0" />
+        <Entry Placeholder="Ingrese correo valido"
+               Text="{Binding Email}"
+               Grid.Row="6" Grid.Column="0"/>
+        <Label Text="Contrasena"
+               FontFamily="{StaticResource MissioRegular}"
+               TextColor="{StaticResource PrimaryDarkColor}"
+               Grid.Row="7" Grid.Column="0"/>
+        <Entry Placeholder="Minimo 8 caracteres"
+               Text="{Binding Password}"
+               IsPassword="true" 
+               Grid.Row="8" Grid.Column="0"/>
+        <Button Text="Registrate"
+                FontFamily="{StaticResource MissioBold}"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                TextColor="{StaticResource SecondaryColor}"
+                Command="{Binding RegisterCommand}"
+                Grid.Row="9" Grid.Column="0"/>
+    </Grid>
+</ContentPage>

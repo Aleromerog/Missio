@@ -79,7 +79,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainTabbedPageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -89,10 +88,6 @@
     <ProjectReference Include="..\Missio.CustomRenderers\Missio.CustomRenderers.csproj">
       <Project>{a49cdb37-cab1-4246-8f79-0cc30356fc2c}</Project>
       <Name>Missio.CustomRenderers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Missio.MainView\Missio.MainView.csproj">
-      <Project>{7179CDBF-353A-49CA-A502-D0A6A16A12BC}</Project>
-      <Name>Missio.MainView</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

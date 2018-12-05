@@ -27,14 +27,8 @@
     <Compile Remove="MainTabbedPagepp.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="CalendarPage.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
     <Compile Update="MainTabbedPage.xaml.cs">
       <DependentUpon>MainTabbedPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="ProfilePage.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
     <Compile Update="ToolsPage.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>

@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Missio.Users;
+using Domain;
 using Xamarin.Forms;
 
 namespace Missio.Navigation
@@ -44,12 +44,6 @@ namespace Missio.Navigation
         public Task DisplayAlert(string title, string message, string acceptMessage)
         {
             return Application.Current.MainPage.DisplayAlert(title, message, acceptMessage);
-        }
-
-        /// <inheritdoc />
-        public Task DisplayAlert(AlertTextMessage alertContents)
-        {
-            return Application.Current.MainPage.DisplayAlert(alertContents.Title, alertContents.Message, alertContents.AcceptMessage);
         }
     }
 }

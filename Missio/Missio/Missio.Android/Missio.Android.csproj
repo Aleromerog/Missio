@@ -24,7 +24,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;GORILLA</DefineConstants>
+    <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
@@ -52,11 +52,13 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Gorilla|iPhoneSimulator' ">
-    <DebugType></DebugType>
+    <DebugType>
+    </DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhoneSimulator\Gorilla</OutputPath>
     <WarningLevel>4</WarningLevel>
-    <JavaMaximumHeapSize></JavaMaximumHeapSize>
+    <JavaMaximumHeapSize>
+    </JavaMaximumHeapSize>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <AndroidSupportedAbis>arm64-v8a;armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
   </PropertyGroup>
@@ -140,21 +142,9 @@
       <Project>{A49CDB37-CAB1-4246-8F79-0CC30356FC2C}</Project>
       <Name>Missio.CustomRenderers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Missio.LogIn\Missio.LogIn.csproj">
-      <Project>{4dd1ef16-36f3-443c-9116-6b980584be04}</Project>
-      <Name>Missio.LogIn</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Missio.NewsFeed\Missio.NewsFeed.csproj">
-      <Project>{9dfca398-6844-4ce5-a5fe-a9128f5a160d}</Project>
-      <Name>Missio.NewsFeed</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Missio.Registration\Missio.Registration.csproj">
-      <Project>{fe4f486e-def1-48ea-afe6-573cb1437ecc}</Project>
-      <Name>Missio.Registration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\PostPublication\Missio.PostPublication.csproj">
-      <Project>{763a6d7f-8590-4f3e-9d1a-2454c989dc69}</Project>
-      <Name>Missio.PostPublication</Name>
+    <ProjectReference Include="..\..\ViewModels\ViewModels.csproj">
+      <Project>{B95D5103-4FBC-4C12-9A22-863AC69509F9}</Project>
+      <Name>ViewModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\Missio\Missio.csproj">
       <Project>{6F9D2CEB-144A-40C2-AEC3-117CB8700BB3}</Project>

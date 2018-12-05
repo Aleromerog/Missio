@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Domain.DataTransferObjects;
+using Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
-using Missio.Users;
+using Missio.ApplicationResources;
 using NUnit.Framework;
 using MissioServer.Controllers;
 using MissioServer.Services;
-using MissioServer.Services.Services;
 using NSubstitute;
-using StringResources;
 using static System.Linq.Enumerable;
 
 namespace MissioServer.Tests
@@ -59,7 +59,7 @@ namespace MissioServer.Tests
 
             var result = (ObjectResult) await usersController.RegisterUser(registration);
 
-            Assert.Contains(AppResources.UserNameTooShortMessage, (List<string>) result.Value);
+            Assert.Contains(Strings.UserNameTooShortMessage, (List<string>) result.Value);
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace MissioServer.Tests
 
             var result = (ObjectResult)await usersController.RegisterUser(registration);
 
-            Assert.Contains(AppResources.UserNameAlreadyInUseMessage, (List<string>) result.Value);
+            Assert.Contains(Strings.UserNameAlreadyInUseMessage, (List<string>) result.Value);
         }
 
         [Test]
@@ -81,7 +81,7 @@ namespace MissioServer.Tests
 
             var result = (ObjectResult) await usersController.RegisterUser(registration);
 
-            Assert.Contains(AppResources.PasswordTooShortMessage, (List<string>) result.Value);
+            Assert.Contains(Strings.PasswordTooShortMessage, (List<string>) result.Value);
         }
 
         [Test]

@@ -44,9 +44,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="PostTemplates.xaml.cs">
-      <DependentUpon>PostTemplates</DependentUpon>
-    </Compile>
     <Compile Update="NewsFeedPage.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>

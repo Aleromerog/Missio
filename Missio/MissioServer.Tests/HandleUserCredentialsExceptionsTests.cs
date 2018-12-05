@@ -2,8 +2,8 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Missio.ApplicationResources;
 using NUnit.Framework;
-using StringResources;
 
 namespace MissioServer.Tests
 {
@@ -23,7 +23,7 @@ namespace MissioServer.Tests
             var response = await client.GetAsync("api/users/Francisco Greco/NotValid");
 
             Assert.AreEqual(HttpStatusCode.Unauthorized, response.StatusCode);
-            Assert.AreEqual(AppResources.InvalidPassword, await response.Content.ReadAsAsync<string>());
+            Assert.AreEqual(Strings.InvalidPassword, await response.Content.ReadAsAsync<string>());
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace MissioServer.Tests
             var response = await client.GetAsync("api/users/NotValidUserName/NotValid");
 
             Assert.AreEqual(HttpStatusCode.Unauthorized, response.StatusCode);
-            Assert.AreEqual(AppResources.InvalidUserName, await response.Content.ReadAsAsync<string>());
+            Assert.AreEqual(Strings.InvalidUserName, await response.Content.ReadAsAsync<string>());
         }
     }
 }

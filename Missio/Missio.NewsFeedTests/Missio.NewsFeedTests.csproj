@@ -218,28 +218,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NewsFeedViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StickyPostTests.cs" />
-    <Compile Include="PostTests.cs" />
-    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Missio.LogIn\Missio.LogIn.csproj">
-      <Project>{4DD1EF16-36F3-443C-9116-6B980584BE04}</Project>
-      <Name>Missio.LogIn</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Missio.Navigation\Missio.Navigation.csproj">
       <Project>{1EF28F5B-A94A-483E-A621-C79BDD191BD2}</Project>
       <Name>Missio.Navigation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Missio.NewsFeed\Missio.NewsFeed.csproj">
-      <Project>{9DFCA398-6844-4CE5-A5FE-A9128F5A160D}</Project>
-      <Name>Missio.NewsFeed</Name>
     </ProjectReference>
     <ProjectReference Include="..\Missio.Posts\Missio.Posts.csproj">
       <Project>{8669D001-55EC-4E6E-A42C-FE2B70F1694D}</Project>

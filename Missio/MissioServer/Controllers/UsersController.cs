@@ -1,8 +1,9 @@
 ﻿using System.Threading.Tasks;
+using Domain;
+using Domain.DataTransferObjects;
+using Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
-using Missio.Registration;
-using Missio.Users;
-using MissioServer.Services.Services;
+using MissioServer.Services;
 
 namespace MissioServer.Controllers
 {

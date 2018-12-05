@@ -1,4 +1,4 @@
-﻿using Missio.Users;
+﻿using Domain;
 using Ninject;
 using Ninject.Syntax;
 using Ninject.Parameters;

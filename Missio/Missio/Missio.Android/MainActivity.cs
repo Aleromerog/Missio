@@ -2,10 +2,9 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using ImageCircle.Forms.Plugin.Droid;
-using Missio.ApplicationResources;
-using Missio.NewsFeed;
 #if GORILLA
 using UXDivers.Gorilla.Droid;
+using Missio.ApplicationResources;
 #endif
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -26,7 +25,7 @@ namespace Missio.Droid
             #if GORILLA
             LoadApplication(Player.CreateApplication(this, new UXDivers.Gorilla.Config("Gorilla on Greco").RegisterAssembliesFromTypes<ByteArrayToImageSourceConverter, NewsFeedPostDataTemplateSelector>()));
             #else
-            LoadApplication(new App());
+            LoadApplication(new App("https://10.0.2.2:44304/"));
             #endif
         }
     }

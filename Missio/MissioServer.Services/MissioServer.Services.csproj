@@ -21,12 +21,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0-preview3-35497" />
   </ItemGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\Missio.Posts\Missio.Posts.csproj" />
-    <ProjectReference Include="..\Missio.Registration\Missio.Registration.csproj" />
-    <ProjectReference Include="..\Missio.Users\Missio.Users.csproj" />
-    <ProjectReference Include="..\StringResources\StringResources.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

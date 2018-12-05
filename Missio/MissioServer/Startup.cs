@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using Domain;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -6,9 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Missio.Users;
 using MissioServer.Services;
-using MissioServer.Services.Services;
 
 namespace MissioServer
 {

@@ -2,33 +2,29 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Missio.LogIn;
-using Missio.MainView;
+using Domain.Repositories;
 using Missio.Navigation;
-using Missio.NewsFeed;
-using Missio.PostPublication;
-using Missio.Posts;
-using Missio.Registration;
-using Missio.Users;
 using Ninject;
 using Xamarin.Forms;
 using Ninject.Modules;
+using ViewModels;
+using ViewModels.Views;
 using INavigation = Missio.Navigation.INavigation;
 
 namespace Missio
 {
 	public partial class App
 	{
-	    public App()
+	    public App(string webServerBaseAddress)
 	    {
 	        InitializeComponent();
-            var appNavigation = ResolveApplicationNavigation();
+            var appNavigation = ResolveApplicationNavigation(webServerBaseAddress);
 	        appNavigation.GoToPage<LogInPage>();
         }
 
-	    public static ApplicationNavigation ResolveApplicationNavigation()
+	    public static ApplicationNavigation ResolveApplicationNavigation(string webServerBaseAddress)
 	    {
-	        var kernel = new StandardKernel(new ModelModule(), new ToolsPageModule(),
+	        var kernel = new StandardKernel(new ModelModule(webServerBaseAddress), new ToolsPageModule(),
 	            new NewsFeedModule(), new PublicationPageModule(), new LogInModule(), new MainViewModule(),
 	            new ProfilePageModule(), new CalendarPageModule(), new RegistrationPageModule(), new ApplicationNavigationModule());
 	        return kernel.Get<ApplicationNavigation>();
@@ -117,12 +113,18 @@ namespace Missio
 
     public class ModelModule : NinjectModule
     {
+        private readonly string _webServerBaseAddress;
+
+        public ModelModule(string webServerBaseAddress)
+        {
+            _webServerBaseAddress = webServerBaseAddress;
+        }
         /// <inheritdoc />
         public override void Load()
         {
             //TODO: Remove this when we have a valid SSL certificate
             ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
-            var httpClient = new HttpClient {BaseAddress = new Uri("https://localhost:44333/")};
+            var httpClient = new HttpClient {BaseAddress = new Uri(_webServerBaseAddress) };
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             Bind<HttpClient>().ToConstant(httpClient);
