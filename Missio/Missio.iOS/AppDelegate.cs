@@ -2,7 +2,7 @@ using Foundation;
 using UIKit;
 #if GORILLA
 using Missio.ApplicationResources;
-using Missio.NewsFeed;
+using ViewModels;
 using UXDivers.Gorilla.iOS;
 #endif
 using Xamarin.Forms;
@@ -17,7 +17,7 @@ namespace Missio.iOS
         {
             Forms.Init();
             #if GORILLA
-            LoadApplication(Player.CreateApplication(new UXDivers.Gorilla.Config("Gorilla on Jorges-MacBook-Air.local").RegisterAssembliesFromTypes<ByteArrayToImageSourceConverter, NewsFeedPostDataTemplateSelector>()));
+            LoadApplication(Player.CreateApplication(new UXDivers.Gorilla.Config("Gorilla on Jorges").RegisterAssembliesFromTypes<ByteArrayToImageSourceConverter, NewsFeedPostDataTemplateSelector>()));
             #else
             LoadApplication(new App("https://localhost:44333/"));
             #endif

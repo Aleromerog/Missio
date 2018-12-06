@@ -44,9 +44,11 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Gorilla|iPhoneSimulator' ">
-    <Optimize>false</Optimize>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType></DebugType>
     <OutputPath>bin\iPhoneSimulator\Gorilla</OutputPath>
-    <WarningLevel>4</WarningLevel>
+    <DefineConstants></DefineConstants>
+    <ConsolePause>true</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AppTests.cs" />
