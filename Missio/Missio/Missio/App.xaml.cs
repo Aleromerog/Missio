@@ -15,7 +15,7 @@ namespace Missio
 {
 	public partial class App
 	{
-	    public App(string webServerBaseAddress)
+	    public App(string webServerBaseAddress = "https://www.google.com/")
 	    {
 	        InitializeComponent();
             var appNavigation = ResolveApplicationNavigation(webServerBaseAddress);
