@@ -42,7 +42,6 @@ namespace MissioServer.Services
             var newUser = new User(userName, picture, email);
             _missioContext.Add(newUser);
             _missioContext.Add(new UserCredentials(newUser, _passwordService.HashPassword(password)));
-            _missioContext.Add(new UserFriends(newUser, new List<User>()));
             _missioContext.SaveChanges();
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Domain;
 
 namespace MissioServer.Services
@@ -6,6 +7,6 @@ namespace MissioServer.Services
     public interface IUserService
     {
         Task<User> GetUserIfValid(NameAndPassword nameAndPassword);
-        Task<UserFriends> GetFriends(User user);
+        IQueryable<User> GetFriends(User user);
     }
 }

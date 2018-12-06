@@ -12,7 +12,7 @@ namespace MissioServer
         private readonly IWebClientService _webClientService;
 
         public DbSet<User> Users { get; set; }
-        public DbSet<UserFriends> UsersFriends { get; set; }
+        public DbSet<Friendship> Friendships { get; set; }
         public DbSet<UserCredentials> UsersCredentials { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<StickyPost> StickyPosts { get; set; }
@@ -53,9 +53,9 @@ namespace MissioServer
 
             void SeedFriends()
             {
-                var grecoFriends = new {Id = -1, UserId = -1 };
-                var jorgeFriends = new {Id = -2, UserId = -2 };
-                modelBuilder.Entity<UserFriends>().HasData(grecoFriends, jorgeFriends);
+                var grecoFriends = new {Id=-1, UserId = -1, FriendId = -2 };
+                var jorgeFriends = new {Id=-2, UserId = -2, FriendId = -1 };
+                modelBuilder.Entity<Friendship>().HasData(grecoFriends, jorgeFriends);
             }
 
             void SeedPosts()

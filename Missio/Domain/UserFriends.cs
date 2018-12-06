@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 
 namespace Domain
 {
-    //TODO: Change this to a friendship class
-    public class UserFriends
+    public class Friendship
     {
         [UsedImplicitly]
         public int Id { get; private set; }
@@ -13,18 +11,16 @@ namespace Domain
         public User User { get; private set; }
 
         [UsedImplicitly]
-        public ICollection<User> Friends { get; private set; } = new List<User>();
+        public User Friend { get; private set; }
 
-        private UserFriends()
+        private Friendship()
         {
         }
 
-        public UserFriends(User user, ICollection<User> friends)
+        public Friendship(User user, User friend)
         {
             User = user;
-            if(friends == null)
-                friends = new List<User>();
-            Friends = friends;
+            Friend = friend;
         }
     }
 }

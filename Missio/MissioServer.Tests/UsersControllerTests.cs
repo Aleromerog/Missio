@@ -113,7 +113,6 @@ namespace MissioServer.Tests
 
             Assert.IsTrue(missioContext.Users.Any(x => x.UserName == name && x.Email == email && x.Picture == picture));
             Assert.IsTrue(missioContext.UsersCredentials.Any(x => x.User.UserName == name && x.HashedPassword == "Hashed" + password));
-            Assert.IsTrue(missioContext.UsersFriends.Any(x => x.User.UserName == name));
         }
     }
 }

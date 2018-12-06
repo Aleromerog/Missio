@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Domain;
 using Domain.Exceptions;
 using Microsoft.AspNetCore.Identity;
@@ -29,9 +30,10 @@ namespace MissioServer.Services
         }
 
         /// <inheritdoc />
-        public Task<UserFriends> GetFriends(User user)
+        public IQueryable<User> GetFriends(User user)
         {
-            return _missioContext.UsersFriends.Include(x => x.Friends).FirstAsync(x => x.User == user);
+            var userFriendships = _missioContext.Friendships.Where(x => x.User == user);
+            return userFriendships.Select(x => x.Friend);
         }
     }
 }

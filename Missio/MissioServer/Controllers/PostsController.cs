@@ -25,7 +25,7 @@ namespace MissioServer.Controllers
         public async Task<ActionResult<List<Post>>> GetFriendsNewsFeedPosts(string userName, string password)
         {
             var user = await _userService.GetUserIfValid(new NameAndPassword(userName, password));
-            return (await _postsService.GetPosts(user)).ToList();
+            return _postsService.GetPosts(user).ToList();
         }
 
         [HttpGet("getStickyPosts")]
