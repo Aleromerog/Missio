@@ -39,8 +39,8 @@ namespace MissioServer
             {
                 var grecoImage = _webClientService.DownloadData("https://i.redd.it/af8i0tmu4i911.jpg");
                 var jorgeImage = _webClientService.DownloadData("https://i.redd.it/af8i0tmu4i911.jpg");
-                var greco = new {UserName = "Francisco Greco", Picture = grecoImage, Email = "myEmail@gmail.com", Id = -1, UserFriendsId = -2 };
-                var jorge = new {UserName = "Jorge Romero", Picture = jorgeImage, Email = "anotherEmail@gmail.com", Id = -2, UserFriendsId = -1 };
+                var greco = new {UserName = "Francisco Greco", Picture = grecoImage, Email = "myEmail@gmail.com", Id = -1 };
+                var jorge = new {UserName = "Jorge Romero", Picture = jorgeImage, Email = "anotherEmail@gmail.com", Id = -2 };
                 modelBuilder.Entity<User>().HasData(greco, jorge);
             }
 

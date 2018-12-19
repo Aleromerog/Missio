@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Domain;
 using Domain.DataTransferObjects;
 using Domain.Repositories;
@@ -13,16 +12,24 @@ namespace ViewModelTests
     [TestFixture]
     public class PublicationPageViewModelTests
     {
-        private PublicationPageViewModel MakePublicationPageViewModel(IPostRepository postRepository, NameAndPassword nameAndPassword, Action postPublishedCallback, INavigation navigation)
+        private PublicationPageViewModel MakePublicationPageViewModel(IPostRepository postRepository, INavigation navigation, INameAndPasswordService nameAndPasswordService = null)
         {
-            return new PublicationPageViewModel(postRepository, nameAndPassword, postPublishedCallback, navigation);
+            if (nameAndPasswordService == null)
+            {
+                nameAndPasswordService = Substitute.For<INameAndPasswordService>();
+                nameAndPasswordService.NameAndPassword.Returns(new NameAndPassword("", ""));
+            }
+
+            return new PublicationPageViewModel(postRepository, navigation, nameAndPasswordService);
         }
 
         [Test]
         public async Task PublishPost_TextOnly_FiresCallback()
         {
             var wasActionCalled = false;
-            var publicationPageViewModel = MakePublicationPageViewModel(Substitute.For<IPostRepository>(), new NameAndPassword("", ""), () => wasActionCalled = true, Substitute.For<INavigation>());
+            var publicationPageViewModel = MakePublicationPageViewModel(Substitute.For<IPostRepository>(), Substitute.For<INavigation>());
+            publicationPageViewModel.PostPublishedEvent += (s, e) => { wasActionCalled = true; };
+
             await publicationPageViewModel.PublishPost();
 
             Assert.IsTrue(wasActionCalled);
@@ -32,7 +39,7 @@ namespace ViewModelTests
         public async Task PublishPost_TextOnly_ReturnsToNewsFeed()
         {
             var navigation = Substitute.For<INavigation>();
-            var publicationPageViewModel = MakePublicationPageViewModel(Substitute.For<IPostRepository>(), new NameAndPassword("", ""), () => {}, navigation);
+            var publicationPageViewModel = MakePublicationPageViewModel(Substitute.For<IPostRepository>(), navigation);
 
             await publicationPageViewModel.PublishPost();
 
@@ -42,10 +49,12 @@ namespace ViewModelTests
         [Test]
         public async Task PublishPostCommand_TextOnly_PublishesPost()
         {
+            var nameAndPasswordService = Substitute.For<INameAndPasswordService>();
             var nameAndPassword = new NameAndPassword("Francisco Greco", "ElPass");
+            nameAndPasswordService.NameAndPassword.Returns(nameAndPassword);
             var newPostText = "The content of the new post";
             var postRepository = Substitute.For<IPostRepository>();
-            var publicationPageViewModel = MakePublicationPageViewModel(postRepository, nameAndPassword, () => {}, Substitute.For<INavigation>());
+            var publicationPageViewModel = MakePublicationPageViewModel(postRepository, Substitute.For<INavigation>(), nameAndPasswordService);
             publicationPageViewModel.PostText = newPostText;
             await publicationPageViewModel.PublishPost();
 

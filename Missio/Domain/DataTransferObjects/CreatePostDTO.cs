@@ -21,7 +21,7 @@ namespace Domain.DataTransferObjects
 
         public CreatePostDTO([NotNull] NameAndPassword nameAndPassword, [NotNull] string message, byte[] picture)
         {
-            NameAndPassword = nameAndPassword;
+            NameAndPassword = nameAndPassword ?? throw new ArgumentNullException(nameof(nameAndPassword));
             Message = message ?? throw new ArgumentNullException(nameof(message));
             Picture = picture;
         }

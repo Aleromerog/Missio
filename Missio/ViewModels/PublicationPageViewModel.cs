@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Domain;
 using Domain.DataTransferObjects;
 using Domain.Repositories;
 using JetBrains.Annotations;
@@ -10,13 +9,18 @@ using INavigation = Missio.Navigation.INavigation;
 
 namespace ViewModels
 {
-    public class PublicationPageViewModel
+    public interface IPublicationPageViewModel
     {
-        private readonly NameAndPassword _nameAndPassword;
-        private readonly Action _postPublishedCallBack;
+        event EventHandler PostPublishedEvent;
+    }
+
+    public class PublicationPageViewModel : IPublicationPageViewModel
+    {
+        private readonly INameAndPasswordService _nameAndPasswordService;
         private readonly IPostRepository _postRepository;
         private readonly INavigation _navigation;
         private string _postText;
+        public event EventHandler PostPublishedEvent;
         
         [UsedImplicitly]
         public ICommand PublishPostCommand { get; }
@@ -28,20 +32,18 @@ namespace ViewModels
             set => _postText = value;
         }
 
-        public PublicationPageViewModel([NotNull] IPostRepository postRepository, [NotNull] NameAndPassword nameAndPassword,
-            [NotNull] Action postPublishedCallBack, [NotNull] INavigation navigation)
+        public PublicationPageViewModel([NotNull] IPostRepository postRepository, [NotNull] INavigation navigation, INameAndPasswordService nameAndPasswordService)
         {
+            _nameAndPasswordService = nameAndPasswordService;
             _postRepository = postRepository ?? throw new ArgumentNullException(nameof(postRepository));
-            _nameAndPassword = nameAndPassword ?? throw new ArgumentNullException(nameof(nameAndPassword));
-            _postPublishedCallBack = postPublishedCallBack ?? throw new ArgumentNullException(nameof(postPublishedCallBack));
             _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation));
             PublishPostCommand = new Command(async() => await PublishPost());
         }
 
         public async Task PublishPost()
         {
-            await _postRepository.PublishPost(new CreatePostDTO(_nameAndPassword, PostText, null));
-            _postPublishedCallBack();
+            await _postRepository.PublishPost(new CreatePostDTO(_nameAndPasswordService.NameAndPassword, PostText, null));
+            PostPublishedEvent?.Invoke(this, EventArgs.Empty);
             await _navigation.ReturnToPreviousPage();
         }
     }

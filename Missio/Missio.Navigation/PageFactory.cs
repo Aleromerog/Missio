@@ -1,5 +1,6 @@
 ﻿using Ninject;
 using Ninject.Syntax;
+using Xamarin.Forms;
 
 namespace Missio.Navigation
 {
@@ -13,7 +14,7 @@ namespace Missio.Navigation
         }
 
         /// <inheritdoc />
-        public T MakePage<T>()
+        public T MakePage<T>() where T : Page
         {
             return _resolutionRoot.Get<T>();    
         }

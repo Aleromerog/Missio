@@ -6,7 +6,6 @@ using Missio.ApplicationResources;
 using NSubstitute;
 using NUnit.Framework;
 using ViewModels;
-using ViewModels.Factories;
 using ViewModels.Views;
 using INavigation = Missio.Navigation.INavigation;
 
@@ -17,16 +16,16 @@ namespace ViewModelTests
     {
         private LogInViewModel _logInViewModel;
         private INavigation _fakeNavigation;
-        private IMainTabbedPageFactory _mainTabbedPageFactory;
         private IUserRepository _fakeUserRepository;
-
+        private INameAndPasswordService _nameAndPasswordService;
+        
         [SetUp]
         public void SetUp()
         {
             _fakeNavigation = Substitute.For<INavigation>();
             _fakeUserRepository = Substitute.For<IUserRepository>();
-            _mainTabbedPageFactory = Substitute.For<IMainTabbedPageFactory>();
-            _logInViewModel = new LogInViewModel(_fakeNavigation, _fakeUserRepository, _mainTabbedPageFactory);
+            _nameAndPasswordService = Substitute.For<INameAndPasswordService>();
+            _logInViewModel = new LogInViewModel(_fakeNavigation, _fakeUserRepository, _nameAndPasswordService);
         }
 
         [Test]
@@ -68,7 +67,8 @@ namespace ViewModelTests
 
             await _logInViewModel.LogIn();
 
-            await _mainTabbedPageFactory.Received(1).CreateAndNavigateToPage(Arg.Is<NameAndPassword>(x => x.UserName == "Someone" && x.Password == "Password"));
+            await _fakeNavigation.Received(1).GoToPage<MainTabbedPage>();
+            _nameAndPasswordService.Received().NameAndPassword = Arg.Is<NameAndPassword>(x => x.UserName == "Someone" && x.Password == "Password");
         }
 
         [Test]
@@ -79,6 +79,16 @@ namespace ViewModelTests
             await _logInViewModel.LogIn();
 
             await _fakeNavigation.Received(1).DisplayAlert(Strings.TheLogInWasUnsuccessful, Strings.InvalidUserName, Strings.Ok);
+        }
+
+        [Test]
+        public async Task AttemptToLogin_LogInFailed_DoesNotSetNameAndPassword()
+        {
+            _fakeUserRepository.When(x => x.ValidateUser(Arg.Any<NameAndPassword>())).Throw(new LogInException(Strings.InvalidUserName));
+
+            await _logInViewModel.LogIn();
+
+            _nameAndPasswordService.DidNotReceiveWithAnyArgs().NameAndPassword = Arg.Any<NameAndPassword>();
         }
     }
 }

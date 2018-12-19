@@ -29,6 +29,8 @@ namespace MissioServer.Tests
 
             Assert.AreEqual(3, posts.Count);
             Assert.IsTrue(posts.First(x => x.Id == -1).Comments.Count > 0);
+            CollectionAssert.AllItemsAreNotNull(posts);
+            CollectionAssert.AllItemsAreNotNull(posts.Select(x => x.Author));
         }
 
         [Test]

@@ -3,14 +3,14 @@ using JetBrains.Annotations;
 
 namespace ViewModels
 {
-    public interface ICommentsViewModel
+    public interface ILikesViewModel
     {
         Post Post { get; set; }
     }
 
-    public class CommentsViewModel : ICommentsViewModel
+    public class LikesViewModel : ILikesViewModel
     {
         [UsedImplicitly]
-        public Post Post { get; set; }
+        public Post Post { get; set; } 
     }
 }

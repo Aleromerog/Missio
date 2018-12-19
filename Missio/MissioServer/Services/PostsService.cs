@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Domain;
 using Domain.DataTransferObjects;
@@ -23,7 +24,7 @@ namespace MissioServer.Services
         public IQueryable<Post> GetPosts(User user)
         {
             var userFriends = _userService.GetFriends(user);
-            return _missioContext.Posts.Where(post => userFriends.Contains(post.Author) || post.Author == user).Include(x => x.Comments);
+            return _missioContext.Posts.Where(post => userFriends.Contains(post.Author) || post.Author == user).Include(x => x.Comments).Include(x => x.Author);
         }
 
         public IQueryable<StickyPost> GetStickyPosts()

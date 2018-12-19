@@ -7,7 +7,6 @@ using Missio.Navigation;
 using Ninject;
 using Ninject.Modules;
 using ViewModels;
-using ViewModels.Factories;
 using ViewModels.Views;
 using INavigation = Missio.Navigation.INavigation;
 
@@ -19,7 +18,7 @@ namespace Missio
 	    {
 	        InitializeComponent();
             var appNavigation = ResolveApplicationNavigation(webServerBaseAddress);
-	        appNavigation.GoToPage<LogInPage>();
+	        appNavigation.GoToPage<LogInPage>().Wait();
         }
 
 	    public static ApplicationNavigation ResolveApplicationNavigation(string webServerBaseAddress)
@@ -49,10 +48,7 @@ namespace Missio
         /// <inheritdoc />
         public override void Load()
         {
-            Bind<IMainTabbedPageFactory>().To<MainTabbedPageFactory>().InSingletonScope();
-            Bind<ICommentsPageFactory>().To<CommentsPageFactory>().InSingletonScope();
-            Bind<INewsFeedPageFactory>().To<NewsFeedPageFactory>().InSingletonScope();
-            Bind<IPublicationPageFactory>().To<PublicationPageFactory>().InSingletonScope();
+            Bind<INameAndPasswordService>().To<NameAndPasswordService>().InSingletonScope();
             Bind<LogInViewModel>().ToSelf();
             Bind<NewsFeedViewModel>().ToSelf();
             Bind<CommentsViewModel>().ToSelf();

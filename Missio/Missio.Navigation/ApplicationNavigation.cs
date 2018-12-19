@@ -14,9 +14,18 @@ namespace Missio.Navigation
         }
 
         /// <inheritdoc />
-        public Task GoToPage<T>() where T : Page
+        public async Task<T> GoToPage<T>() where T : Page
         {
-            return GoToPage(_pageFactory.MakePage<T>());
+            var page = _pageFactory.MakePage<T>();
+            await GoToPage(page);
+            return page;
+        }
+
+        /// <inheritdoc />
+        public async Task<TViewModel> GoToPage<T, TViewModel>() where T : Page
+        {
+            var page = await GoToPage<T>();
+            return (TViewModel) page.BindingContext;
         }
 
         /// <inheritdoc />
