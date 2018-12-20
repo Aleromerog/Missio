@@ -24,6 +24,18 @@ namespace ViewModelTests
         }
 
         [Test]
+        public void IsRefreshingSetter_Should_FirePropertyChanged()
+        {
+            var wasEventCalled = false;
+            var newsFeedViewModel = MakeNewsFeedViewModel();
+            newsFeedViewModel.PropertyChanged+= (s, e) => wasEventCalled = true;
+
+            newsFeedViewModel.IsRefreshing = true;
+
+            Assert.IsTrue(wasEventCalled);
+        }
+
+        [Test]
         public async Task UpdatePosts_IsRefreshingSetToTrue_SetsIsRefreshingToFalse()
         {
             var newsFeedViewModel = MakeNewsFeedViewModel();
