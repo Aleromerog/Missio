@@ -66,5 +66,9 @@
         }
       ]
     }
+  },
+  "LoginPage.xaml": {
+    "Logo": "NaviculaLogo.png",
+    "Background": "LogInBackground.jpeg"
   }
 }
