@@ -17,13 +17,15 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
-    <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;DEBUG</DefineConstants>
+    <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;DEBUG;GORILLA</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <OnDemandResourcesPrefetchOrder></OnDemandResourcesPrefetchOrder>
+    <OnDemandResourcesPrefetchOrder></OnDemandResourcesPrefetchOrder>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -63,11 +65,11 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Gorilla|iPhoneSimulator' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GORILA|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\iPhoneSimulator\Gorilla</OutputPath>
+    <OutputPath>bin\iPhoneSimulator\GORILA</OutputPath>
     <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;DEBUG;GORILLA</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -75,10 +77,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey></CodesignKey>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
-    <MtouchNoSymbolStrip>false</MtouchNoSymbolStrip>
-    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -102,6 +101,17 @@
     <BundleResource Include="Resources\person%402x.png" />
     <BundleResource Include="Resources\person%403x.png" />
     <BundleResource Include="Resources\LogInBackground.png" />
+    <BundleResource Include="Resources\NaviculaLogo.png" />
+    <BundleResource Include="Resources\NaviculaLogo%402x.png" />
+    <BundleResource Include="Resources\NaviculaLogo%403x.png" />
+    <BundleResource Include="Resources\LogInBackground.jpeg" />
+    <BundleResource Include="Resources\User.png" />
+    <BundleResource Include="Resources\User%402x.png" />
+    <BundleResource Include="Resources\User%403x.png" />
+    <BundleResource Include="Resources\Password.png" />
+    <BundleResource Include="Resources\Password%402x.png" />
+    <BundleResource Include="Resources\Password%403x.png" />
+    <Compile Include="Custom Renderers\CustomEntryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ButtonCircle.FormsPlugin.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -153,6 +163,10 @@
       <HintPath>..\..\..\..\..\..\Library\Frameworks\Mono.framework\External\xbuild-frameworks\MonoAndroid\v8.1\Mono.Android.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="DevsDNA.GradientBoxView">
+      <HintPath>..\packages\DevsDNA.GradientBoxView.1.0.1\lib\xamarinios10\DevsDNA.GradientBoxView.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Missio\Missio\Missio.csproj">
@@ -166,6 +180,10 @@
     <ProjectReference Include="..\ViewModels\ViewModels.csproj">
       <Project>{B95D5103-4FBC-4C12-9A22-863AC69509F9}</Project>
       <Name>ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Missio.CustomRenderers\Missio.CustomRenderers.csproj">
+      <Project>{A49CDB37-CAB1-4246-8F79-0CC30356FC2C}</Project>
+      <Name>Missio.CustomRenderers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +206,9 @@
     <BundleResource Include="Resources\camera.png" />
     <BundleResource Include="Resources\camera%402x.png" />
     <BundleResource Include="Resources\camera%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Custom Renderers\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

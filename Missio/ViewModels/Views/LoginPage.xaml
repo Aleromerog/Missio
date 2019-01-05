@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:applicationResources="clr-namespace:Missio.ApplicationResources;assembly=Missio.ApplicationResources"
+             xmlns:devsdna="clr-namespace:DevsDNA;assembly=DevsDNA.GradientBoxView"
+             xmlns:customRenderers="clr-namespace:Missio.CustomRenderers;assembly=Missio.CustomRenderers"
              NavigationPage.HasNavigationBar="False"
-             BackgroundImage="LogInBackground2.png"
              x:Class="ViewModels.Views.LogInPage">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -12,7 +13,129 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <AbsoluteLayout BackgroundColor="Black">
+    
+    <RelativeLayout>
+        <Image Source="LogInBackground.jpeg" Aspect="AspectFill" 
+               RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0}"
+               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1}"
+               RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=1}"/>
+               
+        <devsdna:GradientBoxView TopColor="#9D8195"
+                                 BottomColor="{StaticResource PrimaryColor}"
+                                 Opacity=".7"
+                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1}"
+                                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=1}"/>
+        
+        <StackLayout  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1}"
+                      RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor= .05}"
+                      HorizontalOptions="Center">
+             <Image Source="NaviculaLogo.png"
+                    WidthRequest="200"
+                    HeightRequest="200"/>
+        </StackLayout>
+        
+        <BoxView x:Name="box1"
+                 BackgroundColor="White" 
+                 Opacity=".2"
+                 CornerRadius="10"
+                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.8}"
+                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0, Constant=50}"
+                 RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.35}"
+                 RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=.1}"/>
+        <Image Source="User.png"
+               RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=box1, Property=Height,Factor=.5}"
+               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=box1, Property=Height,Factor=.5}"
+               RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToView, ElementName=box1, Property=Y, Factor=1, Constant=12}"
+               RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToView, ElementName=box1, Property=X, Factor=1, Constant=12}"/>
+        
+        <customRenderers:CustomEntry RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=box1, Property=Width,Factor=.8}" 
+               RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0, Constant=40}"
+               RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToView, ElementName=box1, Property=Y, Factor=1, Constant=5}"
+               RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToView, ElementName=box1, Property=X, Factor=1, Constant=50}"
+               BackgroundColor="Transparent"
+               PlaceholderColor="#CCCCCC"
+               TextColor="#FAFAFA"               
+               Placeholder="E-mail or Username"
+               Text="{Binding UserName}"
+               FontFamily="{StaticResource MissioRegular}"
+               />
+        
+        <BoxView x:Name="box2"
+                 BackgroundColor="White" 
+                 Opacity=".2"
+                 CornerRadius="10"
+                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.8}"
+                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0, Constant=50}"
+                 RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.45}"
+                 RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=.1}"/>
+          <Image Source="Password.png"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView, ElementName=box2, Property=Height,Factor=.5}"
+               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=box2, Property=Height,Factor=.5}"
+               RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToView, ElementName=box2, Property=Y, Factor=1, Constant=12}"
+               RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToView, ElementName=box2, Property=X, Factor=1, Constant=12}"/>
+        
+          <customRenderers:CustomEntry RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=box2, Property=Width,Factor=.8}" 
+                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0, Constant=40}"
+                 RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToView, ElementName=box2, Property=Y, Factor=1, Constant=5}"
+                 RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToView, ElementName=box2, Property=X, Factor=1, Constant=50}"
+                 BackgroundColor="Transparent"
+                 PlaceholderColor="#CCCCCC"
+                 TextColor="#FAFAFA"               
+                 Placeholder="Password"
+                 Text="{Binding Password}"
+                 
+                 FontFamily="{StaticResource MissioRegular}"
+                 IsPassword="true"/>
+        
+        <Button x:Name="Login"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.8}"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0, Constant=50}"
+                RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.60}"
+                RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=.1}"
+                BackgroundColor="{StaticResource SecondaryColor}"
+                Text="Login"
+                FontSize="Large"
+                Command="{Binding LogInCommand}"
+                FontFamily="{StaticResource MissioBold}"
+                TextColor="{StaticResource PrimaryColor}"/>
+        
+        <Button RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.8}"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0, Constant=50}"
+                RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent,  Property=Height, Factor=.7}"
+                RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=.1}"
+                BackgroundColor="Transparent"
+                Text="Forgot Password"
+                FontSize="Medium"
+                
+                FontFamily="{StaticResource MissioRegular}"
+                TextColor="{StaticResource SecondaryColor}"/>
+        
+         <FlexLayout Direction="Row" JustifyContent="SpaceEvenly" 
+                     RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.35}">
+                <ImageButton Source="facebook.png" BackgroundColor="Transparent"/>
+                <ImageButton Source="twitter.png" BackgroundColor="Transparent" />
+                <ImageButton Source="google.png" BackgroundColor="Transparent" />
+         </FlexLayout>
+        <Button RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.8}"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0, Constant=50}"
+                RelativeLayout.YConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.9}"
+                RelativeLayout.XConstraint = "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=.1}"
+                BackgroundColor="Transparent"
+                Text="Sign Up"
+                FontSize="Medium"
+                
+                FontFamily="{StaticResource MissioRegular}"
+                TextColor="{StaticResource SecondaryColor}"/>
+       
+       
+    </RelativeLayout>
+    
+    
+    
+    
+    
+    
+   <!-- <AbsoluteLayout BackgroundColor="Black">
         <Image Aspect="AspectFill"
                Opacity="0.65"
                Source="LogInBackground2.png"
@@ -30,7 +153,10 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Image Source="Lenguas2.png" Grid.Column="0" Grid.Row="0" />
+            <Image x:Name="logo" 
+                   Source="{Binding logo}"
+                   Grid.Column="0" 
+                   Grid.Row="0" />
 
             <StackLayout Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" Spacing="3">
                 <Label FontFamily="{StaticResource MissioBold}"
@@ -96,5 +222,5 @@
                     TextColor="{StaticResource SecondaryColor}"
                     FontFamily="{StaticResource MissioRegular}" />
         </Grid>
-    </AbsoluteLayout>
+    </AbsoluteLayout>-->
   </ContentPage>
