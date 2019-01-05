@@ -23,12 +23,12 @@ namespace MissioServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
-            services.AddScoped<IUserService, UsersService>();
-            services.AddScoped<IPostsService, PostsService>();
+            services.AddScoped<UsersService>();
+            services.AddScoped<NotificationsService>();
+            services.AddScoped<PostsService>();
             services.AddScoped<ITimeService, TimeService>();
             services.AddScoped<IWebClientService, WebClientService>();
             services.AddDbContext<MissioContext>(opt => opt.UseInMemoryDatabase("MissioDatabase"));
-            services.AddScoped<IRegisterUserService, RegisterUserService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

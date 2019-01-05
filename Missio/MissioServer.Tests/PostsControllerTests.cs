@@ -5,6 +5,7 @@ using Domain;
 using Domain.DataTransferObjects;
 using MissioServer.Controllers;
 using MissioServer.Services;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace MissioServer.Tests
@@ -16,8 +17,10 @@ namespace MissioServer.Tests
         {
             if(missioContext == null)
                 missioContext = Utils.MakeMissioContext();
-            var usersService = new UsersService(missioContext, new MockPasswordService());
-            return new PostsController(usersService, new PostsService(missioContext, usersService, new FakeTimeService()));
+            var usersService = new UsersService(missioContext, new MockPasswordService(), Substitute.For<IWebClientService>());
+            var postsService = new PostsService(missioContext, usersService, new FakeTimeService());
+            var notificationsService = new NotificationsService(missioContext);
+            return new PostsController(usersService, postsService, notificationsService);
         }
 
         [Test]
@@ -25,7 +28,7 @@ namespace MissioServer.Tests
         {
             var postsController = MakePostsController();
 
-            var posts = (await postsController.GetFriendsNewsFeedPosts("Francisco Greco", "ElPass")).Value;
+            var posts = await postsController.GetFriendsNewsFeedPosts("Francisco Greco", "ElPass");
 
             Assert.AreEqual(3, posts.Count);
             Assert.IsTrue(posts.First(x => x.Id == -1).Comments.Count > 0);
@@ -38,7 +41,7 @@ namespace MissioServer.Tests
         {
             var postsController = MakePostsController();
 
-            var posts = postsController.GetStickyPosts().Value;
+            var posts = postsController.GetStickyPosts();
 
             Assert.AreEqual(1, posts.Count);
         }
@@ -54,6 +57,29 @@ namespace MissioServer.Tests
             await postsController.PublishPost(createPostDTO);
 
             Assert.IsTrue(missioContext.Posts.Any(x => x.Author == grecoUser && x.Message == "A new message" && x.PublishedDate == new DateTime(2018, 9, 2)));
+        }
+
+        [Test]
+        public async Task LikePost_Should_LikePost()
+        {
+            var missioContext = Utils.MakeMissioContext();
+            var post = missioContext.Posts.First(x => x.Id == -1);
+            var postsController = MakePostsController(missioContext);
+
+            await postsController.LikePost(-1, "Francisco Greco", "ElPass");
+
+            Assert.AreEqual(1, post.Likes.Count);
+        }
+
+        [Test]
+        public async Task LikePost_Should_SendNotification()
+        {
+            var missioContext = Utils.MakeMissioContext();
+            var postsController = MakePostsController(missioContext);
+
+            await postsController.LikePost(-3, "Francisco Greco", "ElPass");
+
+            Assert.AreEqual(2, missioContext.PostLikedNotifications.Count());
         }
     }
 }

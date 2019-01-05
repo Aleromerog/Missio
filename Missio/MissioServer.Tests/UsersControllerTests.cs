@@ -22,9 +22,8 @@ namespace MissioServer.Tests
             if(webClientService == null)
                 webClientService = Substitute.For<IWebClientService>();
             var passwordService = new MockPasswordService();
-            var userService = new UsersService(missioContext, passwordService);
-            var registerUserService = new RegisterUserService(missioContext, passwordService, webClientService);
-            return new UsersController(userService, registerUserService);
+            var userService = new UsersService(missioContext, passwordService, webClientService);
+            return new UsersController(userService);
         }
 
         [Test]

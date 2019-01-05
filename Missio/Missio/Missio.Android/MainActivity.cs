@@ -2,8 +2,8 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using ImageCircle.Forms.Plugin.Droid;
-using ViewModels;
 #if GORILLA
+using ViewModels;
 using UXDivers.Gorilla.Droid;
 using Missio.ApplicationResources;
 using UXDivers.Gorilla;

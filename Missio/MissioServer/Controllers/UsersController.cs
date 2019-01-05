@@ -11,13 +11,11 @@ namespace MissioServer.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IRegisterUserService _registerUserService;
-        private readonly IUserService _userService;
+        private readonly UsersService _userService;
 
-        public UsersController(IUserService userService, IRegisterUserService registerUserService)
+        public UsersController(UsersService userService)
         {
             _userService = userService;
-            _registerUserService = registerUserService;
         }
 
         [HttpGet("{userName}/{password}")]
@@ -32,7 +30,7 @@ namespace MissioServer.Controllers
         {
             try
             {
-                await _registerUserService.RegisterUser(createUserDTO);
+                await _userService.RegisterUser(createUserDTO);
             }
             catch (UserRegistrationException registrationException)
             {
