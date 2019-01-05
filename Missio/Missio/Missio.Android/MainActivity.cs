@@ -16,7 +16,7 @@ namespace Missio.Droid
 {
     [Activity(Label = "Missio", Icon = "@drawable/ic_logo", Theme = "@style/MainTheme",MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : FormsAppCompatActivity
+    public partial/*GORILLA*/class MainActivity : FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle) 
         {
