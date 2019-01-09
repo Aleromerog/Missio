@@ -19,7 +19,22 @@
         <On Platform="Android" Value="Raleway-Thin.ttf#Raleway-Thin"/>
         <On Platform="iOS" Value="Raleway-Thin"/>
     </OnPlatform>
-    <Color x:Key="MainTextColor">White</Color>
+    
+    <OnPlatform x:TypeArguments="x:String" x:Key="Font2-Regular">
+        <On Platform="Android" Value="Comfortaa-Regular.ttf#Comfortaa-Regular"/>
+        <On Platform="iOS" Value="Comfortaa-Regular"/>
+    </OnPlatform>
+     <OnPlatform x:TypeArguments="x:String" x:Key="Font2-Bold">
+        <On Platform="Android" Value="Comfortaa-Bold.ttf#Comfortaa-Bold"/>
+        <On Platform="iOS" Value="Comfortaa-Bold"/>
+    </OnPlatform>
+     <OnPlatform x:TypeArguments="x:String" x:Key="Font2-Light">
+        <On Platform="Android" Value="Comfortaa-Regular.ttf#Comfortaa-Light"/>
+        <On Platform="iOS" Value="Comfortaa-Light"/>
+    </OnPlatform>
+  
+    <Color x:Key="MainTextColor">#646464
+    </Color>
     <Color x:Key="PlaceholderTextColor">Gray</Color>
     <Color x:Key="LoginBackground">#EBEBEB</Color>
     <Color x:Key="SecondaryTextColor">Black</Color>
@@ -27,6 +42,9 @@
     <Color x:Key="PrimaryColor">#581948</Color>
     <Color x:Key="PrimaryLightColor">#802068</Color>
     <Color x:Key="PrimaryDarkColor">#3D000F</Color>
+    
+    <Color x:Key="AccentColor">#DB8700</Color>
+    
     <Color x:Key="SecondaryColor">#FCFCFC</Color>
     <Color x:Key="SecondaryDarkColor">#E8E8E8</Color>
     <LayoutOptions x:Key="LogInLayoutOptions" Alignment="Center" />

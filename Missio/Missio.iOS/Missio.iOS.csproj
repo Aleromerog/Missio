@@ -112,6 +112,15 @@
     <BundleResource Include="Resources\Password%402x.png" />
     <BundleResource Include="Resources\Password%403x.png" />
     <Compile Include="Custom Renderers\CustomEntryRenderer.cs" />
+    <BundleResource Include="Resources\Comfortaa-Bold.ttf" />
+    <BundleResource Include="Resources\Comfortaa-Light.ttf" />
+    <BundleResource Include="Resources\Comfortaa-Regular.ttf" />
+    <BundleResource Include="Resources\Like.png" />
+    <BundleResource Include="Resources\Like%402x.png" />
+    <BundleResource Include="Resources\Like%403x.png" />
+    <BundleResource Include="Resources\Comment.png" />
+    <BundleResource Include="Resources\Comment%402x.png" />
+    <BundleResource Include="Resources\Comment%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ButtonCircle.FormsPlugin.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

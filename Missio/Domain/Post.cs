@@ -26,17 +26,20 @@ namespace Domain
 
         [UsedImplicitly]
         public DateTime PublishedDate { get; private set; }
+        [UsedImplicitly]
+        public string Verse { get; private set; }
 
         private Post()
         {
         }
 
-        public Post([NotNull] User author, [NotNull] string message, DateTime publishedDate, byte[] image = null)
+        public Post([NotNull] User author, [NotNull] string message, DateTime publishedDate, byte[] image = null, string verse = null)
         {
             Author = author ?? throw new ArgumentNullException(nameof(author));
             Message = message ?? throw new ArgumentNullException(nameof(message));
             PublishedDate = publishedDate;
             Image = image;
+            Verse = verse;
         }
         
         /// <inheritdoc />

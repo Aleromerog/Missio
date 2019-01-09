@@ -101,6 +101,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\camera.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\camera.png" />
     <AndroidResource Include="Resources\drawable\LogInBackground.jpeg" />
+    <AndroidResource Include="Resources\drawable-hdpi\Comment.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -173,6 +174,9 @@
     <AndroidAsset Include="Assets\Raleway-Regular.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AndroidAsset>
+    <AndroidAsset Include="Assets\Comfortaa-Bold.ttf" />
+    <AndroidAsset Include="Assets\Comfortaa-Light.ttf" />
+    <AndroidAsset Include="Assets\Comfortaa-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\bell.png" />

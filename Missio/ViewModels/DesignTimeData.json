@@ -2,7 +2,8 @@
   "NewsFeedPage.xaml": {
     "Posts": [
       {
-        "Message": "First message written by Greco",
+        "Message": "First message written by Greco ",
+        "Verse": "1 Corintios 13-14",
         "Likes": [
           {
             "Author": {
@@ -20,16 +21,16 @@
             }
           }
         ],
-        "Image": "https://scontent.fntr6-1.fna.fbcdn.net/v/t1.0-9/45358995_1972942912744756_2721801619644612608_n.jpg?_nc_cat=101&_nc_ht=scontent.fntr6-1.fna&oh=769746f287f740754c24fc35ef02926c&oe=5C751E41",
-        "PublishedDate": "2018-01-01T00:00:00",
+        "Image": "person.png",
+         "PublishedDate": "1h ago",
         "Author": {
           "UserName": "Francisco Greco",
           "Picture": "https://scontent.fntr6-1.fna.fbcdn.net/v/t1.0-9/45358995_1972942912744756_2721801619644612608_n.jpg?_nc_cat=101&_nc_ht=scontent.fntr6-1.fna&oh=769746f287f740754c24fc35ef02926c&oe=5C751E41"
         }
       },
       {
-        "Message": "First message written by Greco",
-        "Comments": [],
+        "Message": "First message written by Greco ",
+        "Verse": "1 Corintios 13-14",
         "Likes": [
           {
             "Author": {
@@ -38,13 +39,22 @@
             }
           }
         ],
-        "Image": null,
-        "PublishedDate": "2018-01-01T00:00:00",
+        "Comments": [
+          {
+            "Text": "Que buen momo",
+            "Author": {
+              "UserName": "Francisco Greco",
+              "Picture": "https://scontent.fntr6-1.fna.fbcdn.net/v/t1.0-9/45358995_1972942912744756_2721801619644612608_n.jpg?_nc_cat=101&_nc_ht=scontent.fntr6-1.fna&oh=769746f287f740754c24fc35ef02926c&oe=5C751E41"
+            }
+          }
+        ],
+        "Image": "person.png",
+        "PublishedDate": "1h ago",
         "Author": {
           "UserName": "Francisco Greco",
           "Picture": "https://scontent.fntr6-1.fna.fbcdn.net/v/t1.0-9/45358995_1972942912744756_2721801619644612608_n.jpg?_nc_cat=101&_nc_ht=scontent.fntr6-1.fna&oh=769746f287f740754c24fc35ef02926c&oe=5C751E41"
         }
-      }
+      },
     ]
   },
   "CommentsPage.xaml": {
