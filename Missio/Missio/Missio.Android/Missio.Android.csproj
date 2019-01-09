@@ -102,6 +102,9 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\camera.png" />
     <AndroidResource Include="Resources\drawable\LogInBackground.jpeg" />
     <AndroidResource Include="Resources\drawable-hdpi\Comment.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\Like.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Like.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\Like.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

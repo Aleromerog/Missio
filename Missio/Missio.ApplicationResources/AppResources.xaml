@@ -50,4 +50,5 @@
     <LayoutOptions x:Key="LogInLayoutOptions" Alignment="Center" />
     <Color x:Key="EntryBackgroundColor">Transparent</Color>
     <applicationResources:ByteArrayToImageSourceConverter x:Key="ByteToImage" />
+    <applicationResources:SourceNullConverter x:Key="NullVisibility"/>
 </ResourceDictionary>
