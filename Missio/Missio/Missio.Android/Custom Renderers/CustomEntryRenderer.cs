@@ -1,5 +1,4 @@
-﻿using System;
-using Android.Content.Res;
+﻿using Android.Content.Res;
 using Android.Graphics.Drawables;
 using Android.Text;
 using Missio.CustomRenderers;
@@ -20,10 +19,10 @@ namespace Missio.Droid.CustomRenderers
             if (Control != null)
             {
                 GradientDrawable gd = new GradientDrawable();
-                gd.SetColor(global::Android.Graphics.Color.Transparent);
-                this.Control.SetBackgroundDrawable(gd);
-                this.Control.SetRawInputType(InputTypes.TextFlagNoSuggestions);
-                Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.White));
+                gd.SetColor(Android.Graphics.Color.Transparent);
+                Control.SetBackgroundDrawable(gd);
+                Control.SetRawInputType(InputTypes.TextFlagNoSuggestions);
+                Control.SetHintTextColor(ColorStateList.ValueOf(Android.Graphics.Color.White));
             }
         }
     }

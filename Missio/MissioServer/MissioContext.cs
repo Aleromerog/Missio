@@ -16,6 +16,7 @@ namespace MissioServer
         public DbSet<UserCredentials> UsersCredentials { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<StickyPost> StickyPosts { get; set; }
+        public DbSet<PostLikedNotification> PostLikedNotifications { get; set; }
 
         public MissioContext(DbContextOptions<MissioContext> options, IPasswordHasher<User> passwordService, IWebClientService webClientService) : base(options)
         {
@@ -34,6 +35,7 @@ namespace MissioServer
             SeedFriends();
             SeedStickyPosts();
             SeedComments();
+            SeedNotifications();
 
             void SeedUsers()
             {
@@ -74,6 +76,11 @@ namespace MissioServer
             void SeedStickyPosts()
             {
                 modelBuilder.Entity<StickyPost>().HasData(new { Id = -1, Message = "A sticky post message", Title="A sticky post title"});
+            }
+
+            void SeedNotifications()
+            {
+                modelBuilder.Entity<PostLikedNotification>().HasData(new { Id=-1, UserToBeNotifiedId = -1, UserWhichLikedThePostId = -2, PostThatWasLikedId = -1, TimeLiked=new DateTime(2018, 1, 1) });
             }
         }
     }

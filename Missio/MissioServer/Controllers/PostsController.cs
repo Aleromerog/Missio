@@ -12,33 +12,44 @@ namespace MissioServer.Controllers
     [ApiController]
     public class PostsController : ControllerBase
     {
-        private readonly IUserService _userService;
-        private readonly IPostsService _postsService;
+        private readonly UsersService _userService;
+        private readonly PostsService _postsService;
+        private readonly NotificationsService _notificationsService;
 
-        public PostsController(IUserService userService, IPostsService postsService)
+        public PostsController(UsersService userService, PostsService postsService, NotificationsService notificationsService)
         {
             _userService = userService;
             _postsService = postsService;
+            _notificationsService = notificationsService;
         }
 
         [HttpGet("getFriendsPosts/{userName}/{password}")]
-        public async Task<ActionResult<List<Post>>> GetFriendsNewsFeedPosts(string userName, string password)
+        public async Task<List<Post>> GetFriendsNewsFeedPosts(string userName, string password)
         {
             var user = await _userService.GetUserIfValid(new NameAndPassword(userName, password));
             return _postsService.GetPosts(user).ToList();
         }
 
         [HttpGet("getStickyPosts")]
-        public ActionResult<List<StickyPost>> GetStickyPosts()
+        public List<StickyPost> GetStickyPosts()
         {
             return _postsService.GetStickyPosts().ToList();
         }
 
-        [HttpPost]
+        [HttpPost("publishPost/{createPostDTO}")]
         public async Task<ActionResult> PublishPost(CreatePostDTO createPostDTO)
         {
             await _postsService.PublishPost(createPostDTO);
             return Ok();
+        }
+
+        [HttpPost("likePost/{postId}/{userName}/{password}")]
+        public async Task LikePost(int postId, string userName, string password)
+        {
+            var user = await _userService.GetUserIfValid(new NameAndPassword(userName, password));
+            var post = await _postsService.GetPostById(postId);
+            _postsService.AddUserToPostLikes(post, user);
+            _notificationsService.NotifyPostLiked(post, user);
         }
     }
 }

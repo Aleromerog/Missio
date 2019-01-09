@@ -2,8 +2,8 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using ImageCircle.Forms.Plugin.Droid;
-using ViewModels;
 #if GORILLA
+using ViewModels;
 using UXDivers.Gorilla.Droid;
 using Missio.ApplicationResources;
 using UXDivers.Gorilla;
@@ -16,7 +16,7 @@ namespace Missio.Droid
 {
     [Activity(Label = "Missio", Icon = "@drawable/ic_logo", Theme = "@style/MainTheme",MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : FormsAppCompatActivity
+    public partial/*GORILLA*/class MainActivity : FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle) 
         {
