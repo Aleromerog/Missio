@@ -2,7 +2,7 @@
   "NewsFeedPage.xaml": {
     "Posts": [
       {
-        "Message": "First message written by Greco ",
+        "Message": "Me parecio muy buena cita! ",
         "Verse": "1 Corintios 13-14",
         "Likes": [
           {
@@ -21,8 +21,36 @@
             }
           }
         ],
-        "Image": "LoginBackground.png",
+        "Image": "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-9/36199799_2372221646137948_4283449864454406144_n.jpg?_nc_cat=111&_nc_ht=scontent-lax3-2.xx&oh=59e91d22c14a5948058769ab81c39362&oe=5CC547D8",
          "PublishedDate": "1h ago",
+        "Author": {
+          "UserName": "Ana Gaxiola",
+          "Picture": "https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/39611435_2476652022361576_170899188249264128_o.jpg?_nc_cat=110&_nc_ht=scontent-lax3-1.xx&oh=bb20e1cca65961b908a33e63ceb77360&oe=5CC90905"
+        }
+      },
+      
+      {
+        "Message": "Second message written by Greco ",
+        "Verse": null,
+        "Likes": [
+          {
+            "Author": {
+              "UserName": "Francisco Greco",
+              "Picture": "https://scontent.fntr6-1.fna.fbcdn.net/v/t1.0-9/45358995_1972942912744756_2721801619644612608_n.jpg?_nc_cat=101&_nc_ht=scontent.fntr6-1.fna&oh=769746f287f740754c24fc35ef02926c&oe=5C751E41"
+            }
+          }
+        ],
+        "Comments": [
+          {
+            "Text": "Que buen momo",
+            "Author": {
+              "UserName": "Francisco Greco",
+              "Picture": "https://scontent.fntr6-1.fna.fbcdn.net/v/t1.0-9/45358995_1972942912744756_2721801619644612608_n.jpg?_nc_cat=101&_nc_ht=scontent.fntr6-1.fna&oh=769746f287f740754c24fc35ef02926c&oe=5C751E41"
+            }
+          }
+        ],
+        "Image" :  null,
+        "PublishedDate": "1h ago",
         "Author": {
           "UserName": "Francisco Greco",
           "Picture": "https://scontent.fntr6-1.fna.fbcdn.net/v/t1.0-9/45358995_1972942912744756_2721801619644612608_n.jpg?_nc_cat=101&_nc_ht=scontent.fntr6-1.fna&oh=769746f287f740754c24fc35ef02926c&oe=5C751E41"
