@@ -12,19 +12,15 @@ namespace Missio.ApplicationResources
         {
             if (value == null)
                 return null;
-            byte[] array;
             switch (value)
             {
                 case byte[] bytes:
-                    array = bytes;
-                    break;
+                    return ImageSource.FromStream(() => new MemoryStream(bytes));
                 case string imageURL:
                     return ImageSource.FromUri(new Uri(imageURL));
                 default:
                     throw new ArgumentException(nameof(value));
             }
-            var imageSource = ImageSource.FromStream(() => new MemoryStream(array));
-            return imageSource;
         }
 
         /// <inheritdoc />
